@@ -1,0 +1,12 @@
+#map {
+  width: 100%;
+}
+
+.row {
+  display: flex;
+}
+
+#poi_list {
+  height: 100%;
+  font-size: xx-large;
+}

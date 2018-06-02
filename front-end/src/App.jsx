@@ -1,16 +1,26 @@
-import React, { Component } from 'react';
+import React from 'react';
 import NavBar from './components/NavBar.jsx';
-import TestForm from './components/TestForm.jsx'
+import { BrowserRouter, Route } from 'react-router-dom';
+import Home from './components/Home.jsx'
+import ShowCity from './components/ShowCity.jsx'
+import Profile from './components/Profile.jsx'
 
-class App extends Component {
+class App extends React.Component {
   render() {
     return (
-      <div className="App">
-        <NavBar />
-        <TestForm />
+      <div>
+        <BrowserRouter>
+          <div>
+            <NavBar/>
+            <Route exact path='/' component={Home} />
+            <Route path='/toronto' component={ShowCity} />
+            <Route path='/Profile' component={Profile} />
+          </div>
+        </BrowserRouter>
       </div>
     );
   }
 }
 
 export default App;
+

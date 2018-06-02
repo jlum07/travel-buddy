@@ -1,32 +1,30 @@
-import React, {Component} from 'react';
-import Navbar from 'react-bootstrap/lib/Navbar.js'
-import Nav from 'react-bootstrap/lib/Nav.js'
-import NavItem from 'react-bootstrap/lib/NavItem.js'
-import NavDropdown from 'react-bootstrap/lib/NavDropdown.js'
-import MenuItem from 'react-bootstrap/lib/MenuItem.js'
+import React from 'react';
+import { Navbar, Nav, NavItem, NavDropdown, MenuItem } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 
-class NavBar extends Component {
+class NavBar extends React.Component {
   render() {
     return (
       <Navbar>
         <Navbar.Header>
           <Navbar.Brand>
-            <a href="#home">TravelBuddy</a>
+            <Link to='/'>
+              Travel Buddy
+            </Link>
           </Navbar.Brand>
+          <Navbar.Toggle />
         </Navbar.Header>
-        <Nav>
-          <NavItem eventKey={1} href="#">
-            Link
+        <Nav pullRight>
+          <NavItem>
+            Sign In
           </NavItem>
-          <NavItem eventKey={2} href="#">
-            Link
-          </NavItem>
-          <NavDropdown eventKey={3} title="Dropdown" id="basic-nav-dropdown">
-            <MenuItem eventKey={3.1}>Action</MenuItem>
-            <MenuItem eventKey={3.2}>Another action</MenuItem>
-            <MenuItem eventKey={3.3}>Something else here</MenuItem>
-            <MenuItem divider />
-            <MenuItem eventKey={3.4}>Separated link</MenuItem>
+          <NavDropdown title="My Profile" id="basic-nav-dropdown">
+            <MenuItem>
+              <Link to='/Profile'>Profile</Link>
+            </MenuItem>
+            <MenuItem>Sign Out</MenuItem>
+            <MenuItem>Other actions</MenuItem>
+            <MenuItem>Other actions</MenuItem>
           </NavDropdown>
         </Nav>
       </Navbar>
