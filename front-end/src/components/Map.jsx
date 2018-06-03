@@ -1,14 +1,11 @@
 import React from 'react'
-import Jumbotron from 'react-bootstrap/lib/MenuItem.js'
-
+import { Image } from 'react-bootstrap'
 
 class Map extends React.Component {
   render(){
     return (
-      <Jumbotron bsClass='jumbotron'>
-        <h1>MAP</h1>
-        <p>This is the map</p>
-      </Jumbotron>
+      // This works for the url: /toronto, but NOT when the route is: /cities/toronto ?????
+      <Image id='map' src="../assets/Toronto-Map.jpg" rounded />
       )
   }
 }

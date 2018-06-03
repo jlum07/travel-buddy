@@ -8,9 +8,7 @@ class NavBar extends React.Component {
       <Navbar>
         <Navbar.Header>
           <Navbar.Brand>
-            <Link to='/'>
-              Travel Buddy
-            </Link>
+            <Link to='/'>Travel Buddy</Link>
           </Navbar.Brand>
           <Navbar.Toggle />
         </Navbar.Header>
@@ -18,10 +16,10 @@ class NavBar extends React.Component {
           <NavItem>
             Sign In
           </NavItem>
+          <NavItem>
+            <Link to='/profile'>Profile</Link>
+          </NavItem>
           <NavDropdown title="My Profile" id="basic-nav-dropdown">
-            <MenuItem>
-              <Link to='/Profile'>Profile</Link>
-            </MenuItem>
             <MenuItem>Sign Out</MenuItem>
             <MenuItem>Other actions</MenuItem>
             <MenuItem>Other actions</MenuItem>
@@ -32,3 +30,5 @@ class NavBar extends React.Component {
   }
 }
 export default NavBar;
+
+

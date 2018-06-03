@@ -13,8 +13,8 @@ class App extends React.Component {
           <div>
             <NavBar/>
             <Route exact path='/' component={Home} />
-            <Route path='/toronto' component={ShowCity} />
-            <Route path='/Profile' component={Profile} />
+            <Route path='/cities/:city' component={ShowCity} />
+            <Route path='/profile' component={Profile} />
           </div>
         </BrowserRouter>
       </div>

@@ -23,7 +23,6 @@ export default class Home extends React.Component {
               <Button id='search_city_button'>Search</Button>
             </Col>          
           </Row>
-
           <Button bsStyle="primary" bsSize="large" block>
             Take me anywhere!
           </Button>

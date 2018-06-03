@@ -1,5 +1,5 @@
 import React from 'react';
-import { Jumbotron, Button, Image, Col, Row, Grid } from 'react-bootstrap'
+import { Image, Col, Row, Grid } from 'react-bootstrap'
 import './Profile.css';
 
 export default class Home extends React.Component {
