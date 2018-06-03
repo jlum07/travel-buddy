@@ -2,19 +2,36 @@ import { Map, InfoWindow, Marker, GoogleApiWrapper } from "google-maps-react";
 import React, { Component } from "react";
 
 export class MapContainer extends React.Component {
-
-  onMarkerClick(){
-    console.log("suppppp")
+  onMarkerClick() {
+    console.log("suppppp");
   }
 
   render() {
-    const pos = { lat: 37.759703, lng: -122.428093 };
-    const pos2 = { lat: 37.759703, lng: -122.42 };
+    const pos = [
+      {
+        lat: 43.6532,
+        lng: -79.3932
+      },
+      {
+        lat: 43.6532,
+        lng: -79.3892
+      }
+    ];
+
+    let markers = pos.map(position => {
+      return <Marker onClick={this.onMarkerClick} position={position}/>
+    })
+
     return (
-      <Map google={this.props.google} zoom={14}>
-        <Marker onClick={this.onMarkerClick}/>
-        <Marker position={pos} />
-        <Marker position={pos2} />
+      <Map
+        google={this.props.google}
+        zoom={14}
+        initialCenter={{
+          lat: 43.6532,
+          lng: -79.3832
+        }}
+      >
+        {markers}
       </Map>
     );
   }
