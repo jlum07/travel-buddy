@@ -1,5 +1,6 @@
 import React from 'react';
 import { Navbar, Nav, NavItem, NavDropdown, MenuItem } from 'react-bootstrap';
+import LoginModalLauncher from './LoginModalLauncher.jsx';
 import { Link } from 'react-router-dom';
 
 class NavBar extends React.Component {
@@ -14,7 +15,7 @@ class NavBar extends React.Component {
         </Navbar.Header>
         <Nav pullRight>
           <NavItem>
-            Sign In
+            <LoginModalLauncher />
           </NavItem>
           <NavItem>
             <Link to='/profile'>Profile</Link>
