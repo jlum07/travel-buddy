@@ -13,7 +13,6 @@ module.exports = function(searchInput) {
         return response.json();
       })
       .then(function(myJson) {
-        console.log(myJson[0].urls[3].url);
         const options = {
           uri: `https://www.tripadvisor.ca${
             myJson[0].urls[3].url
@@ -48,10 +47,7 @@ module.exports = function(searchInput) {
                 //console.log(activitiesArr);
               }
             });
-            console.log("resolve")
-            console.log(activitiesArr)
-
-            resolve(activitiesArr)
+            resolve(activitiesArr);
           })
           .catch(err => {
             console.log(err);
