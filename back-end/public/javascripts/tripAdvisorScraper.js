@@ -26,6 +26,7 @@ module.exports = function(searchInput) {
       .then(function(options) {
         rp(options)
           .then($ => {
+            console.log($.html())
             $a = $(".listing_info");
             $a.each(function(i, elem) {
               if (
@@ -41,9 +42,11 @@ module.exports = function(searchInput) {
                   ranking: $(this)
                     .find(".listing_rating .popRanking")
                     .eq(1)
-                    .text()
+                    .text(),
+                  trip_advisor_link: `www.tripadvisor.ca${$(this)
+                    .find(".listing_title a")
+                    .attr("href")}`
                 });
-                //console.log(activitiesArr);
               }
             });
             resolve(activitiesArr);
