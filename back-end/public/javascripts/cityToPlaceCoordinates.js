@@ -5,24 +5,16 @@ module.exports = function(searchInput) {
   return new Promise(function(resolve, reject) {
     tripAdvisorScraper(searchInput)
       .then(places => {
-        //console.log("here");
-        console.log(places);
         let promiseArray = places.map(element => {
-          let something = placeToCoordinates(element);
-
-          return something.then(value => {
-            console.log(value);
-            return value;
-          });
+          return placeToCoordinates(element);
         });
+
         return Promise.all(promiseArray).then(results => {
-          //console.log(results)
-          return results
-        })
+          return results;
+        });
       })
       .then(elements => {
-        //console.log(elements);
-        resolve(JSON.stringify(elements));
+        resolve(elements);
       });
   });
 };
