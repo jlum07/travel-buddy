@@ -26,7 +26,6 @@ module.exports = function(searchInput) {
       .then(function(options) {
         rp(options)
           .then($ => {
-            console.log($.html())
             $a = $(".listing_info");
             $a.each(function(i, elem) {
               if (

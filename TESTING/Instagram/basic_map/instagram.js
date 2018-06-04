@@ -1,3 +1,5 @@
+const axios = require("axios")
+
 function instaMedia(id) {
 
   axios.get(`https://www.instagram.com/explore/locations/${id}/?__a=1`)
@@ -20,7 +22,7 @@ function instaMedia(id) {
   });
 }
 
-function instaLocation (lat, lng) {
+module.exports = function instaLocation (lat, lng) {
 
   axios.get('https://api.instagram.com/v1/locations/search?', {
     params: {

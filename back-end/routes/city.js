@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const cityToPlaceCoordinates = require("../public/javascripts/cityToPlaceCoordinates");
 const cityAutoComplete = require("../public/javascripts/cityAutoComplete");
+//
 
 router.get("/:city", async (req, res) => {
   let cityDetails = await cityAutoComplete(req.params.city);
@@ -20,8 +21,7 @@ router.get("/:city", async (req, res) => {
     city_coordinates: cityDetails.result.geometry.location,
     points_of_interest: {
       top_poi: pointsOfInterest
-    },
-    instagram:
+    }
   };
 
   res.send(response);
