@@ -4,6 +4,7 @@ const tripAdvisorScraper = require("../public/javascripts/tripAdvisorScraper");
 const placeToCoordinates = require("../public/javascripts/placeToCoordinates");
 const cityToPlaceCoordinates = require("../public/javascripts/cityToPlaceCoordinates");
 
+
 router.get("/", (req, res) => {
   tripAdvisorScraper(req.query.city).then(function(result) {
     res.send(JSON.stringify(result));

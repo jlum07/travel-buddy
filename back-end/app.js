@@ -2,12 +2,15 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const tripAdvisor = require("./routes/tripAdvisor");
 const morgan = require("morgan");
+const cors = require("cors")
 
 // Set the port to 3001
 const PORT = 3001;
 
 // Create a new express server
 const app = express();
+
+app.use(cors())
 // Make the express app serve static assets (html, javascript, css) from the /public folder
 app.use(express.static("public"));
 
