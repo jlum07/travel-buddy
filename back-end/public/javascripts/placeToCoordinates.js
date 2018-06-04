@@ -1,5 +1,7 @@
 const fetch = require("node-fetch");
 const apikey = require('../../apikey.js');
+const getSnapChats = require('./getSnapChats')
+const getInstagrams = require('./getInstagrams')
 
 module.exports = function(placeElement) {
   return new Promise(function(resolve, reject) {
@@ -9,13 +11,19 @@ module.exports = function(placeElement) {
       .then(response => {
         return response.json()
       })
-      .then(function(sup) {
+      .then(async function(sup) {
         //console.log(sup)
         placeElement.location = sup.results[0].geometry.location
 
         //Adds the closest "address"
         //Could be improved by implenting a fetch to the google autocompete for places API
         placeElement.address = sup.results[0].vicinity
+        console.log(placeElement.location.lat, placeElement.location.lng)
+
+        placeElement.snapchat = await getSnapChats(placeElement.location.lat, placeElement.location.lng)
+        console.log("completed snap")
+        //placeElement.instagrams = await getInstagrams(placeElement.location.lat, placeElement.location.lng)
+        console.log("completed insta", )
 
         resolve(placeElement);
       })
