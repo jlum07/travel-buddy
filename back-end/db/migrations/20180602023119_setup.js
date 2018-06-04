@@ -3,16 +3,17 @@ exports.up = function(knex, Promise) {
   return new Promise( (resolve, reject) => {
     knex.schema.createTable('users', function (table) {
       table.increments('id').primary();
-      table.string('username');
-      table.string('email');
-      table.string('password');
+      table.string('username').notNullable();
+      table.string('email').notNullable();
+      table.string('password').notNullable();
       table.string('first_name');
       table.string('last_name');
-      table.string('food_rank');
-      table.string('arts_rank');
-      table.string('nightlife_rank');
-      table.string('history_rank');
-      table.string('price_rank');
+      table.string('profile_pic');
+      table.integer('food_rank');
+      table.integer('arts_rank');
+      table.integer('nightlife_rank');
+      table.integer('history_rank');
+      table.integer('price_rank');
     })
     .then(() => {
       return knex.schema.createTable('trips', function (table) {
@@ -27,11 +28,11 @@ exports.up = function(knex, Promise) {
       return knex.schema.createTable('cities', function (table) {
         table.increments('id').primary();
         table.string('name');
-        table.string('food_rank');
-        table.string('arts_rank');
-        table.string('nightlife_rank');
-        table.string('history_rank');
-        table.string('price_rank');
+        table.integer('food_rank');
+        table.integer('arts_rank');
+        table.integer('nightlife_rank');
+        table.integer('history_rank');
+        table.integer('price_rank');
       });
     })
     .then(() => {
