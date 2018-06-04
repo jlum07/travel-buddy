@@ -9,7 +9,8 @@ function instaMedia(id) {
       return {
         url: x.node.display_url,
         text: x.node.edge_media_to_caption.edges["0"].node.text,
-        timestamp: x.node.taken_at_timestamp
+        timestamp: x.node.taken_at_timestamp,
+        demensions: x.node.dimensions
       }
     })
     console.log(posts);
