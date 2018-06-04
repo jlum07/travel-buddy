@@ -1,6 +1,5 @@
 const rp = require("request-promise");
 const cheerio = require("cheerio");
-const myArgs = process.argv.slice(2);
 const fetch = require("node-fetch");
 
 module.exports = function(searchInput) {
