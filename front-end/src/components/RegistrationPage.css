@@ -1,0 +1,23 @@
+.jumbotron {
+  margin: 4em;
+  padding: 5em;
+  border-radius: 0.5em;
+}
+
+h1{
+  text-align: center;
+}
+
+#register_button{
+  margin-left: 35%;
+  margin-right: 35%;
+  width: 30%;
+}
+
+input {
+  margin:0.5em;
+}
+
+#username {
+  margin-top: 0;
+}

@@ -20,6 +20,9 @@ class NavBar extends React.Component {
           <NavItem>
             <Link to='/profile'>Profile</Link>
           </NavItem>
+          <NavItem>
+            <Link to='/register'>Register</Link>
+          </NavItem>
           <NavDropdown title="My Profile" id="basic-nav-dropdown">
             <MenuItem>Sign Out</MenuItem>
             <MenuItem>Other actions</MenuItem>

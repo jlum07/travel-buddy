@@ -2,7 +2,7 @@ import React from 'react';
 import { Jumbotron, Button, FormGroup, FormControl, Col, Row, Grid } from 'react-bootstrap'
 import './Home.css';
 
-export default class Home extends React.Component {
+class Home extends React.Component {
   render(){
     return (
       <Grid>
@@ -31,3 +31,5 @@ export default class Home extends React.Component {
       )
   }
 }
+
+export default Home;
