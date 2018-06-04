@@ -2,7 +2,7 @@ const snapMap = require('./lib');
 
 module.exports = function getSnaps(lat, lng){
   return new Promise((resolve, reject) => {
-    snapMap.getPlaylist(lat, lng, 2000, 12).then(function(playlist) {
+    snapMap.getPlaylist(lat, lng, 200, 12).then(function(playlist) {
       var snaps = [];
       // console.log(playlist);
 

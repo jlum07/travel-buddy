@@ -1,6 +1,6 @@
 const getSnaps = require('./index.js');
 
-getSnaps(43.642713, -79.386519).then((snaps)=>{console.log(snaps)}).catch((error)=>{console.log(error)})
+getSnaps(43.644029, -79.394689).then((snaps)=>{console.log(snaps)}).catch((error)=>{console.log(error)})
 
 // Middle of the Ocean: (29.880547, -44.833703) - Will return NO snaps
 // Toronto Waterfront: (43.638570, -79.385858)
