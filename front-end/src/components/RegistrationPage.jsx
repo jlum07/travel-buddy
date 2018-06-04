@@ -1,6 +1,6 @@
 import React from 'react';
 import { Redirect } from 'react-router-dom';
-import { Jumbotron, Button, FormGroup, Col, Row, Grid, ControlLabel, FormControl, HelpBlock } from 'react-bootstrap'
+import { Jumbotron, Button, FormGroup, Col, Row, Grid, ControlLabel, FormControl } from 'react-bootstrap'
 import './RegistrationPage.css';
 
 class RegistrationPage extends React.Component {
@@ -112,7 +112,19 @@ class RegistrationPage extends React.Component {
               placeholder="*Confirm Password"
               onChange={this.handleChange}
             />
-
+            <input id="ex1" data-slider-id='ex1Slider' type="text" data-slider-min="0" data-slider-max="20" data-slider-step="1" data-slider-value="14"/>
+            <input
+  type="text"
+  name="somename"
+  data-provide="slider"
+  data-slider-ticks="[1, 2, 3]"
+  data-slider-ticks-labels='["short", "medium", "long"]'
+  data-slider-min="1"
+  data-slider-max="3"
+  data-slider-step="1"
+  data-slider-value="3"
+  data-slider-tooltip="hide"
+></input>
             <br></br>
             <br></br>
 

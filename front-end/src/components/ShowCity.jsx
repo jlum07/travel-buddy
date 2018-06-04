@@ -1,9 +1,34 @@
 import React from 'react';
-import { Jumbotron, Grid, Row, Col } from 'react-bootstrap'
+import { Jumbotron, Grid, Row, Col, Button } from 'react-bootstrap'
 import Map from './Map.jsx'
+import axios from 'axios';
 import './ShowCity.css';
 
 export default class ShowCity extends React.Component {
+  constructor(){
+    super()
+    this.state = {
+      localWeather: {}
+    };
+    this.handleGetWeather = this.handleGetWeather.bind(this);
+  }
+
+  handleGetWeather(){
+    // console.log(this);
+    axios.get('http://api.openweathermap.org/data/2.5/weather?q=houston&APPID=b8398cdd6d234d51ffc40fb334491217')
+    .then((response) => {
+      console.log(response);
+      this.setState({localWeather: response});
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+  }
+
+  componentDidMount(){
+    console.log(this);
+  }
+
   render(){
     return (
       <Grid>
@@ -23,6 +48,8 @@ export default class ShowCity extends React.Component {
             </Jumbotron>
           </Col>
         </Row>
+        <Button onClick={this.handleGetWeather}>Get Weather</Button>
+        <a>{JSON.stringify(this.state.localWeather)}</a>
       </Grid>
       )
   }

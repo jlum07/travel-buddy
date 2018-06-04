@@ -17,11 +17,11 @@ class NavBar extends React.Component {
           <NavItem>
             <LoginModalLauncher />
           </NavItem>
-          <NavItem>
-            <Link to='/profile'>Profile</Link>
+          <NavItem componentClass={Link} href='/profile' to='/profile'>
+            Profile
           </NavItem>
-          <NavItem>
-            <Link to='/register'>Register</Link>
+          <NavItem componentClass={Link} href='/profile' to='/profile'>
+            Register
           </NavItem>
           <NavDropdown title="My Profile" id="basic-nav-dropdown">
             <MenuItem>Sign Out</MenuItem>
