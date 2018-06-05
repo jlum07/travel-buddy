@@ -1,6 +1,8 @@
 import React from 'react';
-import { Modal } from 'react-bootstrap'
-import './GalleryModal.css';
+import { Modal, Button, Tabs, Tab } from 'react-bootstrap'
+// import './GalleryModal.css';
+import InstaCarousel from './InstaCarousel.jsx';
+import SnapCarousel from './SnapCarousel.jsx';
 
 class GalleryModal extends React.Component {
 
@@ -25,11 +27,21 @@ class GalleryModal extends React.Component {
 
   render(){
     return (
-      <Modal show={this.state.show} onHide={this.handleClose}>
-
-
-
-      </Modal>
+      <React.Fragment>
+        <Button bsStyle="primary" bsSize="large" onClick={this.handleShow}>
+        Launch demo modal
+        </Button>
+        <Modal show={this.state.show} onHide={this.handleClose}>
+          <Tabs defaultActiveKey={1} id="uncontrolled-tab-example">
+            <Tab eventKey={1} title="Instagram">
+              <InstaCarousel />
+            </Tab>
+            <Tab eventKey={2} title="SnapChat">
+              <SnapCarousel />
+            </Tab>
+          </Tabs>
+        </Modal>
+      </React.Fragment>
     );
   }
 }
