@@ -5,6 +5,7 @@ import Home from './components/Home.jsx';
 import ShowCity from './components/ShowCity.jsx';
 import Profile from './components/Profile.jsx';
 import RegistrationPage from './components/RegistrationPage.jsx';
+import DashboardContainer from './components/DashboardContainer.jsx'
 
 class App extends Component {
   render() {
@@ -19,6 +20,8 @@ class App extends Component {
             <Route path='/register' component={RegistrationPage} />
           </div>
         </BrowserRouter>
+      <div className="App">
+        <DashboardContainer />
       </div>
     );
   }
