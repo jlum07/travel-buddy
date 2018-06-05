@@ -1,6 +1,7 @@
 import React from 'react';
 import { Redirect } from 'react-router-dom';
 import { Jumbotron, Button, FormGroup, Col, Row, Grid, ControlLabel, FormControl } from 'react-bootstrap'
+import axios from 'axios';
 import './RegistrationPage.css';
 
 class RegistrationPage extends React.Component {
@@ -32,17 +33,25 @@ class RegistrationPage extends React.Component {
   //   return null;
   // }RIBUTE FROM FormGroup: validationState={this.getValidationState()}
 
-
   handleFormSubmit(event){
-    console.log(`
-      username: ${this.state.username},
-      firstName: ${this.state.firstName},
-      lastName: ${this.state.firstName}
-      ....etc
-      SEND THIS DATA TO DATABASE
-      `);
-    this.setState({redirect: true})
-
+    axios.post('http://localhost:3001/user/register', {
+      username: this.state.username,
+      firstName: this.state.firstName,
+      lastName: this.state.firstName,
+      email: this.state.email,
+      rank_food: this.state.rank_food,
+      rank_arts: this.state.rank_arts,
+      rank_nightlife: this.state.rank_nightlife,
+      rank_history: this.state.rank_history,
+      rank_price: this.state.rank_price,
+      password: this.state.password
+    })
+    .then((response)=>{
+      console.log(response);
+      // IF REGISTRATION IS SUCCESSFUL:
+      this.setState({redirect: true});
+    })
+    .catch((error)=>{console.log(error)});
   }
 
   handleChange(event) {
@@ -55,12 +64,8 @@ class RegistrationPage extends React.Component {
     }
 
     return (
-      <Jumbotron>
-      
-        <FormGroup
-          controlId="formBasicText"
-          
-        >
+      <Jumbotron>      
+        <FormGroup>
           <Grid>
           <h1>Join the Club</h1>
           <br></br>
@@ -112,19 +117,6 @@ class RegistrationPage extends React.Component {
               placeholder="*Confirm Password"
               onChange={this.handleChange}
             />
-            <input id="ex1" data-slider-id='ex1Slider' type="text" data-slider-min="0" data-slider-max="20" data-slider-step="1" data-slider-value="14"/>
-            <input
-  type="text"
-  name="somename"
-  data-provide="slider"
-  data-slider-ticks="[1, 2, 3]"
-  data-slider-ticks-labels='["short", "medium", "long"]'
-  data-slider-min="1"
-  data-slider-max="3"
-  data-slider-step="1"
-  data-slider-value="3"
-  data-slider-tooltip="hide"
-></input>
             <br></br>
             <br></br>
 
