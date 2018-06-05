@@ -1,4 +1,4 @@
-const data = require("../back-end/citychar");
+const data = require("../back-end/cityChatRaw");
 
 let citiesData = {};
 
@@ -26,6 +26,7 @@ const totalCultureCities = data.culture.length;
 data.culture.forEach((element, index) => {
   let match = element.match(re2)[1];
   //console.log(match)
+
   let cultureScore = 5 + (index / (totalCultureCities - 1)) * 5;
   if (!citiesData[match]) {
     citiesData[match] = {
@@ -98,7 +99,6 @@ for (let city in citiesData) {
   }
 }
 
-//Filling in the null with random values
 for (let city in citiesData){
   for(let attr in citiesData[city]){
     if(citiesData[city][attr] === null){
@@ -119,6 +119,4 @@ console.log(citiesData)
 //     } ${citiesData[city].safety} ${citiesData[city].cost}`
 //   );
 // }
-
-
 //console.log(test.sort())
