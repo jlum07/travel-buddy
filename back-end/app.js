@@ -1,9 +1,10 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const tripAdvisor = require("./routes/tripAdvisor");
-const city = require("./routes/city")
+const city = require("./routes/city");
+const users = require("./routes/users");
 const morgan = require("morgan");
-const cors = require("cors")
+const cors = require("cors");
 
 // Set the port to 3001
 const PORT = 3001;
@@ -19,9 +20,12 @@ app.use(morgan("dev"));
 
 app.use("/trip-advisor", tripAdvisor);
 
-app.use("/city", city)
+app.use("/city", city);
+
+app.use("/users", users);
 
 
 app.listen(PORT, "0.0.0.0", "localhost", () =>
   console.log(`Listening on ${PORT}`)
 );
+

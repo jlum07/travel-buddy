@@ -34,7 +34,7 @@ class RegistrationPage extends React.Component {
   // }RIBUTE FROM FormGroup: validationState={this.getValidationState()}
 
   handleFormSubmit(event){
-    axios.post('http://localhost:3001/user/register', {
+    axios.post('http://localhost:3001/users/register', {
       username: this.state.username,
       firstName: this.state.firstName,
       lastName: this.state.firstName,

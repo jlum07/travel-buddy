@@ -1,14 +1,17 @@
 import { Map, InfoWindow, Marker, GoogleApiWrapper } from "google-maps-react";
 import React, { Component } from "react";
 import fetch from "node-fetch";
+require('dotenv').config();
 
 export class MapContainer extends React.Component {
   constructor() {
     super();
     this.state = {
-      pins: []
+      pins: [],
+      GOOGLE_MAPS_API_KEY: process.env.GOOGLE_MAPS_API_KEY
     };
   }
+
 
   onMarkerClick() {
     console.log("suppppp");
@@ -45,7 +48,7 @@ export class MapContainer extends React.Component {
       return <Marker onClick={this.onMarkerClick} position={position} />;
     });
 
-    console.log(markers);
+    // console.log(markers);
 
     return (
       <Map
@@ -62,6 +65,8 @@ export class MapContainer extends React.Component {
   }
 }
 
+console.log(process.env);
+
 export default GoogleApiWrapper({
-  apiKey: process.env.API_KEY
+  apiKey:  process.env.GOOGLE_MAPS_API_KEY
 })(MapContainer);
