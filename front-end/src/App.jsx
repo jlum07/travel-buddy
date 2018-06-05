@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import NavBar from './components/NavBar.jsx';
-import MapContainer from './components/MapContainer.jsx'
+import MapContainer from './components/mapContainer.jsx'
 
 class App extends Component {
   render() {
