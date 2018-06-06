@@ -1,6 +1,5 @@
 import React from 'react';
 import AmCharts from "@amcharts/amcharts3-react";
-import { Table, Panel } from 'react-bootstrap';
 import './TripMap.css';
 
 
@@ -34,16 +33,17 @@ class TripMap extends React.Component {
       "projection": "miller",
       "dataProvider": {
         "map": "worldLow",
-        "zoomLevel": 2,
-        "zoomLongitude": -55,
-        "zoomLatitude": 42,
+        // "zoomLevel": 2,
+        // "zoomLongitude": -55,
+        // "zoomLatitude": 42,
 
         "lines": [ {
           "id": "line1",
           "arc": -0.85,
           "alpha": 0.3,
           "latitudes": latLine,
-          "longitudes": lngLine        }, {
+          "longitudes": lngLine
+        }, {
           "id": "line2",
           "alpha": 0,
           "color": "#000000",
@@ -102,20 +102,7 @@ class TripMap extends React.Component {
 
     return (
       <React.Fragment>
-
         <AmCharts.React className="trip-map"  options={config} />
-
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
       </React.Fragment>
     );
   }

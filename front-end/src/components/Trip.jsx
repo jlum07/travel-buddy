@@ -7,28 +7,15 @@ import './Trip.css';
 
 class Trip extends React.Component {
 
-  constructor(props, context) {
-    super(props, context);
+  constructor(props) {
+    super(props);
   }
 
   render(){
 
     return (
       <React.Fragment>
-
         <TripMap />
-
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
       </React.Fragment>
     );
   }

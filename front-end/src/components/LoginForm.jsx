@@ -39,7 +39,7 @@ class LoginForm extends React.Component {
 
     })
     .catch((error)=>{
-      // IF LOGING UNSECCESFUL DUE TO NETWORK PROBLEM: 
+      // IF LOGING UNSECCESFUL DUE TO NETWORK PROBLEM:
       console.log(error)
       this.setState({failedLogin: true});
     });
