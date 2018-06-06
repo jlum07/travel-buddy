@@ -7,6 +7,8 @@ import Profile from "./components/Profile.jsx";
 import RegistrationPage from "./components/RegistrationPage.jsx";
 import DashboardContainer from "./components/DashboardContainer.jsx";
 import MapContainer from "./components/DashboardComponents/Map/MapContainer.jsx"
+import Trips from './components/Trips.jsx';
+import Trip from './components/Trip.jsx';
 
 class App extends Component {
   render() {
@@ -21,6 +23,8 @@ class App extends Component {
               <Route path="/profile" component={Profile} />
               <Route path="/map" component={MapContainer} />
               <Route path="/register" component={RegistrationPage} />
+              <Route path='/trips' component={Trips} />
+              <Route path='/trip/:id' component={Trip} />
             </div>
           </BrowserRouter>
         </div>
