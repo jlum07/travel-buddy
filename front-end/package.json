@@ -9,6 +9,7 @@
     "dotenv": "^6.0.0",
     "fetch": "^1.1.0",
     "google-maps-react": "^2.0.2",
+    "gsap": "^2.0.1",
     "react": "^16.4.0",
     "react-bootstrap": "^0.32.1",
     "react-dom": "^16.4.0",
