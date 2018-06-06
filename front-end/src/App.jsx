@@ -7,6 +7,7 @@ import Profile from "./components/Profile.jsx";
 import RegistrationPage from "./components/RegistrationPage.jsx";
 import DashboardContainer from "./components/DashboardContainer.jsx";
 import MapContainer from "./components/DashboardComponents/Map/MapContainer.jsx"
+import MorphGraph from "./components/DashboardComponents/CityChar/CityCharContainer.jsx"
 
 class App extends Component {
   render() {
@@ -21,11 +22,9 @@ class App extends Component {
               <Route path="/profile" component={Profile} />
               <Route path="/map" component={MapContainer} />
               <Route path="/register" component={RegistrationPage} />
+              <Route path="/graph" component={MorphGraph} />
             </div>
           </BrowserRouter>
-        </div>
-        <div className="App">
-          <DashboardContainer />
         </div>
       </div>
     );
