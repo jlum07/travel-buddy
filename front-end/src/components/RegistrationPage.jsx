@@ -21,9 +21,13 @@ class RegistrationPage extends React.Component {
       rank_price: '',
       password: '',
       password_confirmation: '',
-      redirect: false
+      redirect_to_home: false,
+      form_valid: true,
+      invalid_form_message: ''
     };
+  console.log(this.props);
   }
+
 
   // getValidationState() {
   //   const length = this.state.value.length;
@@ -34,10 +38,13 @@ class RegistrationPage extends React.Component {
   // }RIBUTE FROM FormGroup: validationState={this.getValidationState()}
 
   handleFormSubmit(event){
-    axios.post('http://localhost:3001/users/register', {
+    axios({
+    method: 'post',
+    url: 'http://localhost:3001/users/register',
+    data: {
       username: this.state.username,
       firstName: this.state.firstName,
-      lastName: this.state.firstName,
+      lastName: this.state.lastName,
       email: this.state.email,
       rank_food: this.state.rank_food,
       rank_arts: this.state.rank_arts,
@@ -45,13 +52,19 @@ class RegistrationPage extends React.Component {
       rank_history: this.state.rank_history,
       rank_price: this.state.rank_price,
       password: this.state.password
+      }
     })
     .then((response)=>{
       console.log(response);
-      // IF REGISTRATION IS SUCCESSFUL:
-      this.setState({redirect: true});
+      if (response.status === 200){
+        console.log('response status 200');
+        this.props.route.logIn(this.state.username); // this ?SHOULD? change the state of currentUser on the App component, which will re-render the home page
+        this.setState({redirect_to_home: true})
+      }
     })
-    .catch((error)=>{console.log(error)});
+    .catch((error)=>{
+      console.log('Registration Failed: \n', error);
+    });
   }
 
   handleChange(event) {
@@ -59,7 +72,7 @@ class RegistrationPage extends React.Component {
   }
 
   render() {
-    if (this.state.redirect) {
+    if (this.state.redirect_to_home) {
       return (<Redirect to='/'/>)
     }
 

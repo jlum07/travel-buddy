@@ -23,6 +23,7 @@ class LoginModalLauncher extends React.Component {
   }
 
   render() {
+    // console.log('inside Login Modal laincher render');
     return (
       <div>
         <Button bsStyle="primary" onClick={this.handleShow}>
@@ -34,7 +35,7 @@ class LoginModalLauncher extends React.Component {
             <Modal.Title>Login</Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            <LoginForm handleClose={this.handleClose} />
+            <LoginForm handleClose={this.handleClose} logIn={this.props.logIn}/>
           </Modal.Body>
         </Modal>
       </div>

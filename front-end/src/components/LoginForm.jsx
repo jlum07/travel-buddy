@@ -16,34 +16,31 @@ class LoginForm extends React.Component {
 
   handleTextChange(event) {
     this.setState({ [event.target.id]: event.target.value});
-    // if (event.target.id === 'loginEmail'){
-    //   this.setState({ email: event.target.value});
-    // }
-    // else if (event.target.id === 'loginPassword'){
-    //   this.setState({ password: event.target.value});
-    // }
   }
 
   handleSubmit(event){
     // SEND EMAIL AND PASSWORD TO BACKEND SERVER FOR VERIFICATION
-    console.log(`email: ${this.state.email}, password: ${this.state.password} is trying to log in!`);
+    // console.log(`email: ${this.state.email}, password: ${this.state.password} is trying to log in!`);
     // console.log('this = ', this); // 'this' WORKS here
     event.preventDefault();
 
-    axios.post('http://localhost:3001/user/login', {
+    axios.post('http://localhost:3001/users/login', {
       email: this.state.email,
       password: this.state.password })
     .then((response)=>{
+      console.log(response);
 
-      console.log(response)}
-      // if (LOGIN SUCCESFUL){
-      //   this.props.handleClose();
-      //   // SHOULD RECEIVE A COOKIE WHICH INDICATES THAT THE USER IS LOGGED IN
-      // }
-      // else {
-      //   this.setState({failedLogin: true})
-      // }
-    )
+      if (response.status === 202){
+        console.log('SUCCESSFUL LOGIN: ', response.data);
+        this.props.logIn(response.data);
+        // this.props.handleClose();
+      }
+      else if (response.status === 401){
+        console.log('Failed login!')
+        this.setState({failedLogin: true})
+      }
+
+    })
     .catch((error)=>{
       // IF LOGING UNSECCESFUL DUE TO NETWORK PROBLEM: 
       console.log(error)
