@@ -99,6 +99,9 @@ for (let city in citiesData) {
   }
 }
 
+
+//Filling in the null with random values
+
 for (let city in citiesData){
   for(let attr in citiesData[city]){
     if(citiesData[city][attr] === null){
@@ -119,4 +122,5 @@ console.log(citiesData)
 //     } ${citiesData[city].safety} ${citiesData[city].cost}`
 //   );
 // }
+
 //console.log(test.sort())
