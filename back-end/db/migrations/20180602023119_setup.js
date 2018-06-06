@@ -19,8 +19,8 @@ exports.up = function(knex, Promise) {
       return knex.schema.createTable('trips', function (table) {
         table.increments('id').primary();
         table.string('name');
-        table.dateTime('start_date');
-        table.dateTime('end_date');
+        table.date('start_date');
+        table.date('end_date');
         table.integer('user_id').references('id').inTable('users');
       });
     })
@@ -33,6 +33,7 @@ exports.up = function(knex, Promise) {
         table.integer('nightlife_rank');
         table.integer('history_rank');
         table.integer('price_rank');
+        table.jsonb('cache');
       });
     })
     .then(() => {
@@ -42,6 +43,8 @@ exports.up = function(knex, Promise) {
         table.integer('trip_id').references('id').inTable('trips');
         table.integer('order');
         table.time('duration');
+        table.date('start_date');
+        table.date('end_date');
       });
     })
     .then( () => {
