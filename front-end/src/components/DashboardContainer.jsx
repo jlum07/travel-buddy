@@ -7,7 +7,7 @@ import WeatherContainer from "./DashboardComponents/Weather/WeatherContainer"
 class DashboardContainer extends React.Component {
 
   render(){
-    return <MapContainer />
+    return <MapContainer width={640} height={425}/>
   }
 }
 

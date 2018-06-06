@@ -92,6 +92,7 @@ class App extends Component {
             <Route path="/profile" render={ProfileWithProps} />
             <Route path="/register" render={RegistrationPageWithProps} />
             <Route path="/graph" component={MorphGraph} />
+            <Route path="/dashboard" component={DashboardContainer} />
           </div>
         </BrowserRouter>
       </div>
