@@ -17,6 +17,7 @@ class DashboardContainer extends React.Component {
   componentDidMount() {
     const { match: { params } } = this.props
     console.log("mounted");
+    console.log("env", process.env)
     fetch(`http://localhost:3001/city/${params.city}`)
       .then(response => {
         return response.json();

@@ -1,3 +1,4 @@
+
 import React, { Component } from "react";
 import NavBar from "./components/NavBar.jsx";
 import { BrowserRouter, Route } from "react-router-dom";
@@ -10,6 +11,7 @@ import MapContainer from "./components/DashboardComponents/Map/MapContainer.jsx"
 import Trips from "./components/Trips.jsx";
 import Trip from "./components/Trip.jsx";
 import MorphGraph from "./components/DashboardComponents/CityChar/CityCharContainer.jsx";
+require('dotenv').config()
 
 class App extends Component {
   constructor() {
