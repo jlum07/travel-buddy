@@ -1,17 +1,28 @@
 const axios = require("axios");
 
 async function instaMedia(id) {
-  let response = await axios.get(
-    `https://www.instagram.com/explore/locations/${id}/?__a=1`
-  );
+  try {
+    let response = await axios.get(
+      `https://www.instagram.com/explore/locations/${id}/?__a=1`
+    );
+  } catch (e) {
+    console.log("sup")
+    return [];
+  }
+
   let edges = response.data.graphql.location.edge_location_to_top_posts.edges;
   let posts = edges.map(x => {
-    return {
-      url: x.node.display_url,
-      text: x.node.edge_media_to_caption.edges["0"].node.text,
-      timestamp: x.node.taken_at_timestamp,
-      demensions: x.node.dimensions
-    };
+    if (x && x.node.edge_media_to_caption.edges["0"]) {
+      //console.log(x)
+      return {
+        url: x.node.display_url,
+        text: x.node.edge_media_to_caption.edges["0"].node.text,
+        timestamp: x.node.taken_at_timestamp,
+        demensions: x.node.dimensions
+      };
+    } else {
+      return {};
+    }
   });
   return posts;
 

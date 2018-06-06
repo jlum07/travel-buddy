@@ -3,6 +3,7 @@ const router = express.Router();
 const tripAdvisorScraper = require("../public/javascripts/tripAdvisorScraper");
 const placeToCoordinates = require("../public/javascripts/placeToCoordinates");
 const cityToPlaceCoordinates = require("../public/javascripts/cityToPlaceCoordinates");
+const getInstagrams = require("../public/javascripts/getInstagrams");
 
 
 router.get("/", (req, res) => {
@@ -15,6 +16,11 @@ router.get("/urls", (req, res) => {
   placeToCoordinates(req.query.place).then(function(result) {
     res.send(result);
   });
+});
+
+router.get("/insta", async (req, res) => {
+    let result = await getInstagrams(43.6532, -79.3832)
+    res.send(result);
 });
 
 router.get("/test", (req, res) => {
