@@ -21,7 +21,8 @@ exports.up = function(knex, Promise) {
         table.string('name');
         table.date('start_date');
         table.date('end_date');
-        table.integer('user_id').references('id').inTable('users');
+        // table.integer('user_id').references('id').inTable('users').onDelete('CASCADE');
+        table.integer('user_id');
       });
     })
     .then(() => {
@@ -39,8 +40,10 @@ exports.up = function(knex, Promise) {
     .then(() => {
       return knex.schema.createTable('city_trip', function (table) {
         table.increments('id').primary();
-        table.integer('city_id').references('id').inTable('cities');
-        table.integer('trip_id').references('id').inTable('trips');
+        // table.integer('city_id').references('id').inTable('cities').onDelete('CASCADE');
+        table.integer('city_id');
+        // table.integer('trip_id').references('id').inTable('trips').onDelete('CASCADE');
+        table.integer('trip_id');
         table.integer('order');
         table.time('duration');
         table.date('start_date');
@@ -53,8 +56,10 @@ exports.up = function(knex, Promise) {
     .then(() => {
       return knex.schema.createTable('favorite_cities', function (table) {
         table.increments('id').primary();
-        table.integer('user_id').references('id').inTable('users');
-        table.integer('city_id').references('id').inTable('cities');
+        // table.integer('user_id').references('id').inTable('users').onDelete('CASCADE');
+        table.integer('user_id');
+        // table.integer('city_id').references('id').inTable('cities').onDelete('CASCADE');
+        table.integer('city_id');
       });
     })
     .catch( (error) => {
