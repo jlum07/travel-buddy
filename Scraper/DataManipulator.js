@@ -26,7 +26,7 @@ const totalCultureCities = data.culture.length;
 data.culture.forEach((element, index) => {
   let match = element.match(re2)[1];
   //console.log(match)
-  let cultureScore = 4 + (index / (totalCultureCities - 1)) * 6;
+  let cultureScore = 5 + (index / (totalCultureCities - 1)) * 5;
   if (!citiesData[match]) {
     citiesData[match] = {
       food: null,
@@ -46,7 +46,7 @@ let totalNightlifeCities = data.nightlife.length;
 
 data.nightlife.forEach((element, index) => {
   let nightlifeScore =
-    4 + ((totalNightlifeCities - index) / totalNightlifeCities) * 6;
+    5 + ((totalNightlifeCities - index) / totalNightlifeCities) * 5;
   if (!citiesData[element]) {
     citiesData[element] = {
       food: null,
@@ -64,7 +64,7 @@ data.nightlife.forEach((element, index) => {
 let totalSafetyCities = data.safety.length;
 
 data.safety.forEach((element, index) => {
-  let SafetyScore = 5 + ((totalSafetyCities - index) / totalSafetyCities) * 5;
+  let SafetyScore = 6 + ((totalSafetyCities - index) / totalSafetyCities) * 4;
   if (!citiesData[element]) {
     citiesData[element] = {
       food: null,
@@ -98,13 +98,27 @@ for (let city in citiesData) {
   }
 }
 
-let test = [];
-for (let city in citiesData) {
-  console.log(
-    `${city} ${citiesData[city].food} ${citiesData[city].culture} ${
-      citiesData[city].nightlife
-    } ${citiesData[city].safety} ${citiesData[city].cost}`
-  );
+//Filling in the null with random values
+for (let city in citiesData){
+  for(let attr in citiesData[city]){
+    if(citiesData[city][attr] === null){
+      citiesData[city][attr] = Math.random() * 6
+    }
+    citiesData[city][attr] = Math.round(citiesData[city][attr] * 100) / 100
+  }
 }
+
+
+
+console.log(citiesData)
+// let test = [];
+// for (let city in citiesData) {
+//   console.log(
+//     `${city} ${citiesData[city].food} ${citiesData[city].culture} ${
+//       citiesData[city].nightlife
+//     } ${citiesData[city].safety} ${citiesData[city].cost}`
+//   );
+// }
+
 
 //console.log(test.sort())
