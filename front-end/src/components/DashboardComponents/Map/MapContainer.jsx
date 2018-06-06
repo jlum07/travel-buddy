@@ -1,6 +1,9 @@
 import { Map, InfoWindow, Marker, GoogleApiWrapper } from "google-maps-react";
 import React, { Component } from "react";
 import fetch from "node-fetch";
+
+import "./MapContainer.css"
+
 require('dotenv').config();
 
 export class MapContainer extends React.Component {
@@ -18,18 +21,10 @@ export class MapContainer extends React.Component {
   }
 
   componentDidMount() {
-    fetch(`http://localhost:3001/trip-advisor/test?city=toronto`, {
-      mode: "no-cors"
-    })
-      .then(response => {
-        return response.json();
-      })
-      .then(pinData => {
-        let pinArray = pinData.map(element => {
+    let pinArray = this.props.points_of_interest.top_poi.map(element => {
           return element.location;
         });
-        this.setState({ pins: pinArray });
-      });
+    this.setState({pins: pinArray})
   }
 
   render() {
@@ -66,5 +61,5 @@ export class MapContainer extends React.Component {
 }
 
 export default GoogleApiWrapper({
-  apiKey:  process.env.GOOGLE_MAPS_API_KEY
+  apiKey:  process.env.API_KEY
 })(MapContainer);

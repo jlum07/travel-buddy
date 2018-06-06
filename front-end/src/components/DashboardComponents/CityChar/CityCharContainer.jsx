@@ -1,28 +1,30 @@
 import React, { Component } from "react";
 import { TweenMax, Elastic } from "gsap/all";
 
-
 class CityCharContainer extends React.Component {
-  constructor(){
-    super()
+  constructor() {
+    super();
     this.state = {
-      data: [80, 55, 70, 87, 80]
-    }
-
+      data: [],
+      fields: []
+    };
   }
-  componentDidMount() {
+
+  _drawGraph() {
     let sides = 5;
     let canvasSize = 500;
     let padding = 50;
-    let data = this.state.data;
-    let feilds = [
-      "Back-end",
-      "Video",
-      "Creative",
-      "Front-end",
-      "Audio",
-      "Analytic"
-    ];
+
+    let data = [];
+    let fields = [];
+    console.log(this.props);
+
+    for (let char in this.props.CityChar) {
+      data.push(this.props.CityChar[char] * 10);
+      fields.push(char);
+    }
+
+    console.log(data, fields);
 
     // letiable
     let canvas = this.refs.canvas;
@@ -65,7 +67,6 @@ class CityCharContainer extends React.Component {
         ctx.stroke();
       }
 
-      console.log(shapesArray[0]);
       if (shapesArray[0]) {
         for (let i = 0; i < shapesArray[0].points.length; i++) {
           ctx.strokeStyle = "#208963";
@@ -95,8 +96,8 @@ class CityCharContainer extends React.Component {
 
         shape = dataArray[j];
         ctx.textBaseline = "middle";
-        for (let i = 0; i < shape.feilds.length; i++) {
-          let _x = Math.round(shape.feilds[i].x);
+        for (let i = 0; i < shape.fields.length; i++) {
+          let _x = Math.round(shape.fields[i].x);
           if (_x < centerX) {
             ctx.textAlign = "right";
           } else if (_x > centerX) {
@@ -104,7 +105,7 @@ class CityCharContainer extends React.Component {
           } else if (_x == centerX) {
             ctx.textAlign = "center";
           }
-          ctx.fillText(feilds[i], shape.feilds[i].x, shape.feilds[i].y);
+          ctx.fillText(fields[i], shape.fields[i].x, shape.fields[i].y);
         }
       }
     }
@@ -141,7 +142,7 @@ class CityCharContainer extends React.Component {
       shape.stroke = _stroke;
       shape.linewidth = _linewidth;
       shape.points = [];
-      shape.feilds = [];
+      shape.fields = [];
 
       for (let i = 0; i < length; i++) {
         let p = new Point();
@@ -158,7 +159,7 @@ class CityCharContainer extends React.Component {
         cang = Math.cos(ang);
         p.x = centerX + sang * (radius + 20);
         p.y = centerY + cang * (radius + 20);
-        shape.feilds.push(p);
+        shape.fields.push(p);
       }
 
       dataArray.push(shape);
@@ -191,21 +192,27 @@ class CityCharContainer extends React.Component {
       setupData(data, "rgba(99, 223, 178, 0.5)", "#3ad59c", 2);
     }
 
-    setTimeout(function() {
-      play();
-      document.body.appendChild(canvas);
-    }, 500);
+    play();
 
     setTimeout(function() {
-     clearInterval(timer)
+      clearInterval(timer);
     }, 4000);
+  }
+
+  componentDidMount() {
+
+
+    document.body.appendChild(this.refs.canvas);
 
   }
 
+  componentDidUpdate(){
+    this._drawGraph()
+    console.log("props", this.props)
+  }
+
   render() {
-    return (
-        <canvas ref="canvas" width={640} height={425} />
-    );
+    return <canvas ref="canvas" width={640} height={425} />;
   }
 }
 
