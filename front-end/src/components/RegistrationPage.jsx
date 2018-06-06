@@ -25,7 +25,6 @@ class RegistrationPage extends React.Component {
       form_valid: true,
       invalid_form_message: ''
     };
-  console.log(this.props);
   }
 
 
@@ -59,7 +58,7 @@ class RegistrationPage extends React.Component {
       if (response.status === 200){
         console.log('response status 200');
         this.props.route.logIn(this.state.username); // this ?SHOULD? change the state of currentUser on the App component, which will re-render the home page
-        this.setState({redirect_to_home: true})
+        // this.setState({redirect_to_home: true})
       }
     })
     .catch((error)=>{

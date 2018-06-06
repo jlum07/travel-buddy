@@ -19,9 +19,6 @@ class LoginForm extends React.Component {
   }
 
   handleSubmit(event){
-    // SEND EMAIL AND PASSWORD TO BACKEND SERVER FOR VERIFICATION
-    // console.log(`email: ${this.state.email}, password: ${this.state.password} is trying to log in!`);
-    // console.log('this = ', this); // 'this' WORKS here
     event.preventDefault();
 
     axios.post('http://localhost:3001/users/login', {

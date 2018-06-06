@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react';
-import { Navbar, Nav, NavItem, NavDropdown, MenuItem, Button } from 'react-bootstrap';
+import { Navbar, Nav, NavItem, Button } from 'react-bootstrap';
 import LoginModalLauncher from './LoginModalLauncher.jsx';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
@@ -21,11 +21,11 @@ class NavBar extends React.Component {
   }
 
   renderNavItems() {
-    if (this.props.currentUser) {
+    if (this.props.currentUser.username) {
       return (
         <Fragment>
           <NavItem componentClass={ Link } href='/profile' to='/profile'>
-            <Button bsStyle="primary">{this.props.currentUser}</Button>
+            <Button bsStyle="primary">{this.props.currentUser.username}</Button>
           </NavItem>
           <NavItem>
             <Button bsStyle="primary" onClick={this.logout}>Logout</Button>

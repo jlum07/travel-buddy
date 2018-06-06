@@ -14,21 +14,70 @@ class App extends Component {
   constructor(){
     super()
     this.state = {
-      currentUser: null // will be null when not logged on
+      currentUser: {
+        username: null, // will be null when not logged on
+        firstName: null,
+        lastName: null,
+        email: null,
+        rank_food: null,
+        rank_arts: null,
+        rank_nightlife: null,
+        rank_history: null,
+        rank_price: null,
+        profilePic: null
+      }
     }
     this.logIn = this.logIn.bind(this);
     this.logOut = this.logOut.bind(this);
   }
 
-  logIn(username){
-    this.setState({ currentUser: username });
+  logIn(userData){
+    console.log('inside logIn, userData = ', userData);
+    this.setState({
+      currentUser: {
+        username: userData.username,
+        firstName: userData.first_name,
+        lastName: userData.last_name,
+        email: userData.email,
+        rank_food: userData.food_rank,
+        rank_arts: userData.arts_rank,
+        rank_nightlife: userData.nightlife_rank,
+        rank_history: userData.history_rank,
+        rank_price: userData.price_rank,
+        profilePic: userData.profile_pic
+      } 
+    });
   }
 
   logOut(){
-    this.setState({ currentUser: null });
+    this.setState({
+      currentUser: {
+        username: null, 
+        firstName: null,
+        lastName: null,
+        email: null,
+        rank_food: null,
+        rank_arts: null,
+        rank_nightlife: null,
+        rank_history: null,
+        rank_price: null,
+        profilePic: null
+      } 
+    });
   }
 
   render() {
+    const RegistrationPageWithProps = (props) => {
+      return (
+        <RegistrationPage logIn={this.logIn} {...props} />
+      );
+    }
+    const ProfileWithProps = (props) => {
+      return (
+        <Profile currentUser={this.state.currentUser} {...props} />
+        );
+    }
+
     return (
       <div>
         <BrowserRouter>
@@ -36,11 +85,11 @@ class App extends Component {
             <NavBar logIn={this.logIn} logOut={this.logOut} currentUser={this.state.currentUser} />
             <Route exact path='/' component={Home} />
             <Route path='/cities/:city' component={ShowCity} />
-            <Route path='/profile' component={Profile} />
-            <Route path='/register' component={RegistrationPage} logIn={this.logIn} />
             <Route path='/trips' component={Trips} />
             <Route path='/trip/:id' component={Trip} />
             <Route path="/map" component={MapContainer} />
+            <Route path='/profile' render={ProfileWithProps} />
+            <Route path='/register' render={RegistrationPageWithProps}  />
           </div>
         </BrowserRouter>
         <div className="App">
@@ -52,3 +101,4 @@ class App extends Component {
 }
 
 export default App;
+

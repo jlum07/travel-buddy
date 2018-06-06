@@ -53,7 +53,7 @@ module.exports = (knex) => {
       }
       else if (results[0].password === req.body.password){
         res.status(202);
-        res.send(results[0].username);
+        res.send(results[0]);
       }
       else{
         res.status(401);        
