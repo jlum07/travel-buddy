@@ -45,14 +45,14 @@ class App extends Component {
         rank_history: userData.history_rank,
         rank_price: userData.price_rank,
         profilePic: userData.profile_pic
-      } 
+      }
     });
   }
 
   logOut(){
     this.setState({
       currentUser: {
-        username: null, 
+        username: null,
         firstName: null,
         lastName: null,
         email: null,
@@ -62,7 +62,7 @@ class App extends Component {
         rank_history: null,
         rank_price: null,
         profilePic: null
-      } 
+      }
     });
   }
 
@@ -92,9 +92,6 @@ class App extends Component {
             <Route path='/register' render={RegistrationPageWithProps}  />
           </div>
         </BrowserRouter>
-        <div className="App">
-          <DashboardContainer />
-        </div>
       </div>
     );
   }
