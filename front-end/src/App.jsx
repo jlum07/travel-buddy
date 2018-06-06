@@ -94,9 +94,6 @@ class App extends Component {
             <Route path="/graph" component={MorphGraph} />
           </div>
         </BrowserRouter>
-        <div className="App">
-          <DashboardContainer />
-        </div>
       </div>
     );
   }
