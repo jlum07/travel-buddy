@@ -13,6 +13,7 @@ class Home extends React.Component {
     this.handleSearchCityChange = this.handleSearchCityChange.bind(this);
     this.searchCity = this.searchCity.bind(this);
     this.takeMeAnyWhere = this.takeMeAnyWhere.bind(this);
+    this.enterListener = this.enterListener.bind(this);
   }
 
   takeMeAnyWhere(){
@@ -25,17 +26,21 @@ class Home extends React.Component {
     });
   }
 
-  searchCity(event){
+  searchCity(){
     this.setState({ redirectToCity: true });
   }
 
   handleSearchCityChange(event){
-    // console.log(event.target.value);
     this.setState({
       searchCity: event.target.value
     });
   }
 
+  enterListener(event){
+    if (event.key === 'Enter'){
+      this.searchCity();
+    }
+  }
 
   render(){
     if (this.state.redirectToCity){
@@ -55,6 +60,7 @@ class Home extends React.Component {
                   type="text"
                   placeholder="Enter a city..."
                   onChange={this.handleSearchCityChange}
+                  onKeyUp={this.enterListener}
                 />
               </FormGroup>
             </Col>
