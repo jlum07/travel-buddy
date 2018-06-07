@@ -32,8 +32,9 @@ class CreateTripForm extends React.Component {
       console.log(response);
 
       if (response.status === 202){
-        console.log('SUCCESSFUL LOGIN: ', response.data);
+        console.log('SUCCESSFULLY ADDED TRIP: ', response.data);
         this.props.logIn(response.data);
+        // ADD Trip to state if successful
         // this.props.handleClose();
       }
       else if (response.status === 401){
