@@ -48,7 +48,7 @@ class DashboardContainer extends React.Component {
       return (
         <div id="DashboardContainer">
           <div id="MapContainer" style={{ width: 640, height: 425 }}>
-            <MapContainer  points_of_interest={this.state.points_of_interest} />
+            <MapContainer  points_of_interest={this.state.points_of_interest} city_coordinates={this.state.city_coordinates}/>
           </div>
           <div id="CityCharContainer">
           <CityCharContainer  CityChar={this.state.cityChar} />
