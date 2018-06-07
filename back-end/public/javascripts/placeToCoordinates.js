@@ -6,6 +6,10 @@ const getInstagrams = require("./getInstagrams");
 module.exports = function(placeElement, location) {
   return new Promise(function(resolve, reject) {
     console.log("here")
+    console.log(placeElement)
+    console.log(`https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${location.lat},${location.lng}&radius=15000&keyword=${
+        placeElement.title
+      }&key=${apikey.API_KEY}`)
     fetch(
       `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${location.lat},${location.lng}&radius=15000&keyword=${
         placeElement.title
@@ -15,7 +19,7 @@ module.exports = function(placeElement, location) {
         return response.json();
       })
       .then(async function(sup) {
-        console.log(sup)
+        //console.log(sup)
         //console.log(sup)
         placeElement.location = sup.results[0].geometry.location;
         placeElement.title = sup.results[0].name
@@ -28,6 +32,7 @@ module.exports = function(placeElement, location) {
           placeElement.location.lat,
           placeElement.location.lng
         );
+
         console.log("completed snap");
 
         // try {
