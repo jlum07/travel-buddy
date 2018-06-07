@@ -1,9 +1,9 @@
-#map > div > div:nth-child(1) {
+#MapContainer > div > div:nth-child(1) {
   width: 50%;
   height: 50%;
 }
 
-#map > div {
+#MapContainer > div {
   position: relative;
   height: 100%;
   width: 100%;

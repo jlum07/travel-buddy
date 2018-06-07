@@ -2,8 +2,6 @@ import React, { Component } from "react";
 import MapContainer from "./DashboardComponents/Map/MapContainer";
 import CityCharContainer from "./DashboardComponents/CityChar/CityCharContainer";
 import WeatherContainer from "./DashboardComponents/Weather/WeatherContainer";
-import ben from "./BenSpinning.png"
-import "./DashboardContainer.css"
 
 class DashboardContainer extends React.Component {
   constructor() {
@@ -46,7 +44,7 @@ class DashboardContainer extends React.Component {
   render() {
     if (this.state.isLoaded) {
       return (
-        <div id="DashboardContainer">
+        <div>
           <div id="MapContainer" style={{ width: 640, height: 425 }}>
             <MapContainer  points_of_interest={this.state.points_of_interest} />
           </div>
@@ -56,7 +54,7 @@ class DashboardContainer extends React.Component {
         </div>
       );
     } else {
-      return <img class="image" src={ben}/>
+      return <img class="image" src="./BenSpinning.png"/>
     }
   }
 }

@@ -1,0 +1,19 @@
+#DashboardContainer{
+  display: flex;
+}
+
+.image {
+    position: absolute;
+    margin-left: 30%;
+    margin-right: auto;
+    margin-top: 20%;
+    width: 200px;
+    height: 200px;
+
+    animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
