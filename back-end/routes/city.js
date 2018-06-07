@@ -2,8 +2,8 @@ const express = require("express");
 const router = express.Router();
 const cityToPlaceCoordinates = require("../public/javascripts/cityToPlaceCoordinates");
 const cityAutoComplete = require("../public/javascripts/cityAutoComplete");
-const torontoSample = require("./sampleData/torontoSample.js")
-const cityChar = require("./sampleData/cityChar.js")
+const torontoSample = require("./sampleData/torontoSample.js");
+// const cityChar = require("./sampleData/cityChar.js"); // THIS CRASHES FOR SOME REASON????
 
 router.get("/:city", async (req, res) => {
   //let cityDetails = await cityAutoComplete(req.params.city);
