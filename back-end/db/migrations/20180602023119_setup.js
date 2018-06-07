@@ -1,10 +1,9 @@
-
 exports.up = function(knex, Promise) {
   return new Promise( (resolve, reject) => {
     knex.schema.createTable('users', function (table) {
       table.increments('id').primary();
       table.string('username').notNullable();
-      table.string('email').notNullable();
+      table.string('email').notNullable().unique();
       table.string('password').notNullable();
       table.string('first_name');
       table.string('last_name');
@@ -28,7 +27,7 @@ exports.up = function(knex, Promise) {
     .then(() => {
       return knex.schema.createTable('cities', function (table) {
         table.increments('id').primary();
-        table.string('name');
+        table.string('name').unique();
         table.integer('food_rank');
         table.integer('arts_rank');
         table.integer('nightlife_rank');
@@ -50,9 +49,6 @@ exports.up = function(knex, Promise) {
         table.date('end_date');
       });
     })
-    .then( () => {
-      resolve();
-    })
     .then(() => {
       return knex.schema.createTable('favorite_cities', function (table) {
         table.increments('id').primary();
@@ -61,6 +57,9 @@ exports.up = function(knex, Promise) {
         // table.integer('city_id').references('id').inTable('cities').onDelete('CASCADE');
         table.integer('city_id');
       });
+    })
+    .then( () => {
+      resolve();
     })
     .catch( (error) => {
       reject(error);
