@@ -15,8 +15,15 @@ module.exports = async function(placeElement, location) {
     }`
   );
 
+
+
   //Convert to JSON
   let resultJSON = await response.json();
+
+  //If zero returns for POI, return an empty object
+  if(resultJSON.status === 'ZERO_RESULTS'){
+    return {}
+  }
 
   //Add location data, plus full name
   placeElement.location = resultJSON.results[0].geometry.location;
@@ -32,18 +39,19 @@ module.exports = async function(placeElement, location) {
     placeElement.location.lng
   );
 
-  console.log("completed snap");
+ // console.log("completed snap");
 
   // try {
   //   placeElement.instagrams = await getInstagrams(
   //     placeElement.location.lat,
+
   //     placeElement.location.lng
   //   );
   // } catch (e) {
   //   placeElement.instagrams = []
   // }
 
-  console.log("completed insta");
+  //console.log("completed insta");
 
   return placeElement;
 };

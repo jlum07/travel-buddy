@@ -193,16 +193,12 @@ class CityCharContainer extends React.Component {
     }
 
     play();
-
-    setTimeout(function() {
-      clearInterval(timer);
-    }, 4000);
   }
 
   componentDidMount() {
 
-
-    document.body.appendChild(this.refs.canvas);
+    document.getElementById("CityCharContainer").appendChild(this.refs.canvas);
+    this._drawGraph()
 
   }
 
