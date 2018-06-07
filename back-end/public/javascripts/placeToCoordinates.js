@@ -1,5 +1,5 @@
 const fetch = require("node-fetch");
-const apikey = require("./apikey.js");
+const apikey = require("../../apikey.js");
 const getSnapChats = require("./getSnapChats");
 const getInstagrams = require("./getInstagrams");
 
