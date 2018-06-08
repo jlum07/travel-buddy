@@ -7,7 +7,7 @@ exports.seed = function(knex, Promise) {
         // id: 1
           username: 'jlum',
           email: 'jlum@gmail.com',
-          password: 'password',
+          password: '$2a$06$WWyLPzAWkgx6gCVHMcxl9uyFsPJyR3HIrWD80mYjX64uaU2oitqtG', // 'password'
           first_name: 'Justin',
           last_name: 'Lum',
           food_rank: 10,
@@ -23,7 +23,7 @@ exports.seed = function(knex, Promise) {
         // id: 2
         username: 'ry_guy',
         email: 'rolejnik@gmail.com',
-        password: 'password',
+        password: '$2a$06$WWyLPzAWkgx6gCVHMcxl9uyFsPJyR3HIrWD80mYjX64uaU2oitqtG', // 'password'
         first_name: 'Ryan',
         last_name: 'Olejnik',
         food_rank: 2,
@@ -39,7 +39,7 @@ exports.seed = function(knex, Promise) {
           // id: 3
           username: 'imack',
           email: 'imack@gmail.com',
-          password: 'password',
+          password: '$2a$06$WWyLPzAWkgx6gCVHMcxl9uyFsPJyR3HIrWD80mYjX64uaU2oitqtG', // 'password'
           first_name: 'Iain',
           last_name: 'MackKenzie',
           food_rank: 7,
