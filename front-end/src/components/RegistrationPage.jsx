@@ -2,6 +2,7 @@ import React from 'react';
 import { Redirect } from 'react-router-dom';
 import { Jumbotron, Button, FormGroup, Col, Row, Grid, ControlLabel, FormControl } from 'react-bootstrap'
 import axios from 'axios';
+import bcrypt from 'bcryptjs';
 import './RegistrationPage.css';
 
 class RegistrationPage extends React.Component {
@@ -38,20 +39,20 @@ class RegistrationPage extends React.Component {
 
   handleFormSubmit(event){
     axios({
-    method: 'post',
-    url: 'http://localhost:3001/users/register',
-    data: {
-      username: this.state.username,
-      firstName: this.state.firstName,
-      lastName: this.state.lastName,
-      email: this.state.email,
-      rank_food: this.state.rank_food,
-      rank_arts: this.state.rank_arts,
-      rank_nightlife: this.state.rank_nightlife,
-      rank_history: this.state.rank_history,
-      rank_price: this.state.rank_price,
-      password: this.state.password
-      }
+      method: 'post',
+      url: '//localhost:3001/users/register',
+      data: {
+        username: this.state.username,
+        firstName: this.state.firstName,
+        lastName: this.state.lastName,
+        email: this.state.email,
+        rank_food: this.state.rank_food,
+        rank_arts: this.state.rank_arts,
+        rank_nightlife: this.state.rank_nightlife,
+        rank_history: this.state.rank_history,
+        rank_price: this.state.rank_price,
+        password: this.state.password
+        }
     })
     .then((response)=>{
       console.log(response);

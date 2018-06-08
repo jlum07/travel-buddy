@@ -1,9 +1,9 @@
 var express = require('express');
 var router = express.Router();
 var uuid = require('uuid');
+var bcrypt = require('bcryptjs');
 
 module.exports = (knex) => {
-
   router.post('/register', (req, res)=>{
     // console.log(req.body);
     knex('users')
@@ -12,7 +12,7 @@ module.exports = (knex) => {
       last_name: req.body.lastName,
       username: req.body.username,
       email: req.body.email,
-      password: req.body.password,
+      password: bcrypt.hashSync(req.body.password, 6),
       food_rank: req.body.rank_food,
       arts_rank: req.body.rank_arts,
       nightlife_rank: req.body.rank_nightlife,
@@ -41,7 +41,6 @@ module.exports = (knex) => {
 
   router.post('/login', (req, res)=>{
     // console.log(req.body);
-
     knex.select('*').from('users')
     .where('email', '=', req.body.email)
     .then((results)=>{
@@ -52,7 +51,8 @@ module.exports = (knex) => {
         res.status(401);
         res.send('email does not match');
       }
-      else if (results[0].password === req.body.password){
+
+      else if (bcrypt.compareSync(req.body.password, results[0].password)){
         // add a session token to database for that user:
         let user = results[0];
         let new_session_token = uuid();
@@ -109,7 +109,7 @@ module.exports = (knex) => {
   })
 
   router.get('/basic_data', (req, res)=>{
-    console.log(req);
+    // console.log(req);
     knex.select('*').from('users')
     .where('session_token', '=', req.headers.session_token)
     .then((results)=>{
