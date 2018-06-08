@@ -6,10 +6,10 @@ class EditCityForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      city: '',
-      startDate: Date.now(),
-      endDate: Date.now(),
-      failedAdd: false
+      city: this.props.city.city,
+      startDate: this.props.city.start_date,
+      endDate: this.props.city.end_date,
+      failedEdit: false
     };
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);

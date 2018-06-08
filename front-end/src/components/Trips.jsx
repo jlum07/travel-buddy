@@ -7,14 +7,16 @@ import './Trips.css';
 
 class Trips extends React.Component {
 
-  constructor(props, context) {
-    super(props, context);
+  constructor(props) {
+    super(props);
+
+    this.state = { trips: trips };
   }
 
   render(){
     return (
       <React.Fragment>
-        <TripsList trips={trips} />
+        <TripsList trips={this.state.trips} />
         <br />
         <CreateTripModal />
       </React.Fragment>

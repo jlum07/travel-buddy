@@ -5,19 +5,19 @@ import EditCityModal from './EditCityModal.jsx';
 
 class TripCityList extends React.Component {
 
-  constructor(props, context) {
-    super(props, context);
+  constructor(props) {
+    super(props);
   }
 
   render(){
 
-    const citiesList = cities.map(city => {
+    const citiesList = this.props.cities.map(city => {
       return (
         <tr>
-          <td>{city.name}</td>
+          <td>{city.city}</td>
           <td>{city.start_date}</td>
           <td>{city.end_date}</td>
-          <td><EditCityModal /></td>
+          <td><EditCityModal city={city} /></td>
           <td><Button><Glyphicon glyph="trash" /></Button></td>
         </tr>
       )
@@ -34,7 +34,7 @@ class TripCityList extends React.Component {
             <col width="5%" />
             <thead>
               <tr>
-                <th>Trip Name</th>
+                <th>City</th>
                 <th>Start Date</th>
                 <th>End Date</th>
                 <th>Edit</th>

@@ -51,9 +51,3 @@ class TripsList extends React.Component {
 }
 
 export default TripsList;
-
-// const trips = [
-//   {name: "Japan", start_date: "2018-07-07", end_date: "2018-07-07"},
-//   {name: "Europe", start_date: "2018-07-07", end_date: "2018-07-07"},
-//   {name: "Mexico", start_date: "2018-07-07", end_date: "2018-07-07"}
-// ]
