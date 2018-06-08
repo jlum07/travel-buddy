@@ -1,7 +1,7 @@
 import React from 'react';
 import { Table, Panel } from 'react-bootstrap';
-import TripsList from './TripsList.jsx';
-import CreateTripModal from './CreateTripModal.jsx';
+import TripsList from './Trips/TripsList.jsx';
+import CreateTripModal from './Trips/CreateTripModal.jsx';
 import './Trips.css';
 
 
@@ -26,7 +26,7 @@ export default Trips;
 
 
 const trips = [
-  {name: "Japan", start_date: "Date1", end_date: "Date2"},
-  {name: "Europe", start_date: "Date3", end_date: "Date4"},
-  {name: "Mexico", start_date: "Date5", end_date: "Date6"}
+  {name: "Japan", start_date: "2018-07-07", end_date: "2018-07-07"},
+  {name: "Europe", start_date: "2018-07-07", end_date: "2018-07-07"},
+  {name: "Mexico", start_date: "2018-07-07", end_date: "2018-07-07"}
 ]

@@ -1,52 +1,53 @@
 import React from 'react';
-import { Form, FormGroup, FormControl, ControlLabel, Button, Alert } from 'react-bootstrap';
+import { Form, FormGroup, FormControl, ControlLabel, Button, Alert, Glyphicon } from 'react-bootstrap';
 import axios from 'axios';
 
-class CreateTripForm extends React.Component {
+class EditCityForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      tripName: '',
+      city: '',
       startDate: Date.now(),
       endDate: Date.now(),
-      failedLogin: false
+      failedAdd: false
     };
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleInputChange(event) {
-    console.log(event.target.id);
+    console.log(event.target.value);
     this.setState({ [event.target.id]: event.target.value});
   }
 
   handleSubmit(event){
     event.preventDefault();
 
+    // EDIT THIS!!!!
     axios.post('http://localhost:3001/trips', {
       // User ID
-      name: this.state.name,
+      cityName: this.state.name,
       start_date: this.state.startDate,
       end_date: this.state.endDate })
     .then((response)=>{
       console.log(response);
 
       if (response.status === 202){
-        console.log('SUCCESSFULLY ADDED TRIP: ', response.data);
-        this.props.logIn(response.data);
+        console.log('SUCCESSFULLY ADDED CITY: ', response.data);
+        // this.props.logIn(response.data);
         // ADD Trip to state if successful
         // this.props.handleClose();
       }
       else if (response.status === 401){
-        console.log('Failed login!')
-        this.setState({failedLogin: true})
+        console.log('Failed to add city!')
+        this.setState({failedAdd: true})
       }
 
     })
     .catch((error)=>{
       // IF LOGING UNSECCESFUL DUE TO NETWORK PROBLEM:
       console.log(error)
-      this.setState({failedLogin: true});
+      this.setState({failedAdd: true});
     });
   }
 
@@ -62,10 +63,10 @@ class CreateTripForm extends React.Component {
           {loginFailedMessage}
           <ControlLabel>Trip Name</ControlLabel>
           <FormControl
-            id='tripName'
+            id='city'
             type="text"
-            value={this.state.name}
-            placeholder="Trip Name"
+            value={this.state.city}
+            placeholder="City"
             onChange={this.handleInputChange}
           />
           <ControlLabel>Start Date</ControlLabel>
@@ -90,5 +91,5 @@ class CreateTripForm extends React.Component {
   }
 }
 
-export default CreateTripForm;
+export default EditCityForm;
 
