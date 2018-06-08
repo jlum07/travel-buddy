@@ -203,7 +203,7 @@ class CityCharContainer extends React.Component {
   }
 
   componentDidUpdate(){
-    this._drawGraph()
+    //this._drawGraph()
     console.log("props", this.props)
   }
 

@@ -3,7 +3,7 @@ import { Jumbotron, Grid, Row, Col, Button } from 'react-bootstrap'
 //import MapContainer from './mapContainer.jsx';
 import axios from 'axios';
 import Map from './DashboardComponents/Map/MapContainer.jsx'
-import GalleryModal from './GalleryModal.jsx'
+
 import './ShowCity.css';
 
 export default class ShowCity extends React.Component {
@@ -16,7 +16,7 @@ export default class ShowCity extends React.Component {
           </Col>
           <Col xs={12} md={4}>
             <Jumbotron id='poi_list'>
-              <GalleryModal />
+
               <ul>
                 <li>CN tower</li>
                 <li>Ripleys</li>

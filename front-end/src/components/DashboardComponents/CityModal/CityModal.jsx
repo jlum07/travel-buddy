@@ -28,10 +28,7 @@ class GalleryModal extends React.Component {
   render(){
     return (
       <React.Fragment>
-        <Button bsStyle="primary" bsSize="large" onClick={this.handleShow}>
-        Launch demo modal
-        </Button>
-        <Modal show={this.state.show} onHide={this.handleClose}>
+        <Modal show={this.props.showModal} onHide={this.props.toggleModal}>
           <Tabs defaultActiveKey={1} id="uncontrolled-tab-example">
             <Tab eventKey={1} title="Instagram">
               <InstaCarousel />
