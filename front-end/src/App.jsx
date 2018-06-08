@@ -10,6 +10,7 @@ import MapContainer from "./components/DashboardComponents/Map/MapContainer.jsx"
 import Trips from "./components/Trips.jsx";
 import Trip from "./components/Trip.jsx";
 import MorphGraph from "./components/DashboardComponents/CityChar/CityCharContainer.jsx";
+import axios from 'axios';
 require('dotenv').config()
 
 class App extends Component {
@@ -69,6 +70,32 @@ class App extends Component {
         // profilePic: null
       }
     });
+  }
+
+  componentDidMount(){
+    let currentSessionToken = localStorage.getItem('session_token');
+
+    if (currentSessionToken){
+      console.log('there was a session token');
+
+      axios.get('http://localhost:3001/users/basic_data', {
+        headers: {
+          session_token: currentSessionToken
+        }
+      })
+      .then((response)=>{
+        console.log('response.data = ', response.data);
+        this.setState({
+          currentUser: {
+            id: response.data.id,
+            username: response.data.username
+          }
+        })
+      })
+      .catch((error)=>{
+        console.log(error);
+      });
+    }
   }
 
   render() {
