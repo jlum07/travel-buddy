@@ -9,8 +9,8 @@ export default class Home extends React.Component {
     this.state = {
       currentUser: {
         id: null,
-        username: 'test',
-        firstName: 'hoho',
+        username: null,
+        firstName: null,
         lastName: null,
         email: null,
         rank_food: null,
@@ -23,18 +23,18 @@ export default class Home extends React.Component {
     }
   }
 
-  componentDidMount(){
+  componentWillMount(){
     let session_token = localStorage.getItem('session_token');
     console.log('session_token = ', session_token);
 
-    axios.get('http://localhost:3001/users/profiledata', {
+    axios.get('http://localhost:3001/users/profile_data', {
       headers: {
         session_token: session_token
       }
     })
     .then((response)=>{
-      console.log('response.data = ', response.data);
-      console.log('this.state = ', this.state);
+      // console.log('response.data = ', response.data);
+      // console.log('this.state = ', this.state);
       this.setState({
         currentUser: {
           id: response.data.id,
@@ -50,8 +50,6 @@ export default class Home extends React.Component {
           profilePic: response.data.profile_pic
         }
       })
-
-
     })
     .catch((error)=>{
       console.log(error);
@@ -84,7 +82,7 @@ export default class Home extends React.Component {
             </ul>
           </Col>
           <Col md={4}>
-            <Image id='profile_pic' src={this.props.currentUser.profilePic} rounded/>
+            <Image id='profile_pic' src={this.state.currentUser.profilePic} rounded/>
           </Col>
         </Row>
       </Grid>

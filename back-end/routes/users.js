@@ -66,9 +66,12 @@ module.exports = (knex) => {
           knex.select('*').from('users')
           .where('email', '=', req.body.email)
           .then((updatedResults)=>{
-            console.log('newResults = ', updatedResults)
-            // send the user data (with the token) back to the client 
+            // send the user data (with the new session_token) back to the client 
             res.status(202);
+            let login_data = {
+              username: updatedResults[0].username,
+              session_token: updatedResults[0].session_token
+            }
             res.send(updatedResults[0]); // MODIFY TO ONLY SEND USERNAME AND SESSION_TOKEN
           })
         })
@@ -83,12 +86,11 @@ module.exports = (knex) => {
     });
   })
 
-  router.get('/profiledata', (req, res)=>{
+  router.get('/profile_data', (req, res)=>{
     // console.log(req.headers.session_token);
     knex.select('*').from('users')
     .where('session_token', '=', req.headers.session_token)
     .then((results)=>{
-
       if (results.length === 0){
         // Token is invalid
         res.status(401);
@@ -98,18 +100,36 @@ module.exports = (knex) => {
         res.status(200);
         res.send(results[0]);
       }
-
-      // console.log(results[0]);
     })
     .catch((error)=>{
       console.log(error);
       res.status(500);
       res.send('Error Querying Database');
     });
-
   })
 
-
+  router.get('/basic_data', (req, res)=>{
+    console.log(req);
+    knex.select('*').from('users')
+    .where('session_token', '=', req.headers.session_token)
+    .then((results)=>{
+      if (results.length === 0){
+        // Token is invalid
+        res.status(401);
+        res.send('Token is invalid');
+      }
+      else {
+        res.status(200);
+        let basic_data = { username: results[0].username, id: results[0].id }
+        res.send(basic_data);
+      }
+    })
+    .catch((error)=>{
+      console.log(error);
+      res.status(500);
+      res.send('Error Querying Database');
+    });
+  })
 
 
 
