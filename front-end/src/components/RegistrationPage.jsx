@@ -2,6 +2,7 @@ import React from 'react';
 import { Redirect } from 'react-router-dom';
 import { Jumbotron, Button, FormGroup, Col, Row, Grid, ControlLabel, FormControl } from 'react-bootstrap'
 import axios from 'axios';
+import bcrypt from 'bcryptjs';
 import './RegistrationPage.css';
 
 class RegistrationPage extends React.Component {
