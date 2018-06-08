@@ -13,6 +13,7 @@ exports.up = function(knex, Promise) {
       table.integer('nightlife_rank');
       table.integer('history_rank');
       table.integer('price_rank');
+      table.string('session_token').unique();
     })
     .then(() => {
       return knex.schema.createTable('trips', function (table) {

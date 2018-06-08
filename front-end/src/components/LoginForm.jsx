@@ -25,11 +25,13 @@ class LoginForm extends React.Component {
       email: this.state.email,
       password: this.state.password })
     .then((response)=>{
-      console.log(response);
+
+      console.log(response.data);
 
       if (response.status === 202){
         console.log('SUCCESSFUL LOGIN: ', response.data);
         this.props.logIn(response.data);
+        localStorage.setItem('session_token', response.data.session_token);
         // this.props.handleClose();
       }
       else if (response.status === 401){
@@ -41,7 +43,7 @@ class LoginForm extends React.Component {
     .catch((error)=>{
       // IF LOGING UNSECCESFUL DUE TO NETWORK PROBLEM:
       console.log(error)
-      this.setState({failedLogin: true});
+      // this.setState({failedLogin: true});
     });
   }
 

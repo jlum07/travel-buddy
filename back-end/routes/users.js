@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+var uuid = require('uuid')
 
 module.exports = (knex) => {
 
@@ -52,8 +53,29 @@ module.exports = (knex) => {
         res.send('email does not match');
       }
       else if (results[0].password === req.body.password){
-        res.status(202);
-        res.send(results[0]);
+        // add a session token to database for that user:
+        let user = results[0];
+        let new_session_token = uuid();
+
+        knex.select('*').from('users')
+        .where('email', '=', req.body.email)
+        .update({
+          session_token: new_session_token
+        })
+        .then(()=>{
+          knex.select('*').from('users')
+          .where('email', '=', req.body.email)
+          .then((updatedResults)=>{
+            console.log('newResults = ', updatedResults)
+            // send the user data (with the token) back to the client 
+            res.status(202);
+            res.send(updatedResults[0]);
+          })
+        })
+
+
+
+
       }
       else{
         res.status(401);        

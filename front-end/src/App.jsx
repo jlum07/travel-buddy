@@ -1,4 +1,3 @@
-
 import React, { Component } from "react";
 import NavBar from "./components/NavBar.jsx";
 import { BrowserRouter, Route } from "react-router-dom";
@@ -18,16 +17,17 @@ class App extends Component {
     super();
     this.state = {
       currentUser: {
+        id: null,
         username: null, // will be null when not logged on
-        firstName: null,
-        lastName: null,
-        email: null,
-        rank_food: null,
-        rank_arts: null,
-        rank_nightlife: null,
-        rank_history: null,
-        rank_price: null,
-        profilePic: null
+        // firstName: null,
+        // lastName: null,
+        // email: null,
+        // rank_food: null,
+        // rank_arts: null,
+        // rank_nightlife: null,
+        // rank_history: null,
+        // rank_price: null,
+        // profilePic: null
       }
     };
     this.logIn = this.logIn.bind(this);
@@ -38,16 +38,17 @@ class App extends Component {
     console.log("inside logIn, userData = ", userData);
     this.setState({
       currentUser: {
+        id: userData.id,
         username: userData.username,
-        firstName: userData.first_name,
-        lastName: userData.last_name,
-        email: userData.email,
-        rank_food: userData.food_rank,
-        rank_arts: userData.arts_rank,
-        rank_nightlife: userData.nightlife_rank,
-        rank_history: userData.history_rank,
-        rank_price: userData.price_rank,
-        profilePic: userData.profile_pic
+        // firstName: userData.first_name,
+        // lastName: userData.last_name,
+        // email: userData.email,
+        // rank_food: userData.food_rank,
+        // rank_arts: userData.arts_rank,
+        // rank_nightlife: userData.nightlife_rank,
+        // rank_history: userData.history_rank,
+        // rank_price: userData.price_rank,
+        // profilePic: userData.profile_pic
       }
     });
   }
@@ -55,16 +56,17 @@ class App extends Component {
   logOut() {
     this.setState({
       currentUser: {
+        id: null,
         username: null,
-        firstName: null,
-        lastName: null,
-        email: null,
-        rank_food: null,
-        rank_arts: null,
-        rank_nightlife: null,
-        rank_history: null,
-        rank_price: null,
-        profilePic: null
+        // firstName: null,
+        // lastName: null,
+        // email: null,
+        // rank_food: null,
+        // rank_arts: null,
+        // rank_nightlife: null,
+        // rank_history: null,
+        // rank_price: null,
+        // profilePic: null
       }
     });
   }
