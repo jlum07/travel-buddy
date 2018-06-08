@@ -14,7 +14,7 @@ class Trips extends React.Component {
   render(){
     return (
       <React.Fragment>
-        <TripsList />
+        <TripsList trips={trips} />
         <br />
         <CreateTripModal />
       </React.Fragment>
@@ -26,7 +26,7 @@ export default Trips;
 
 
 const trips = [
-  {name: "Japan", start_date: "2018-07-07", end_date: "2018-07-07"},
-  {name: "Europe", start_date: "2018-07-07", end_date: "2018-07-07"},
-  {name: "Mexico", start_date: "2018-07-07", end_date: "2018-07-07"}
+  { id: 1, trip_name: "Japan", start_date: "2018-07-07", end_date: "2018-07-07" },
+  { id: 2, trip_name: "Europe", start_date: "2018-07-07", end_date: "2018-07-07" },
+  { id: 3, trip_name: "Mexico", start_date: "2018-07-07", end_date: "2018-07-07" }
 ]

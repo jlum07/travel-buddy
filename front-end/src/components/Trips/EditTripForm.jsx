@@ -2,14 +2,14 @@ import React from 'react';
 import { Form, FormGroup, FormControl, ControlLabel, Button, Alert, Glyphicon } from 'react-bootstrap';
 import axios from 'axios';
 
-class EditCityForm extends React.Component {
+class EditTripForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      city: '',
-      startDate: Date.now(),
-      endDate: Date.now(),
-      failedAdd: false
+      tripName: this.props.trip.trip_name,
+      startDate: this.props.trip.start_date,
+      endDate: this.props.trip.end_date,
+      failedEdit: false
     };
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -26,15 +26,15 @@ class EditCityForm extends React.Component {
     // EDIT THIS!!!!
     axios.post('http://localhost:3001/trips', {
       // User ID
-      // City ID???
-      cityName: this.state.name,
+      // Trip ID
+      trip_name: this.state.name,
       start_date: this.state.startDate,
       end_date: this.state.endDate })
     .then((response)=>{
       console.log(response);
 
       if (response.status === 202){
-        console.log('SUCCESSFULLY ADDED CITY: ', response.data);
+        console.log('SUCCESSFULLY EDITED TRIP: ', response.data);
         // this.props.logIn(response.data);
         // ADD Trip to state if successful
         // this.props.handleClose();
@@ -54,8 +54,8 @@ class EditCityForm extends React.Component {
 
   render() {
 
-    const loginFailedMessage = this.state.failedAdd ? (
-      <Alert bsStyle="danger">Failed to edit city details</Alert>
+    const loginFailedMessage = this.state.failedLogin ? (
+      <Alert bsStyle="danger">Failed to edit trip</Alert>
           ) : null;
 
     return (
@@ -64,9 +64,9 @@ class EditCityForm extends React.Component {
           {loginFailedMessage}
           <ControlLabel>Trip Name</ControlLabel>
           <FormControl
-            id='city'
+            id='tripName'
             type="text"
-            value={this.state.city}
+            value={this.state.tripName}
             placeholder="City"
             onChange={this.handleInputChange}
           />
@@ -92,5 +92,4 @@ class EditCityForm extends React.Component {
   }
 }
 
-export default EditCityForm;
-
+export default EditTripForm;

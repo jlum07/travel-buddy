@@ -1,22 +1,22 @@
 import React from 'react';
 import { Table, Panel, Button, Glyphicon } from 'react-bootstrap';
-
+import EditTripModal from './EditTripModal.jsx';
 
 class TripsList extends React.Component {
 
-  constructor(props, context) {
-    super(props, context);
+  constructor(props) {
+    super(props);
   }
 
   render(){
 
-    const tripList = trips.map(trip => {
+    const tripList = this.props.trips.map(trip => {
       return (
         <tr>
-          <td>{trip.name}</td>
+          <td>{trip.trip_name}</td>
           <td>{trip.start_date}</td>
           <td>{trip.end_date}</td>
-          <td><Button><Glyphicon glyph="pencil" /></Button></td>
+          <td><EditTripModal trip={trip} /></td>
           <td><Button><Glyphicon glyph="trash" /></Button></td>
         </tr>
       )
@@ -52,8 +52,8 @@ class TripsList extends React.Component {
 
 export default TripsList;
 
-const trips = [
-  {name: "Japan", start_date: "2018-07-07", end_date: "2018-07-07"},
-  {name: "Europe", start_date: "2018-07-07", end_date: "2018-07-07"},
-  {name: "Mexico", start_date: "2018-07-07", end_date: "2018-07-07"}
-]
+// const trips = [
+//   {name: "Japan", start_date: "2018-07-07", end_date: "2018-07-07"},
+//   {name: "Europe", start_date: "2018-07-07", end_date: "2018-07-07"},
+//   {name: "Mexico", start_date: "2018-07-07", end_date: "2018-07-07"}
+// ]
