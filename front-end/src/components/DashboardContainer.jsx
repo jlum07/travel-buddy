@@ -2,8 +2,9 @@ import React, { Component } from "react";
 import MapContainer from "./DashboardComponents/Map/MapContainer";
 import CityCharContainer from "./DashboardComponents/CityChar/CityCharContainer";
 import WeatherContainer from "./DashboardComponents/Weather/WeatherContainer";
-import ben from "./BenSpinning.png"
-import "./DashboardContainer.css"
+import ben from "./BenSpinning.png";
+import CityModal from "./DashboardComponents/CityModal/CityModal.jsx";
+import "./DashboardContainer.css";
 
 class DashboardContainer extends React.Component {
   constructor() {
@@ -13,9 +14,19 @@ class DashboardContainer extends React.Component {
       city_coordinates: {},
       city_name: {},
       points_of_interest: {},
-      isLoaded: false
+      isLoaded: false,
+      showModal: false,
+      currentPin: {}
     };
   }
+
+  toggleModal = () => {
+    if (this.state.showModal) {
+      this.setState({ showModal: false });
+    } else {
+      this.setState({ showModal: true });
+    }
+  };
 
   componentDidMount() {
     const {
@@ -48,15 +59,26 @@ class DashboardContainer extends React.Component {
       return (
         <div id="DashboardContainer">
           <div id="MapContainer" style={{ width: 640, height: 425 }}>
-            <MapContainer  points_of_interest={this.state.points_of_interest} city_coordinates={this.state.city_coordinates}/>
+            <MapContainer
+              toggleModal={this.toggleModal}
+              points_of_interest={this.state.points_of_interest}
+              city_coordinates={this.state.city_coordinates}
+            />
           </div>
           <div id="CityCharContainer">
-          <CityCharContainer  CityChar={this.state.cityChar} />
+            <CityCharContainer CityChar={this.state.cityChar} />
+          </div>
+          <div id="CityModalContainer">
+            <CityModal
+              toggleModal={this.toggleModal}
+              showModal={this.state.showModal}
+              currentPin={this.state.currentPin}
+            />
           </div>
         </div>
       );
     } else {
-      return <img class="image" src={ben}/>
+      return <img class="image" src={ben} />;
     }
   }
 }

@@ -19,12 +19,14 @@ export class MapContainer extends React.Component {
     };
   }
 
-  onMarkerClick = (props, marker, e) =>
-    this.setState({
-      selectedPlace: props,
-      activeMarker: marker,
-      showingInfoWindow: true
-    });
+  onMarkerClick = () => {
+    this.props.toggleModal()
+  }
+    // this.setState({
+    //   selectedPlace: props,
+    //   activeMarker: marker,
+    //   showingInfoWindow: true
+    // });
 
   onMapClicked = props => {
     if (this.state.showingInfoWindow) {
