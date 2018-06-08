@@ -14,13 +14,18 @@ class NavBar extends React.Component {
   logout(){
     console.log('LOGGING OUT!')
     axios.delete('http://localhost:3001/users/logout')
-    .then((response)=>{console.log(response);})
+    .then((response)=>{
+      console.log(response);
+      localStorage.setItem('session_token', null);
+    })
     .catch((error)=>{console.log(error);});
 
     this.props.logOut();
   }
 
   renderNavItems() {
+    // Depending if there is a user logged in or not, will render LOGIN and REGISTER buttons, 
+    // or 'MY_USERNAME' and LOGOUT buttons
     if (this.props.currentUser.username) {
       return (
         <Fragment>

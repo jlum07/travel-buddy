@@ -35,7 +35,7 @@ class App extends Component {
   }
 
   logIn(userData) {
-    console.log("inside logIn, userData = ", userData);
+    // console.log("inside logIn, userData = ", userData);
     this.setState({
       currentUser: {
         id: userData.id,

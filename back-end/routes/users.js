@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var uuid = require('uuid')
+var uuid = require('uuid');
 
 module.exports = (knex) => {
 
@@ -40,7 +40,7 @@ module.exports = (knex) => {
 
 
   router.post('/login', (req, res)=>{
-    console.log(req.body);
+    // console.log(req.body);
 
     knex.select('*').from('users')
     .where('email', '=', req.body.email)
@@ -69,13 +69,9 @@ module.exports = (knex) => {
             console.log('newResults = ', updatedResults)
             // send the user data (with the token) back to the client 
             res.status(202);
-            res.send(updatedResults[0]);
+            res.send(updatedResults[0]); // MODIFY TO ONLY SEND USERNAME AND SESSION_TOKEN
           })
         })
-
-
-
-
       }
       else{
         res.status(401);        
@@ -85,6 +81,32 @@ module.exports = (knex) => {
     .catch((error)=>{
       console.log(error)
     });
+  })
+
+  router.get('/profiledata', (req, res)=>{
+    // console.log(req.headers.session_token);
+    knex.select('*').from('users')
+    .where('session_token', '=', req.headers.session_token)
+    .then((results)=>{
+
+      if (results.length === 0){
+        // Token is invalid
+        res.status(401);
+        res.send('Token is invalid');
+      }
+      else {
+        res.status(200);
+        res.send(results[0]);
+      }
+
+      // console.log(results[0]);
+    })
+    .catch((error)=>{
+      console.log(error);
+      res.status(500);
+      res.send('Error Querying Database');
+    });
+
   })
 
 
