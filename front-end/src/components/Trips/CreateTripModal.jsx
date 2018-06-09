@@ -33,7 +33,7 @@ class CreateTripModal extends React.Component {
         </Button>
         <Modal show={this.state.show} onHide={this.handleClose}>
           <Modal.Body>
-            <CreateTripForm />
+            <CreateTripForm handleClose={this.handleClose}/>
           </Modal.Body>
         </Modal>
       </React.Fragment>

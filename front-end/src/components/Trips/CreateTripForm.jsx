@@ -1,4 +1,5 @@
 import React from 'react';
+import { Redirect } from 'react-router'
 import { Form, FormGroup, FormControl, ControlLabel, Button, Alert } from 'react-bootstrap';
 import axios from 'axios';
 
@@ -9,7 +10,7 @@ class CreateTripForm extends React.Component {
       tripName: '',
       startDate: Date.now(),
       endDate: Date.now(),
-      failedLogin: false
+      failedCreate: false
     };
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -23,43 +24,45 @@ class CreateTripForm extends React.Component {
   handleSubmit(event){
     event.preventDefault();
 
-    axios.post('http://localhost:3001/trips', {
+    axios.put('http://localhost:3001/trips', {
       // User ID
-      name: this.state.name,
+      user_id: 1,
+      name: this.state.tripName,
       start_date: this.state.startDate,
       end_date: this.state.endDate })
     .then((response)=>{
       console.log(response);
 
-      if (response.status === 202){
+      if (response.status === 201){
         console.log('SUCCESSFULLY ADDED TRIP: ', response.data);
-        // this.props.logIn(response.data);
         // ADD Trip to state if successful
-        // this.props.handleClose();
+        window.location.reload();
+
+        this.props.handleClose();
       }
       else if (response.status === 401){
         console.log('Failed login!')
-        this.setState({failedLogin: true})
+        this.setState({failedCreate: true})
       }
 
     })
     .catch((error)=>{
       // IF LOGING UNSECCESFUL DUE TO NETWORK PROBLEM:
       console.log(error)
-      this.setState({failedLogin: true});
+      this.setState({failedCreate: true});
     });
   }
 
   render() {
 
-    const loginFailedMessage = this.state.failedLogin ? (
-      <Alert bsStyle="danger">Incorrect Login</Alert>
+    const createFailedMessage = this.state.failedCreate ? (
+      <Alert bsStyle="danger">Error</Alert>
           ) : null;
 
     return (
       <Form>
         <FormGroup>
-          {loginFailedMessage}
+          {createFailedMessage}
           <ControlLabel>Trip Name</ControlLabel>
           <FormControl
             id='tripName'
