@@ -7,8 +7,10 @@ module.exports = async function(searchInput) {
     searchInput.address_components[0].long_name
   );
 
-  console.log(searchInput);
+  console.log("searchInput", searchInput);
+  console.log("place two", places)
   let promiseArray = places.map(element => {
+    console.log("searchInput.geometry", searchInput.geometry)
     //Pass the name of the attraction, and the location of the city to bias the results
     return placeToCoordinates(element, searchInput.geometry.location);
   });
