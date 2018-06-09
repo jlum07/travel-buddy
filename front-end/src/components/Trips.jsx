@@ -1,4 +1,6 @@
 import React from 'react';
+import axios from 'axios';
+import moment from 'moment';
 import { Table, Panel } from 'react-bootstrap';
 import TripsList from './Trips/TripsList.jsx';
 import CreateTripModal from './Trips/CreateTripModal.jsx';
@@ -9,8 +11,50 @@ class Trips extends React.Component {
 
   constructor(props) {
     super(props);
+    this.state = { trips: [] };
 
-    this.state = { trips: trips };
+    // console.log(moment(Date()).format("YYYY-MM-DD"));
+
+  }
+
+  componentWillMount() {
+
+    axios.get('http://localhost:3001/trips', {
+      params: {
+        user_id: 1
+      }
+    })
+    .then( response => {
+
+      let tempData = response.data.map(row => {
+        return {
+          ...row,
+          start_date: moment(row.start_date).format("YYYY-MM-DD"),
+          end_date: moment(row.end_date).format("YYYY-MM-DD")
+        }
+      })
+
+      this.setState({trips: tempData});
+    })
+    .catch( error => {
+      console.log(error);
+    });
+
+  }
+
+
+  addTrip = (trip) => {
+    let newTrips = this.sate.trips;
+    newTrips.push(trip);
+    this.setState({ trips: newTrips });
+  }
+
+
+  editTrip = (trip) => {
+
+
+
+
   }
 
   render(){
@@ -18,17 +62,10 @@ class Trips extends React.Component {
       <React.Fragment>
         <TripsList trips={this.state.trips} />
         <br />
-        <CreateTripModal />
+        <CreateTripModal addTrip={this.addTrip} />
       </React.Fragment>
     );
   }
 }
 
 export default Trips;
-
-
-const trips = [
-  { id: 1, trip_name: "Japan", start_date: "2018-07-07", end_date: "2018-07-07" },
-  { id: 2, trip_name: "Europe", start_date: "2018-07-07", end_date: "2018-07-07" },
-  { id: 3, trip_name: "Mexico", start_date: "2018-07-07", end_date: "2018-07-07" }
-]

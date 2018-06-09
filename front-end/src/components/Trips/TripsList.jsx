@@ -1,6 +1,8 @@
 import React from 'react';
+import moment from 'moment';
 import { Table, Panel, Button, Glyphicon } from 'react-bootstrap';
 import EditTripModal from './EditTripModal.jsx';
+import DeleteTripButton from './DeleteTripButton.jsx';
 
 class TripsList extends React.Component {
 
@@ -13,11 +15,11 @@ class TripsList extends React.Component {
     const tripList = this.props.trips.map(trip => {
       return (
         <tr>
-          <td>{trip.trip_name}</td>
+          <td>{trip.name}</td>
           <td>{trip.start_date}</td>
           <td>{trip.end_date}</td>
           <td><EditTripModal trip={trip} /></td>
-          <td><Button><Glyphicon glyph="trash" /></Button></td>
+          <td><DeleteTripButton trip_id={trip.id} /></td>
         </tr>
       )
     })

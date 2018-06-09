@@ -139,7 +139,7 @@ class App extends Component {
             <Route exact path="/" component={Home} />
             <Route path="/cities/:city" component={ShowCity} />
             <Route path="/trips" component={Trips} />
-            <Route path="/trip/:id" component={Trip} />
+            <Route path="/trips/:id" component={Trip} />
             <Route path="/map" component={MapContainer} />
             <Route path="/profile" render={ProfileWithProps} />
             <Route path="/register" render={RegistrationPageWithProps} />
