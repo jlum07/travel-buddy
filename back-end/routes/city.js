@@ -3,7 +3,7 @@ const router = express.Router();
 const cityToPlaceCoordinates = require("../public/javascripts/cityToPlaceCoordinates");
 const cityAutoComplete = require("../public/javascripts/cityAutoComplete");
 const torontoSample = require("./sampleData/torontoSample.js");
-const cityChar = require("./sampleData/cityChar.js");
+const cityChar = require("./sampleData/cityChar2.js");
 
 const API = false;
 
