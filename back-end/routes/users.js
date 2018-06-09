@@ -35,7 +35,36 @@ module.exports = (knex) => {
 
   router.delete('/logout', (req, res)=>{
     console.log('Logging out...');
-    res.send('Logging out...');
+    console.log(req.headers);
+    knex.select('*').from('users')
+    .where('session_token', '=', req.headers.session_token)
+    .then((response)=>{
+      if (response.length === 0){
+        res.status(400);
+        res.send('Token Invalid');
+      }
+      else {
+        knex.select('*').from('users')
+        .where('session_token', '=', req.headers.session_token)
+        .update({
+          session_token: null
+        })
+        .then((response)=>{
+          res.status(200);
+          res.send('Logged Out!');
+        })
+        .catch((error)=>{
+          res.send(500);
+          res.send('Error querying database');
+        })
+
+
+      }
+    })
+    .catch((error)=>{
+      res.status(500);
+      res.send('Error querying database');
+    });
   })
 
 

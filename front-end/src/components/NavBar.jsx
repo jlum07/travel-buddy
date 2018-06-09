@@ -12,14 +12,7 @@ class NavBar extends React.Component {
   }
 
   logout(){
-    console.log('LOGGING OUT!')
-    axios.delete('http://localhost:3001/users/logout')
-    .then((response)=>{
-      console.log(response);
-      localStorage.setItem('session_token', null);
-    })
-    .catch((error)=>{console.log(error);});
-
+    console.log('LOGGING OUT!');
     this.props.logOut();
   }
 

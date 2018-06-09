@@ -55,6 +55,27 @@ class App extends Component {
   }
 
   logOut() {
+    let currentSessionToken = localStorage.getItem('session_token');
+
+    if (currentSessionToken){
+      axios.delete('http://localhost:3001/users/logout', {
+          headers: {
+            session_token: currentSessionToken
+          }
+        })
+      .then((response)=>{
+        console.log(response);
+        localStorage.setItem('session_token', null);
+      })
+      .catch((error)=>{console.log(error);});
+     
+    }
+
+
+
+
+
+
     this.setState({
       currentUser: {
         id: null,
