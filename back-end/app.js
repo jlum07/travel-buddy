@@ -11,6 +11,8 @@ const knexLogger    = require('knex-logger');
 
 const usersRoutes   = require("./routes/users");
 
+const trips          = require("./routes/trips");
+
 
 // Set the port to 3001
 const PORT = 3001;
@@ -34,6 +36,8 @@ app.use("/trip-advisor", tripAdvisor);
 app.use("/city", city);
 
 app.use("/users", usersRoutes(knex));
+
+app.use("/trips", trips(knex));
 
 
 app.listen(PORT, "0.0.0.0", "localhost", () =>
