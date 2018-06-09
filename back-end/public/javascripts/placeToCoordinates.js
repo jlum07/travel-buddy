@@ -1,10 +1,9 @@
 const fetch = require("node-fetch");
-const apikey = require("../../apikey.js");
+const apikey = require("./apikey.js");
 const getSnapChats = require("./getSnapChats");
 const getInstagrams = require("./getInstagrams");
 
 module.exports = async function(placeElement, location) {
-
   //Using Google Places API, search places by the place keyword from TA to return the most likely response
   //and the coordinates/address
   let response = await fetch(
@@ -16,13 +15,13 @@ module.exports = async function(placeElement, location) {
   );
 
 
-
   //Convert to JSON
   let resultJSON = await response.json();
+  //console.log(resultJSON)
 
   //If zero returns for POI, return an empty object
-  if(resultJSON.status === 'ZERO_RESULTS'){
-    return {}
+  if (resultJSON.status === "ZERO_RESULTS") {
+    return {};
   }
 
   //Add location data, plus full name
@@ -39,19 +38,10 @@ module.exports = async function(placeElement, location) {
     placeElement.location.lng
   );
 
- // console.log("completed snap");
-
-  // try {
-  //   placeElement.instagrams = await getInstagrams(
-  //     placeElement.location.lat,
-
-  //     placeElement.location.lng
-  //   );
-  // } catch (e) {
-  //   placeElement.instagrams = []
-  // }
-
-  //console.log("completed insta");
+  placeElement.instagrams = await getInstagrams(
+    placeElement.location.lat,
+    placeElement.location.lng
+  );
 
   return placeElement;
 };

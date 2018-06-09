@@ -15,7 +15,7 @@ router.get("/", (req, res) => {
 //Toronto = lat: 43.6532, lng: -79.3832
 
 router.get("/urls", (req, res) => {
-  console.log(req.query)
+  console.log(req.query);
   placeToCoordinates(req.query, {
     lat: 41.402862,
     lng: 2.174366
@@ -25,8 +25,9 @@ router.get("/urls", (req, res) => {
 });
 
 router.get("/insta", async (req, res) => {
-  let result = await getInstagrams(43.6532, -79.3832);
-  res.send(result);
+  getInstagrams(43.6532, -79.3832).then(function(result) {
+    res.send(result);
+  });
 });
 
 router.get("/test", (req, res) => {
