@@ -6,7 +6,9 @@ class EditTripForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      tripName: this.props.trip.trip_name,
+      // USER ID????
+      tripID: this.props.trip.id,
+      tripName: this.props.trip.name,
       startDate: this.props.trip.start_date,
       endDate: this.props.trip.end_date,
       failedEdit: false
@@ -27,28 +29,33 @@ class EditTripForm extends React.Component {
     axios.post('http://localhost:3001/trips', {
       // User ID
       // Trip ID
-      trip_name: this.state.name,
+      user_id: 1,
+      trip_id: this.state.tripID,
+      name: this.state.tripName,
       start_date: this.state.startDate,
-      end_date: this.state.endDate })
+      end_date: this.state.endDate
+    })
     .then((response)=>{
       console.log(response);
+      window.location.reload();
 
       if (response.status === 202){
         console.log('SUCCESSFULLY EDITED TRIP: ', response.data);
         // this.props.logIn(response.data);
         // ADD Trip to state if successful
         // this.props.handleClose();
+        window.location.reload();
       }
       else if (response.status === 401){
         console.log('Failed to add city!')
-        this.setState({failedAdd: true})
+        this.setState({failedEdit: true})
       }
 
     })
     .catch((error)=>{
       // IF LOGING UNSECCESFUL DUE TO NETWORK PROBLEM:
       console.log(error)
-      this.setState({failedAdd: true});
+      this.setState({failedEdit: true});
     });
   }
 
@@ -67,7 +74,6 @@ class EditTripForm extends React.Component {
             id='tripName'
             type="text"
             value={this.state.tripName}
-            placeholder="City"
             onChange={this.handleInputChange}
           />
           <ControlLabel>Start Date</ControlLabel>
