@@ -7,7 +7,7 @@ module.exports = function getSnaps(lat, lng){
       // console.log(playlist);
 
       if (Object.keys(playlist).length === 0) {
-        resolve("No Snaps!")
+        resolve(["No Snaps!"])
         //reject('No Snaps Found!');
       }
 
@@ -18,7 +18,7 @@ module.exports = function getSnaps(lat, lng){
         resolve(snaps);
       }
       else{
-        resolve("No Snaps!")
+        resolve(["No Snaps!"])
         //reject('Response:410, try again')
       }
     });

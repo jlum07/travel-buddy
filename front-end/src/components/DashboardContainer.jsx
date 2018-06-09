@@ -20,12 +20,27 @@ class DashboardContainer extends React.Component {
     };
   }
 
-  toggleModal = () => {
+  toggleModal = (props, marker, e) => {
     if (this.state.showModal) {
-      this.setState({ showModal: false });
+      this.setState({
+        showModal: false,
+        //currentPin: this.state.points_of_interest[props.name]
+      });
     } else {
-      this.setState({ showModal: true });
+      console.log("props.name", this.state.points_of_interest.top_poi[props.name])
+      this.setState({
+        showModal: true,
+        currentPin: this.state.points_of_interest.top_poi[props.name]
+      });
     }
+  };
+
+  setCurrentPin = (props, marker, e) => {
+    //console.log("poi", this.state);
+    //this.setState({ currentPin: this.state.points_of_interest[props.name] });
+    //console.log("currentpin", this.state.points_of_interest[props.name]);
+
+    // this.setState({currentPin:})
   };
 
   componentDidMount() {
@@ -63,6 +78,7 @@ class DashboardContainer extends React.Component {
               toggleModal={this.toggleModal}
               points_of_interest={this.state.points_of_interest}
               city_coordinates={this.state.city_coordinates}
+              setCurrentPin={this.setCurrentPin}
             />
           </div>
           <div id="CityCharContainer">
