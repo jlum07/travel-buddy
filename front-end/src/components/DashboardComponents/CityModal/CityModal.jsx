@@ -1,11 +1,10 @@
-import React from 'react';
-import { Modal, Button, Tabs, Tab } from 'react-bootstrap'
+import React from "react";
+import { Modal, Button, Tabs, Tab } from "react-bootstrap";
 // import './GalleryModal.css';
-import InstaCarousel from './InstaCarousel.jsx';
-import SnapCarousel from './SnapCarousel.jsx';
+import InstaCarousel from "./InstaCarousel.jsx";
+import SnapCarousel from "./SnapCarousel.jsx";
 
 class GalleryModal extends React.Component {
-
   constructor(props, context) {
     super(props, context);
 
@@ -25,7 +24,12 @@ class GalleryModal extends React.Component {
     this.setState({ show: true });
   }
 
-  render(){
+  render() {
+    let snapStatus = false
+    if(this.props.currentPin.snapchat === "No Snaps!"){
+      snapStatus = true
+    }
+    //if (this.props.currentPin.snapchat !== "No Snaps!") {
     return (
       <React.Fragment>
         <Modal show={this.props.showModal} onHide={this.props.toggleModal}>
@@ -33,8 +37,10 @@ class GalleryModal extends React.Component {
             <Tab eventKey={1} title="Instagram">
               <InstaCarousel />
             </Tab>
-            <Tab eventKey={2} title="SnapChat">
-              <SnapCarousel />
+            <Tab eventKey={2} title="SnapChat" disabled={snapStatus}>
+              {this.props.currentPin.snapchat !== "No Snaps!" && (
+                <SnapCarousel snapchats={this.props.currentPin.snapchat} />
+              )}
             </Tab>
           </Tabs>
         </Modal>

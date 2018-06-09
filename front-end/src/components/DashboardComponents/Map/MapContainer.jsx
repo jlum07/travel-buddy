@@ -19,8 +19,9 @@ export class MapContainer extends React.Component {
     };
   }
 
-  onMarkerClick = () => {
-    this.props.toggleModal()
+  onMarkerClick = (props, marker, e) => {
+    this.props.toggleModal(props, marker, e)
+    //this.props.setCurrentPin(props, marker, e)
   }
     // this.setState({
     //   selectedPlace: props,
@@ -53,11 +54,11 @@ export class MapContainer extends React.Component {
       }
     });
 
-    let markers = this.state.pins.map(position => {
+    let markers = this.state.pins.map( (position, index) => {
       return (
         <Marker
           onClick={this.onMarkerClick}
-          name={"Current location"}
+          name={index}
           position={position}
         />
       );
