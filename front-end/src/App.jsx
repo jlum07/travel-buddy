@@ -11,7 +11,7 @@ import Trips from "./components/Trips.jsx";
 import Trip from "./components/Trip.jsx";
 import MorphGraph from "./components/DashboardComponents/CityChar/CityCharContainer.jsx";
 import axios from 'axios';
-require('dotenv').config()
+require('dotenv').config();
 
 class App extends Component {
   constructor(props) {
@@ -40,16 +40,7 @@ class App extends Component {
     this.setState({
       currentUser: {
         id: userData.id,
-        username: userData.username,
-        // firstName: userData.first_name,
-        // lastName: userData.last_name,
-        // email: userData.email,
-        // rank_food: userData.food_rank,
-        // rank_arts: userData.arts_rank,
-        // rank_nightlife: userData.nightlife_rank,
-        // rank_history: userData.history_rank,
-        // rank_price: userData.price_rank,
-        // profilePic: userData.profile_pic
+        username: userData.username
       }
     });
   }
@@ -68,7 +59,6 @@ class App extends Component {
         localStorage.setItem('session_token', null);
       })
       .catch((error)=>{console.log(error);});
-
     }
 
     this.setState({
@@ -122,9 +112,9 @@ class App extends Component {
       return <Profile currentUser={this.state.currentUser} {...props} />;
     };
 
-    // const TripsWithProps = props => {
-    //   return <Trips currentUsercurrentUser={this.state.currentUser} {...props} />;
-    // }
+    const TripsWithProps = props => {
+      return <Trips currentUser={this.state.currentUser} {...props} />;
+    }
 
     return (
       <div>
@@ -137,7 +127,7 @@ class App extends Component {
             />
             <Route exact path="/" component={Home} />
             <Route path="/cities/:city" component={ShowCity} />
-            <Route exact path="/trips" component={Trips} />
+            <Route exact path="/trips" render={TripsWithProps} />
             <Route path="/trips/:id" component={Trip} />
             <Route path="/map" component={MapContainer} />
             <Route path="/profile" render={ProfileWithProps} />

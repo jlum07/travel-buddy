@@ -19,44 +19,27 @@ class Trips extends React.Component {
     // console.log(moment(Date()).format("YYYY-MM-DD"));
   }
 
-  componentWillMount() {
-    let currentSessionToken = localStorage.getItem('session_token');
-
-    if (currentSessionToken){
-      axios.get('http://localhost:3001/users/basic_data', {
-        headers: {
-          session_token: currentSessionToken
+  componentWillReceiveProps(newProps){
+    this.setState({ userId: newProps.currentUser.id });
+    axios.get('http://localhost:3001/trips', {
+      params: {
+        user_id: newProps.currentUser.id
+      }
+    })
+    .then( response => {
+      let tempData = response.data.map(row => {
+        return {
+          ...row,
+          start_date: moment(row.start_date).tz(timezone).format("YYYY-MM-DD"),
+          end_date: moment(row.end_date).tz(timezone).format("YYYY-MM-DD")
         }
       })
-      .then((response)=>{
-        let userId = response.data.id;
-        this.setState({ userId: userId });
-        axios.get('http://localhost:3001/trips', {
-          params: {
-            user_id: userId
-          }
-        })
-        .then( response => {
-          let tempData = response.data.map(row => {
-            return {
-              ...row,
-              start_date: moment(row.start_date).tz(timezone).format("YYYY-MM-DD"),
-              end_date: moment(row.end_date).tz(timezone).format("YYYY-MM-DD")
-            }
-          })
-
-          this.setState({trips: tempData});
-        })
-        .catch( error => {
-          console.log(error);
-        });
-      })      
-      .catch((error)=>{
-        console.log(error);
-      });
-    }
+      this.setState({trips: tempData});
+    })
+    .catch( error => {
+      console.log(error);
+    });
   }
-
 
   addTrip = (trip) => {
     let newTrips = this.sate.trips;
@@ -64,11 +47,7 @@ class Trips extends React.Component {
     this.setState({ trips: newTrips });
   }
 
-
   editTrip = (trip) => {
-
-
-
 
   }
 

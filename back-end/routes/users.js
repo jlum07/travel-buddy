@@ -34,8 +34,6 @@ module.exports = (knex) => {
   })
 
   router.delete('/logout', (req, res)=>{
-    console.log('Logging out...');
-    console.log(req.headers);
     knex.select('*').from('users')
     .where('session_token', '=', req.headers.session_token)
     .then((response)=>{
