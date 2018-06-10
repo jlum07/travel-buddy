@@ -1,8 +1,7 @@
 import React from 'react';
-import { Jumbotron, Button, FormGroup, FormControl, Col, Row, Grid } from 'react-bootstrap';
+import { Jumbotron, Button, FormGroup, FormControl, Col, Row, Grid, Alert } from 'react-bootstrap';
 import { Redirect } from 'react-router-dom';
 import axios from 'axios';
-import API_KEY from './apikey.js';
 import './Home.css';
 
 class Home extends React.Component {
@@ -10,7 +9,8 @@ class Home extends React.Component {
     super(props);
     this.state = {
       searchCity: null,
-      redirectToCity: false
+      redirectToCity: false,
+      searchError: false
     };
     this.handleSearchCityChange = this.handleSearchCityChange.bind(this);
     this.searchCity = this.searchCity.bind(this);
@@ -20,7 +20,6 @@ class Home extends React.Component {
 
   takeMeAnyWhere(){
     let randomIndex = Math.floor(Math.random()*7+1);
-    console.log(randomIndex);
     let randonCityList = ['Toronto', 'Barcelona', 'Bangkok', 'Munich', 'Houston', 'Rome', 'Cairo']
     this.setState({
       searchCity: randonCityList[randomIndex],
@@ -29,11 +28,24 @@ class Home extends React.Component {
   }
 
   searchCity(){
-    console.log(API_KEY);
+    axios.get(`http://localhost:3001/city/autocorrect/${this.state.searchCity}`)
+    .then((response)=>{
+      // console.log('response = ', response);
+      if (response.status === 204){
+        // console.log('City Not Found');
+        this.setState({searchError: true})
+      } else {
+        this.setState({
+          searchCity: response.data, 
+          redirectToCity: true,
+          searchError: false
+          });        
+      }
+    })
+    .catch((error)=>{console.log(error);})
 
 
 
-    this.setState({ redirectToCity: true });
   }
 
   handleSearchCityChange(event){
@@ -49,14 +61,21 @@ class Home extends React.Component {
   }
 
   render(){
+    var searchError = this.state.searchError?
+      (<Alert bsStyle="danger">{this.state.searchCity} Not Found</Alert>) : (null);
+
+
     if (this.state.redirectToCity){
       return(<Redirect to={`/cities/${this.state.searchCity}`}/>)
     }
+
+
 
     return (
       <Grid>
         <Jumbotron>
           <h2>Search a city:</h2>
+          {searchError}
           <Row>
             <Col md={10}>
               <FormGroup

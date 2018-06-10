@@ -9,7 +9,7 @@ const fetch = require("node-fetch");
 const API = false;
 
 
-router.get('/autocomplete/:name', (req, res)=>{
+router.get('/autocorrect/:name', (req, res)=>{
   let url = `https://maps.googleapis.com/maps/api/place/autocomplete/json?input=${req.params.name}&types=(cities)&key=${API_KEY}`
   fetch(url)
   .then(res => res.json())
@@ -17,8 +17,7 @@ router.get('/autocomplete/:name', (req, res)=>{
     console.log(json);
     if (json.predictions.length === 0){
       console.log('No cities found');
-      res.status(200);
-      res.send('City not found!!!');
+      res.status(204).send(); // 204 = NO CONTENT
     }
     else {
       let correctedCityName = json.predictions[0].description.split(',')[0];
