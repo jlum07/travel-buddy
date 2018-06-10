@@ -29,10 +29,12 @@ exports.up = function(knex, Promise) {
       return knex.schema.createTable('cities', function (table) {
         table.increments('id').primary();
         table.string('name').unique();
+        table.decimal('lat');
+        table.decimal('lng');
         table.integer('food_rank');
         table.integer('arts_rank');
         table.integer('nightlife_rank');
-        table.integer('history_rank');
+        table.integer('safety');
         table.integer('price_rank');
         table.jsonb('cache');
       });
