@@ -6,9 +6,9 @@ class InstaCarousel extends React.Component {
 
   render(){
 
-    const carouselItems = instagram.map((node) => {
+    const carouselItems = instagram.map((node, index) => {
       return (
-        <Carousel.Item>
+        <Carousel.Item key={index}>
           <img width={node.demensions.width} height={node.demensions.width} alt="" src={node.url} />
           <Carousel.Caption>
             <p>

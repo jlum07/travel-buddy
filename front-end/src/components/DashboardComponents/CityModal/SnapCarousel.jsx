@@ -3,17 +3,47 @@ import { Carousel } from 'react-bootstrap'
 import './SnapCarousel.css';
 
 class SnapCarousel extends React.Component {
+  constructor(props, context) {
+    super(props, context);
+
+    this.handleCarouselSlide = this.handleCarouselSlide.bind(this);
+
+    this.state = {
+      index: 0
+    };
+  }
+
+
+  handleCarouselSlide(selectedIndex, event) {
+    this.setState({
+      index: selectedIndex
+    });
+    var videos = document.getElementsByClassName('snap-video');
+    for (let i = 0; i < videos.length; i++){
+      if (i !== selectedIndex){
+        videos[i].pause();
+      } else{
+        videos[i].play();
+      }
+    }
+  }
+
+  componentWillReceiveProps(nextProps){
+    var videos = document.getElementsByClassName('snap-video');
+    if (nextProps.playSnaps){
+      videos[0].play();
+    }
+  }
 
   render(){
-    console.log("sup",this.props)
+    const { index } = this.state;
     let carouselItems = <Carousel.Item className="vid-container"/>
 
     if(this.props.snapchats){
-      carouselItems = this.props.snapchats.map((snap) => {
-      //const carouselItems = snapchat.map((snap) => {
+      carouselItems = this.props.snapchats.map((snap, index) => {
         return (
-          <Carousel.Item className="vid-container">
-            <video controls muted loop autoPlay>
+          <Carousel.Item className="vid-container" key={index}>
+            <video controls className='snap-video'>
               <source src={snap} type="video/mp4" />
             </video>
           </Carousel.Item>
@@ -21,10 +51,14 @@ class SnapCarousel extends React.Component {
       })
     }
 
+
     return (
-      <Carousel>
-        {carouselItems}
-      </Carousel>
+        <Carousel
+          id='snap-carousel'
+          activeIndex={index}
+          onSelect={this.handleCarouselSlide} >
+          {carouselItems}
+        </Carousel>
     );
   }
 }

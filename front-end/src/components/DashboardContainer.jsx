@@ -27,7 +27,7 @@ class DashboardContainer extends React.Component {
         //currentPin: this.state.points_of_interest[props.name]
       });
     } else {
-      console.log("props.name", this.state.points_of_interest.top_poi[props.name])
+      // console.log("props.name", this.state.points_of_interest.top_poi[props.name])
       this.setState({
         showModal: true,
         currentPin: this.state.points_of_interest.top_poi[props.name]
@@ -47,14 +47,14 @@ class DashboardContainer extends React.Component {
     const {
       match: { params }
     } = this.props;
-    console.log("mounted");
+    // console.log("mounted");
 
     fetch(`http://localhost:3001/city/${params.city}`)
       .then(response => {
         return response.json();
       })
       .then(cityData => {
-        console.log(cityData);
+        // console.log(cityData);
         let pinArray = cityData.points_of_interest.top_poi.map(element => {
           return element.location;
         });
@@ -94,7 +94,7 @@ class DashboardContainer extends React.Component {
         </div>
       );
     } else {
-      return <img class="image" src={ben} />;
+      return <img className="image" src={ben} />;
     }
   }
 }

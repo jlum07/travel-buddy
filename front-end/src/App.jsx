@@ -68,13 +68,7 @@ class App extends Component {
         localStorage.setItem('session_token', null);
       })
       .catch((error)=>{console.log(error);});
-     
     }
-
-
-
-
-
 
     this.setState({
       currentUser: {
@@ -97,7 +91,7 @@ class App extends Component {
     let currentSessionToken = localStorage.getItem('session_token');
 
     if (currentSessionToken){
-      console.log('there was a session token');
+      // console.log('there was a session token');
 
       axios.get('http://localhost:3001/users/basic_data', {
         headers: {
@@ -105,7 +99,7 @@ class App extends Component {
         }
       })
       .then((response)=>{
-        console.log('response.data = ', response.data);
+        // console.log('response.data = ', response.data);
         this.setState({
           currentUser: {
             id: response.data.id,

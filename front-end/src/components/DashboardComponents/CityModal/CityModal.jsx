@@ -8,20 +8,29 @@ class GalleryModal extends React.Component {
   constructor(props, context) {
     super(props, context);
 
-    this.handleShow = this.handleShow.bind(this);
-    this.handleClose = this.handleClose.bind(this);
+    // this.handleShow = this.handleShow.bind(this);
+    // this.handleClose = this.handleClose.bind(this);
 
     this.state = {
-      show: false
+      // show: false,
+      playSnaps: false
     };
   }
 
-  handleClose() {
-    this.setState({ show: false });
-  }
+  // handleClose() {
+  //   this.setState({ show: false });
+  // }
 
-  handleShow() {
-    this.setState({ show: true });
+  // handleShow() {
+  //   this.setState({ show: true });
+  // }
+
+  handleTabSelect = (key) => {
+    // alert(`selected ${key}`);
+    // play the first snap when the SnapChat tab is selected
+    if (key === 2){
+      this.setState({ playSnaps: true });     
+    }
   }
 
   render() {
@@ -33,13 +42,17 @@ class GalleryModal extends React.Component {
     return (
       <React.Fragment>
         <Modal show={this.props.showModal} onHide={this.props.toggleModal}>
-          <Tabs defaultActiveKey={1} id="uncontrolled-tab-example">
+          <Tabs defaultActiveKey={1}
+                id="uncontrolled-tab-example"
+                activeKey={this.state.key}
+                onSelect={this.handleTabSelect}>
+
             <Tab eventKey={1} title="Instagram">
               <InstaCarousel />
             </Tab>
             <Tab eventKey={2} title="SnapChat" disabled={snapStatus}>
               {this.props.currentPin.snapchat !== "No Snaps!" && (
-                <SnapCarousel snapchats={this.props.currentPin.snapchat} />
+                <SnapCarousel snapchats={this.props.currentPin.snapchat} playSnaps={this.state.playSnaps}/>
               )}
             </Tab>
           </Tabs>

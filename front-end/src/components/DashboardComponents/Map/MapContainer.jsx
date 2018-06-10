@@ -58,6 +58,7 @@ export class MapContainer extends React.Component {
       return (
         <Marker
           onClick={this.onMarkerClick}
+          key={index}
           name={index}
           position={position}
         />
