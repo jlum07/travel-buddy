@@ -12,6 +12,7 @@
     "google-maps-react": "^2.0.2",
     "gsap": "^2.0.1",
     "moment": "^2.22.2",
+    "moment-timezone": "^0.5.17",
     "react": "^16.4.0",
     "react-bootstrap": "^0.32.1",
     "react-dom": "^16.4.0",

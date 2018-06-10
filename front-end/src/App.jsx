@@ -68,6 +68,7 @@ class App extends Component {
         localStorage.setItem('session_token', null);
       })
       .catch((error)=>{console.log(error);});
+
     }
 
     this.setState({
@@ -132,7 +133,7 @@ class App extends Component {
             />
             <Route exact path="/" component={Home} />
             <Route path="/cities/:city" component={ShowCity} />
-            <Route path="/trips" component={Trips} />
+            <Route exact path="/trips" component={Trips} />
             <Route path="/trips/:id" component={Trip} />
             <Route path="/map" component={MapContainer} />
             <Route path="/profile" render={ProfileWithProps} />

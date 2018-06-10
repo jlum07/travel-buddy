@@ -1,11 +1,13 @@
 import React from 'react';
 import axios from 'axios';
 import moment from 'moment';
+import 'moment-timezone';
 import { Table, Panel } from 'react-bootstrap';
 import TripsList from './Trips/TripsList.jsx';
 import CreateTripModal from './Trips/CreateTripModal.jsx';
 import './Trips.css';
 
+const timezone = moment.tz.guess();
 
 class Trips extends React.Component {
 
@@ -29,8 +31,8 @@ class Trips extends React.Component {
       let tempData = response.data.map(row => {
         return {
           ...row,
-          start_date: moment(row.start_date).format("YYYY-MM-DD"),
-          end_date: moment(row.end_date).format("YYYY-MM-DD")
+          start_date: moment(row.start_date).tz(timezone).format("YYYY-MM-DD"),
+          end_date: moment(row.end_date).tz(timezone).format("YYYY-MM-DD")
         }
       })
 

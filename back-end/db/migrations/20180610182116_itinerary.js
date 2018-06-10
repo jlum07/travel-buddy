@@ -9,6 +9,7 @@ exports.up = function(knex, Promise) {
       table.integer('city_id');
       // table.integer('trip_id').references('id').inTable('trips').onDelete('CASCADE');
       table.integer('trip_id');
+      table.integer('user_id');
       table.time('duration');
       table.date('start_date');
       table.date('end_date');

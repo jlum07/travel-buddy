@@ -91,10 +91,11 @@ module.exports = (knex) => {
 
   router.get('/:id', (req, res)=>{
 
+    console.log("get trip id", Number(req.params.id));
 
-
-    knex.select('*').from('trips')
-    .where('user_id', '=', req.query.user_id)
+    knex.select('*').from('itinerary_trip')
+    .where('trip_id', '=', Number(req.params.id))
+    .andWhere('user_id', '=', req.query.user_id)
     .orderBy('start_date', 'asc')
     .then( rows => {
       // console.log(rows);
@@ -103,9 +104,6 @@ module.exports = (knex) => {
     .catch( error => {
       console.log(error)
     });
-
-
-
 
   })
 

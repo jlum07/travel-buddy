@@ -13,6 +13,7 @@ class AddCityForm extends React.Component {
     };
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+
   }
 
   handleInputChange(event) {
@@ -24,7 +25,7 @@ class AddCityForm extends React.Component {
     event.preventDefault();
 
     // EDIT THIS!!!!
-    axios.post('http://localhost:3001/trips', {
+    axios.put(`http://localhost:3001/trips/${1}`, {
       // User ID
       cityName: this.state.name,
       start_date: this.state.startDate,
@@ -53,8 +54,8 @@ class AddCityForm extends React.Component {
 
   render() {
 
-    const loginFailedMessage = this.state.failedLogin ? (
-      <Alert bsStyle="danger">Incorrect Login</Alert>
+    const loginFailedMessage = this.state.failedAdd ? (
+      <Alert bsStyle="danger">Failed to add city!</Alert>
           ) : null;
 
     return (

@@ -1,15 +1,19 @@
 import React from 'react';
-import { Redirect } from 'react-router'
+import { Redirect } from 'react-router';
+import moment from 'moment';
+import 'moment-timezone';
 import { Form, FormGroup, FormControl, ControlLabel, Button, Alert } from 'react-bootstrap';
 import axios from 'axios';
+
+const timezone = moment.tz.guess();
 
 class CreateTripForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       tripName: '',
-      startDate: Date.now(),
-      endDate: Date.now(),
+      startDate: moment(Date.now()).tz(timezone).format("YYYY-MM-DD"),
+      endDate: moment(Date.now()).tz(timezone).format("YYYY-MM-DD"),
       failedCreate: false
     };
     this.handleInputChange = this.handleInputChange.bind(this);
@@ -28,8 +32,8 @@ class CreateTripForm extends React.Component {
       // User ID
       user_id: 1,
       name: this.state.tripName,
-      start_date: this.state.startDate,
-      end_date: this.state.endDate })
+      start_date: moment.utc(this.state.startDate),
+      end_date: moment.utc(this.state.endDate) })
     .then((response)=>{
       console.log(response);
 

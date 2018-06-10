@@ -1,4 +1,7 @@
 import React from 'react';
+import axios from 'axios';
+import moment from 'moment';
+import 'moment-timezone';
 import AmCharts from "@amcharts/amcharts3-react";
 import { Table, Panel } from 'react-bootstrap';
 import TripMap from './Trip/TripMap.jsx';
@@ -6,6 +9,7 @@ import TripCityList from './Trip/TripCityList.jsx';
 import AddCityModal from './Trip/AddCityModal.jsx';
 import './Trip.css';
 
+const timezone = moment.tz.guess();
 
 class Trip extends React.Component {
 
@@ -13,7 +17,40 @@ class Trip extends React.Component {
     super(props);
 
     this.state = { cities: cities };
+
+    console.log("this is match " ,this.props.match.params.id);
+    console.log("this is location " ,this.props.location);
+
+    console.log(timezone);
+
   }
+
+  componentWillMount() {
+
+    axios.get(`http://localhost:3001/trips/${this.props.match.params.id}`, {
+      params: {
+        user_id: 1
+        // trip_id: this.props.match.params.id
+      }
+    })
+    .then( response => {
+
+      let tempData = response.data.map(row => {
+        return {
+          ...row,
+          start_date: moment(row.start_date).tz(timezone).format("YYYY-MM-DD"),
+          end_date: moment(row.end_date).tz(timezone).format("YYYY-MM-DD")
+        }
+      })
+
+      this.setState({trips: tempData});
+    })
+    .catch( error => {
+      console.log(error);
+    });
+
+  }
+
 
   render(){
     return (
