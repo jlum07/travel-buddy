@@ -122,6 +122,10 @@ class App extends Component {
       return <Profile currentUser={this.state.currentUser} {...props} />;
     };
 
+    // const TripsWithProps = props => {
+    //   return <Trips currentUsercurrentUser={this.state.currentUser} {...props} />;
+    // }
+
     return (
       <div>
         <BrowserRouter>

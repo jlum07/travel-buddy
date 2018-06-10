@@ -24,8 +24,7 @@ router.get('/autocorrect/:name', (req, res)=>{
       res.status(200);
       res.send(correctedCityName);
     }
-    res.send(json.pre);
-    
+    res.send(json.pre);    
   })
   .catch((error)=>{
     console.error(error);
