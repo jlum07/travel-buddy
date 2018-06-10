@@ -1,10 +1,9 @@
 import React from 'react';
-import { Modal, Button } from 'react-bootstrap'
-import AddCityForm from './AddCityForm.jsx';
-// import './AddCityModal.css';
+import { Modal, Button, Glyphicon } from 'react-bootstrap'
+import EditForm from './EditForm.jsx';
 
 
-class AddCityModal extends React.Component {
+class EditModal extends React.Component {
 
   constructor(props) {
     super(props);
@@ -28,12 +27,12 @@ class AddCityModal extends React.Component {
   render(){
     return (
       <React.Fragment>
-        <Button bsStyle="primary" onClick={this.handleShow}>
-          Add City
+        <Button bsStyle="default" onClick={this.handleShow}>
+          <Glyphicon glyph="pencil" />
         </Button>
         <Modal show={this.state.show} onHide={this.handleClose}>
           <Modal.Body>
-            <AddCityForm />
+            <EditForm city={this.props.city} />
           </Modal.Body>
         </Modal>
       </React.Fragment>
@@ -41,4 +40,4 @@ class AddCityModal extends React.Component {
   }
 }
 
-export default AddCityModal;
+export default EditModal;

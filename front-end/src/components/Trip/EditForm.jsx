@@ -2,7 +2,7 @@ import React from 'react';
 import { Form, FormGroup, FormControl, ControlLabel, Button, Alert, Glyphicon } from 'react-bootstrap';
 import axios from 'axios';
 
-class EditCityForm extends React.Component {
+class EditForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -92,5 +92,5 @@ class EditCityForm extends React.Component {
   }
 }
 
-export default EditCityForm;
+export default EditForm;
 

@@ -39,7 +39,6 @@ module.exports = (knex) => {
       res.status(400).send(error);
       console.log(error);
     });
-
   })
 
   router.post('/', (req, res)=>{
@@ -104,8 +103,56 @@ module.exports = (knex) => {
     .catch( error => {
       console.log(error)
     });
-
   })
+
+  // Create itinerary event
+  router.put('/:id', (req, res)=>{
+    knex('itinerary_trip').returning('id')
+    .insert({
+      name: req.body.name,
+      type: req.body.type,
+      lat: req.body.lat,
+      lng: req.body.lng,
+      start_date: req.body.start_date,
+      end_date: req.body.end_date,
+      user_id: req.body.user_id,
+      trip_id: req.body.trip_id
+    })
+    .then((result)=>{
+      console.log(result[0]);
+      // if (result.command === 'INSERT'){
+        res.sendStatus(201).send(result[0]);
+        // res.send(result[0]);
+        // res.send('New Trip Added!');
+      // }
+    })
+    .catch((error)=>{
+      res.status(400).send(error);
+      console.log(error);
+    });
+  })
+
+
+  router.delete('/:id', (req, res)=>{
+    knex('itinerary_trip')
+    .where('id', '=', req.body.itinerary_id)
+    .del()
+    .then( (result ) => {
+      console.log(result);
+      // res.send(rows);
+      if (result === 1) {
+        res.status(200).send("Success");
+      } else {
+        res.status(404).send("Failed");
+      }
+    })
+   .catch( error => {
+      console.log("Catche", error)
+      res.status(405).send(error);
+    });
+  })
+
+
 
   return router;
 }

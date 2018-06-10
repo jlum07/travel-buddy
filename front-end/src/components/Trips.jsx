@@ -12,11 +12,12 @@ const timezone = moment.tz.guess();
 class Trips extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { 
+    this.state = {
       trips: [],
       userId: null // if userId is null, render a page which says "please login"
        };
     // console.log(moment(Date()).format("YYYY-MM-DD"));
+
   }
 
   componentWillReceiveProps(newProps){
@@ -60,7 +61,7 @@ class Trips extends React.Component {
           <br />
           <CreateTripModal addTrip={this.addTrip} />
         </React.Fragment>
-      );      
+      );
     }
     else {
       return (<h1>Please Log In to view trips</h1>)

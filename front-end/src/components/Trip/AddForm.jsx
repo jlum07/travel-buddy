@@ -2,11 +2,11 @@ import React from 'react';
 import { Form, FormGroup, FormControl, ControlLabel, Button, Alert } from 'react-bootstrap';
 import axios from 'axios';
 
-class AddCityForm extends React.Component {
+class AddForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      city: '',
+      name: '',
       startDate: Date.now(),
       endDate: Date.now(),
       failedAdd: false
@@ -24,32 +24,54 @@ class AddCityForm extends React.Component {
   handleSubmit(event){
     event.preventDefault();
 
-    // EDIT THIS!!!!
-    axios.put(`http://localhost:3001/trips/${1}`, {
-      // User ID
-      cityName: this.state.name,
-      start_date: this.state.startDate,
-      end_date: this.state.endDate })
-    .then((response)=>{
+    axios.get(`https://maps.googleapis.com/maps/api/place/autocomplete/json?`, {
+      params: {
+        key: 'AIzaSyA26fShIA6heh3jhSTD81XSwkdnDDtYMOQ',
+        types: '(cities)',
+        input: this.state.name
+      }
+    })
+    .then( response => {
+
       console.log(response);
 
-      if (response.status === 202){
-        console.log('SUCCESSFULLY ADDED CITY: ', response.data);
-        // this.props.logIn(response.data);
-        // ADD Trip to state if successful
-        // this.props.handleClose();
-      }
-      else if (response.status === 401){
-        console.log('Failed to add city!')
-        this.setState({failedAdd: true})
-      }
 
     })
-    .catch((error)=>{
-      // IF LOGING UNSECCESFUL DUE TO NETWORK PROBLEM:
-      console.log(error)
-      this.setState({failedAdd: true});
+    .catch( error => {
+      console.log("error: ", error);
     });
+
+
+
+    // EDIT THIS!!!!
+    // axios.put(`http://localhost:3001/trips/${1}`, {
+    //   // User ID
+    //   name: this.state.name,
+    //   type: this.state.type,
+    //   start_date: this.state.startDate,
+    //   end_date: this.state.endDate })
+    // .then((response)=>{
+    //   console.log(response);
+
+    //   if (response.status === 202){
+    //     console.log('SUCCESSFULLY ADDED EVENT: ', response.data);
+    //     // this.props.logIn(response.data);
+    //     // ADD Trip to state if successful
+    //     // this.props.handleClose();
+    //   }
+    //   else if (response.status === 401){
+    //     console.log('Failed to add event!')
+    //     this.setState({failedAdd: true})
+    //   }
+
+    // })
+    // .catch((error)=>{
+    //   // IF LOGING UNSECCESFUL DUE TO NETWORK PROBLEM:
+    //   console.log(error)
+    //   this.setState({failedAdd: true});
+    // });
+
+
   }
 
   render() {
@@ -64,10 +86,10 @@ class AddCityForm extends React.Component {
           {loginFailedMessage}
           <ControlLabel>Trip Name</ControlLabel>
           <FormControl
-            id='city'
+            id='name'
             type="text"
-            value={this.state.city}
-            placeholder="City"
+            value={this.state.name}
+            placeholder="Name"
             onChange={this.handleInputChange}
           />
           <ControlLabel>Start Date</ControlLabel>
@@ -92,5 +114,5 @@ class AddCityForm extends React.Component {
   }
 }
 
-export default AddCityForm;
+export default AddForm;
 
