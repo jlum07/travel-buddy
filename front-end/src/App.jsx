@@ -14,8 +14,8 @@ import axios from 'axios';
 require('dotenv').config()
 
 class App extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       currentUser: {
         id: null,

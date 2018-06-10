@@ -4,8 +4,38 @@ const cityToPlaceCoordinates = require("../public/javascripts/cityToPlaceCoordin
 const cityAutoComplete = require("../public/javascripts/cityAutoComplete");
 const torontoSample = require("./sampleData/torontoSample.js");
 const cityChar = require("./sampleData/cityChar2.js");
-
+const API_KEY = require("../apikey.js");
+const fetch = require("node-fetch");
 const API = false;
+
+
+router.get('/autocomplete/:name', (req, res)=>{
+  let url = `https://maps.googleapis.com/maps/api/place/autocomplete/json?input=${req.params.name}&types=(cities)&key=${API_KEY}`
+  fetch(url)
+  .then(res => res.json())
+  .then(json => {
+    console.log(json);
+    if (json.predictions.length === 0){
+      console.log('No cities found');
+      res.status(200);
+      res.send('City not found!!!');
+    }
+    else {
+      let correctedCityName = json.predictions[0].description.split(',')[0];
+      res.status(200);
+      res.send(correctedCityName);
+    }
+    res.send(json.pre);
+    
+  })
+  .catch((error)=>{
+    console.error(error);
+    res.status(500);
+    res.send('Google Maps Autocorrect request failed');
+  })
+})
+
+
 
 router.get("/:city", async (req, res) => {
   //If it should call the API's, just so it is possible to turn it off to avoid excess calls

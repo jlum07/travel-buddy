@@ -1,6 +1,8 @@
 import React from 'react';
 import { Jumbotron, Button, FormGroup, FormControl, Col, Row, Grid } from 'react-bootstrap';
 import { Redirect } from 'react-router-dom';
+import axios from 'axios';
+import API_KEY from './apikey.js';
 import './Home.css';
 
 class Home extends React.Component {
@@ -27,6 +29,10 @@ class Home extends React.Component {
   }
 
   searchCity(){
+    console.log(API_KEY);
+
+
+
     this.setState({ redirectToCity: true });
   }
 
