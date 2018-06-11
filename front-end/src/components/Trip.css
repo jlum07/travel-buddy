@@ -7,3 +7,7 @@
 .vertical-timeline-element-date {
   left: 150%;
 }
+
+.event-timeline {
+  font-size: 22px !important;
+}

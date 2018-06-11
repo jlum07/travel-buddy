@@ -9,6 +9,7 @@ class AddForm extends React.Component {
       name: '',
       startDate: Date.now(),
       endDate: Date.now(),
+      description: '',
       failedAdd: false
     };
     this.handleInputChange = this.handleInputChange.bind(this);
@@ -24,23 +25,22 @@ class AddForm extends React.Component {
   handleSubmit(event){
     event.preventDefault();
 
-    axios.get(`https://maps.googleapis.com/maps/api/place/autocomplete/json?`, {
-      params: {
-        key: 'AIzaSyA26fShIA6heh3jhSTD81XSwkdnDDtYMOQ',
-        types: '(cities)',
-        input: this.state.name
-      }
-    })
-    .then( response => {
+    // axios.get(`https://maps.googleapis.com/maps/api/place/autocomplete/json?`, {
+    //   params: {
+    //     key: 'AIzaSyA26fShIA6heh3jhSTD81XSwkdnDDtYMOQ',
+    //     types: '(cities)',
+    //     input: this.state.name
+    //   }
+    // })
+    // .then( response => {
 
-      console.log(response);
+    //   console.log(response);
 
 
-    })
-    .catch( error => {
-      console.log("error: ", error);
-    });
-
+    // })
+    // .catch( error => {
+    //   console.log("error: ", error);
+    // });
 
 
     // EDIT THIS!!!!
@@ -76,15 +76,15 @@ class AddForm extends React.Component {
 
   render() {
 
-    const loginFailedMessage = this.state.failedAdd ? (
+    const addFailedMessage = this.state.failedAdd ? (
       <Alert bsStyle="danger">Failed to add city!</Alert>
           ) : null;
 
     return (
       <Form>
         <FormGroup>
-          {loginFailedMessage}
-          <ControlLabel>Trip Name</ControlLabel>
+          {addFailedMessage}
+          <ControlLabel>Name</ControlLabel>
           <FormControl
             id='name'
             type="text"
@@ -106,8 +106,16 @@ class AddForm extends React.Component {
             value={this.state.endDate}
             onChange={this.handleInputChange}
           />
+          <ControlLabel>Description</ControlLabel>
+          <FormControl
+            id='description'
+            componentClass="textarea"
+            rows={3}
+            value={this.state.description}
+            onChange={this.handleInputChange}
+          />
           <FormControl.Feedback />
-          <Button bsStyle="primary" type='submit' onClick={this.handleSubmit}>Submit</Button>
+          <Button bsStyle="default" type='submit' onClick={this.handleSubmit}>Submit</Button>
         </FormGroup>
       </Form>
     );

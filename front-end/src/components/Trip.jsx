@@ -7,6 +7,7 @@ import { Table, Panel } from 'react-bootstrap';
 import TripMap from './Trip/TripMap.jsx';
 import TripCityList from './Trip/TripCityList.jsx';
 import TripTimeline from './Trip/TripTimeline.jsx';
+import TripEventTimeline from './Trip/TripEventTimeline.jsx';
 import AddModal from './Trip/AddModal.jsx';
 import './Trip.css';
 
@@ -64,6 +65,7 @@ class Trip extends React.Component {
         <TripMap itinerary={this.state.itinerary} />
         <AddModal />
         <TripCityList itinerary={this.state.itinerary} />
+        <TripEventTimeline itinerary={this.state.itinerary} />
         <TripTimeline itinerary={this.state.itinerary} />
       </React.Fragment>
     );

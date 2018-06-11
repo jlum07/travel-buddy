@@ -16,6 +16,8 @@
     "react": "^16.4.0",
     "react-bootstrap": "^0.32.1",
     "react-dom": "^16.4.0",
+    "react-event-timeline": "^1.5.3",
+    "react-icons": "^2.2.7",
     "react-router-dom": "^4.3.1",
     "react-scripts": "1.1.4",
     "react-vertical-timeline-component": "^2.1.2"
