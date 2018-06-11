@@ -116,6 +116,10 @@ class App extends Component {
       return <Trips currentUser={this.state.currentUser} {...props} />;
     }
 
+    const TripWithProps = props => {
+      return <Trip currentUser={this.state.currentUser} {...props} />;
+    }
+
     return (
       <div>
         <BrowserRouter>
@@ -128,7 +132,7 @@ class App extends Component {
             <Route exact path="/" component={Home} />
             <Route path="/cities/:city" component={DashboardContainer} />
             <Route exact path="/trips" render={TripsWithProps} />
-            <Route path="/trips/:id" component={Trip} />
+            <Route path="/trips/:id" render={TripWithProps} />
             <Route path="/map" component={MapContainer} />
             <Route path="/profile" render={ProfileWithProps} />
             <Route path="/register" render={RegistrationPageWithProps} />

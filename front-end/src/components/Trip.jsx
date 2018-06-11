@@ -17,26 +17,24 @@ import './Trip.css';
 const timezone = moment.tz.guess();
 
 class Trip extends React.Component {
-
   constructor(props) {
     super(props);
 
     // this.state = { cities: cities };
     this.state = { itinerary: [] };
 
-    console.log("this is match " ,this.props.match.params.id);
-    console.log("this is location " ,this.props.location);
+    // console.log("this is match " ,this.props.match.params.id);
+    // console.log("this is location " ,this.props.location);
 
-    console.log(timezone);
-
+    // console.log(timezone);
   }
 
-  componentWillMount() {
+  componentWillReceiveProps(newProps) {
+    console.log('inside conponentWillMount: ', this.props.currentUser);
 
     axios.get(`http://localhost:3001/trips/${this.props.match.params.id}`, {
       params: {
-        user_id: 1
-        // trip_id: this.props.match.params.id
+        user_id: newProps.currentUser.id
       }
     })
     .then( response => {
@@ -48,8 +46,7 @@ class Trip extends React.Component {
           end_date: moment(row.end_date).tz(timezone).format("YYYY-MM-DD")
         }
       })
-
-      console.log(tempData);
+      // console.log(tempData);
       this.setState({itinerary: tempData});
     })
     .catch( error => {
@@ -63,7 +60,7 @@ class Trip extends React.Component {
     return (
       <React.Fragment>
         <TripMap itinerary={this.state.itinerary} />
-        <AddModal />
+        <AddModal userId={this.props.currentUser.id} tripId={this.props.match.params.id} />
         <TripCityList itinerary={this.state.itinerary} />
         <TripEventTimeline itinerary={this.state.itinerary} />
         <TripTimeline itinerary={this.state.itinerary} />

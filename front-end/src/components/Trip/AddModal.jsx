@@ -33,7 +33,7 @@ class AddModal extends React.Component {
         </Button>
         <Modal show={this.state.show} onHide={this.handleClose}>
           <Modal.Body>
-            <AddForm />
+            <AddForm userId={this.props.userId} tripId={this.props.tripId} handleClose={this.handleClose} />
           </Modal.Body>
         </Modal>
       </React.Fragment>

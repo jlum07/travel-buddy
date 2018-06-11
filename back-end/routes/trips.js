@@ -102,7 +102,7 @@ module.exports = (knex) => {
     });
   })
 
-  // Add a city to a trip
+  // Add a city/place to a trip
   router.post('/:trip_id/addplace', (req, res)=>{
     let incomingData = {
       tripId: req.params.trip_id,
@@ -140,7 +140,7 @@ module.exports = (knex) => {
         var correctedCityName = json.predictions[0].description.split(',')[0];
         cityToCoordinates(correctedCityName)
         .then((results)=>{
-          console.log(results);
+          // console.log(results);
           return knex('itinerary_trip').returning(['id', 'name'])
           .insert({
             name: correctedCityName,
@@ -158,7 +158,7 @@ module.exports = (knex) => {
           res.send(`sucessfully added ${knexResponse[0].name} to itinerary_trip`);
         })
         .catch((error)=>{
-          console.log('Error inserting into Database');
+          console.log('Error inserting into Database (feilds missing??)');
           res.status(500).send('Error inserting into Database');
         })
       }

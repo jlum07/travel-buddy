@@ -6,11 +6,14 @@ class AddForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      name: '',
-      startDate: Date.now(),
-      endDate: Date.now(),
+      name: null,
+      startDate: null,
+      endDate: null,
       description: '',
-      failedAdd: false
+      failedAdd: false,
+      failedAddMessage: 'failed to add because...',
+      userId: this.props.userId, 
+      tripId: this.props.tripId 
     };
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -18,12 +21,73 @@ class AddForm extends React.Component {
   }
 
   handleInputChange(event) {
-    console.log(event.target.value);
+    // console.log(event.target.value);
     this.setState({ [event.target.id]: event.target.value});
   }
 
   handleSubmit(event){
     event.preventDefault();
+    if (this.state.name === null){
+      this.setState({ 
+        failedAdd: true,
+        failedAddMessage: 'Please Enter a city name'
+      });
+      return;
+    }
+    else if (this.state.startDate === null || this.state.endDate === null){
+      this.setState({ 
+        failedAdd: true,
+        failedAddMessage: 'Please Enter start/end dates'
+      });
+      return;
+    } 
+
+
+
+    let body = {
+      cityName: this.state.name,
+      userId: this.state.userId,
+      type: 'city',
+      startDate: this.state.startDate,
+      endDate: this.state.endDate
+    };
+    axios.post(`http://localhost:3001/trips/${this.state.tripId}/addplace`, body)
+    .then(response=>{ 
+      console.log(response);
+      if (response.status === 200){
+        // Redirect back to trip page
+        this.props.handleClose();
+      }
+      else if (response.status === 400) {
+        console.log('Cannot find city');
+        this.setState({ 
+          failedAdd: true,
+          failedAddMessage: 'City Name Invalid!'
+        });
+      }
+      else if (response.status === 500){
+        this.setState({ 
+          failedAdd: true,
+          failedAddMessage: 'Server Error...'
+        });
+      }
+      else {
+        this.setState({ 
+          failedAdd: true,
+          failedAddMessage: 'Some other error...'
+        });
+      }
+
+
+
+
+       })
+    .catch(error =>{ 
+      console.log('Could not connect to server: ', error);
+      this.setState({ 
+        failedAdd: true,
+        failedAddMessage: 'Could not connect to server' });
+       });
 
     // axios.get(`https://maps.googleapis.com/maps/api/place/autocomplete/json?`, {
     //   params: {
@@ -77,7 +141,7 @@ class AddForm extends React.Component {
   render() {
 
     const addFailedMessage = this.state.failedAdd ? (
-      <Alert bsStyle="danger">Failed to add city!</Alert>
+      <Alert bsStyle="danger">Error: {this.state.failedAddMessage}</Alert>
           ) : null;
 
     return (
