@@ -14,10 +14,10 @@ class DeleteButton extends React.Component {
 
     event.preventDefault();
 
-    axios.delete('http://localhost:3001/trips', {data: {
-          // User ID
-          itinerary_id: itinerary_id
-        }})
+    axios.delete(`http://localhost:3001/trips/${this.props.trip_id}`, {data: {
+      // User ID
+      itinerary_id: itinerary_id
+    }})
     .then((response)=>{
       console.log(response);
 
@@ -40,16 +40,12 @@ class DeleteButton extends React.Component {
       this.setState({failedCreate: true});
     });
 
-
-
-
-
   }
 
   render(){
     return (
       <React.Fragment>
-        <Button bsStyle="danger" onClick={ (e) => this.handleDelete(this.props.trip_id, e) }>
+        <Button bsStyle="danger" onClick={ (e) => this.handleDelete(this.props.itinerary_id, e) }>
           <Glyphicon glyph="trash" />
         </Button>
       </React.Fragment>

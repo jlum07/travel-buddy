@@ -3,3 +3,7 @@
   height: 90vh;
   /*margin: 0 auto;*/
 }
+
+.vertical-timeline-element-date {
+  left: 150%;
+}

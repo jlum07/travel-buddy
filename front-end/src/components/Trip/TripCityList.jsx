@@ -12,14 +12,14 @@ class TripCityList extends React.Component {
 
   render(){
 
-    const citiesList = this.props.cities.map(event => {
+    const itineraryList = this.props.itinerary.map(event => {
       return (
         <tr>
           <td>{event.name}</td>
           <td>{event.start_date}</td>
           <td>{event.end_date}</td>
           <td><EditModal event={event} /></td>
-          <td><DeleteButton itinerary_id={event.id} /></td>
+          <td><DeleteButton itinerary_id={event.id} trip_id={event.trip_id}  /></td>
         </tr>
       )
     })
@@ -43,7 +43,7 @@ class TripCityList extends React.Component {
               </tr>
             </thead>
             <tbody>
-              {citiesList}
+              {itineraryList}
             </tbody>
           </Table>
         </Panel>

@@ -6,8 +6,12 @@ import AmCharts from "@amcharts/amcharts3-react";
 import { Table, Panel } from 'react-bootstrap';
 import TripMap from './Trip/TripMap.jsx';
 import TripCityList from './Trip/TripCityList.jsx';
+import TripTimeline from './Trip/TripTimeline.jsx';
 import AddModal from './Trip/AddModal.jsx';
 import './Trip.css';
+
+// import { VerticalTimeline, VerticalTimelineElement }  from 'react-vertical-timeline-component';
+// import 'react-vertical-timeline-component/style.min.css';
 
 const timezone = moment.tz.guess();
 
@@ -17,7 +21,7 @@ class Trip extends React.Component {
     super(props);
 
     // this.state = { cities: cities };
-    this.state = { cities: [] };
+    this.state = { itinerary: [] };
 
     console.log("this is match " ,this.props.match.params.id);
     console.log("this is location " ,this.props.location);
@@ -44,7 +48,8 @@ class Trip extends React.Component {
         }
       })
 
-      this.setState({cities: tempData});
+      console.log(tempData);
+      this.setState({itinerary: tempData});
     })
     .catch( error => {
       console.log("error: ", error);
@@ -56,9 +61,10 @@ class Trip extends React.Component {
   render(){
     return (
       <React.Fragment>
-        <TripMap cities={this.state.cities} />
+        <TripMap itinerary={this.state.itinerary} />
         <AddModal />
-        <TripCityList cities={this.state.cities} />
+        <TripCityList itinerary={this.state.itinerary} />
+        <TripTimeline itinerary={this.state.itinerary} />
       </React.Fragment>
     );
   }
