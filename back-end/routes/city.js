@@ -3,10 +3,11 @@ const router = express.Router();
 const cityToPlaceCoordinates = require("../public/javascripts/cityToPlaceCoordinates");
 const cityAutoComplete = require("../public/javascripts/cityAutoComplete");
 const torontoSample = require("./sampleData/torontoSample.js");
-const cityChar = require("./sampleData/cityChar2.js");
 const API_KEY = require("../apikey.js");
 const fetch = require("node-fetch");
 const API = false;
+const cityChar = require("./sampleData/cityChar.js");
+
 
 
 router.get('/autocorrect/:name', (req, res)=>{
@@ -24,7 +25,7 @@ router.get('/autocorrect/:name', (req, res)=>{
       res.status(200);
       res.send(correctedCityName);
     }
-    res.send(json.pre);    
+    res.send(json.pre);
   })
   .catch((error)=>{
     console.error(error);
@@ -50,9 +51,7 @@ router.get("/:city", async (req, res) => {
         long_name: cityDetails.result.address_components[0].long_name
       },
       city_coordinates: cityDetails.result.geometry.location,
-      points_of_interest: {
-        top_poi: pointsOfInterest
-      }
+      points_of_interest: pointsOfInterest
     };
   }
 

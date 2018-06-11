@@ -4,6 +4,7 @@ import CityCharContainer from "./DashboardComponents/CityChar/CityCharContainer"
 import WeatherContainer from "./DashboardComponents/Weather/WeatherContainer";
 import ben from "./BenSpinning.png";
 import CityModal from "./DashboardComponents/CityModal/CityModal.jsx";
+import Dropdown from "./DashboardComponents/Dropdown/Dropdown.jsx";
 import "./DashboardContainer.css";
 
 class DashboardContainer extends React.Component {
@@ -16,21 +17,36 @@ class DashboardContainer extends React.Component {
       points_of_interest: {},
       isLoaded: false,
       showModal: false,
-      currentPin: {}
+      currentPin: {},
+      currentCat: { eventKey: "top_poi", title: "Top" }
     };
   }
+
+  handleDropdownClick = eventKey => {
+    switch (eventKey) {
+      case "top_poi":
+        this.setState({ currentCat: { eventKey: "top_poi", title: "Top" } });
+        break;
+      case "museum_poi":
+        this.setState({ currentCat: { eventKey: "museum_poi", title: "Museum" } });
+        break;
+      case "food_poi":
+        this.setState({ currentCat: { eventKey: "food_poi", title: "Restaurant" } });
+        break;
+    }
+    console.log(eventKey);
+  };
 
   toggleModal = (props, marker, e) => {
     if (this.state.showModal) {
       this.setState({
-        showModal: false,
+        showModal: false
         //currentPin: this.state.points_of_interest[props.name]
       });
     } else {
-      // console.log("props.name", this.state.points_of_interest.top_poi[props.name])
       this.setState({
         showModal: true,
-        currentPin: this.state.points_of_interest.top_poi[props.name]
+        currentPin: this.state.points_of_interest[this.state.currentCat.eventKey][props.name]
       });
     }
   };
@@ -39,7 +55,6 @@ class DashboardContainer extends React.Component {
     //console.log("poi", this.state);
     //this.setState({ currentPin: this.state.points_of_interest[props.name] });
     //console.log("currentpin", this.state.points_of_interest[props.name]);
-
     // this.setState({currentPin:})
   };
 
@@ -79,6 +94,13 @@ class DashboardContainer extends React.Component {
               points_of_interest={this.state.points_of_interest}
               city_coordinates={this.state.city_coordinates}
               setCurrentPin={this.setCurrentPin}
+              currentCat={this.state.currentCat}
+            />
+          </div>
+          <div id="DropdownContainer">
+            <Dropdown
+              currentCat={this.state.currentCat}
+              handleClick={this.handleDropdownClick}
             />
           </div>
           <div id="CityCharContainer">

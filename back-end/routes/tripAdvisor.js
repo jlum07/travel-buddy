@@ -5,6 +5,7 @@ const placeToCoordinates = require("../public/javascripts/placeToCoordinates");
 const cityToPlaceCoordinates = require("../public/javascripts/cityToPlaceCoordinates");
 const getInstagrams = require("../public/javascripts/getInstagrams");
 const cityAutoComplete = require("../public/javascripts/cityAutoComplete");
+const streetview = require("../public/javascripts/streetview");
 
 router.get("/", (req, res) => {
   tripAdvisorScraper(req.query.city).then(function(result) {
@@ -20,6 +21,12 @@ router.get("/urls", (req, res) => {
     lat: 41.402862,
     lng: 2.174366
   }).then(function(result) {
+    res.send(result);
+  });
+});
+
+router.get("/streetview", async (req, res) => {
+  streetview(43.6532, -79.3832).then(function(result) {
     res.send(result);
   });
 });

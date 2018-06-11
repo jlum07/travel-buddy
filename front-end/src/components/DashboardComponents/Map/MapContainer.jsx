@@ -11,7 +11,9 @@ export class MapContainer extends React.Component {
   constructor() {
     super();
     this.state = {
-      pins: [],
+      top_poi: [],
+      museum_poi: [],
+      food_poi: [],
       GOOGLE_MAPS_API_KEY: process.env.GOOGLE_MAPS_API_KEY,
       showingInfoWindow: false,
       activeMarker: {},
@@ -20,14 +22,14 @@ export class MapContainer extends React.Component {
   }
 
   onMarkerClick = (props, marker, e) => {
-    this.props.toggleModal(props, marker, e)
+    this.props.toggleModal(props, marker, e);
     //this.props.setCurrentPin(props, marker, e)
-  }
-    // this.setState({
-    //   selectedPlace: props,
-    //   activeMarker: marker,
-    //   showingInfoWindow: true
-    // });
+  };
+  // this.setState({
+  //   selectedPlace: props,
+  //   activeMarker: marker,
+  //   showingInfoWindow: true
+  // });
 
   onMapClicked = props => {
     if (this.state.showingInfoWindow) {
@@ -39,22 +41,39 @@ export class MapContainer extends React.Component {
   };
 
   componentDidMount() {
-    let pinArray = this.props.points_of_interest.top_poi.map(element => {
+    console.log("Step 1")
+    let topPinArray = this.props.points_of_interest.top_poi.map(element => {
       return element.location;
     });
-    this.setState({ pins: pinArray });
+
+    let museumPinArray = this.props.points_of_interest.museum_poi.map(
+      element => {
+        return element.location;
+      }
+    );
+
+    let foodPinArray = this.props.points_of_interest.food_poi.map(element => {
+      return element.location;
+    });
+
+    this.setState({
+      top_poi: topPinArray,
+      museum_poi: museumPinArray,
+      food_poi: foodPinArray
+    });
   }
 
   render() {
+    console.log("Step 2")
     let bounds = new this.props.google.maps.LatLngBounds();
 
-    this.state.pins.forEach(element => {
+    this.state[this.props.currentCat.eventKey].forEach(element => {
       if (element) {
         bounds.extend(element);
       }
     });
 
-    let markers = this.state.pins.map( (position, index) => {
+    let markers = this.state[this.props.currentCat.eventKey].map((position, index) => {
       return (
         <Marker
           onClick={this.onMarkerClick}
@@ -62,7 +81,6 @@ export class MapContainer extends React.Component {
           name={index}
           position={position}
         />
-      );
     });
 
     // console.log(markers);

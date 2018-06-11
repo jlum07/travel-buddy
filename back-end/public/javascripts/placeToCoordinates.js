@@ -38,10 +38,10 @@ module.exports = async function(placeElement, location) {
     placeElement.location.lng
   );
 
-  placeElement.instagrams = await getInstagrams(
-    placeElement.location.lat,
-    placeElement.location.lng
-  );
+  // placeElement.instagrams = await getInstagrams(
+  //   placeElement.location.lat,
+  //   placeElement.location.lng
+  // );
 
   return placeElement;
 };

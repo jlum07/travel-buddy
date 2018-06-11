@@ -7,13 +7,23 @@ module.exports = async function(searchInput) {
     searchInput.address_components[0].long_name
   );
 
-  console.log("searchInput", searchInput);
-  console.log("place two", places)
-  let promiseArray = places.map(element => {
-    console.log("searchInput.geometry", searchInput.geometry)
+  let top_poi = places.top_poi.map(element => {
     //Pass the name of the attraction, and the location of the city to bias the results
     return placeToCoordinates(element, searchInput.geometry.location);
   });
 
-  return await Promise.all(promiseArray);
+  let museum_poi = places.museum_poi.map(element => {
+    //Pass the name of the attraction, and the location of the city to bias the results
+    return placeToCoordinates(element, searchInput.geometry.location);
+  });
+
+  let food_poi = places.food_poi.map(element => {
+    //Pass the name of the attraction, and the location of the city to bias the results
+    return placeToCoordinates(element, searchInput.geometry.location);
+  });
+
+  return{top_poi: await Promise.all(top_poi),
+    museum_poi: await Promise.all(museum_poi),
+    food_poi: await Promise.all(food_poi)
+  };
 };
