@@ -11,7 +11,7 @@ const knexLogger    = require('knex-logger');
 
 const usersRoutes   = require("./routes/users");
 
-const trips          = require("./routes/trips");
+const trips         = require("./routes/trips");
 
 
 // Set the port to 3001

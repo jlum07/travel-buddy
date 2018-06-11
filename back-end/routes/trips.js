@@ -1,5 +1,8 @@
-var express = require('express');
-var router = express.Router();
+const express = require('express');
+const router = express.Router();
+const fetch = require("node-fetch");
+const API_KEY = require("../apikey.js");
+const cityToCoordinates = require('../public/javascripts/cityToCoordinates.js');
 
 module.exports = (knex) => {
 
@@ -63,9 +66,6 @@ module.exports = (knex) => {
       res.status(400).send(error);
       console.log(error);
     });
-
-
-
   })
 
   router.delete('/', (req, res)=>{
@@ -87,11 +87,8 @@ module.exports = (knex) => {
     });
   })
 
-
   router.get('/:id', (req, res)=>{
-
     console.log("get trip id", Number(req.params.id));
-
     knex.select('*').from('itinerary_trip')
     .where('trip_id', '=', Number(req.params.id))
     .andWhere('user_id', '=', req.query.user_id)
@@ -105,31 +102,67 @@ module.exports = (knex) => {
     });
   })
 
-  // Create itinerary event
-  router.put('/:id', (req, res)=>{
-    knex('itinerary_trip').returning('id')
-    .insert({
-      name: req.body.name,
+  // Add a city to a trip
+  router.post('/:trip_id/addplace', (req, res)=>{
+    let incomingData = {
+      tripId: req.params.trip_id,
+      cityName: req.body.cityName,
+      userId: req.body.userId,
       type: req.body.type,
-      lat: req.body.lat,
-      lng: req.body.lng,
-      start_date: req.body.start_date,
-      end_date: req.body.end_date,
-      user_id: req.body.user_id,
-      trip_id: req.body.trip_id
+      startDate: req.body.startDate,     
+      endDate: req.body.endDate  
+    };
+    // console.log('incoming data = ', incomingData);
+    // First, check if cityName is a legitiment city name:
+    // Ideally this should call the internal endpoint: GET /autocorrect/:name, but the response
+    //    doesnt seem to contain the corrected cityname, so I have copy and pasted the code
+    //    from /routes/city.js
+    let url = `https://maps.googleapis.com/maps/api/place/autocomplete/json?input=${incomingData.cityName}&types=(cities)&key=${API_KEY}`
+    fetch(url)
+    .catch((googleAutocorrectError)=>{
+      console.log('Error checking googlemaps autocorrect', error);
+      res.status(500).send('Error checking googlemaps autocorrect');
     })
-    .then((result)=>{
-      console.log(result[0]);
-      // if (result.command === 'INSERT'){
-        res.sendStatus(201).send(result[0]);
-        // res.send(result[0]);
-        // res.send('New Trip Added!');
-      // }
+    .then(autocorrectResponse => autocorrectResponse.json())
+    .then(json => {
+      // console.log(json);
+      if (json.status === 'REQUEST_DENIED'){
+      console.log('Google Autocorrect API request DENIED (API KEY EXPIRED??)');
+      res.status(500).send('Google API request Denied');      
+      }
+      else if (json.predictions.length === 0){
+        console.log('No cities found');
+        res.status(400); 
+        res.send('City Name invalid, cannot add City');
+      }
+      else {
+        // If city name is recognizable, add to database:
+        var correctedCityName = json.predictions[0].description.split(',')[0];
+        cityToCoordinates(correctedCityName)
+        .then((results)=>{
+          console.log(results);
+          return knex('itinerary_trip').returning(['id', 'name'])
+          .insert({
+            name: correctedCityName,
+            type: incomingData.type,
+            lat: results.lat, // find these
+            lng: results.lng, // find these
+            start_date: incomingData.startDate,
+            end_date: incomingData.endDate, 
+            user_id: incomingData.userId,
+            trip_id: incomingData.tripId
+          })          
+        })
+        .then((knexResponse)=>{
+          console.log('knexResponse = ', knexResponse[0]);
+          res.send(`sucessfully added ${knexResponse[0].name} to itinerary_trip`);
+        })
+        .catch((error)=>{
+          console.log('Error inserting into Database');
+          res.status(500).send('Error inserting into Database');
+        })
+      }
     })
-    .catch((error)=>{
-      res.status(400).send(error);
-      console.log(error);
-    });
   })
 
 
@@ -151,8 +184,6 @@ module.exports = (knex) => {
       res.status(405).send(error);
     });
   })
-
-
 
   return router;
 }

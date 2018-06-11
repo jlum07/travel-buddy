@@ -14,7 +14,6 @@ module.exports = async function(placeElement, location) {
     }`
   );
 
-
   //Convert to JSON
   let resultJSON = await response.json();
   //console.log(resultJSON)

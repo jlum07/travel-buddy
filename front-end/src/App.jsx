@@ -126,7 +126,7 @@ class App extends Component {
               currentUser={this.state.currentUser}
             />
             <Route exact path="/" component={Home} />
-            <Route path="/cities/:city" component={ShowCity} />
+            <Route path="/cities/:city" component={DashboardContainer} />
             <Route exact path="/trips" render={TripsWithProps} />
             <Route path="/trips/:id" component={Trip} />
             <Route path="/map" component={MapContainer} />

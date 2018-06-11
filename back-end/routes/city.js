@@ -9,14 +9,17 @@ const API = false;
 const cityChar = require("./sampleData/cityChar.js");
 
 
-
 router.get('/autocorrect/:name', (req, res)=>{
   let url = `https://maps.googleapis.com/maps/api/place/autocomplete/json?input=${req.params.name}&types=(cities)&key=${API_KEY}`
   fetch(url)
   .then(res => res.json())
   .then(json => {
-    console.log(json);
-    if (json.predictions.length === 0){
+    // console.log(json);
+    if (json.status === 'REQUEST_DENIED'){
+      console.log('Google Autocorrect API request DENIED (API KEY EXPIRED??)');
+      res.status(503).send('Google API request Denied');      
+    }
+    else if (json.predictions.length === 0){
       console.log('No cities found');
       res.status(204).send(); // 204 = NO CONTENT
     }
@@ -25,7 +28,6 @@ router.get('/autocorrect/:name', (req, res)=>{
       res.status(200);
       res.send(correctedCityName);
     }
-    res.send(json.pre);
   })
   .catch((error)=>{
     console.error(error);
