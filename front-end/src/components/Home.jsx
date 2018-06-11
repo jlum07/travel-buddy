@@ -1,8 +1,12 @@
 import React from 'react';
 import { Jumbotron, Button, FormGroup, FormControl, Col, Row, Grid, Alert } from 'react-bootstrap';
+// import { Input } from 'mdbreact';
 import { Redirect } from 'react-router-dom';
+import { Parallax, Background } from 'react-parallax';
 import axios from 'axios';
 import './Home.css';
+
+const insideStyles = { width: '700px', padding: 0, position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%,-50%)'};
 
 class Home extends React.Component {
   constructor(props){
@@ -36,10 +40,10 @@ class Home extends React.Component {
         this.setState({searchError: true})
       } else {
         this.setState({
-          searchCity: response.data, 
+          searchCity: response.data,
           redirectToCity: true,
           searchError: false
-          });        
+          });
       }
     })
     .catch((error)=>{console.log(error);})
@@ -72,34 +76,104 @@ class Home extends React.Component {
 
 
     return (
-      <Grid>
-        <Jumbotron>
-          <h2>Search a city:</h2>
-          {searchError}
-          <Row>
-            <Col md={10}>
-              <FormGroup
-                controlId="formBasicText"
-              >
-                <FormControl
-                  type="text"
-                  placeholder="Enter a city..."
-                  onChange={this.handleSearchCityChange}
-                  onKeyUp={this.enterListener}
-                />
-              </FormGroup>
-            </Col>
-            <Col md={2}>
-              <Button id='search_city_button' onClick={this.searchCity} >Search</Button>
-            </Col>          
-          </Row>
-          <Button bsStyle="primary" bsSize="large" block onClick={this.takeMeAnyWhere} >
-            Take me anywhere!
-          </Button>
-        </Jumbotron>
-      </Grid>
-      )
+      <React.Fragment>
+        <Parallax
+        bgImage="https://images.unsplash.com/photo-1483729558449-99ef09a8c325?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=ec23000300013938b7094a2e14398585&auto=format&fit=crop&w=1950&q=80"
+        strength={500}>
+          <div style={{height: 600}}>
+            <div style={insideStyles}>
+              <h2>Search a city:</h2>
+              {searchError}
+              <Row>
+                <Col md={10}>
+                  <FormGroup
+                    controlId="formBasicText"
+                  >
+                    <FormControl
+                      type="text"
+                      placeholder="Enter a city..."
+                      onChange={this.handleSearchCityChange}
+                      onKeyUp={this.enterListener}
+                    />
+
+                  </FormGroup>
+                </Col>
+                <Col md={2}>
+                  <Button id='search_city_button' onClick={this.searchCity} >Search</Button>
+                </Col>
+              </Row>
+              <Button bsStyle="primary" bsSize="large" block onClick={this.takeMeAnyWhere} >
+                Take me anywhere!
+              </Button>
+            </div>
+          </div>
+        </Parallax>
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      </React.Fragment>
+    )
   }
 }
 
 export default Home;
+
+
+
+    // return (
+    //   <Grid>
+    //     <Jumbotron>
+    //       <h2>Search a city:</h2>
+    //       {searchError}
+    //       <Row>
+    //         <Col md={10}>
+    //           <FormGroup
+    //             controlId="formBasicText"
+    //           >
+    //             <FormControl
+    //               type="text"
+    //               placeholder="Enter a city..."
+    //               onChange={this.handleSearchCityChange}
+    //               onKeyUp={this.enterListener}
+    //             />
+    //           </FormGroup>
+    //         </Col>
+    //         <Col md={2}>
+    //           <Button id='search_city_button' onClick={this.searchCity} >Search</Button>
+    //         </Col>
+    //       </Row>
+    //       <Button bsStyle="primary" bsSize="large" block onClick={this.takeMeAnyWhere} >
+    //         Take me anywhere!
+    //       </Button>
+    //     </Jumbotron>
+    //   </Grid>
+    //   )
