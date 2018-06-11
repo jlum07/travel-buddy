@@ -42,8 +42,6 @@ class AddForm extends React.Component {
       return;
     } 
 
-
-
     let body = {
       cityName: this.state.name,
       userId: this.state.userId,
@@ -57,6 +55,7 @@ class AddForm extends React.Component {
       if (response.status === 200){
         // Redirect back to trip page
         this.props.handleClose();
+        window.location.reload();
       }
       else if (response.status === 400) {
         console.log('Cannot find city');
