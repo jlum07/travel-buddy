@@ -5,7 +5,7 @@ const cityAutoComplete = require("../public/javascripts/cityAutoComplete");
 const torontoSample = require("./sampleData/torontoSample.js");
 const cityChar = require("./sampleData/cityChar.js");
 
-const API = false;
+const API = true;
 
 router.get("/:city", async (req, res) => {
   //If it should call the API's, just so it is possible to turn it off to avoid excess calls
@@ -22,9 +22,7 @@ router.get("/:city", async (req, res) => {
         long_name: cityDetails.result.address_components[0].long_name
       },
       city_coordinates: cityDetails.result.geometry.location,
-      points_of_interest: {
-        top_poi: pointsOfInterest
-      }
+      points_of_interest: pointsOfInterest
     };
   }
 
