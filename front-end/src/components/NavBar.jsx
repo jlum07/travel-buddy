@@ -4,7 +4,8 @@ import LoginModalLauncher from './LoginModalLauncher.jsx';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import './NavBar.css';
-
+// import logo from './logo.png';
+// <img src={logo} width="50" height="50" />
 
 class NavBar extends React.Component {
   constructor(){
@@ -50,6 +51,7 @@ class NavBar extends React.Component {
       <Navbar collapseOnSelect>
         <Navbar.Header>
           <Navbar.Brand>
+
             <Link id="nav-brand-name" to='/'>Travel Buddy</Link>
           </Navbar.Brand>
           <Navbar.Toggle />
