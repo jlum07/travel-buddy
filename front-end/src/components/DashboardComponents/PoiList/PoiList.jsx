@@ -1,5 +1,5 @@
 import React from "react";
-import { Panel, PanelGroup } from "react-bootstrap";
+import { Panel, PanelGroup, Button } from "react-bootstrap";
 import "./PoiList.css";
 
 class PoiList extends React.Component {
@@ -9,12 +9,25 @@ class PoiList extends React.Component {
     this.handleSelect = this.handleSelect.bind(this);
 
     this.state = {
-      activeKey: "1"
+      activeKey: null
     };
   }
 
   handleSelect(activeKey) {
-    this.setState({ activeKey });
+    console.log(activeKey, this.state.activeKey, activeKey !== this.state.activeKey)
+    if (activeKey !== null) {
+      this.setState({ activeKey });
+      let input = {
+        name: activeKey,
+        position: this.props.points_of_interest[this.props.currentCat.eventKey][
+          activeKey - 1
+        ].location
+      };
+      this.props.setActiveMarker(input);
+    } else {
+      this.setState({activeKey: null})
+      this.props.setActiveMarker(null)
+    }
   }
 
   render() {
@@ -24,14 +37,17 @@ class PoiList extends React.Component {
       return (
         <Panel eventKey={`${index + 1}`}>
           <Panel.Heading>
-            <Panel.Title toggle>
-              {element.title}
-            </Panel.Title>
+            <Panel.Title toggle>{element.title}</Panel.Title>
           </Panel.Heading>
           <Panel.Collapse>
             <Panel.Body>
               <p> {element.ranking} </p>
               <p> {element.address} </p>
+              <div data-name={index} onClick={(e) => this.props.toggleModal(e.currentTarget.dataset)}>
+                <Button  name={"hi"}>
+                  Modal
+                </Button>
+              </div>
             </Panel.Body>
           </Panel.Collapse>
         </Panel>

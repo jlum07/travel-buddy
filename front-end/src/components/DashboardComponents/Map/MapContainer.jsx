@@ -16,13 +16,14 @@ export class MapContainer extends React.Component {
       food_poi: [],
       GOOGLE_MAPS_API_KEY: process.env.GOOGLE_MAPS_API_KEY,
       showingInfoWindow: false,
-      activeMarker: {},
       selectedPlace: {}
     };
   }
 
   onMarkerClick = (props, marker, e) => {
     this.props.toggleModal(props, marker, e);
+    this.props.setActiveMarker(props)
+    console.log(props);
     //this.props.setCurrentPin(props, marker, e)
   };
   // this.setState({
@@ -34,14 +35,13 @@ export class MapContainer extends React.Component {
   onMapClicked = props => {
     if (this.state.showingInfoWindow) {
       this.setState({
-        showingInfoWindow: false,
-        activeMarker: null
+        showingInfoWindow: false
       });
     }
   };
 
   componentDidMount() {
-    console.log("Step 1")
+    console.log("Step 1");
     let topPinArray = this.props.points_of_interest.top_poi.map(element => {
       return element.location;
     });
@@ -64,7 +64,7 @@ export class MapContainer extends React.Component {
   }
 
   render() {
-    console.log("Step 2")
+    console.log("Step 2");
     let bounds = new this.props.google.maps.LatLngBounds();
 
     this.state[this.props.currentCat.eventKey].forEach(element => {
@@ -73,18 +73,23 @@ export class MapContainer extends React.Component {
       }
     });
 
-    let markers = this.state[this.props.currentCat.eventKey].map((position, index) => {
-      return (
-        <Marker
-          onClick={this.onMarkerClick}
-          key={index}
-          name={index}
-          position={position}
-        />
-        )
-    });
+    if (this.props.activeMarker) {
+      bounds = new this.props.google.maps.LatLngBounds();
+      bounds.extend(this.props.activeMarker.position);
+    }
 
-    // console.log(markers);
+    let markers = this.state[this.props.currentCat.eventKey].map(
+      (position, index) => {
+        return (
+          <Marker
+            onClick={this.onMarkerClick}
+            key={index}
+            name={index}
+            position={position}
+          />
+        );
+      }
+    );
 
     return (
       <Map
@@ -93,16 +98,12 @@ export class MapContainer extends React.Component {
         initialCenter={this.props.city_coordinates}
         bounds={bounds}
         onClick={this.onMapClicked}
+        maxZoom={17}
       >
         {markers}
-        <InfoWindow
-          marker={this.state.activeMarker}
-          visible={this.state.showingInfoWindow}
-        >
-          <div>
-            <h1>{this.state.selectedPlace.name || ""}</h1>
-          </div>
-        </InfoWindow>
+        <div>
+          <h1>{this.state.selectedPlace.name || ""}</h1>
+        </div>
       </Map>
     );
   }
