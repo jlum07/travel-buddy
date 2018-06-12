@@ -7,7 +7,7 @@ class Dropdown extends React.Component {
     return (
       <DropdownButton title={this.props.currentCat.title} key={1} id={`sup`}>
         <MenuItem onSelect={this.props.handleClick} eventKey="top_poi">
-          Top
+          Popular
         </MenuItem>
         <MenuItem onSelect={this.props.handleClick} eventKey="museum_poi">
           Museum

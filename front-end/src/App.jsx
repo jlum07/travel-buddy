@@ -10,8 +10,10 @@ import MapContainer from "./components/DashboardComponents/Map/MapContainer.jsx"
 import Trips from "./components/Trips.jsx";
 import Trip from "./components/Trip.jsx";
 import MorphGraph from "./components/DashboardComponents/CityChar/CityCharContainer.jsx";
-import axios from 'axios';
-require('dotenv').config();
+import axios from "axios";
+import "./footer.css"
+//import "./theme.css"
+require("dotenv").config();
 
 class App extends Component {
   constructor(props) {
@@ -19,7 +21,7 @@ class App extends Component {
     this.state = {
       currentUser: {
         id: null,
-        username: null, // will be null when not logged on
+        username: null // will be null when not logged on
         // firstName: null,
         // lastName: null,
         // email: null,
@@ -46,25 +48,28 @@ class App extends Component {
   }
 
   logOut() {
-    let currentSessionToken = localStorage.getItem('session_token');
+    let currentSessionToken = localStorage.getItem("session_token");
 
-    if (currentSessionToken){
-      axios.delete('http://localhost:3001/users/logout', {
+    if (currentSessionToken) {
+      axios
+        .delete("http://localhost:3001/users/logout", {
           headers: {
             session_token: currentSessionToken
           }
         })
-      .then((response)=>{
-        console.log(response);
-        localStorage.setItem('session_token', null);
-      })
-      .catch((error)=>{console.log(error);});
+        .then(response => {
+          console.log(response);
+          localStorage.setItem("session_token", null);
+        })
+        .catch(error => {
+          console.log(error);
+        });
     }
 
     this.setState({
       currentUser: {
         id: null,
-        username: null,
+        username: null
         // firstName: null,
         // lastName: null,
         // email: null,
@@ -78,29 +83,30 @@ class App extends Component {
     });
   }
 
-  componentDidMount(){
-    let currentSessionToken = localStorage.getItem('session_token');
+  componentDidMount() {
+    let currentSessionToken = localStorage.getItem("session_token");
 
-    if (currentSessionToken){
+    if (currentSessionToken) {
       // console.log('there was a session token');
 
-      axios.get('http://localhost:3001/users/basic_data', {
-        headers: {
-          session_token: currentSessionToken
-        }
-      })
-      .then((response)=>{
-        // console.log('response.data = ', response.data);
-        this.setState({
-          currentUser: {
-            id: response.data.id,
-            username: response.data.username
+      axios
+        .get("http://localhost:3001/users/basic_data", {
+          headers: {
+            session_token: currentSessionToken
           }
         })
-      })
-      .catch((error)=>{
-        console.log(error);
-      });
+        .then(response => {
+          // console.log('response.data = ', response.data);
+          this.setState({
+            currentUser: {
+              id: response.data.id,
+              username: response.data.username
+            }
+          });
+        })
+        .catch(error => {
+          console.log(error);
+        });
     }
   }
 
@@ -114,7 +120,7 @@ class App extends Component {
 
     const TripsWithProps = props => {
       return <Trips currentUser={this.state.currentUser} {...props} />;
-    }
+    };
 
     const TripWithProps = props => {
       return <Trip currentUser={this.state.currentUser} {...props} />;
@@ -140,6 +146,7 @@ class App extends Component {
             <Route path="/dashboard/:city" component={DashboardContainer} />
           </div>
         </BrowserRouter>
+        <footer class="footer">Wow our website is so awesome!</footer>
       </div>
     );
   }

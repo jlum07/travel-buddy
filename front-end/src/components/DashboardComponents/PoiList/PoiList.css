@@ -1,0 +1,5 @@
+#poi-list {
+  max-height: 300px;
+  margin-bottom: 10px;
+  overflow: scroll;
+}

@@ -14,7 +14,7 @@ module.exports = async function(searchInput) {
 
   console.log(`${responseJSON[0].urls[3].url}`);
 
-  const topURL = responseJSON[0].urls[3].url
+  const topURL = responseJSON[0].urls[3].url;
   //Top POI scraping
   const options_top = {
     uri: `https://www.tripadvisor.ca${topURL}`,
@@ -24,7 +24,8 @@ module.exports = async function(searchInput) {
   };
 
   $ = await rp(options_top);
-  $a = $(".listing_info");
+  $a = $(".listing_details");
+  console.log($a.html())
   $a.each(function(i, elem) {
     if (
       $(this)
@@ -42,12 +43,15 @@ module.exports = async function(searchInput) {
           .text(),
         trip_advisor_link: `www.tripadvisor.ca${$(this)
           .find(".listing_title a")
-          .attr("href")}`
+          .attr("href")}`,
+        trip_advisor_picture: $(this)
+          .find(".photo_image")
+          .attr("src")
       });
     }
   });
 
-  const museumURL = topURL.replace("Activities", "Activities-c49")
+  const museumURL = topURL.replace("Activities", "Activities-c49");
   //Attractions-g187497-Activities-Barcelona_Catalonia.html
   //Museum scraping
   const options_museum = {
@@ -76,14 +80,19 @@ module.exports = async function(searchInput) {
           .text(),
         trip_advisor_link: `www.tripadvisor.ca${$(this)
           .find(".listing_title a")
-          .attr("href")}`
+          .attr("href")}`,
+        trip_advisor_picture: $(this)
+          .find(".photo_image")
+          .attr("src")
       });
     }
   });
 
   //Attractions-g187497-Activities-Barcelona_Catalonia.html
-  const foodURL = topURL.replace("Attractions", "Restaurants").replace("-Activities", "")
-  console.log("Restaurants-g155019-Toronto_Ontario.html", foodURL)
+  const foodURL = topURL
+    .replace("Attractions", "Restaurants")
+    .replace("-Activities", "");
+  console.log("Restaurants-g155019-Toronto_Ontario.html", foodURL);
   //Restuarant scraping
   const options_restaurant = {
     uri: `https://www.tripadvisor.ca${foodURL}`,
@@ -93,27 +102,30 @@ module.exports = async function(searchInput) {
   };
 
   $ = await rp(options_restaurant);
-  $a = $(".shortSellDetails");
-  console.log($a.html())
+  $a = $(".listing");
+  //console.log($a.html());
   $a.each(function(i, elem) {
-      food_poi.push({
-        title: $(this)
-          .find(".title a")
-          .text(),
-        ranking: $(this)
-          .find(".popIndex")
-          .text(),
-        trip_advisor_link: `www.tripadvisor.ca${$(this)
-          .find(".title a")
-          .attr("href")}`
-      });
+    food_poi.push({
+      title: $(this)
+        .find(".title a")
+        .text(),
+      ranking: $(this)
+        .find(".popIndex")
+        .text(),
+      trip_advisor_link: `www.tripadvisor.ca${$(this)
+        .find(".title a")
+        .attr("href")}`,
+      trip_advisor_picture: $(this)
+        .find(".photo_image")
+        .attr("src")
+    });
   });
 
   let poi_array = {
     top_poi: top_poi,
     museum_poi: museum_poi,
     food_poi: food_poi
-  }
+  };
 
-  return poi_array
+  return poi_array;
 };
