@@ -67,22 +67,6 @@ module.exports = (knex) => {
       response.cityChar = cityChar[req.params.city];
       res.send(response);
     }
-
-router.get('/autocorrect/:name', (req, res)=>{
-  let url = `https://maps.googleapis.com/maps/api/place/autocomplete/json?input=${req.params.name}&types=(cities)&key=${API_KEY.API_KEY}`
-  fetch(url)
-  .then(res => res.json())
-  .then(json => {
-    // console.log(json);
-    if (json.status === 'REQUEST_DENIED'){
-      console.log('Google Autocorrect API request DENIED (API KEY EXPIRED??)');
-      res.status(503).send('Google API request Denied');
-    }
-    else if (json.predictions.length === 0){
-      console.log('No cities found');
-      res.status(204).send(); // 204 = NO CONTENT
-    }
-
     else {
       // Search for city in database
       knex.select('*').from('city_data_cache')
@@ -100,7 +84,7 @@ router.get('/autocorrect/:name', (req, res)=>{
           }
           else{
             console.log(`Data for ${req.params.city} is ${Number(ageOfData_mins).toFixed(2)} minutes old --> EXPIRED (>${cacheExpiryTimeMins} mins old)...`);
-            console.log('Collecting NEW city data for ${req.params.city}...');
+            console.log(`Collecting NEW city data for ${req.params.city}...`);
             let response = await collectCityData(req.params.city);
             knex('city_data_cache')
             .where('city_name', '=', req.params.city)
@@ -118,6 +102,7 @@ router.get('/autocorrect/:name', (req, res)=>{
               console.log('Sending new collected data anyway...');
               res.send(response);
             });
+// >>>>>>> Upon request, if city_data in city_data_cache is expired, it is UPDATED in the DB, and the new data is send to the client
           }
         }
         else {

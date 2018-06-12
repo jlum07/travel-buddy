@@ -24,7 +24,7 @@ module.exports = async function(searchInput) {
   };
 
   let regex = new RegExp("var lazyImgs = ((.|\n)*)var lazyHtml");
-  console.log(regex);
+  // console.log(regex);
   $ = await rp(options_top);
 
   let lazyLoadArray = $.html().match(regex);
@@ -81,9 +81,9 @@ module.exports = async function(searchInput) {
   $ = await rp(options_museum);
 
   lazyLoadArray = $.html().match(regex);
-  console.log(lazyLoadArray[1])
+  // console.log(lazyLoadArray[1])
   lazyImgs = eval(lazyLoadArray[1]);
-  console.log("eval lazyload2")
+  // console.log("eval lazyload2")
 
   $a = $(".listing_details");
   $a.each(function(i, elem) {
@@ -96,9 +96,9 @@ module.exports = async function(searchInput) {
             .attr("id")
         );
       });
-       console.log($(this)
-            .find(".photo_image")
-            .attr("id"))
+       // console.log($(this)
+       //      .find(".photo_image")
+       //      .attr("id"))
        if(picture){
         pictureData = picture.data;
        }
@@ -158,9 +158,9 @@ module.exports = async function(searchInput) {
         );
       });
     //if(picture){
-      console.log($(this)
-        .find(".photo_image")
-        .attr("id"))
+      // console.log($(this)
+      //   .find(".photo_image")
+      //   .attr("id"))
        pictureData = picture.data;
     //}
 
