@@ -36,7 +36,6 @@ module.exports = (knex) => {
     fetch(url)
     .then(res => res.json())
     .then(json => {
-      // console.log(json);
       if (json.status === 'REQUEST_DENIED'){
         console.log('Google Autocorrect API request DENIED (API KEY INVALID??)');
         res.status(503).send('Google API request Denied');
@@ -59,8 +58,6 @@ module.exports = (knex) => {
   })
 
   router.get("/:city", async (req, res) => {
-    // console.log(req.params.city);
-    //If it should call the API's, just so it is possible to turn it off to avoid excess calls
     if (useSampleData){
       console.log('Sending Sample Toronto Data...');
       let response = torontoSample;
@@ -102,7 +99,6 @@ module.exports = (knex) => {
               console.log('Sending new collected data anyway...');
               res.send(response);
             });
-// >>>>>>> Upon request, if city_data in city_data_cache is expired, it is UPDATED in the DB, and the new data is send to the client
           }
         }
         else {
@@ -127,60 +123,14 @@ module.exports = (knex) => {
             console.log('Sending collected data anyway...');
             res.send(response);
           });
-
-
-
         }
       }))
       .catch((error)=>{
         console.log('Error while trying to search for city in city_data_cache table in DB:', error);
       });
-
-
-
-
-
-
-
-
     }
-
-
-
-
-
-
-
-
-
   });
 
   return router;
 }
 
-
-//   RESPONSE =
-
- // { city_name:
- //   { formatted: 'Sydney NSW 2000, Australia', long_name: 'Sydney' },
- //  city_coordinates: { lat: -33.8688197, lng: 151.2092955 },
- //  points_of_interest:
- //   { top_poi:
- //      [ [Object],
- //        [Object],
- //        [Object],
- //        [Object] ],
- //     museum_poi:
- //      [ [Object],
- //        [Object],
- //        [Object],
- //        [Object],
- //        [Object],
- //        [Object],
- //        [Object] ],
- //     food_poi:
- //      [ [Object],
- //        [Object],
- //        [Object],
- //        [Object] ] },
- //  cityChar: undefined }
