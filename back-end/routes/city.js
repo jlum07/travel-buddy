@@ -40,7 +40,7 @@ module.exports = (knex) => {
       // console.log(json);
       if (json.status === 'REQUEST_DENIED'){
         console.log('Google Autocorrect API request DENIED (API KEY INVALID??)');
-        res.status(503).send('Google API request Denied');      
+        res.status(503).send('Google API request Denied');
       }
       else if (json.predictions.length === 0){
         console.log('No cities found');
@@ -67,7 +67,23 @@ module.exports = (knex) => {
       let response = torontoSample;
       response.cityChar = cityChar[req.params.city];
       res.send(response);
-    } 
+    }
+
+router.get('/autocorrect/:name', (req, res)=>{
+  let url = `https://maps.googleapis.com/maps/api/place/autocomplete/json?input=${req.params.name}&types=(cities)&key=${API_KEY.API_KEY}`
+  fetch(url)
+  .then(res => res.json())
+  .then(json => {
+    // console.log(json);
+    if (json.status === 'REQUEST_DENIED'){
+      console.log('Google Autocorrect API request DENIED (API KEY EXPIRED??)');
+      res.status(503).send('Google API request Denied');
+    }
+    else if (json.predictions.length === 0){
+      console.log('No cities found');
+      res.status(204).send(); // 204 = NO CONTENT
+    }
+
     else {
       // Search for city in database
       knex.select('*').from('city_data_cache')
@@ -81,7 +97,7 @@ module.exports = (knex) => {
           if (ageOfData_mins < cacheExpiryTimeMins){
             console.log(`Data for ${req.params.city} is ${Number(ageOfData_mins).toFixed(2)} minutes old --> STILL REVELENT! (<${cacheExpiryTimeMins} mins old)`);
             console.log('Sending data from DB...');
-            res.send(DBsearchResponse[0].data);          
+            res.send(DBsearchResponse[0].data);
           }
           else{
             console.log(`Data for ${req.params.city} is ${Number(ageOfData_mins).toFixed(2)} minutes old --> Expired (>${cacheExpiryTimeMins} mins old)...`);
@@ -90,7 +106,7 @@ module.exports = (knex) => {
             // GET NEW DATA AND UPDATE DATA IN DB, THEN SEND NEW DATA (JOB FOR LATER...)
 
             // For now just send old data
-            res.send(DBsearchResponse[0].data);  
+            res.send(DBsearchResponse[0].data);
           }
         }
         else {
@@ -122,7 +138,7 @@ module.exports = (knex) => {
       }))
       .catch((error)=>{
         console.log('Error while trying to search for city in city_data_cache table in DB:', error);
-      });      
+      });
 
 
 
@@ -138,7 +154,7 @@ module.exports = (knex) => {
 
 
 
-    
+
 
 
   });
@@ -147,7 +163,7 @@ module.exports = (knex) => {
 }
 
 
-//   RESPONSE = 
+//   RESPONSE =
 
  // { city_name:
  //   { formatted: 'Sydney NSW 2000, Australia', long_name: 'Sydney' },
