@@ -14,31 +14,44 @@ class Trips extends React.Component {
     super(props);
     this.state = {
       trips: [],
-      userId: null // if userId is null, render a page which says "please login"
+      userId: this.props.currentUser.id // if userId is null, render a page which says "please login"
        };
     // console.log(moment(Date()).format("YYYY-MM-DD"));
-
   }
 
-  componentWillReceiveProps(newProps){
-    this.setState({ userId: newProps.currentUser.id });
-    axios.get('http://localhost:3001/trips', {
-      params: {
-        user_id: newProps.currentUser.id
-      }
-    })
-    .then( response => {
-      let tempData = response.data.map(row => {
-        return {
-          ...row,
-          start_date: moment(row.start_date).tz(timezone).format("YYYY-MM-DD"),
-          end_date: moment(row.end_date).tz(timezone).format("YYYY-MM-DD")
+  // componentWillReceiveProps(){
+
+  // }
+
+  componentDidMount(){
+    // console.log(localStorage.getItem("session_token"))
+    console.log('inside componentWillMount');
+    console.log('this = ', this);
+    let temp_this = this;
+    console.log('temp_this.props = ', temp_this.props)
+    // console.log('this.props = ', this.props);
+    // console.log('this = ', this);
+    // console.log('this.props.currentUser.id = ', this.props.currentUser.id);
+
+    this.setState({ userId: this.props.currentUser.id }, ()=>{
+      axios.get('http://localhost:3001/trips', {
+        params: {
+          user_id: this.props.currentUser.id
         }
       })
-      this.setState({trips: tempData});
-    })
-    .catch( error => {
-      console.log(error);
+      .then( response => {
+        let tempData = response.data.map(row => {
+          return {
+            ...row,
+            start_date: moment(row.start_date).tz(timezone).format("YYYY-MM-DD"),
+            end_date: moment(row.end_date).tz(timezone).format("YYYY-MM-DD")
+          }
+        })
+        this.setState({trips: tempData});
+      })
+      .catch( error => {
+        console.log(error);
+      });      
     });
   }
 

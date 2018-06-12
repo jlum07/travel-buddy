@@ -119,6 +119,7 @@ class App extends Component {
     };
 
     const TripsWithProps = props => {
+      console.log('inside TripsWithProps, props =', props);
       return <Trips currentUser={this.state.currentUser} {...props} />;
     };
 

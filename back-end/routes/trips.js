@@ -112,15 +112,17 @@ module.exports = (knex) => {
       startDate: req.body.startDate,     
       endDate: req.body.endDate  
     };
-    // console.log('incoming data = ', incomingData);
     // First, check if cityName is a legitiment city name:
     // Ideally this should call the internal endpoint: GET /autocorrect/:name, but the response
     //    doesnt seem to contain the corrected cityname, so I have copy and pasted the code
     //    from /routes/city.js
-    let url = `https://maps.googleapis.com/maps/api/place/autocomplete/json?input=${incomingData.cityName}&types=(cities)&key=${API_KEY}`
+
+
+    let url = `https://maps.googleapis.com/maps/api/place/autocomplete/json?input=${incomingData.cityName}&types=(cities)&key=${API_KEY.API_KEY}`
+    
     fetch(url)
     .catch((googleAutocorrectError)=>{
-      console.log('Error checking googlemaps autocorrect', error);
+      console.log('Error checking googlemaps autocorrect', googleAutocorrectError);
       res.status(500).send('Error checking googlemaps autocorrect');
     })
     .then(autocorrectResponse => autocorrectResponse.json())
@@ -132,7 +134,7 @@ module.exports = (knex) => {
       }
       else if (json.predictions.length === 0){
         console.log('No cities found');
-        res.status(400); 
+        res.status(206); 
         res.send('City Name invalid, cannot add City');
       }
       else {
@@ -140,7 +142,6 @@ module.exports = (knex) => {
         var correctedCityName = json.predictions[0].description.split(',')[0];
         cityToCoordinates(correctedCityName)
         .then((results)=>{
-          // console.log(results);
           return knex('itinerary_trip').returning(['id', 'name'])
           .insert({
             name: correctedCityName,

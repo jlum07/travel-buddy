@@ -49,6 +49,7 @@ class AddForm extends React.Component {
       startDate: this.state.startDate,
       endDate: this.state.endDate
     };
+
     axios.post(`http://localhost:3001/trips/${this.state.tripId}/addplace`, body)
     .then(response=>{ 
       console.log(response);
@@ -57,7 +58,7 @@ class AddForm extends React.Component {
         this.props.handleClose();
         window.location.reload();
       }
-      else if (response.status === 400) {
+      else if (response.status === 206) {
         console.log('Cannot find city');
         this.setState({ 
           failedAdd: true,
@@ -83,6 +84,7 @@ class AddForm extends React.Component {
        })
     .catch(error =>{ 
       console.log('Could not connect to server: ', error);
+      console.log(error);
       this.setState({ 
         failedAdd: true,
         failedAddMessage: 'Could not connect to server' });
