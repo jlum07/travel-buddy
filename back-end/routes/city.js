@@ -8,14 +8,28 @@ const fetch = require("node-fetch");
 const cityChar = require("./sampleData/cityChar.js");
 const util = require('util');
 
+//INPUT PARAMETERS
 const useSampleData = false;
+const cacheExpiryTimeMins = 20;
+
+
 
 module.exports = (knex) => {
 
-  // function capitolizeFirstLetter(inputString){
-  //   let formattedString = inputString.charAt(0).toUpperCase() + inputString.substr(1);
-  //   return formattedString;
-  // }
+  async function collectCityData(cityName){
+    console.log('inside collectCityData: cityName = ', cityName);
+    let cityDetails = await cityAutoComplete(cityName);
+    let pointsOfInterest = await cityToPlaceCoordinates(cityDetails.result);
+    let response = {
+      city_name: {
+        formatted: cityDetails.result.formatted_address,
+        long_name: cityDetails.result.address_components[0].long_name
+      },
+      city_coordinates: cityDetails.result.geometry.location,
+      points_of_interest: pointsOfInterest
+    };
+    response.cityChar = cityChar[cityName];
+  }
 
   router.get('/autocorrect/:name', (req, res)=>{
     // console.log('city.js: API_KEY = ', API_KEY.API_KEY); // API KEY IS GOOD
@@ -63,25 +77,29 @@ module.exports = (knex) => {
       .then((async DBsearchResponse =>{
         if (DBsearchResponse.length > 0){
           // City is IN DB:
-          let data_timestamp = DBsearchResponse[0].time_stamp;
-          console.log(`Found ${req.params.city} in DB! Sending data from DB...`);
-          console.log(`Data for ${req.params.city} is ${Number((Date.now() - data_timestamp)/1000/60).toFixed(2)} minutes old`);
-          res.send(DBsearchResponse[0].data);          
+          let dataTimestamp = DBsearchResponse[0].time_stamp;
+          let ageOfData_mins = (Date.now() - dataTimestamp)/1000/60
+          console.log(`Found ${req.params.city} in DB!...Checking age of data...`);
+          if (ageOfData_mins < cacheExpiryTimeMins){
+            console.log(`Data for ${req.params.city} is ${Number(ageOfData_mins).toFixed(2)} minutes old --> STILL REVELENT! (<${cacheExpiryTimeMins} mins old)`);
+            console.log('Sending data from DB...');
+            res.send(DBsearchResponse[0].data);          
+          }
+          else{
+            console.log(`Data for ${req.params.city} is ${Number(ageOfData_mins).toFixed(2)} minutes old --> Expired (>${cacheExpiryTimeMins} mins old)...`);
+            console.log('Collecting new city data...');
+
+            // GET NEW DATA AND UPDATE DATA IN DB
+
+            // For now just send old data
+            res.send(DBsearchResponse[0].data);  
+          }
         }
-        else{
+        else {
           // City is NOT IN DB:
-          console.log(`${req.params.city} not in DB, collecting data from APIs ...`);
-          let cityDetails = await cityAutoComplete(req.params.city);
-          let pointsOfInterest = await cityToPlaceCoordinates(cityDetails.result);
-          let response = {
-            city_name: {
-              formatted: cityDetails.result.formatted_address,
-              long_name: cityDetails.result.address_components[0].long_name
-            },
-            city_coordinates: cityDetails.result.geometry.location,
-            points_of_interest: pointsOfInterest
-          };
-          response.cityChar = cityChar[req.params.city];
+          console.log(`${req.params.city} not in DB...collecting city data ...`);
+
+          let response = this.collectCityData(req.params.city);
 
           // Store City in DB
           knex('city_data_cache')
