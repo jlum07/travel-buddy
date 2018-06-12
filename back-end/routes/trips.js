@@ -86,7 +86,7 @@ module.exports = (knex) => {
       res.status(405).send(error);
     });
   })
-
+  
   router.get('/:id', (req, res)=>{
     console.log("get trip id", Number(req.params.id));
     knex.select('*').from('itinerary_trip')

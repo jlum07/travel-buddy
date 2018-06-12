@@ -29,10 +29,15 @@ class Trip extends React.Component {
     // console.log(timezone);
   }
 
-  componentWillReceiveProps(newProps) {
-    console.log('inside conponentWillMount: ', this.props.currentUser);
+  // conponentDidMount(){
+  //   console.log('conponentDidMount');
+  // }
+  // conponentWillMount(){
+  //   console.log('conponentWillMount');
+  // }
 
-    axios.get(`http://localhost:3001/trips/${this.props.match.params.id}`, {
+  componentWillReceiveProps(newProps) {
+    axios.get(`http://localhost:3001/trips/${newProps.match.params.id}`, {
       params: {
         user_id: newProps.currentUser.id
       }

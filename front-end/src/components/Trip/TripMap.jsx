@@ -14,6 +14,11 @@ class TripMap extends React.Component {
   }
 
   render(){
+    if (this.props.itinerary.length === 0) {
+      return null;
+    }
+
+
 
     // var targetSVG = "M9,0C4.029,0,0,4.029,0,9s4.029,9,9,9s9-4.029,9-9S13.971,0,9,0z M9,15.93 c-3.83,0-6.93-3.1-6.93-6.93S5.17,2.07,9,2.07s6.93,3.1,6.93,6.93S12.83,15.93,9,15.93 M12.5,9c0,1.933-1.567,3.5-3.5,3.5S5.5,10.933,5.5,9S7.067,5.5,9,5.5 S12.5,7.067,12.5,9z";
     // var planeSVG = "m2,106h28l24,30h72l-44,-133h35l80,132h98c21,0 21,34 0,34l-98,0 -80,134h-35l43,-133h-71l-24,30h-28l15,-47";
@@ -104,6 +109,7 @@ class TripMap extends React.Component {
 
     }
 
+
     return (
       <React.Fragment>
         <AmCharts.React className="trip-map"  options={config} />
@@ -114,11 +120,11 @@ class TripMap extends React.Component {
 
 export default TripMap;
 
-const cities = [
-  {order: 0, name: "Paris", duration: 100, lat: 48.8567, lng: 2.3510},
-  {order: 1, name: "Toronto", duration: 100, lat: 43.8163, lng: -79.4287},
-  {order: 2, name: "Los Angeles", duration: 100, lat: 34.3, lng: -118.15},
-  {order: 3, name: "Havana", duration: 100, lat: 23, lng: -82},
-  {order: 4, name: "Bogotá", duration: 100, lat: 4.598056, lng: -74.075833},
-  {order: 5, name: "Saint John", duration: 100, lat: 45.2796, lng: -66.0628}
-]
+// const cities = [
+//   {order: 0, name: "Paris", duration: 100, lat: 48.8567, lng: 2.3510},
+//   {order: 1, name: "Toronto", duration: 100, lat: 43.8163, lng: -79.4287},
+//   {order: 2, name: "Los Angeles", duration: 100, lat: 34.3, lng: -118.15},
+//   {order: 3, name: "Havana", duration: 100, lat: 23, lng: -82},
+//   {order: 4, name: "Bogotá", duration: 100, lat: 4.598056, lng: -74.075833},
+//   {order: 5, name: "Saint John", duration: 100, lat: 45.2796, lng: -66.0628}
+// ]
