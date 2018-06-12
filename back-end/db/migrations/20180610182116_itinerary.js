@@ -6,6 +6,7 @@ exports.up = function(knex, Promise) {
       // table.integer('city_id').references('id').inTable('cities').onDelete('CASCADE');
       table.string('name');
       table.string('type');
+      table.string('description');
       table.integer('city_id');
       // table.integer('trip_id').references('id').inTable('trips').onDelete('CASCADE');
       table.integer('trip_id');

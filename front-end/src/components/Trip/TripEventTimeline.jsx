@@ -24,7 +24,7 @@ class TripEventTimeline extends React.Component {
         icon={<FaBuilding />}
         // bubbleStyle={{width: "20px"}}
         >
-          {event.name}
+          {event.description}
         </TimelineEvent>
       )
     })

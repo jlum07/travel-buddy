@@ -44,6 +44,7 @@ module.exports = (knex) => {
     });
   })
 
+  // Edit trip
   router.post('/', (req, res)=>{
     console.log(req.body);
     knex('trips')
@@ -68,6 +69,7 @@ module.exports = (knex) => {
     });
   })
 
+  // Delete Trip
   router.delete('/', (req, res)=>{
     knex('trips')
     .where('id', '=', req.body.trip_id)
@@ -86,7 +88,8 @@ module.exports = (knex) => {
       res.status(405).send(error);
     });
   })
-  
+
+  // Get itinerary from trip
   router.get('/:id', (req, res)=>{
     console.log("get trip id", Number(req.params.id));
     knex.select('*').from('itinerary_trip')
@@ -107,10 +110,11 @@ module.exports = (knex) => {
     let incomingData = {
       tripId: req.params.trip_id,
       cityName: req.body.cityName,
+      description: req.body.description,
       userId: req.body.userId,
       type: req.body.type,
-      startDate: req.body.startDate,     
-      endDate: req.body.endDate  
+      startDate: req.body.startDate,
+      endDate: req.body.endDate
     };
     // First, check if cityName is a legitiment city name:
     // Ideally this should call the internal endpoint: GET /autocorrect/:name, but the response
@@ -119,7 +123,7 @@ module.exports = (knex) => {
 
 
     let url = `https://maps.googleapis.com/maps/api/place/autocomplete/json?input=${incomingData.cityName}&types=(cities)&key=${API_KEY.API_KEY}`
-    
+
     fetch(url)
     .catch((googleAutocorrectError)=>{
       console.log('Error checking googlemaps autocorrect', googleAutocorrectError);
@@ -130,11 +134,11 @@ module.exports = (knex) => {
       // console.log(json);
       if (json.status === 'REQUEST_DENIED'){
       console.log('Google Autocorrect API request DENIED (API KEY EXPIRED??)');
-      res.status(500).send('Google API request Denied');      
+      res.status(500).send('Google API request Denied');
       }
       else if (json.predictions.length === 0){
         console.log('No cities found');
-        res.status(206); 
+        res.status(206);
         res.send('City Name invalid, cannot add City');
       }
       else {
@@ -146,13 +150,14 @@ module.exports = (knex) => {
           .insert({
             name: correctedCityName,
             type: incomingData.type,
+            description: incomingData.description,
             lat: results.lat, // find these
             lng: results.lng, // find these
             start_date: incomingData.startDate,
-            end_date: incomingData.endDate, 
+            end_date: incomingData.endDate,
             user_id: incomingData.userId,
             trip_id: incomingData.tripId
-          })          
+          })
         })
         .then((knexResponse)=>{
           console.log('knexResponse = ', knexResponse[0]);
@@ -164,6 +169,32 @@ module.exports = (knex) => {
         })
       }
     })
+  })
+
+  // Edit itinerary event
+  router.post('/editItinerary', (req, res)=>{
+    console.log(req.body);
+    knex('itinerary_trip')
+    .where('id', '=', req.body.id)
+    // .andWhere('trip_id', '=', req.params.trip_id)
+    .update({
+      name: req.body.name,
+      description: req.body.description,
+      start_date: req.body.start_date,
+      end_date: req.body.end_date,
+    })
+    .then((result)=>{
+      console.log(result);
+      // if (result.command === 'INSERT'){
+        res.sendStatus(201).send(result);
+        // res.send(result[0]);
+        // res.send('New Trip Added!');
+      // }
+    })
+    .catch((error)=>{
+      res.status(400).send(error);
+      console.log(error);
+    });
   })
 
 

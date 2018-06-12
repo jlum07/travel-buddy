@@ -32,7 +32,7 @@ class EditModal extends React.Component {
         </Button>
         <Modal show={this.state.show} onHide={this.handleClose}>
           <Modal.Body>
-            <EditForm city={this.props.city} />
+            <EditForm event={this.props.event} />
           </Modal.Body>
         </Modal>
       </React.Fragment>

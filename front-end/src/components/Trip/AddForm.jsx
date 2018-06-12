@@ -7,17 +7,17 @@ class AddForm extends React.Component {
     super(props);
     this.state = {
       name: null,
+      type: 'City',
       startDate: null,
       endDate: null,
       description: '',
       failedAdd: false,
       failedAddMessage: 'failed to add because...',
-      userId: this.props.userId, 
-      tripId: this.props.tripId 
+      userId: this.props.userId,
+      tripId: this.props.tripId
     };
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-
   }
 
   handleInputChange(event) {
@@ -28,30 +28,31 @@ class AddForm extends React.Component {
   handleSubmit(event){
     event.preventDefault();
     if (this.state.name === null){
-      this.setState({ 
+      this.setState({
         failedAdd: true,
         failedAddMessage: 'Please Enter a city name'
       });
       return;
     }
     else if (this.state.startDate === null || this.state.endDate === null){
-      this.setState({ 
+      this.setState({
         failedAdd: true,
         failedAddMessage: 'Please Enter start/end dates'
       });
       return;
-    } 
+    }
 
     let body = {
       cityName: this.state.name,
       userId: this.state.userId,
-      type: 'city',
+      type: 'City',
+      description: this.state.description,
       startDate: this.state.startDate,
       endDate: this.state.endDate
     };
 
     axios.post(`http://localhost:3001/trips/${this.state.tripId}/addplace`, body)
-    .then(response=>{ 
+    .then(response=>{
       console.log(response);
       if (response.status === 200){
         // Redirect back to trip page
@@ -60,19 +61,19 @@ class AddForm extends React.Component {
       }
       else if (response.status === 206) {
         console.log('Cannot find city');
-        this.setState({ 
+        this.setState({
           failedAdd: true,
           failedAddMessage: 'City Name Invalid!'
         });
       }
       else if (response.status === 500){
-        this.setState({ 
+        this.setState({
           failedAdd: true,
           failedAddMessage: 'Server Error...'
         });
       }
       else {
-        this.setState({ 
+        this.setState({
           failedAdd: true,
           failedAddMessage: 'Some other error...'
         });
@@ -82,10 +83,11 @@ class AddForm extends React.Component {
 
 
        })
-    .catch(error =>{ 
+    .catch(error =>{
       console.log('Could not connect to server: ', error);
-      console.log(error);
-      this.setState({ 
+
+      this.setState({
+
         failedAdd: true,
         failedAddMessage: 'Could not connect to server' });
        });
