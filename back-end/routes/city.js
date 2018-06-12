@@ -10,10 +10,9 @@ const util = require('util');
 
 //INPUT PARAMETERS
 const useSampleData = false;
-const cacheExpiryTimeMins = 20;
+const cacheExpiryTimeMins = 2;
 
 async function collectCityData(cityName){
-  console.log('inside collectCityData: cityName = ', cityName);
   let cityDetails = await cityAutoComplete(cityName);
   let pointsOfInterest = await cityToPlaceCoordinates(cityDetails.result);
   let response = {
@@ -95,18 +94,30 @@ router.get('/autocorrect/:name', (req, res)=>{
           let ageOfData_mins = (Date.now() - dataTimestamp)/1000/60
           console.log(`Found ${req.params.city} in DB!...Checking age of data...`);
           if (ageOfData_mins < cacheExpiryTimeMins){
-            console.log(`Data for ${req.params.city} is ${Number(ageOfData_mins).toFixed(2)} minutes old --> STILL REVELENT! (<${cacheExpiryTimeMins} mins old)`);
+            console.log(`Data for ${req.params.city} is ${Number(ageOfData_mins).toFixed(2)} minutes old --> STILL REVELENT (<${cacheExpiryTimeMins} mins old)`);
             console.log('Sending data from DB...');
             res.send(DBsearchResponse[0].data);
           }
           else{
-            console.log(`Data for ${req.params.city} is ${Number(ageOfData_mins).toFixed(2)} minutes old --> Expired (>${cacheExpiryTimeMins} mins old)...`);
-            console.log('Collecting new city data...');
-
-            // GET NEW DATA AND UPDATE DATA IN DB, THEN SEND NEW DATA (JOB FOR LATER...)
-
-            // For now just send old data
-            res.send(DBsearchResponse[0].data);
+            console.log(`Data for ${req.params.city} is ${Number(ageOfData_mins).toFixed(2)} minutes old --> EXPIRED (>${cacheExpiryTimeMins} mins old)...`);
+            console.log('Collecting NEW city data for ${req.params.city}...');
+            let response = await collectCityData(req.params.city);
+            knex('city_data_cache')
+            .where('city_name', '=', req.params.city)
+            .update({
+              city_name: req.params.city,
+              time_stamp: String(Date.now()),
+              data: response
+            })
+            .then((knexResponse)=>{
+              console.log(`Successfully UPDATED: ${req.params.city} in DB`);
+              res.send(response);
+            })
+            .catch((error)=>{
+              console.log(`Failed to update ${req.params.city} in DB: ${error}`);
+              console.log('Sending new collected data anyway...');
+              res.send(response);
+            });
           }
         }
         else {
@@ -114,7 +125,7 @@ router.get('/autocorrect/:name', (req, res)=>{
           console.log(`${req.params.city} not in DB...collecting city data ...`);
 
           let response = await collectCityData(req.params.city);
-          console.log('response = ', response);
+          // console.log('response = ', response);
           // Store City in DB
           knex('city_data_cache')
           .insert({
@@ -123,7 +134,7 @@ router.get('/autocorrect/:name', (req, res)=>{
             data: response
           })
           .then((knexResponse)=>{
-            console.log(`successfully saved: ${req.params.city} to DB`);
+            console.log(`Successfully saved: ${req.params.city} to DB`);
             res.send(response);
           })
           .catch((error)=>{
