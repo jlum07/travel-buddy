@@ -31,7 +31,6 @@ async function collectCityData(cityName){
 
 module.exports = (knex) => {
 
-
   router.get('/autocorrect/:name', (req, res)=>{
     // console.log('city.js: API_KEY = ', API_KEY.API_KEY); // API KEY IS GOOD
     let url = `https://maps.googleapis.com/maps/api/place/autocomplete/json?input=${req.params.name}&types=(cities)&key=${API_KEY.API_KEY}`
@@ -59,8 +58,6 @@ module.exports = (knex) => {
       res.send('Google Maps Autocorrect request failed');
     })
   })
-
-
 
   router.get("/:city", async (req, res) => {
     // console.log(req.params.city);
@@ -90,7 +87,7 @@ module.exports = (knex) => {
             console.log(`Data for ${req.params.city} is ${Number(ageOfData_mins).toFixed(2)} minutes old --> Expired (>${cacheExpiryTimeMins} mins old)...`);
             console.log('Collecting new city data...');
 
-            // GET NEW DATA AND UPDATE DATA IN DB
+            // GET NEW DATA AND UPDATE DATA IN DB, THEN SEND NEW DATA (JOB FOR LATER...)
 
             // For now just send old data
             res.send(DBsearchResponse[0].data);  
