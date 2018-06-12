@@ -3,6 +3,8 @@ import { Navbar, Nav, NavItem, Button } from 'react-bootstrap';
 import LoginModalLauncher from './LoginModalLauncher.jsx';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import './NavBar.css';
+
 
 class NavBar extends React.Component {
   constructor(){
@@ -17,7 +19,7 @@ class NavBar extends React.Component {
   }
 
   renderNavItems() {
-    // Depending if there is a user logged in or not, will render LOGIN and REGISTER buttons, 
+    // Depending if there is a user logged in or not, will render LOGIN and REGISTER buttons,
     // or 'MY_USERNAME' and LOGOUT buttons
     if (this.props.currentUser.username) {
       return (
@@ -41,7 +43,7 @@ class NavBar extends React.Component {
         </Fragment>
       )
     }
-  }  
+  }
 
   render() {
     return (
