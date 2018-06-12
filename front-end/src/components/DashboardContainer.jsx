@@ -49,7 +49,7 @@ class DashboardContainer extends React.Component {
   toggleModal = (props, marker, e) => {
     if (this.state.showModal) {
       this.setState({
-        showModal: false,
+        showModal: false
         //activeMarker: null
 
         //currentPin: this.state.points_of_interest[props.name]
@@ -69,10 +69,10 @@ class DashboardContainer extends React.Component {
     }
   };
 
-  modalLaunch = (props) => {
-    this.toggleModal(props.currentTarget.dataset)
-    console.log("hi hello", props.currentTarget.dataset.name)
-  }
+  modalLaunch = props => {
+    this.toggleModal(props.currentTarget.dataset);
+    console.log("hi hello", props.currentTarget.dataset.name);
+  };
 
   setActiveMarker = props => {
     if (props == null) {
@@ -112,7 +112,7 @@ class DashboardContainer extends React.Component {
       return (
         <div id="DashboardContainer">
           <div id="PoiContainer">
-            <div id="MapContainer" style={{ width: 640, height: 425 }}>
+            <div id="MapContainer" style={{ width: '100%', height: '100%' }}>
               <MapContainer
                 toggleModal={this.toggleModal}
                 points_of_interest={this.state.points_of_interest}
@@ -123,6 +123,15 @@ class DashboardContainer extends React.Component {
               />
             </div>
             <div id="poi-list">
+              <div>
+                POI List
+                <div id="DropdownContainer">
+                  <Dropdown
+                    currentCat={this.state.currentCat}
+                    handleClick={this.handleDropdownClick}
+                  />
+                </div>
+              </div>
               <PoiList
                 points_of_interest={this.state.points_of_interest}
                 currentCat={this.state.currentCat}
@@ -132,12 +141,7 @@ class DashboardContainer extends React.Component {
               />
             </div>
           </div>
-          <div id="DropdownContainer">
-            <Dropdown
-              currentCat={this.state.currentCat}
-              handleClick={this.handleDropdownClick}
-            />
-          </div>
+
           <div id="CityCharContainer">
             <CityCharContainer CityChar={this.state.cityChar} />
           </div>
