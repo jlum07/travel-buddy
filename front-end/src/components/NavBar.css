@@ -1,3 +1,17 @@
 .navbar {
   margin-bottom: 0;
+  border-radius: 0;
+}
+
+.nav a {
+  padding: 10px !important;
+}
+
+#nav-brand-name {
+  font-size: 28px;
+  margin-top: 6px;
+}
+
+.nav-button {
+  font-size: 20px;
 }

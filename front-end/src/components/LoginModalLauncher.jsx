@@ -26,7 +26,7 @@ class LoginModalLauncher extends React.Component {
     // console.log('inside Login Modal laincher render');
     return (
       <div>
-        <Button bsStyle="primary" onClick={this.handleShow}>
+        <Button className="nav-button" bsStyle="link" onClick={this.handleShow}>
           Login
         </Button>
 

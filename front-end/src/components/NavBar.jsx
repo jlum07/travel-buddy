@@ -25,10 +25,10 @@ class NavBar extends React.Component {
       return (
         <Fragment>
           <NavItem componentClass={ Link } href='/profile' to='/profile'>
-            <Button bsStyle="primary">{this.props.currentUser.username}</Button>
+            <Button className="nav-button" bsStyle="link">Hello, {this.props.currentUser.username}!</Button>
           </NavItem>
           <NavItem>
-            <Button bsStyle="primary" onClick={this.logout}>Logout</Button>
+            <Button className="nav-button" bsStyle="link" onClick={this.logout}>Logout</Button>
           </NavItem>
         </Fragment>)
     } else {
@@ -38,7 +38,7 @@ class NavBar extends React.Component {
             <LoginModalLauncher logIn={this.props.logIn} />
           </NavItem>
           <NavItem componentClass={ Link } href='/register' to='/register'>
-            <Button bsStyle="primary">Register</Button>
+            <Button className="nav-button" bsStyle="link">Register</Button>
           </NavItem>
         </Fragment>
       )
@@ -47,26 +47,26 @@ class NavBar extends React.Component {
 
   render() {
     return (
-      <Navbar>
+      <Navbar collapseOnSelect>
         <Navbar.Header>
           <Navbar.Brand>
-            <Link to='/'>Travel Buddy</Link>
+            <Link id="nav-brand-name" to='/'>Travel Buddy</Link>
           </Navbar.Brand>
           <Navbar.Toggle />
         </Navbar.Header>
-        <Nav pullRight>
-            { this.renderNavItems() }
-{/*          <NavDropdown title="My Profile" id="basic-nav-dropdown">
-            <MenuItem>Sign Out</MenuItem>
-            <MenuItem>Other actions</MenuItem>
-            <MenuItem>Other actions</MenuItem>
-          </NavDropdown>*/}
-        </Nav>
+        <Navbar.Collapse>
+          <Nav pullRight>
+              { this.renderNavItems() }
+  {/*          <NavDropdown title="My Profile" id="basic-nav-dropdown">
+              <MenuItem>Sign Out</MenuItem>
+              <MenuItem>Other actions</MenuItem>
+              <MenuItem>Other actions</MenuItem>
+            </NavDropdown>*/}
+          </Nav>
+        </Navbar.Collapse>
       </Navbar>
     );
   }
 }
 
 export default NavBar;
-
-
