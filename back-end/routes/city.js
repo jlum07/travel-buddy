@@ -48,7 +48,7 @@ module.exports = (knex) => {
 
 
   router.get("/:city", async (req, res) => {
-    console.log(req.params.city);
+    // console.log(req.params.city);
     //If it should call the API's, just so it is possible to turn it off to avoid excess calls
     if (useSampleData){
       console.log('Sending Sample Toronto Data...');
@@ -58,12 +58,14 @@ module.exports = (knex) => {
     } 
     else {
       // Search for city in database
-      knex.select('data').from('city_data_cache')
+      knex.select('*').from('city_data_cache')
       .where('city_name', '=', req.params.city)
       .then((async DBsearchResponse =>{
         if (DBsearchResponse.length > 0){
           // City is IN DB:
+          let data_timestamp = DBsearchResponse[0].time_stamp;
           console.log(`Found ${req.params.city} in DB! Sending data from DB...`);
+          console.log(`Data for ${req.params.city} is ${(Date.now() - data_timestamp)/1000/60} minutes old`);
           res.send(DBsearchResponse[0].data);          
         }
         else{
@@ -85,7 +87,7 @@ module.exports = (knex) => {
           knex('city_data_cache')
           .insert({
             city_name: req.params.city,
-            // time_stamp: Date.now(),
+            time_stamp: String(Date.now()),
             data: response
           })
           .then((knexResponse)=>{

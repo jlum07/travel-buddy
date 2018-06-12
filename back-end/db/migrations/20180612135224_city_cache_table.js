@@ -4,7 +4,7 @@ exports.up = function(knex, Promise) {
     knex.schema.createTable('city_data_cache', (table) =>{
       table.increments('id').primary();
       table.string('city_name');
-      table.time('time_stamp')
+      table.string('time_stamp');
       table.jsonb('data');
     })
     .then(()=>{
