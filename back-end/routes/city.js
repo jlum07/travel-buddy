@@ -11,7 +11,7 @@ const cityChar = require("./sampleData/cityChar.js");
 
 
 router.get('/autocorrect/:name', (req, res)=>{
-  let url = `https://maps.googleapis.com/maps/api/place/autocomplete/json?input=${req.params.name}&types=(cities)&key=${API_KEY}`
+  let url = `https://maps.googleapis.com/maps/api/place/autocomplete/json?input=${req.params.name}&types=(cities)&key=${API_KEY.API_KEY}`
   fetch(url)
   .then(res => res.json())
   .then(json => {

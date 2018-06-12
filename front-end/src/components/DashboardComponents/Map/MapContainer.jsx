@@ -81,6 +81,7 @@ export class MapContainer extends React.Component {
           name={index}
           position={position}
         />
+        )
     });
 
     // console.log(markers);

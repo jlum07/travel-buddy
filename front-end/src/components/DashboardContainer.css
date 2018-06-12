@@ -1,5 +1,11 @@
 #DashboardContainer{
   display: flex;
+  flex-direction: column;
+}
+
+#PoiContainer {
+    display: flex;
+
 }
 
 .image {

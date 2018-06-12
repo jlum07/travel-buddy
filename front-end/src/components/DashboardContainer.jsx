@@ -5,7 +5,10 @@ import WeatherContainer from "./DashboardComponents/Weather/WeatherContainer";
 import ben from "./BenSpinning.png";
 import CityModal from "./DashboardComponents/CityModal/CityModal.jsx";
 import Dropdown from "./DashboardComponents/Dropdown/Dropdown.jsx";
+import PoiList from "./DashboardComponents/PoiList/PoiList.jsx";
 import "./DashboardContainer.css";
+import { ListGroup, ListGroupItem} from 'react-bootstrap'
+
 
 class DashboardContainer extends React.Component {
   constructor() {
@@ -18,20 +21,26 @@ class DashboardContainer extends React.Component {
       isLoaded: false,
       showModal: false,
       currentPin: {},
-      currentCat: { eventKey: "top_poi", title: "Top" }
+      currentCat: { eventKey: "top_poi", title: "Popular" }
     };
   }
 
   handleDropdownClick = eventKey => {
     switch (eventKey) {
       case "top_poi":
-        this.setState({ currentCat: { eventKey: "top_poi", title: "Top" } });
+        this.setState({
+          currentCat: { eventKey: "top_poi", title: "Popular" }
+        });
         break;
       case "museum_poi":
-        this.setState({ currentCat: { eventKey: "museum_poi", title: "Museum" } });
+        this.setState({
+          currentCat: { eventKey: "museum_poi", title: "Museum" }
+        });
         break;
       case "food_poi":
-        this.setState({ currentCat: { eventKey: "food_poi", title: "Restaurant" } });
+        this.setState({
+          currentCat: { eventKey: "food_poi", title: "Restaurant" }
+        });
         break;
     }
     console.log(eventKey);
@@ -44,9 +53,15 @@ class DashboardContainer extends React.Component {
         //currentPin: this.state.points_of_interest[props.name]
       });
     } else {
+      console.log(
+        "importat",
+        this.state.points_of_interest[this.state.currentCat.eventKey], props
+      );
       this.setState({
         showModal: true,
-        currentPin: this.state.points_of_interest[this.state.currentCat.eventKey][props.name]
+        currentPin: this.state.points_of_interest[
+          this.state.currentCat.eventKey
+        ][props.name]
       });
     }
   };
@@ -69,11 +84,6 @@ class DashboardContainer extends React.Component {
         return response.json();
       })
       .then(cityData => {
-        // console.log(cityData);
-        let pinArray = cityData.points_of_interest.top_poi.map(element => {
-          return element.location;
-        });
-
         this.setState({
           cityChar: cityData.cityChar,
           city_coordinates: cityData.city_coordinates,
@@ -85,17 +95,25 @@ class DashboardContainer extends React.Component {
   }
 
   render() {
+    //
+
     if (this.state.isLoaded) {
+
       return (
         <div id="DashboardContainer">
-          <div id="MapContainer" style={{ width: 640, height: 425 }}>
-            <MapContainer
-              toggleModal={this.toggleModal}
-              points_of_interest={this.state.points_of_interest}
-              city_coordinates={this.state.city_coordinates}
-              setCurrentPin={this.setCurrentPin}
-              currentCat={this.state.currentCat}
-            />
+          <div id="PoiContainer">
+            <div id="MapContainer" style={{ width: 640, height: 425 }}>
+              <MapContainer
+                toggleModal={this.toggleModal}
+                points_of_interest={this.state.points_of_interest}
+                city_coordinates={this.state.city_coordinates}
+                setCurrentPin={this.setCurrentPin}
+                currentCat={this.state.currentCat}
+              />
+            </div>
+            <div id="poi-list">
+              <PoiList points_of_interest={this.state.points_of_interest} currentCat={this.state.currentCat}/>
+            </div>
           </div>
           <div id="DropdownContainer">
             <Dropdown
