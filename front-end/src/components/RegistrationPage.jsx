@@ -77,7 +77,7 @@ class RegistrationPage extends React.Component {
     }
 
     return (
-      <Jumbotron>      
+      <Jumbotron>
         <FormGroup>
           <Grid>
           <h1>Join the Club</h1>
@@ -134,37 +134,72 @@ class RegistrationPage extends React.Component {
             <br></br>
 
             <ControlLabel>Preferences</ControlLabel>
+            <br/>
             <FormControl
+              // className="range-slider"
               id='rank_food'
-              type="text"
+              type="number"
+              min="1"
+              max="10"
+              step="1"
+              list="num-list"
               value={this.state.rank_food}
               placeholder="Rank Food from 1 to 10"
               onChange={this.handleChange}
             />
+            <datalist id="food-tm">
+              <option value="1" />
+              <option value="2" />
+              <option value="3" />
+              <option value="4" />
+              <option value="5" />
+              <option value="6" />
+              <option value="7" />
+              <option value="8" />
+              <option value="9" />
+              <option value="10" />
+            </datalist>
+
             <FormControl
               id='rank_arts'
-              type="text"
+              type="number"
+              min="1"
+              max="10"
+              step="1"
+              list="num-list"
               value={this.state.rank_arts}
               placeholder="Rank Arts from 1 to 10"
               onChange={this.handleChange}
             />
             <FormControl
               id='rank_nightlife'
-              type="text"
+              type="number"
+              min="1"
+              max="10"
+              step="1"
+              list="num-list"
               value={this.state.rank_nightlife}
               placeholder="Rank Price from 1 to 10"
               onChange={this.handleChange}
             />
             <FormControl
               id='rank_history'
-              type="text"
+              type="number"
+              min="1"
+              max="10"
+              step="1"
+              list="num-list"
               value={this.state.rank_history}
               placeholder="Rank History from 1 to 10"
               onChange={this.handleChange}
             />
             <FormControl
               id='rank_price'
-              type="text"
+              type="number"
+              min="1"
+              max="10"
+              step="1"
+              list="num-list"
               value={this.state.rank_price}
               placeholder="Rank Price from 1 to 10"
               onChange={this.handleChange}

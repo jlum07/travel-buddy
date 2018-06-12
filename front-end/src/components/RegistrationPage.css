@@ -21,3 +21,7 @@ input {
 #username {
   margin-top: 0;
 }
+
+.range-slider {
+  padding: 0 !important;
+}
