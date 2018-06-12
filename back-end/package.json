@@ -28,5 +28,8 @@
     "request": "^2.87.0",
     "request-promise": "^4.2.2",
     "uuid": "^3.2.1"
+  },
+  "devDependencies": {
+    "util": "^0.11.0"
   }
 }

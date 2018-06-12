@@ -121,9 +121,9 @@ class DashboardContainer extends React.Component {
               handleClick={this.handleDropdownClick}
             />
           </div>
-          <div id="CityCharContainer">
+{/*          <div id="CityCharContainer">
             <CityCharContainer CityChar={this.state.cityChar} />
-          </div>
+          </div>*/}
           <div id="CityModalContainer">
             <CityModal
               toggleModal={this.toggleModal}

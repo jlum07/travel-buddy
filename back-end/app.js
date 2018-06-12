@@ -1,7 +1,5 @@
 const express       = require("express");
 const bodyParser    = require("body-parser");
-const tripAdvisor   = require("./routes/tripAdvisor");
-const city          = require("./routes/city");
 // const users         = require("./routes/users");
 const morgan        = require("morgan");
 const cors          = require("cors");
@@ -10,7 +8,8 @@ const knex          = require("knex")(knexConfig['development']);
 const knexLogger    = require('knex-logger');
 
 const usersRoutes   = require("./routes/users");
-
+const city          = require("./routes/city");
+const tripAdvisor   = require("./routes/tripAdvisor");
 const trips         = require("./routes/trips");
 
 
@@ -33,7 +32,7 @@ app.use(morgan("dev"));
 
 app.use("/trip-advisor", tripAdvisor);
 
-app.use("/city", city);
+app.use("/city", city(knex));
 
 app.use("/users", usersRoutes(knex));
 

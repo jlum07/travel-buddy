@@ -12,7 +12,7 @@ module.exports = async function(searchInput) {
 
   let responseJSON = await response.json();
 
-  console.log(`${responseJSON[0].urls[3].url}`);
+  // console.log(`${responseJSON[0].urls[3].url}`);
 
   const topURL = responseJSON[0].urls[3].url;
   //Top POI scraping
@@ -25,7 +25,7 @@ module.exports = async function(searchInput) {
 
   $ = await rp(options_top);
   $a = $(".listing_details");
-  console.log($a.html())
+  // console.log($a.html())
   $a.each(function(i, elem) {
     if (
       $(this)
@@ -92,7 +92,7 @@ module.exports = async function(searchInput) {
   const foodURL = topURL
     .replace("Attractions", "Restaurants")
     .replace("-Activities", "");
-  console.log("Restaurants-g155019-Toronto_Ontario.html", foodURL);
+  // console.log("Restaurants-g155019-Toronto_Ontario.html", foodURL);
   //Restuarant scraping
   const options_restaurant = {
     uri: `https://www.tripadvisor.ca${foodURL}`,

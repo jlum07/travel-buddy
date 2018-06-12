@@ -41,7 +41,7 @@ export class MapContainer extends React.Component {
   };
 
   componentDidMount() {
-    console.log("Step 1")
+    // console.log("Step 1")
     let topPinArray = this.props.points_of_interest.top_poi.map(element => {
       return element.location;
     });
@@ -64,7 +64,7 @@ export class MapContainer extends React.Component {
   }
 
   render() {
-    console.log("Step 2")
+    // console.log("Step 2")
     let bounds = new this.props.google.maps.LatLngBounds();
 
     this.state[this.props.currentCat.eventKey].forEach(element => {

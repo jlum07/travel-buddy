@@ -16,7 +16,7 @@ router.get("/", (req, res) => {
 //Toronto = lat: 43.6532, lng: -79.3832
 
 router.get("/urls", (req, res) => {
-  console.log(req.query);
+  // console.log(req.query);
   placeToCoordinates(req.query, {
     lat: 41.402862,
     lng: 2.174366

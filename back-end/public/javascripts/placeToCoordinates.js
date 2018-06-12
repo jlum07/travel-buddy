@@ -6,6 +6,7 @@ const getInstagrams = require("./getInstagrams");
 module.exports = async function(placeElement, location) {
   //Using Google Places API, search places by the place keyword from TA to return the most likely response
   //and the coordinates/address
+  // console.log('placesToCoordinates: API_KEY = ', apikey.API_KEY);
   let response = await fetch(
     `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${
       location.lat
