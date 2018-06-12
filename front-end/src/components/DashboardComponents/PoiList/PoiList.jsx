@@ -1,5 +1,5 @@
 import React from "react";
-import { Panel, PanelGroup, Button } from "react-bootstrap";
+import { Image, Panel, PanelGroup, Button } from "react-bootstrap";
 import "./PoiList.css";
 
 class PoiList extends React.Component {
@@ -31,9 +31,11 @@ class PoiList extends React.Component {
   }
 
   render() {
+
     let poi_list = this.props.points_of_interest[
       this.props.currentCat.eventKey
     ].map((element, index) => {
+      console.log(element)
       return (
         <Panel eventKey={`${index + 1}`}>
           <Panel.Heading>
@@ -41,6 +43,7 @@ class PoiList extends React.Component {
           </Panel.Heading>
           <Panel.Collapse>
             <Panel.Body>
+              <Image src={element.trip_advisor_picture} className="poiImage" rounded />
               <p> {element.ranking} </p>
               <p> {element.address} </p>
               <div data-name={index} onClick={(e) => this.props.toggleModal(e.currentTarget.dataset)}>

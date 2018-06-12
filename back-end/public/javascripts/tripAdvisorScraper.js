@@ -23,9 +23,17 @@ module.exports = async function(searchInput) {
     }
   };
 
+  let regex = new RegExp("var lazyImgs = ((.|\n)*)var lazyHtml");
+  console.log(regex);
   $ = await rp(options_top);
+
+  let lazyLoadArray = $.html().match(regex);
+  //console.log(lazyLoadArray[1])
+  let lazyImgs = eval(lazyLoadArray[1]);
+
+
   $a = $(".listing_details");
-  console.log($a.html())
+  //console.log($a.html())
   $a.each(function(i, elem) {
     if (
       $(this)
@@ -33,6 +41,18 @@ module.exports = async function(searchInput) {
         .eq(1)
         .text()
     ) {
+
+      let picture = lazyImgs.find(element => {
+        return (
+          element.id ===
+          $(this)
+            .find(".photo_image")
+            .attr("id")
+        );
+      });
+
+      let pictureData = picture.data;
+
       top_poi.push({
         title: $(this)
           .find(".listing_title")
@@ -44,9 +64,7 @@ module.exports = async function(searchInput) {
         trip_advisor_link: `www.tripadvisor.ca${$(this)
           .find(".listing_title a")
           .attr("href")}`,
-        trip_advisor_picture: $(this)
-          .find(".photo_image")
-          .attr("src")
+        trip_advisor_picture: pictureData
       });
     }
   });
@@ -62,13 +80,35 @@ module.exports = async function(searchInput) {
   };
 
   $ = await rp(options_museum);
-  $a = $(".listing_info");
+
+  lazyLoadArray = $.html().match(regex);
+  console.log(lazyLoadArray[1])
+  lazyImgs = eval(lazyLoadArray[1]);
+  console.log("eval lazyload2")
+
+  $a = $(".listing_details");
   $a.each(function(i, elem) {
+    let pictureData = ''
+    let picture = lazyImgs.find(element => {
+        return (
+          element.id ===
+          $(this)
+            .find(".photo_image")
+            .attr("id")
+        );
+      });
+       console.log($(this)
+            .find(".photo_image")
+            .attr("id"))
+       if(picture){
+        pictureData = picture.data;
+       }
+
+
     if (
       $(this)
-        .find(".listing_rating .popRanking")
-        .eq(1)
-        .text()
+            .find(".photo_image")
+            .attr("id")
     ) {
       museum_poi.push({
         title: $(this)
@@ -81,9 +121,7 @@ module.exports = async function(searchInput) {
         trip_advisor_link: `www.tripadvisor.ca${$(this)
           .find(".listing_title a")
           .attr("href")}`,
-        trip_advisor_picture: $(this)
-          .find(".photo_image")
-          .attr("src")
+        trip_advisor_picture: pictureData
       });
     }
   });
@@ -102,9 +140,31 @@ module.exports = async function(searchInput) {
   };
 
   $ = await rp(options_restaurant);
+
+  lazyLoadArray = $.html().match(regex);
+  //console.log(lazyLoadArray[1])
+  lazyImgs = eval(lazyLoadArray[1]);
+
+
   $a = $(".listing");
   //console.log($a.html());
   $a.each(function(i, elem) {
+    let pictureData = ''
+    let picture = lazyImgs.find(element => {
+        return (
+          element.id ===
+          $(this)
+        .find(".photo_image")
+        .attr("id")
+        );
+      });
+    //if(picture){
+      console.log($(this)
+        .find(".photo_image")
+        .attr("id"))
+       pictureData = picture.data;
+    //}
+
     food_poi.push({
       title: $(this)
         .find(".title a")
@@ -115,9 +175,7 @@ module.exports = async function(searchInput) {
       trip_advisor_link: `www.tripadvisor.ca${$(this)
         .find(".title a")
         .attr("href")}`,
-      trip_advisor_picture: $(this)
-        .find(".photo_image")
-        .attr("src")
+      trip_advisor_picture: pictureData
     });
   });
 

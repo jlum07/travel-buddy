@@ -2,3 +2,7 @@
   max-height: 100%;
   overflow: scroll;
 }
+
+.poiImage {
+  height: 100px;
+}

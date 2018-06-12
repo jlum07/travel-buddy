@@ -8,6 +8,9 @@ import Dropdown from "./DashboardComponents/Dropdown/Dropdown.jsx";
 import PoiList from "./DashboardComponents/PoiList/PoiList.jsx";
 import "./DashboardContainer.css";
 import { ListGroup, ListGroupItem } from "react-bootstrap";
+//import { Parallax, Background } from "react-parallax";
+import ScrollableAnchor from "react-scrollable-anchor";
+import { configureAnchors, goToTop } from "react-scrollable-anchor";
 
 class DashboardContainer extends React.Component {
   constructor() {
@@ -85,6 +88,7 @@ class DashboardContainer extends React.Component {
   };
 
   componentDidMount() {
+    configureAnchors({ scrollDuration: 800 });
     const {
       match: { params }
     } = this.props;
@@ -110,52 +114,78 @@ class DashboardContainer extends React.Component {
 
     if (this.state.isLoaded) {
       return (
-        <div id="DashboardContainer">
-          <div id="PoiContainer">
-            <div id="MapContainer" style={{ width: '100%', height: '100%' }}>
-              <MapContainer
-                toggleModal={this.toggleModal}
-                points_of_interest={this.state.points_of_interest}
-                city_coordinates={this.state.city_coordinates}
-                currentCat={this.state.currentCat}
-                setActiveMarker={this.setActiveMarker}
-                activeMarker={this.state.activeMarker}
-              />
-            </div>
-            <div id="poi-list">
+        <div>
+          <div id="DashboardContainer">
+            <ScrollableAnchor id={"section1"}>
               <div>
-                POI List
-                <div id="DropdownContainer">
-                  <Dropdown
-                    currentCat={this.state.currentCat}
-                    handleClick={this.handleDropdownClick}
+                <a href="#section1"> Go to section 1 </a>
+                <a href="#section2"> Go to section 2 </a>
+                <div onClick={goToTop}> Go to top </div>
+                <div id="PoiContainer">
+                  <div
+                    id="MapContainer"
+                    style={{ width: "100%", height: "100%" }}
+                  >
+                    <MapContainer
+                      toggleModal={this.toggleModal}
+                      points_of_interest={this.state.points_of_interest}
+                      city_coordinates={this.state.city_coordinates}
+                      currentCat={this.state.currentCat}
+                      setActiveMarker={this.setActiveMarker}
+                      activeMarker={this.state.activeMarker}
+                    />
+                  </div>
+                  <div id="poi-list">
+                    <div>
+                      POI List
+                      <div id="DropdownContainer">
+                        <Dropdown
+                          currentCat={this.state.currentCat}
+                          handleClick={this.handleDropdownClick}
+                        />
+                      </div>
+                    </div>
+                    <PoiList
+                      points_of_interest={this.state.points_of_interest}
+                      currentCat={this.state.currentCat}
+                      setActiveMarker={this.setActiveMarker}
+                      modalLaunch={this.modalLaunch}
+                      toggleModal={this.toggleModal}
+                    />
+                  </div>
+                </div>
+              </div>
+            </ScrollableAnchor>
+
+            <h1>| | |</h1>
+
+            <ScrollableAnchor id={"section2"}>
+              <div>
+                <a href="#section1"> Go to section 1 </a>
+                <a href="#section2"> Go to section 2 </a>
+                <div onClick={goToTop}> Go to top </div>
+                <div id="CityCharContainer">
+                  <CityCharContainer CityChar={this.state.cityChar} />
+                </div>
+                <div id="CityModalContainer">
+                  <CityModal
+                    toggleModal={this.toggleModal}
+                    showModal={this.state.showModal}
+                    currentPin={this.state.currentPin}
                   />
                 </div>
               </div>
-              <PoiList
-                points_of_interest={this.state.points_of_interest}
-                currentCat={this.state.currentCat}
-                setActiveMarker={this.setActiveMarker}
-                modalLaunch={this.modalLaunch}
-                toggleModal={this.toggleModal}
-              />
-            </div>
-          </div>
-
-          <div id="CityCharContainer">
-            <CityCharContainer CityChar={this.state.cityChar} />
-          </div>
-          <div id="CityModalContainer">
-            <CityModal
-              toggleModal={this.toggleModal}
-              showModal={this.state.showModal}
-              currentPin={this.state.currentPin}
-            />
+            </ScrollableAnchor>
           </div>
         </div>
       );
     } else {
-      return <img className="image" src={ben} />;
+      return (
+        <div id="loading-container">
+          {" "}
+          <img className="image" src={ben} />{" "}
+        </div>
+      );
     }
   }
 }

@@ -22,12 +22,13 @@
     "react-bootstrap": "^0.32.1",
     "react-dom": "^16.4.0",
     "react-event-timeline": "^1.5.3",
+    "react-google-maps": "^9.4.5",
     "react-icons": "^2.2.7",
     "react-parallax": "^1.7.0",
     "react-router-dom": "^4.3.1",
     "react-scripts": "1.1.4",
+    "react-scrollable-anchor": "^0.6.1",
     "react-vertical-timeline-component": "^2.1.2",
-    "react-google-maps": "^9.4.5",
     "recompose": "^0.27.1"
   },
   "scripts": {

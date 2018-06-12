@@ -1,30 +1,41 @@
-#DashboardContainer{
+#DashboardContainer {
   display: flex;
   flex-direction: column;
 }
 
 #PoiContainer {
-    display: flex;
-    height: 500px;
-
+  display: flex;
+  height: 85vh;
 }
 
 .image {
-    position: absolute;
-    margin-left: 30%;
-    margin-right: auto;
-    margin-top: 20%;
-    width: 200px;
-    height: 200px;
+  position: absolute;
+  margin-left: 30%;
+  margin-right: auto;
+  margin-top: 20%;
+  width: 200px;
+  height: 200px;
 
-    animation: spin 2s linear infinite;
+  animation: spin 2s linear infinite;
 }
 
-#MapContainer{
+#MapContainer {
   height: 100%;
 }
 
+#CityCharContainer {
+  height: 100vh;
+}
+
+#loading-container {
+  height: 100vh
+}
+
 @keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }

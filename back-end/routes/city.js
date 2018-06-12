@@ -17,7 +17,7 @@ router.get('/autocorrect/:name', (req, res)=>{
     // console.log(json);
     if (json.status === 'REQUEST_DENIED'){
       console.log('Google Autocorrect API request DENIED (API KEY EXPIRED??)');
-      res.status(503).send('Google API request Denied');      
+      res.status(503).send('Google API request Denied');
     }
     else if (json.predictions.length === 0){
       console.log('No cities found');
