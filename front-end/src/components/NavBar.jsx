@@ -28,6 +28,9 @@ class NavBar extends React.Component {
           <NavItem componentClass={ Link } href='/profile' to='/profile'>
             <Button className="nav-button" bsStyle="link">Hello, {this.props.currentUser.username}!</Button>
           </NavItem>
+          <NavItem componentClass={ Link } href='/trips' to='/trips'>
+            <Button className="nav-button" bsStyle="link">Trips</Button>
+          </NavItem>
           <NavItem>
             <Button className="nav-button" bsStyle="link" onClick={this.logout}>Logout</Button>
           </NavItem>
