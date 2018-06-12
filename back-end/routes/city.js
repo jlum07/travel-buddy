@@ -12,24 +12,25 @@ const util = require('util');
 const useSampleData = false;
 const cacheExpiryTimeMins = 20;
 
+async function collectCityData(cityName){
+  console.log('inside collectCityData: cityName = ', cityName);
+  let cityDetails = await cityAutoComplete(cityName);
+  let pointsOfInterest = await cityToPlaceCoordinates(cityDetails.result);
+  let response = {
+    city_name: {
+      formatted: cityDetails.result.formatted_address,
+      long_name: cityDetails.result.address_components[0].long_name
+    },
+    city_coordinates: cityDetails.result.geometry.location,
+    points_of_interest: pointsOfInterest
+  };
+  response.cityChar = cityChar[cityName];
+  return response;
+}
 
 
 module.exports = (knex) => {
 
-  async function collectCityData(cityName){
-    console.log('inside collectCityData: cityName = ', cityName);
-    let cityDetails = await cityAutoComplete(cityName);
-    let pointsOfInterest = await cityToPlaceCoordinates(cityDetails.result);
-    let response = {
-      city_name: {
-        formatted: cityDetails.result.formatted_address,
-        long_name: cityDetails.result.address_components[0].long_name
-      },
-      city_coordinates: cityDetails.result.geometry.location,
-      points_of_interest: pointsOfInterest
-    };
-    response.cityChar = cityChar[cityName];
-  }
 
   router.get('/autocorrect/:name', (req, res)=>{
     // console.log('city.js: API_KEY = ', API_KEY.API_KEY); // API KEY IS GOOD
@@ -99,8 +100,8 @@ module.exports = (knex) => {
           // City is NOT IN DB:
           console.log(`${req.params.city} not in DB...collecting city data ...`);
 
-          let response = this.collectCityData(req.params.city);
-
+          let response = await collectCityData(req.params.city);
+          console.log('response = ', response);
           // Store City in DB
           knex('city_data_cache')
           .insert({
