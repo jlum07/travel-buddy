@@ -5,6 +5,7 @@
 
 #PoiContainer {
     display: flex;
+    height: 500px;
 
 }
 
@@ -17,6 +18,10 @@
     height: 200px;
 
     animation: spin 2s linear infinite;
+}
+
+#MapContainer{
+  height: 100%;
 }
 
 @keyframes spin {
