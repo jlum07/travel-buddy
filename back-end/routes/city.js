@@ -65,7 +65,7 @@ module.exports = (knex) => {
           // City is IN DB:
           let data_timestamp = DBsearchResponse[0].time_stamp;
           console.log(`Found ${req.params.city} in DB! Sending data from DB...`);
-          console.log(`Data for ${req.params.city} is ${(Date.now() - data_timestamp)/1000/60} minutes old`);
+          console.log(`Data for ${req.params.city} is ${Number((Date.now() - data_timestamp)/1000/60).toFixed(2)} minutes old`);
           res.send(DBsearchResponse[0].data);          
         }
         else{
