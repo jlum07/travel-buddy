@@ -16,7 +16,7 @@ export default class Home extends React.Component {
         rank_food: null,
         rank_arts: null,
         rank_nightlife: null,
-        rank_history: null,
+        rank_safety: null,
         rank_price: null,
         profilePic: null
       }
@@ -45,7 +45,7 @@ export default class Home extends React.Component {
           rank_food: response.data.food_rank,
           rank_arts: response.data.arts_rank,
           rank_nightlife: response.data.nightlife_rank,
-          rank_history: response.data.history_rank,
+          rank_safety: response.data.safety_rank,
           rank_price: response.data.price_rank,
           profilePic: response.data.profile_pic
         }
@@ -77,7 +77,7 @@ export default class Home extends React.Component {
               <li>Food:      {this.state.currentUser.rank_food}</li>
               <li>Nightlife: {this.state.currentUser.rank_nightlife}</li>
               <li>Price:     {this.state.currentUser.rank_price}</li>
-              <li>History:   {this.state.currentUser.rank_history}</li>
+              <li>Safety:   {this.state.currentUser.rank_safety}</li>
               <li>Arts:      {this.state.currentUser.rank_arts}</li>
             </ul>
           </Col>

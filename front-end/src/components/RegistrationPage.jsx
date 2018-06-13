@@ -18,7 +18,7 @@ class RegistrationPage extends React.Component {
       rank_food: '',
       rank_arts: '',
       rank_nightlife: '',
-      rank_history: '',
+      rank_safety: '',
       rank_price: '',
       password: '',
       password_confirmation: '',
@@ -49,7 +49,7 @@ class RegistrationPage extends React.Component {
         rank_food: this.state.rank_food,
         rank_arts: this.state.rank_arts,
         rank_nightlife: this.state.rank_nightlife,
-        rank_history: this.state.rank_history,
+        rank_safety: this.state.rank_safety,
         rank_price: this.state.rank_price,
         password: this.state.password
         }
@@ -183,14 +183,14 @@ class RegistrationPage extends React.Component {
               onChange={this.handleChange}
             />
             <FormControl
-              id='rank_history'
+              id='rank_safety'
               type="number"
               min="1"
               max="10"
               step="1"
               list="num-list"
-              value={this.state.rank_history}
-              placeholder="Rank History from 1 to 10"
+              value={this.state.rank_safety}
+              placeholder="Rank safety from 1 to 10"
               onChange={this.handleChange}
             />
             <FormControl

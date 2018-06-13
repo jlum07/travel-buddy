@@ -11,7 +11,7 @@ exports.up = function(knex, Promise) {
       table.integer('food_rank');
       table.integer('arts_rank');
       table.integer('nightlife_rank');
-      table.integer('history_rank');
+      table.integer('safety_rank');
       table.integer('price_rank');
       table.string('session_token').unique();
     })

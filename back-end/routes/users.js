@@ -16,7 +16,7 @@ module.exports = (knex) => {
       food_rank: req.body.rank_food,
       arts_rank: req.body.rank_arts,
       nightlife_rank: req.body.rank_nightlife,
-      history_rank: req.body.rank_history,
+      safety_rank: req.body.rank_safety,
       price_rank: req.body.rank_price,
     })
     .then((result)=>{
