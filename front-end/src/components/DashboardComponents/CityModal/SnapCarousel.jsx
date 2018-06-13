@@ -1,5 +1,6 @@
 import React from 'react';
-import { Carousel } from 'react-bootstrap'
+import { Carousel, Image } from 'react-bootstrap';
+import snapLogo from './Snapchat-Sad.png';
 import './SnapCarousel.css';
 
 class SnapCarousel extends React.Component {
@@ -39,7 +40,16 @@ class SnapCarousel extends React.Component {
     const { index } = this.state;
     let carouselItems = <Carousel.Item className="vid-container"/>
 
-    if(this.props.snapchats){
+
+    if (this.props.snapchats[0] === "No Snaps!"){
+      return (
+        <div>
+          <h2 className='title' >No Snaps for this pin</h2>
+          <img id='sad-snapchat' src={snapLogo} />
+        </div>
+        );
+    }
+    else {
       carouselItems = this.props.snapchats.map((snap, index) => {
         return (
           <Carousel.Item className="vid-container" key={index}>
@@ -48,18 +58,21 @@ class SnapCarousel extends React.Component {
             </video>
           </Carousel.Item>
         )
-      })
+      });
+
+      return (
+          <Carousel
+            id='snap-carousel'
+            activeIndex={index}
+            onSelect={this.handleCarouselSlide} >
+            {carouselItems}
+          </Carousel>
+      );
     }
 
 
-    return (
-        <Carousel
-          id='snap-carousel'
-          activeIndex={index}
-          onSelect={this.handleCarouselSlide} >
-          {carouselItems}
-        </Carousel>
-    );
+
+
   }
 }
 
