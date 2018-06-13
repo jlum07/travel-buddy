@@ -14,7 +14,11 @@ class PoiList extends React.Component {
   }
 
   handleSelect(activeKey) {
-    console.log(activeKey, this.state.activeKey, activeKey !== this.state.activeKey)
+    console.log(
+      activeKey,
+      this.state.activeKey,
+      activeKey !== this.state.activeKey
+    );
     if (activeKey !== null) {
       this.setState({ activeKey });
       let input = {
@@ -25,36 +29,42 @@ class PoiList extends React.Component {
       };
       this.props.setActiveMarker(input);
     } else {
-      this.setState({activeKey: null})
-      this.props.setActiveMarker(null)
+      this.setState({ activeKey: null });
+      this.props.setActiveMarker(null);
     }
   }
 
   render() {
-
     let poi_list = this.props.points_of_interest[
       this.props.currentCat.eventKey
     ].map((element, index) => {
-      console.log(element)
-      return (
-        <Panel eventKey={`${index + 1}`}>
-          <Panel.Heading>
-            <Panel.Title toggle>{element.title}</Panel.Title>
-          </Panel.Heading>
-          <Panel.Collapse>
-            <Panel.Body>
-              <Image src={element.trip_advisor_picture} className="poiImage" rounded />
-              <p> {element.ranking} </p>
-              <p> {element.address} </p>
-              <div data-name={index} onClick={(e) => this.props.toggleModal(e.currentTarget.dataset)}>
-                <Button  name={"hi"}>
-                  Modal
-                </Button>
-              </div>
-            </Panel.Body>
-          </Panel.Collapse>
-        </Panel>
-      );
+      console.log(element);
+      if (element.title) {
+        return (
+          <Panel eventKey={`${index + 1}`}>
+            <Panel.Heading>
+              <Panel.Title toggle>{element.title}</Panel.Title>
+            </Panel.Heading>
+            <Panel.Collapse>
+              <Panel.Body>
+                <Image
+                  src={element.trip_advisor_picture}
+                  className="poiImage"
+                  rounded
+                />
+                <p> {element.ranking} </p>
+                <p> {element.address} </p>
+                <div
+                  data-name={index}
+                  onClick={e => this.props.toggleModal(e.currentTarget.dataset)}
+                >
+                  <Button name={"hi"}>Modal</Button>
+                </div>
+              </Panel.Body>
+            </Panel.Collapse>
+          </Panel>
+        );
+      }
     });
 
     return (

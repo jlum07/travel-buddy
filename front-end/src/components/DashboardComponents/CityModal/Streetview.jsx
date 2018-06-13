@@ -11,9 +11,9 @@ import withProps from "recompose/withProps";
 let props = {
   googleMapURL:
     "https://maps.googleapis.com/maps/api/js?key=AIzaSyCHqiMIL0D9q9stG8tDcJ7shVQGyGYfw6I&v=3.exp&libraries=geometry,drawing,places",
-  loadingElement: <div style={{ height: `400px` }} />,
-  containerElement: <div style={{ height: `400px` }} />,
-  mapElement: <div style={{ height: `400px` }} />
+  loadingElement: <div style={{ height: `600px` }} />,
+  containerElement: <div style={{ height: `600px` }} />,
+  mapElement: <div style={{ height: `600px` }} />
 };
 
 const MyMapComponent = compose(

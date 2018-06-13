@@ -15,6 +15,9 @@ class Dropdown extends React.Component {
         <MenuItem onSelect={this.props.handleClick} eventKey="food_poi">
           Restaurants
         </MenuItem>
+        <MenuItem onSelect={this.props.handleClick} eventKey="nightlife_poi">
+          Nightlife
+        </MenuItem>
       </DropdownButton>
     );
   }
