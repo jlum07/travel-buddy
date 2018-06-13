@@ -14,6 +14,7 @@ import SnapCarousel from "./SnapCarousel.jsx";
 import "./CityModal.css";
 import Streetview from "./Streetview.jsx";
 import apikey from "../Map/apikey";
+import getInstagrams from "./getInstagrams";
 
 class GalleryModal extends React.Component {
   constructor(props, context) {
@@ -25,7 +26,8 @@ class GalleryModal extends React.Component {
     this.state = {
       // show: false,
       visible: false,
-      playSnaps: false
+      playSnaps: false,
+      instas: []
     };
   }
 
@@ -38,11 +40,9 @@ class GalleryModal extends React.Component {
   // }
 
   onHide = (props, marker, e) => {
-    this.props.toggleModal(props, marker, e)
-    this.setState({ visible: false })
-  }
-
-
+    this.props.toggleModal(props, marker, e);
+    this.setState({ visible: false });
+  };
 
   handleTabSelect = key => {
     // alert(`selected ${key}`);
@@ -58,7 +58,9 @@ class GalleryModal extends React.Component {
     }
   };
 
-  componentDidMount() {}
+  componentDidMount() {
+
+  }
 
   render() {
     let snapStatus = false;
@@ -98,7 +100,9 @@ class GalleryModal extends React.Component {
             </Tab>
 
             <Tab eventKey={2} title="Instagram">
-              <InstaCarousel />
+              {this.props.currentPin && (
+                <InstaCarousel currentPin={this.props.currentPin} />
+              )}
             </Tab>
             <Tab eventKey={3} title="SnapChat" disabled={snapStatus}>
               {this.props.currentPin.snapchat !== "No Snaps!" && (

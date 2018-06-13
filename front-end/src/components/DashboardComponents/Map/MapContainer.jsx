@@ -14,6 +14,7 @@ export class MapContainer extends React.Component {
       top_poi: [],
       museum_poi: [],
       food_poi: [],
+      nightlife_poi: [],
       GOOGLE_MAPS_API_KEY: process.env.GOOGLE_MAPS_API_KEY,
       showingInfoWindow: false,
       selectedPlace: {}
@@ -22,7 +23,7 @@ export class MapContainer extends React.Component {
 
   onMarkerClick = (props, marker, e) => {
     this.props.toggleModal(props, marker, e);
-    this.props.setActiveMarker(props)
+    this.props.setActiveMarker(props);
     console.log(props);
     //this.props.setCurrentPin(props, marker, e)
   };
@@ -57,10 +58,17 @@ export class MapContainer extends React.Component {
       return element.location;
     });
 
+    let nightlifePinArray = this.props.points_of_interest.nightlife_poi.map(
+      element => {
+        return element.location;
+      }
+    );
+
     this.setState({
       top_poi: topPinArray,
       museum_poi: museumPinArray,
-      food_poi: foodPinArray
+      food_poi: foodPinArray,
+      nightlife_poi: nightlifePinArray
     });
   }
 

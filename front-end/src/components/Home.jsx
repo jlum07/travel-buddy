@@ -42,7 +42,7 @@ class Home extends React.Component {
         this.setState({
           searchCity: response.data,
           redirectToCity: true,
-          searchError: false
+          searchError: true
           });
       }
     })

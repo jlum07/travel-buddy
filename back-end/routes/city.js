@@ -61,7 +61,6 @@ module.exports = (knex) => {
     if (useSampleData){
       console.log('Sending Sample Toronto Data...');
       let response = torontoSample;
-      response.cityChar = cityChar[req.params.city];
       res.send(response);
     }
     else {

@@ -1,16 +1,34 @@
 import React, { Component } from "react";
 import MapContainer from "./DashboardComponents/Map/MapContainer";
 import CityCharContainer from "./DashboardComponents/CityChar/CityCharContainer";
+//import CityPercentageContainer from "./DashboardComponents/CityChar/CityPercentageContainer";
 import WeatherContainer from "./DashboardComponents/Weather/WeatherContainer";
 import ben from "./BenSpinning.png";
 import CityModal from "./DashboardComponents/CityModal/CityModal.jsx";
 import Dropdown from "./DashboardComponents/Dropdown/Dropdown.jsx";
 import PoiList from "./DashboardComponents/PoiList/PoiList.jsx";
+import Loading from "./DashboardComponents/Loading/Loading.jsx";
+import map from "../imgs/map.png";
+import star from "../imgs/star2.png";
+import chart from "../imgs/chart.png";
 import "./DashboardContainer.css";
-import { ListGroup, ListGroupItem } from "react-bootstrap";
-//import { Parallax, Background } from "react-parallax";
+
+import {
+  ListGroup,
+  ListGroupItem,
+  Panel,
+  Row,
+  Col,
+  Grid,
+  ToggleButton,
+  ToggleButtonGroup,
+  Button,
+  ButtonGroup
+} from "react-bootstrap";
+//import { Parallax, Background } from "react-parallax"
 import ScrollableAnchor from "react-scrollable-anchor";
 import { configureAnchors, goToTop } from "react-scrollable-anchor";
+import ReactLoading from "react-loading";
 
 class DashboardContainer extends React.Component {
   constructor() {
@@ -24,7 +42,8 @@ class DashboardContainer extends React.Component {
       showModal: false,
       currentPin: {},
       currentCat: { eventKey: "top_poi", title: "Popular" },
-      activeMarker: null
+      activeMarker: null,
+      value: []
     };
   }
 
@@ -45,8 +64,17 @@ class DashboardContainer extends React.Component {
           currentCat: { eventKey: "food_poi", title: "Restaurant" }
         });
         break;
+      case "nightlife_poi":
+        this.setState({
+          currentCat: { eventKey: "nightlife_poi", title: "Nightlife" }
+        });
+        break;
     }
     console.log(eventKey);
+  };
+
+  handleChange = e => {
+    this.setState({ value: e });
   };
 
   toggleModal = (props, marker, e) => {
@@ -88,11 +116,11 @@ class DashboardContainer extends React.Component {
   };
 
   componentDidMount() {
-    configureAnchors({ scrollDuration: 800 });
+    configureAnchors({ offset: -65, scrollDuration: 1000 });
     const {
       match: { params }
     } = this.props;
-    // console.log("mounted");
+    // console.log("mounted")
 
     fetch(`http://localhost:3001/city/${params.city}`)
       .then(response => {
@@ -110,21 +138,28 @@ class DashboardContainer extends React.Component {
   }
 
   render() {
-
     if (this.state.isLoaded) {
       return (
         <div>
           <div id="DashboardContainer">
             <ScrollableAnchor id={"section1"}>
               <div>
-                <a href="#section1"> Go to section 1 </a>
-                <a href="#section2"> Go to section 2 </a>
-                <div onClick={goToTop}> Go to top </div>
+                <h1> City Map </h1>
+                <div className="button-group-container">
+                  <ButtonGroup>
+                    <Button href="#section1">
+                      <img className="cat-icon" src={map} />
+                    </Button>
+                    <Button href="#section2">
+                      <img className="cat-icon" src={chart} />
+                    </Button>
+                    <Button href="#section3">
+                      <img className="cat-icon" src={star} />
+                    </Button>
+                  </ButtonGroup>
+                </div>
                 <div id="PoiContainer">
-                  <div
-                    id="MapContainer"
-                    style={{ width: "100%", height: "100%" }}
-                  >
+                  <div id="MapContainer">
                     <MapContainer
                       toggleModal={this.toggleModal}
                       points_of_interest={this.state.points_of_interest}
@@ -136,7 +171,7 @@ class DashboardContainer extends React.Component {
                   </div>
                   <div id="poi-list">
                     <div>
-                      POI List
+                      <h1> POI List </h1>
                       <div id="DropdownContainer">
                         <Dropdown
                           currentCat={this.state.currentCat}
@@ -155,14 +190,21 @@ class DashboardContainer extends React.Component {
                 </div>
               </div>
             </ScrollableAnchor>
-
-            <h1>| | |</h1>
-
             <ScrollableAnchor id={"section2"}>
               <div>
-                <a href="#section1"> Go to section 1 </a>
-                <a href="#section2"> Go to section 2 </a>
-                <div onClick={goToTop}> Go to top </div>
+                <div className="button-group-container">
+                  <ButtonGroup>
+                    <Button href="#section1">
+                      <img className="cat-icon" src={map} />
+                    </Button>
+                    <Button href="#section2">
+                      <img className="cat-icon" src={chart} />
+                    </Button>
+                    <Button href="#section3">
+                      <img className="cat-icon" src={star} />
+                    </Button>
+                  </ButtonGroup>
+                </div>
                 <div id="CityCharContainer">
                   <CityCharContainer CityChar={this.state.cityChar} />
                 </div>
@@ -175,16 +217,87 @@ class DashboardContainer extends React.Component {
                 </div>
               </div>
             </ScrollableAnchor>
+
+            <ScrollableAnchor id={"section3"}>
+              <div>
+                <div className="button-group-container">
+                  <ButtonGroup>
+                    <Button href="#section1">
+                      <img className="cat-icon" src={map} />
+                    </Button>
+                    <Button href="#section2">
+                      <img className="cat-icon" src={chart} />
+                    </Button>
+                    <Button href="#section3">
+                      <img className="cat-icon" src={star} />
+                    </Button>
+                  </ButtonGroup>
+                </div>
+                <div id="TopPoiContainer">
+                  <Grid>
+                    <Row className="show-grid">
+                      <Col sm={6}>
+                        <Panel id="TopPoiPanel">
+                          <Panel.Heading>
+                            {this.state.points_of_interest.top_poi[0].title}
+                          </Panel.Heading>
+                          <Panel.Body>
+                            {this.state.points_of_interest.top_poi[0].ranking}
+                          </Panel.Body>
+                        </Panel>
+                      </Col>
+                      <Col sm={6}>
+                        <Panel id="TopMuseumPanel">
+                          <Panel.Heading>
+                            {this.state.points_of_interest.museum_poi[0].title}
+                          </Panel.Heading>
+                          <Panel.Body>
+                            {
+                              this.state.points_of_interest.museum_poi[0]
+                                .ranking
+                            }
+                          </Panel.Body>
+                        </Panel>
+                      </Col>
+                    </Row>
+
+                    <Row className="show-grid">
+                      <Col sm={6}>
+                        <Panel id="TopFoodPanel">
+                          <Panel.Heading>
+                            {this.state.points_of_interest.food_poi[0].title}
+                          </Panel.Heading>
+                          <Panel.Body>
+                            {this.state.points_of_interest.food_poi[0].ranking}
+                          </Panel.Body>
+                        </Panel>
+                      </Col>
+                      <Col sm={6}>
+                        <Panel id="TopNightlifePanel">
+                          <Panel.Heading>
+                            {
+                              this.state.points_of_interest.nightlife_poi[0]
+                                .title
+                            }
+                          </Panel.Heading>
+                          <Panel.Body>
+                            {
+                              this.state.points_of_interest.nightlife_poi[0]
+                                .ranking
+                            }
+                          </Panel.Body>
+                        </Panel>
+                      </Col>
+                    </Row>
+                  </Grid>
+                </div>
+              </div>
+            </ScrollableAnchor>
           </div>
         </div>
       );
     } else {
-      return (
-        <div id="loading-container">
-          {" "}
-          <img className="image" src={ben} />{" "}
-        </div>
-      );
+      return <Loading />;
     }
   }
 }
