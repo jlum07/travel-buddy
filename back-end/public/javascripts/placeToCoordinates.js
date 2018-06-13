@@ -11,7 +11,7 @@ module.exports = async function(placeElement, location) {
     `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${
       location.lat
     },${location.lng}&radius=15000&keyword=${placeElement.title}&key=${
-      apikey.API_KEY
+      process.env.GOOGLE_MAPS_API_KEY || apikey.API_KEY
     }`
   );
 

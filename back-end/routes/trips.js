@@ -122,7 +122,7 @@ module.exports = (knex) => {
     //    from /routes/city.js
 
 
-    let url = `https://maps.googleapis.com/maps/api/place/autocomplete/json?input=${incomingData.cityName}&types=(cities)&key=${API_KEY.API_KEY}`
+    let url = `https://maps.googleapis.com/maps/api/place/autocomplete/json?input=${incomingData.cityName}&types=(cities)&key=${process.env.GOOGLE_MAPS_API_KEY || API_KEY.API_KEY}`
 
     fetch(url)
     .catch((googleAutocorrectError)=>{

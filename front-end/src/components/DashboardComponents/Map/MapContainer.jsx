@@ -14,7 +14,7 @@ export class MapContainer extends React.Component {
       top_poi: [],
       museum_poi: [],
       food_poi: [],
-      GOOGLE_MAPS_API_KEY: process.env.GOOGLE_MAPS_API_KEY,
+      GOOGLE_MAPS_API_KEY: process.env.GOOGLE_MAPS_API_KEY || API_KEY.API_KEY,
       showingInfoWindow: false,
       selectedPlace: {}
     };
@@ -112,5 +112,5 @@ export class MapContainer extends React.Component {
 }
 
 export default GoogleApiWrapper({
-  apiKey: API_KEY.API_KEY
+  apiKey: process.env.GOOGLE_MAPS_API_KEY || API_KEY.API_KEY
 })(MapContainer);

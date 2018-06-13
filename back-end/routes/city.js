@@ -32,7 +32,7 @@ module.exports = (knex) => {
 
   router.get('/autocorrect/:name', (req, res)=>{
     // console.log('city.js: API_KEY = ', API_KEY.API_KEY); // API KEY IS GOOD
-    let url = `https://maps.googleapis.com/maps/api/place/autocomplete/json?input=${req.params.name}&types=(cities)&key=${API_KEY.API_KEY}`
+    let url = `https://maps.googleapis.com/maps/api/place/autocomplete/json?input=${req.params.name}&types=(cities)&key=${process.env.GOOGLE_MAPS_API_KEY || API_KEY.API_KEY}`
     fetch(url)
     .then(res => res.json())
     .then(json => {
