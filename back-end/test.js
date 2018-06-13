@@ -1,8 +1,7 @@
-function capitolizeFirstLetter(inputString){
-  let formattedString = inputString.charAt(0).toUpperCase() + inputString.substr(1);
-  return formattedString;
-}
 
 
+let x = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]; // length = 6
 
-console.log(capitolizeFirstLetter('toronto'));
+let numberOfSnaps = (x.length < 8)? x.length : 8;
+
+console.log(numberOfSnaps)

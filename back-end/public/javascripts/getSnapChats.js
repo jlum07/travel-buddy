@@ -12,9 +12,12 @@ module.exports = function getSnaps(lat, lng){
       }
 
       else if (playlist.elements !== undefined && playlist.elements.length > 0){
-        playlist.elements.forEach((element)=>{
-          snaps.push(`${element.snapInfo.streamingMediaInfo.prefixUrl}media.mp4`);
-        })
+        let numberOfSnaps = (playlist.elements.length < 8)? playlist.elements.length : 8;
+
+        for (let i = 0; i < numberOfSnaps; i++){
+          snaps.push(`${playlist.elements[i].snapInfo.streamingMediaInfo.prefixUrl}media.mp4`)
+        }
+
         resolve(snaps);
       }
       else{
@@ -35,29 +38,4 @@ module.exports = function getSnaps(lat, lng){
 // Koh Phi Phi: (7.735865, 98.777600)
 // LHL: (43.644627, -79.395115)
 // Barcelona: (41.377897, 2.173313)
-
-
-
-// OTHER TYPES OR REQUESTS:
-
-//   // get snaps around Union Square, San Francisco, CA
-// snapMap.getPlaylist(37.787975, -122.407515, 3000, 12).then(function(playlist) {
-//   console.log(playlist);
-// });
-
-
-// // get snaps for the Bay Bridge story
-// snapMap.getPoiPlaylist("5016cb954d2f288c").then(function(playlist) {
-//   console.log(playlist);
-// });
-
-// // get search results for "San Francisco"
-// snapMap.getSearchCards("San Francisco", 37.787975, -122.407515, 12).then(function(searchCards) {
-//   console.log(searchCards);
-// });
-
-// // get your IP address
-// snapMap.getGeoIp().then(function(geoIp) {
-//   console.log(geoIp);
-// });
 
