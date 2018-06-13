@@ -6,7 +6,7 @@ exports.seed = function(knex, Promise) {
       // Inserts seed entries
       return knex('trips').insert({
         // id: 1,
-        name: "Japan",
+        name: "World Tour",
         start_date: "2018-07-07",
         end_date: "2018-07-22",
         user_id: 1
