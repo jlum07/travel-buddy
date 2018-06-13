@@ -3,7 +3,7 @@ import axios from 'axios';
 import moment from 'moment';
 import 'moment-timezone';
 import AmCharts from "@amcharts/amcharts3-react";
-import { Table, Panel } from 'react-bootstrap';
+import { Table, Panel, Tabs , Tab } from 'react-bootstrap';
 import TripMap from './Trip/TripMap.jsx';
 import TripCityList from './Trip/TripCityList.jsx';
 import TripTimeline from './Trip/TripTimeline.jsx';
@@ -57,14 +57,23 @@ class Trip extends React.Component {
     if (this.props.currentUser.id === null){
       return <h1>Please log in to view trip</h1>
     }
-    else {      
+    else {
       return (
         <React.Fragment>
-          <TripMap itinerary={this.state.itinerary} />
-          <AddModal userId={this.props.currentUser.id} tripId={this.props.match.params.id} />
-          <TripCityList itinerary={this.state.itinerary} />
-          <TripEventTimeline itinerary={this.state.itinerary} />
-          <TripTimeline itinerary={this.state.itinerary} />
+            <AddModal userId={this.props.currentUser.id} tripId={this.props.match.params.id} />
+          <Tabs defaultActiveKey={1} >
+            <Tab eventKey={1} title="Map" tabClassName="trip-tab" >
+              <TripMap itinerary={this.state.itinerary} />
+            </Tab>
+            <Tab eventKey={2} title="Timeline" tabClassName="trip-tab" >
+              <TripEventTimeline itinerary={this.state.itinerary} />
+             </Tab>
+            <Tab eventKey={3} title="List" tabClassName="trip-tab" >
+              <TripCityList itinerary={this.state.itinerary} />
+            </Tab>
+            <Tab eventKey={4} title="Add" tabClassName="trip-tab" pullRight >
+            </Tab>
+          </Tabs>
         </React.Fragment>
       );
     }
@@ -73,3 +82,10 @@ class Trip extends React.Component {
 
 export default Trip;
 
+
+
+
+// <div id="trip-map-view">
+// </div>
+
+// <TripTimeline itinerary={this.state.itinerary} />

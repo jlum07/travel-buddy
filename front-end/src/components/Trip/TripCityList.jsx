@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { Table, Panel, Button, Glyphicon } from 'react-bootstrap';
 import EditModal from './EditModal.jsx';
 import DeleteButton from './DeleteButton.jsx';
@@ -15,7 +16,7 @@ class TripCityList extends React.Component {
     const itineraryList = this.props.itinerary.map(event => {
       return (
         <tr>
-          <td>{event.name}</td>
+          <td><Link to={"/cities/"+event.name}>{event.name}</Link></td>
           <td>{event.start_date}</td>
           <td>{event.end_date}</td>
           <td><EditModal event={event} /></td>

@@ -112,7 +112,7 @@ class TripMap extends React.Component {
 
     return (
       <React.Fragment>
-        <AmCharts.React className="trip-map"  options={config} />
+        <AmCharts.React className="trip-map" options={config} />
       </React.Fragment>
     );
   }

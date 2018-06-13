@@ -1,13 +1,45 @@
+.trip-tab {
+  width: 100px;
+  text-align: center;
+}
+
+/*.trip-map-view {
+  display: inline-grid;
+  grid-template-columns: 3fr 1fr;
+  grid-template-areas: "map timeline";
+  width: 100vw;
+  height: 95vh;
+}*/
+
 .trip-map {
-  width: 60%;
-  height: 90vh;
+  /*grid-area: map;*/
+  width: 100vw;
+  height: 95vh;
   /*margin: 0 auto;*/
 }
 
-.vertical-timeline-element-date {
-  left: 150%;
+
+.trip-timeline {
+  /*grid-area: timeline;*/
+  /*width: 60vw;*/
+  /*margin: 0 auto;*/
 }
 
-.event-timeline {
-  font-size: 22px !important;
+
+#timeline-div {
+  /*  width: 60vw;*/
+  display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+  grid-template-areas: ". timeline .";
 }
+
+
+.event-timeline {
+  grid-area: timeline;
+  font-size: 18px !important;
+  width: 60vw;
+}
+
+/*.vertical-timeline-element-date {
+  left: 150%;
+}*/

@@ -6,6 +6,7 @@ import FaBuilding from 'react-icons/lib/fa/building';
 // import 'react-vertical-timeline-component/style.min.css';
 // import './TripTimeline.css';
 
+// https://www.npmjs.com/package/react-event-timeline
 
 class TripEventTimeline extends React.Component {
 
@@ -15,17 +16,19 @@ class TripEventTimeline extends React.Component {
 
   render(){
 
-
     const itineraryList = this.props.itinerary.map(event => {
       return (
-        <TimelineEvent
-        title={event.name}
-        createdAt={event.start_date + " to " + event.end_date}
-        icon={<FaBuilding />}
-        // bubbleStyle={{width: "20px"}}
-        >
-          {event.description}
-        </TimelineEvent>
+        <div id="timeline-div">
+            <TimelineEvent
+            className="trip-timeline"
+            title={event.name}
+            createdAt={event.start_date + " to " + event.end_date}
+            icon={<FaBuilding />}
+            // bubbleStyle={{width: "20px"}}
+            >
+              {event.description}
+            </TimelineEvent>
+        </div>
       )
     })
 
