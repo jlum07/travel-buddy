@@ -89,14 +89,16 @@ module.exports = (knex) => {
     });
   })
 
-  // Get itinerary from trip
+  // Get itinerary from trip: VIEW TRIP
   router.get('/:id', (req, res)=>{
     console.log("get trip id", Number(req.params.id));
+    console.log('req.headers = ', req.headers);
     knex.select('*').from('itinerary_trip')
     .where('trip_id', '=', Number(req.params.id))
     .andWhere('user_id', '=', req.query.user_id)
     .orderBy('start_date', 'asc')
     .then( rows => {
+
       // console.log(rows);
       res.send(rows);
     })

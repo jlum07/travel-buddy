@@ -21,18 +21,50 @@ class Trip extends React.Component {
     super(props);
 
     // this.state = { cities: cities };
-    this.state = { itinerary: [] };
-
-    // console.log("this is match " ,this.props.match.params.id);
-    // console.log("this is location " ,this.props.location);
-
-    // console.log(timezone);
+    this.state = { 
+      itinerary: [],
+      currentUser: {
+        id: null,
+        username: null
+      }
+    };
+    this.getTrip = this.getTrip.bind(this);
   }
 
-  componentWillReceiveProps(newProps) {
-    axios.get(`http://localhost:3001/trips/${newProps.match.params.id}`, {
+
+  componentDidMount(){
+    let currentSessionToken = localStorage.getItem("session_token");
+
+    if (currentSessionToken) {
+      axios
+        .get("http://localhost:3001/users/basic_data", {
+          headers: {
+            session_token: currentSessionToken
+          }
+        })
+        .then(response => {
+          console.log('response.data = ', response.data);
+          this.setState({
+            currentUser: {
+              id: response.data.id,
+              username: response.data.username
+            }
+          }, this.getTrip());
+        })
+        .catch(error => {
+          console.log(error);
+        });
+    }
+  }
+
+
+  getTrip() {
+    console.log('inside getTrip: this.props.match.params.id = ', this.props.match.params.id);
+    console.log('inside getTrip: this.state.currentUser.id = ', this.state.currentUser.id);
+
+    axios.get(`http://localhost:3001/trips/${this.props.match.params.id}`, {
       params: {
-        user_id: newProps.currentUser.id
+        user_id: 1 //|| this.state.currentUser.id
       }
     })
     .then( response => {
@@ -54,16 +86,16 @@ class Trip extends React.Component {
 
 
   render(){
-    if (this.props.currentUser.id === null){
+    if (this.state.currentUser.id === null){
       return <h1>Please log in to view trip</h1>
     }
     else {
       return (
         <React.Fragment>
           <Tabs defaultActiveKey={1} >
-          <div id="add-event-div">
-            <AddModal userId={this.props.currentUser.id} tripId={this.props.match.params.id} />
-          </div>
+            <div id="add-event-div">
+              <AddModal userId={this.props.currentUser.id} tripId={this.props.match.params.id} />
+            </div>
             <Tab eventKey={1} title="Map" tabClassName="trip-tab" >
               <TripMap itinerary={this.state.itinerary} />
             </Tab>

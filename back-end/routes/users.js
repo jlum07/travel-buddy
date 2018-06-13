@@ -20,7 +20,7 @@ module.exports = (knex) => {
       price_rank: req.body.rank_price,
     })
     .then((result)=>{
-      console.log(result.command);
+      // console.log(result.command);
       if (result.command === 'INSERT'){
         res.status(200);
         res.send('Registration Succesful!');

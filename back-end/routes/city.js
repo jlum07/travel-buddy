@@ -113,7 +113,6 @@ module.exports = knex => {
           );
 
           let response = await collectCityData(req.params.city);
-          console.log("response = ", response);
           // Store City in DB
           knex("city_data_cache")
             .insert({
