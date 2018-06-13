@@ -22,7 +22,7 @@ class TripEventTimeline extends React.Component {
             <TimelineEvent
             className="trip-timeline"
             title={event.name}
-            createdAt={event.start_date + " to " + event.end_date}
+            subtitle={event.start_date + " to " + event.end_date}
             icon={<FaBuilding />}
             // bubbleStyle={{width: "20px"}}
             >
