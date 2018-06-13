@@ -24,8 +24,8 @@ class GalleryModal extends React.Component {
 
     this.state = {
       // show: false,
-      visible: false,
-      playSnaps: false
+      visible: false
+
     };
   }
 
@@ -46,10 +46,7 @@ class GalleryModal extends React.Component {
 
   handleTabSelect = key => {
     // alert(`selected ${key}`);
-    // play the first snap when the SnapChat tab is selected
-    if (key === 2) {
-      this.setState({ playSnaps: true });
-    }
+
     if (key === 4) {
       setTimeout(() => {
         this.setState({ visible: true });

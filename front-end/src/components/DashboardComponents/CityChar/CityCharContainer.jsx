@@ -17,14 +17,14 @@ class CityCharContainer extends React.Component {
 
     let data = [];
     let fields = [];
-    console.log(this.props);
+    // console.log(this.props);
 
     for (let char in this.props.CityChar) {
       data.push(this.props.CityChar[char] * 10);
       fields.push(char);
     }
 
-    console.log(data, fields);
+    // console.log(data, fields);
 
     // letiable
     let canvas = this.refs.canvas;
