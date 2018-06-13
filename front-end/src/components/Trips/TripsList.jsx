@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import moment from 'moment';
 import { Table, Panel, Button, Glyphicon } from 'react-bootstrap';
 import EditTripModal from './EditTripModal.jsx';
@@ -15,7 +16,7 @@ class TripsList extends React.Component {
     const tripList = this.props.trips.map(trip => {
       return (
         <tr>
-          <td>{trip.name}</td>
+          <td><Link to={"/trips/"+trip.id}>{trip.name}</Link></td>
           <td>{trip.start_date}</td>
           <td>{trip.end_date}</td>
           <td><EditTripModal trip={trip} /></td>
