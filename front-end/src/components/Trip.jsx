@@ -60,8 +60,10 @@ class Trip extends React.Component {
     else {
       return (
         <React.Fragment>
-            <AddModal userId={this.props.currentUser.id} tripId={this.props.match.params.id} />
           <Tabs defaultActiveKey={1} >
+          <div id="add-event-div">
+            <AddModal userId={this.props.currentUser.id} tripId={this.props.match.params.id} />
+          </div>
             <Tab eventKey={1} title="Map" tabClassName="trip-tab" >
               <TripMap itinerary={this.state.itinerary} />
             </Tab>
@@ -70,8 +72,6 @@ class Trip extends React.Component {
              </Tab>
             <Tab eventKey={3} title="List" tabClassName="trip-tab" >
               <TripCityList itinerary={this.state.itinerary} />
-            </Tab>
-            <Tab eventKey={4} title="Add" tabClassName="trip-tab" pullRight >
             </Tab>
           </Tabs>
         </React.Fragment>

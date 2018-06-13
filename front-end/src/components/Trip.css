@@ -13,8 +13,8 @@
 
 .trip-map {
   /*grid-area: map;*/
-  width: 100vw;
-  height: 95vh;
+  width: 90vw;
+  height: 90vh;
   /*margin: 0 auto;*/
 }
 
@@ -28,9 +28,9 @@
 
 #timeline-div {
   /*  width: 60vw;*/
-  display: grid;
+/*  display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-  grid-template-areas: ". timeline .";
+  grid-template-areas: ". timeline .";*/
 }
 
 
@@ -43,3 +43,14 @@
 /*.vertical-timeline-element-date {
   left: 150%;
 }*/
+
+.cities-panel {
+  width: 80%;
+  margin: 15px auto;
+}
+
+#add-event-div {
+  width: 80%;
+  margin: 10px auto;
+  text-align: right;
+}

@@ -53,8 +53,8 @@ class LoginForm extends React.Component {
           ) : null;
     return (
       <form>
-        <FormGroup>
           {loginFailedMessage}
+        <FormGroup>
           <ControlLabel>Email</ControlLabel>
           <FormControl
             id='email'

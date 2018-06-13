@@ -1,4 +1,14 @@
 .trips-panel {
   width: 80%;
+  margin: 25px auto;
+}
+
+#add-button-div {
+  width: 80%;
+  margin: 25px auto;
+  text-align: right;
+}
+
+#add-trip-button {
   margin: 0 auto;
 }

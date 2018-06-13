@@ -51,7 +51,7 @@ class Trips extends React.Component {
       })
       .catch( error => {
         console.log(error);
-      });      
+      });
     });
   }
 
@@ -70,9 +70,10 @@ class Trips extends React.Component {
     if (this.state.userId){
       return (
         <React.Fragment>
+          <div id="add-button-div" >
+            <CreateTripModal id="add-trip-button" addTrip={this.addTrip} />
+          </div>
           <TripsList trips={this.state.trips} />
-          <br />
-          <CreateTripModal addTrip={this.addTrip} />
         </React.Fragment>
       );
     }
