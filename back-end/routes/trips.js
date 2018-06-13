@@ -95,7 +95,7 @@ module.exports = (knex) => {
     console.log('req.headers = ', req.headers);
     knex.select('*').from('itinerary_trip')
     .where('trip_id', '=', Number(req.params.id))
-    .andWhere('user_id', '=', req.query.user_id)
+    // .andWhere('user_id', '=', req.query.user_id)
     .orderBy('start_date', 'asc')
     .then( rows => {
 

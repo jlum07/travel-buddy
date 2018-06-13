@@ -19,10 +19,6 @@ class Trips extends React.Component {
     // console.log(moment(Date()).format("YYYY-MM-DD"));
   }
 
-  // componentWillReceiveProps(){
-
-  // }
-
   componentDidMount(){
     // console.log(localStorage.getItem("session_token"))
     console.log('inside componentWillMount');
@@ -66,8 +62,10 @@ class Trips extends React.Component {
   }
 
   render(){
-
-    if (this.state.userId){
+    if (this.state.trips.length === 0){
+      return null;
+    }
+    else if (this.state.userId){
       return (
         <React.Fragment>
           <div id="add-button-div" >

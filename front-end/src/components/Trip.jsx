@@ -49,7 +49,7 @@ class Trip extends React.Component {
               id: response.data.id,
               username: response.data.username
             }
-          }, this.getTrip());
+          }, this.getTrip)
         })
         .catch(error => {
           console.log(error);
@@ -57,18 +57,13 @@ class Trip extends React.Component {
     }
   }
 
-
   getTrip() {
-    console.log('inside getTrip: this.props.match.params.id = ', this.props.match.params.id);
-    console.log('inside getTrip: this.state.currentUser.id = ', this.state.currentUser.id);
-
     axios.get(`http://localhost:3001/trips/${this.props.match.params.id}`, {
       params: {
-        user_id: 1 //|| this.state.currentUser.id
+        user_id: this.state.currentUser.id 
       }
     })
     .then( response => {
-
       let tempData = response.data.map(row => {
         return {
           ...row,
@@ -86,7 +81,10 @@ class Trip extends React.Component {
 
 
   render(){
-    if (this.state.currentUser.id === null){
+    if (this.state.itinerary.length === 0){
+      return null;
+    }
+    else if (this.state.currentUser.id === null){
       return <h1>Please log in to view trip</h1>
     }
     else {
