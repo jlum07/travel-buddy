@@ -41,7 +41,9 @@ module.exports = async function(searchInput) {
         .text()
     ) {
 
+
       let picture = lazyImgs.find(element => {
+        // console.log('element = ', element);
         return (
           element.id ===
           $(this)
@@ -50,7 +52,18 @@ module.exports = async function(searchInput) {
         );
       });
 
-      let pictureData = picture.data;
+      console.log('picture = ', picture);
+
+      // When searching michigan, the line below gives the following error:
+      //  cannot read property 'data' of undefined, 
+      //  but it logs to console: picture.data =  https://media-cdn.tripadvisor.com/media/photo-f/13/28/db/17/mrs-boyle-eileen-long.jpg
+      //  THIS MAKES NO SENSE!!!!
+      console.log('picture.data = ', picture.data); 
+
+
+      let pictureData = picture.data; 
+
+      console.log('pictureData = ', pictureData);
 
       top_poi.push({
         title: $(this)

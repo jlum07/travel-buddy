@@ -9,7 +9,7 @@ const cityChar = require("./sampleData/cityChar.js");
 const util = require('util');
 
 //INPUT PARAMETERS
-const useSampleData = false;
+// const useSampleData = false;
 const cacheExpiryTimeMins = 60;
 
 async function collectCityData(cityName){
@@ -58,77 +58,69 @@ module.exports = (knex) => {
   })
 
   router.get("/:city", async (req, res) => {
-    if (useSampleData){
-      console.log('Sending Sample Toronto Data...');
-      let response = torontoSample;
-      response.cityChar = cityChar[req.params.city];
-      res.send(response);
-    }
-    else {
-      // Search for city in database
-      knex.select('*').from('city_data_cache')
-      .where('city_name', '=', req.params.city)
-      .then((async DBsearchResponse =>{
-        if (DBsearchResponse.length > 0){
-          // City is IN DB:
-          let dataTimestamp = DBsearchResponse[0].time_stamp;
-          let ageOfData_mins = (Date.now() - dataTimestamp)/1000/60
-          console.log(`Found ${req.params.city} in DB!...Checking age of data...`);
-          if (ageOfData_mins < cacheExpiryTimeMins){
-            console.log(`Data for ${req.params.city} is ${Number(ageOfData_mins).toFixed(2)} minutes old --> STILL REVELENT (<${cacheExpiryTimeMins} mins old)`);
-            console.log('Sending data from DB...');
-            res.send(DBsearchResponse[0].data);
-          }
-          else{
-            console.log(`Data for ${req.params.city} is ${Number(ageOfData_mins).toFixed(2)} minutes old --> EXPIRED (>${cacheExpiryTimeMins} mins old)...`);
-            console.log(`Collecting NEW city data for ${req.params.city}...`);
-            let response = await collectCityData(req.params.city);
-            knex('city_data_cache')
-            .where('city_name', '=', req.params.city)
-            .update({
-              city_name: req.params.city,
-              time_stamp: String(Date.now()),
-              data: response
-            })
-            .then((knexResponse)=>{
-              console.log(`Successfully UPDATED: ${req.params.city} in DB`);
-              res.send(response);
-            })
-            .catch((error)=>{
-              console.log(`Failed to update ${req.params.city} in DB: ${error}`);
-              console.log('Sending new collected data anyway...');
-              res.send(response);
-            });
-          }
+    // Search for city in database
+    knex.select('*').from('city_data_cache')
+    .where('city_name', '=', req.params.city)
+    .then((async DBsearchResponse =>{
+      if (DBsearchResponse.length > 0){
+        // City is IN DB:
+        let dataTimestamp = DBsearchResponse[0].time_stamp;
+        let ageOfData_mins = (Date.now() - dataTimestamp)/1000/60
+        console.log(`Found ${req.params.city} in DB!...Checking age of data...`);
+        if (ageOfData_mins < cacheExpiryTimeMins){
+          console.log(`Data for ${req.params.city} is ${Number(ageOfData_mins).toFixed(2)} minutes old --> STILL REVELENT (<${cacheExpiryTimeMins} mins old)`);
+          console.log('Sending data from DB...');
+          res.send(DBsearchResponse[0].data);
         }
-        else {
-          // City is NOT IN DB:
-          console.log(`${req.params.city} not in DB...collecting city data ...`);
-
+        else{
+          console.log(`Data for ${req.params.city} is ${Number(ageOfData_mins).toFixed(2)} minutes old --> EXPIRED (>${cacheExpiryTimeMins} mins old)...`);
+          console.log(`Collecting NEW city data for ${req.params.city}...`);
           let response = await collectCityData(req.params.city);
-          // console.log('response = ', response);
-          // Store City in DB
           knex('city_data_cache')
-          .insert({
+          .where('city_name', '=', req.params.city)
+          .update({
             city_name: req.params.city,
             time_stamp: String(Date.now()),
             data: response
           })
           .then((knexResponse)=>{
-            console.log(`Successfully saved: ${req.params.city} to DB`);
+            console.log(`Successfully UPDATED: ${req.params.city} in DB`);
             res.send(response);
           })
           .catch((error)=>{
-            console.log(`Failed to save ${req.params.city} to DB: ${error}`);
-            console.log('Sending collected data anyway...');
+            console.log(`Failed to update ${req.params.city} in DB: ${error}`);
+            console.log('Sending new collected data anyway...');
             res.send(response);
           });
         }
-      }))
-      .catch((error)=>{
-        console.log('Error while trying to search for city in city_data_cache table in DB:', error);
-      });
-    }
+      }
+      else {
+        // City is NOT IN DB:
+        console.log(`${req.params.city} not in DB...collecting city data ...`);
+
+        let response = await collectCityData(req.params.city);
+        console.log('response = ', response);
+        // Store City in DB
+        knex('city_data_cache')
+        .insert({
+          city_name: req.params.city,
+          time_stamp: String(Date.now()),
+          data: response
+        })
+        .then((knexResponse)=>{
+          console.log(`Successfully saved: ${req.params.city} to DB`);
+          res.send(response);
+        })
+        .catch((error)=>{
+          console.log(`Failed to save ${req.params.city} to DB: ${error}`);
+          console.log('Sending collected data anyway...');
+          res.send(response);
+        });
+      }
+    }))
+    .catch((error)=>{
+      console.log('Error while trying to search for city in city_data_cache table in DB:', error);
+    });
   });
 
   return router;
