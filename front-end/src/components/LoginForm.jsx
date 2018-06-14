@@ -21,12 +21,12 @@ class LoginForm extends React.Component {
   handleSubmit(event){
     event.preventDefault();
 
-    axios.post('//localhost:3001/users/login', {
+    axios.post('https://travel-buddy2.herokuapp.com/users/login', {
       email: this.state.email,
       password: this.state.password })
     .then((response)=>{
 
-      console.log(response.data);
+      // console.log(response.data);
 
       if (response.status === 202){
         console.log('SUCCESSFUL LOGIN: ', response.data);
