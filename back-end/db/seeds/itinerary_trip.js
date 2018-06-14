@@ -3,20 +3,6 @@ exports.seed = function(knex, Promise) {
   // Deletes ALL existing entries
   return knex('itinerary_trip').truncate()
     .then( () => {
-      // Inserts seed entries
-      return knex('itinerary_trip').insert({
-        // id: 1,
-        type: "city",
-        name: "Paris",
-        description: "French food!!",
-        lat: 48.8567,
-        lng: 2.3510,
-        start_date: "2018-07-07",
-        end_date: "2018-07-10",
-        trip_id: 1,
-        user_id: 1
-      })
-    .then( () => {
       return knex('itinerary_trip').insert({
         // id: 1,
         type: "city",
@@ -68,6 +54,20 @@ exports.seed = function(knex, Promise) {
         lng: -74.075833,
         start_date: "2018-08-07",
         end_date: "2018-08-15",
+        trip_id: 1,
+        user_id: 1
+      })
+    .then( () => {
+      // Inserts seed entries
+      return knex('itinerary_trip').insert({
+        // id: 1,
+        type: "city",
+        name: "Paris",
+        description: "French food!!",
+        lat: 48.8567,
+        lng: 2.3510,
+        start_date: "2018-08-16",
+        end_date: "2018-08-20",
         trip_id: 1,
         user_id: 1
       })
