@@ -14,7 +14,7 @@ class DeleteTripButton extends React.Component {
 
     event.preventDefault();
 
-    axios.delete('http://localhost:3001/trips', {data: {
+    axios.delete('https://travel-buddy2.herokuapp.com/trips', {data: {
           // User ID
           trip_id: trip_id,
         }})

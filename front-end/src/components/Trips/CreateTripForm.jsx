@@ -28,7 +28,7 @@ class CreateTripForm extends React.Component {
   handleSubmit(event){
     event.preventDefault();
 
-    axios.put('http://localhost:3001/trips', {
+    axios.put('https://travel-buddy2.herokuapp.com/trips', {
       // User ID
       user_id: 1,
       name: this.state.tripName,

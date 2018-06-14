@@ -27,7 +27,7 @@ export default class Home extends React.Component {
     let session_token = localStorage.getItem('session_token');
     console.log('session_token = ', session_token);
 
-    axios.get('http://localhost:3001/users/profile_data', {
+    axios.get('https://travel-buddy2.herokuapp.com/users/profile_data', {
       headers: {
         session_token: session_token
       }

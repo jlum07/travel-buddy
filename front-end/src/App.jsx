@@ -57,7 +57,7 @@ class App extends Component {
 
     if (currentSessionToken) {
       axios
-        .delete("http://localhost:3001/users/logout", {
+        .delete("https://travel-buddy2.herokuapp.com/users/logout", {
           headers: {
             session_token: currentSessionToken
           }
@@ -95,7 +95,7 @@ class App extends Component {
       // console.log('there was a session token');
 
       axios
-        .get("http://localhost:3001/users/basic_data", {
+        .get("https://travel-buddy2.herokuapp.com/users/basic_data", {
           headers: {
             session_token: currentSessionToken
           }

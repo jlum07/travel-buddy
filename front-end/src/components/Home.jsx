@@ -32,7 +32,7 @@ class Home extends React.Component {
   }
 
   searchCity(){
-    axios.get(`http://localhost:3001/city/autocorrect/${this.state.searchCity}`)
+    axios.get(`https://travel-buddy2.herokuapp.com/city/autocorrect/${this.state.searchCity}`)
     .then((response)=>{
       // console.log('response = ', response);
       if (response.status === 204){

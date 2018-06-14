@@ -40,7 +40,7 @@ class RegistrationPage extends React.Component {
   handleFormSubmit(event){
     axios({
       method: 'post',
-      url: '//localhost:3001/users/register',
+      url: 'https://travel-buddy2.herokuapp.com/users/register',
       data: {
         username: this.state.username,
         firstName: this.state.firstName,

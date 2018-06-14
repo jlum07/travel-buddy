@@ -30,7 +30,7 @@ class Trips extends React.Component {
     // console.log('this.props.currentUser.id = ', this.props.currentUser.id);
 
     this.setState({ userId: this.props.currentUser.id }, ()=>{
-      axios.get('http://localhost:3001/trips', {
+      axios.get('https://travel-buddy2.herokuapp.com/trips', {
         params: {
           user_id: this.props.currentUser.id
         }

@@ -51,7 +51,7 @@ class AddForm extends React.Component {
       endDate: this.state.endDate
     };
 
-    axios.post(`http://localhost:3001/trips/${this.state.tripId}/addplace`, body)
+    axios.post(`https://travel-buddy2.herokuapp.com/trips/${this.state.tripId}/addplace`, body)
     .then(response=>{
       console.log(response);
       if (response.status === 200){

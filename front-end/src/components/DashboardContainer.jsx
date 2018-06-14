@@ -122,7 +122,7 @@ class DashboardContainer extends React.Component {
     } = this.props;
     // console.log("mounted")
 
-    fetch(`http://localhost:3001/city/${params.city}`)
+    fetch(`https://travel-buddy2.herokuapp.com/city/${params.city}`)
       .then(response => {
         return response.json();
       })

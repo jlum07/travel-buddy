@@ -14,7 +14,7 @@ class DeleteButton extends React.Component {
 
     event.preventDefault();
 
-    axios.delete(`http://localhost:3001/trips/${this.props.trip_id}`, {data: {
+    axios.delete(`https://travel-buddy2.herokuapp.com/trips/${this.props.trip_id}`, {data: {
       // User ID
       itinerary_id: itinerary_id
     }})

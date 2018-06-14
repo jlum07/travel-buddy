@@ -37,7 +37,7 @@ class Trip extends React.Component {
 
     if (currentSessionToken) {
       axios
-        .get("http://localhost:3001/users/basic_data", {
+        .get("https://travel-buddy2.herokuapp.com/users/basic_data", {
           headers: {
             session_token: currentSessionToken
           }
@@ -58,7 +58,7 @@ class Trip extends React.Component {
   }
 
   getTrip() {
-    axios.get(`http://localhost:3001/trips/${this.props.match.params.id}`, {
+    axios.get(`https://travel-buddy2.herokuapp.com/trips/${this.props.match.params.id}`, {
       params: {
         user_id: this.state.currentUser.id 
       }
