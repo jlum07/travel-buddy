@@ -102,7 +102,7 @@ class Home extends React.Component {
         strength={500}>
           <div className="parallax-city" >
             <div className="parallax-inner">
-              <div id="hero-city"><Link className="parallax-link" to="/cities/Toronto">TORONTO</Link></div>
+              <div id="hero-city"><Link className="parallax-link" to="/cities/Toronto#section1">TORONTO</Link></div>
             </div>
           </div>
         </Parallax>
