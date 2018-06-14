@@ -72,5 +72,19 @@ exports.seed = function(knex, Promise) {
         user_id: 1
       })
     })
+    .then( () => {
+      // Inserts seed entries
+      return knex('itinerary_trip').insert({
+        // id: 1,
+        type: "city",
+        name: "Paris",
+        description: "French food!!",
+        lat: 48.8567,
+        lng: 2.3510,
+        start_date: "2018-08-17",
+        end_date: "2018-08-20",
+        trip_id: 1,
+        user_id: 1
+      })
   });
 };
