@@ -796,5 +796,12 @@ module.exports = {
     nightlife: 4.11,
     safety: 6.07,
     cost: 1.83
+  },
+  "St. Petersburg":{
+    food: 5,
+    culture: 6,
+    nightlife: 8,
+    safety: 2,
+    cost: 5
   }
 };

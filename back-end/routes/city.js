@@ -10,7 +10,8 @@ const util = require("util");
 
 //INPUT PARAMETERS
 // const useSampleData = false;
-const cacheExpiryTimeMins = 60 * 10; // 10 hours
+
+const cacheExpiryTimeMins = 600; // 5 hours
 
 async function collectCityData(cityName) {
   let cityDetails = await cityAutoComplete(cityName);

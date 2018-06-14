@@ -5,5 +5,9 @@
 .jumbotron {
   margin: 5%;
   padding: 5%;
+  background-size: cover;
+  background-repeat: no-repeat;
+  color: white;
+  text-shadow: 0 -2px 5px #777;
 }
 

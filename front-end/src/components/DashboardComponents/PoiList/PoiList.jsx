@@ -42,7 +42,7 @@ class PoiList extends React.Component {
       if (element.title) {
         return (
           <Panel eventKey={`${index + 1}`}>
-            <Panel.Heading>
+            <Panel.Heading className="panel-header">
               <Panel.Title toggle>{element.title}</Panel.Title>
             </Panel.Heading>
             <Panel.Collapse>
@@ -52,13 +52,15 @@ class PoiList extends React.Component {
                   className="poiImage"
                   rounded
                 />
+                <div class="panel-body-text">
                 <p> {element.ranking} </p>
                 <p> {element.address} </p>
-                <div
-                  data-name={index}
-                  onClick={e => this.props.toggleModal(e.currentTarget.dataset)}
-                >
-                  <Button name={"hi"}>Modal</Button>
+                  <div
+                    data-name={index}
+                    onClick={e => this.props.toggleModal(e.currentTarget.dataset)}
+                  >
+                  <Button name={"hi"}>Details</Button>
+                </div>
                 </div>
               </Panel.Body>
             </Panel.Collapse>
