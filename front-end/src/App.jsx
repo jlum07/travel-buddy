@@ -11,6 +11,11 @@ import Trips from "./components/Trips.jsx";
 import Trip from "./components/Trip.jsx";
 import MorphGraph from "./components/DashboardComponents/CityChar/CityCharContainer.jsx";
 import axios from "axios";
+
+import Facebook from 'react-icons/lib/fa/facebook-official';
+import Twitter from 'react-icons/lib/fa/twitter-square';
+import Instagram from 'react-icons/lib/fa/instagram';
+
 import "./footer.css"
 //import "./theme.css"
 require("dotenv").config();
@@ -147,7 +152,11 @@ class App extends Component {
             <Route path="/dashboard/:city" component={DashboardContainer} />
           </div>
         </BrowserRouter>
-        <footer class="footer">Wow our website is so awesome!</footer>
+        <footer class="footer">
+        <div className="footer-text">Travel Buddy ©2018 </div>
+        <div className="footer-text">Travel the world from your desk!</div>
+        <div><Facebook size={30} /> <Twitter size={30} /> <Instagram size={30} /> </div>
+        </footer>
       </div>
     );
   }

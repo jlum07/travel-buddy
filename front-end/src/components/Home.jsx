@@ -2,7 +2,7 @@ import React from 'react';
 import { Jumbotron, Button, FormGroup, FormControl, Col, Row, Grid, Alert } from 'react-bootstrap';
 // import { Input } from 'mdbreact';
 // import 'mdbreact/dist/css/mdb.css';
-import { Redirect } from 'react-router-dom';
+import { Redirect, Link } from 'react-router-dom';
 import { Parallax, Background } from 'react-parallax';
 import axios from 'axios';
 import './Home.css';
@@ -96,38 +96,36 @@ class Home extends React.Component {
             </div>
           </div>
         </Parallax>
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
+        <div className="parallax-break">| | |</div>
+        <Parallax
+        bgImage="https://images.unsplash.com/photo-1441071976244-9d5b90825a80?ixlib=rb-0.3.5&s=bb1c56428e017132290678bdbb09f103&auto=format&fit=crop&w=1951&q=80"
+        strength={500}>
+          <div className="parallax-city" >
+            <div className="parallax-inner">
+              <div id="hero-city"><Link className="parallax-link" to="/cities/Toronto">TORONTO</Link></div>
+            </div>
+          </div>
+        </Parallax>
+        <div className="parallax-break">| | |</div>
+        <Parallax
+        bgImage="https://images.unsplash.com/photo-1452796651103-7c07fca7a2c1?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=a157592b76ab91d277cae6d38e34ddd1&auto=format&fit=crop&w=967&q=80"
+        strength={500}>
+          <div className="parallax-city" >
+            <div className="parallax-inner">
+              <div id="hero-city"><Link className="parallax-link" to="/cities/New%20York">NEW YORK</Link></div>
+            </div>
+          </div>
+        </Parallax>
+        <div className="parallax-break">| | |</div>
+        <Parallax
+        bgImage="https://images.unsplash.com/photo-1494587416117-f102a2ac0a8d?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=636b63868b175036ffcd49877df723e9&auto=format&fit=crop&w=1950&q=80"
+        strength={500}>
+          <div className="parallax-city" >
+            <div className="parallax-inner">
+              <div id="hero-city"><Link className="parallax-link" to="/cities/Tokyo">TOKYO</Link></div>
+            </div>
+          </div>
+        </Parallax>
       </React.Fragment>
     )
   }

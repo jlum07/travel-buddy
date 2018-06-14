@@ -21,7 +21,7 @@
 
 
 .parallax-outter {
-  height: 800px;
+  height: 900px;
 }
 
 .parallax-inner {
@@ -49,4 +49,30 @@
 
 #search-anywhere-button {
   grid-area: anywhere;
+}
+
+.parallax-city {
+  height: 600px;
+}
+
+#hero-city {
+  font-size: 80px;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 20px;
+  /*color: #777;*/
+  color: white;
+  text-shadow: 0 -2px 5px #777;
+}
+
+.parallax-link, .parallax-link:hover {
+  text-decoration: none;
+  color: white;
+}
+
+.parallax-break {
+  color: black;
+  text-align: center;
+  font-size: 40px;
+  margin: 15px;
 }
