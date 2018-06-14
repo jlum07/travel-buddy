@@ -20,28 +20,28 @@ class GalleryModal extends React.Component {
   constructor(props, context) {
     super(props, context);
 
-    // this.handleShow = this.handleShow.bind(this);
-    // this.handleClose = this.handleClose.bind(this);
-
     this.state = {
       visible: false,
       playSnaps: false,
-      instas: []
+      instas: [],
+      hasInstas: true
     };
   }
-
-  // handleClose() {
-  //   this.setState({ show: false });
-  // }
-
-  // handleShow() {
-  //   this.setState({ show: true });
-  // }
 
   onHide = (props, marker, e) => {
     this.props.toggleModal(props, marker, e);
     this.setState({ visible: false });
   };
+
+  hasInstas = (instas) => {
+    let status = false;
+
+    if(instas){
+      status = true;
+    }
+    console.log("instaStatus:", status)
+    this.setState({hasInstas: false})
+  }
 
   handleTabSelect = key => {
     // alert(`selected ${key}`);
@@ -111,9 +111,9 @@ class GalleryModal extends React.Component {
             </Tab>
 
             <Tab eventKey={2} title="Instagram">
-              {this.props.currentPin && (
-                <InstaCarousel currentPin={this.props.currentPin} />
-              )}
+
+                <InstaCarousel currentPin={this.props.currentPin} hasInstas={this.hasInstas}/>
+
             </Tab>
             <Tab eventKey={3} title="SnapChat" disabled={snapStatus}>
               {this.props.currentPin.snapchat !== "No Snaps!" && (

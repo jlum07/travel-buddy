@@ -16,7 +16,8 @@ class InstaCarousel extends React.Component {
       this.props.currentPin.location.lat,
       this.props.currentPin.location.lng
     ).then(instas => {
-      console.log(instas);
+      console.log("bruhhfjdhsfjkdhsk", instas);
+      this.props.hasInstas(instas)
       this.setState({ instas: instas });
     });
   }
@@ -25,12 +26,12 @@ class InstaCarousel extends React.Component {
       if (index !== 0) {
         return (
           <Carousel.Item key={index}>
-            <img
+            {(node.demensions && <img
               width={node.demensions.width}
               height={node.demensions.width}
               alt=""
               src={node.url}
-            />
+            /> )}
             <Carousel.Caption>
               <p>{node.text}</p>
             </Carousel.Caption>

@@ -72,7 +72,15 @@ module.exports = knex => {
           console.log(
             `Found ${req.params.city} in DB!...Checking age of data...`
           );
-          if (ageOfData_mins < cacheExpiryTimeMins) {
+
+
+          let cacheExpiry = cacheExpiryTimeMins;
+          if(req.params.city === 'Toronto'){
+            cacheExpiry = 0.5;
+          }
+
+
+          if (ageOfData_mins < cacheExpiry) {
             console.log(
               `Data for ${req.params.city} is ${Number(ageOfData_mins).toFixed(
                 2

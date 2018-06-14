@@ -1,0 +1,3442 @@
+<!DOCTYPE html>
+<!-- saved from url=(0045)http://localhost:3002/cities/Toronto#section1 -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><style type="text/css">.gm-style .gm-style-mtc label,.gm-style .gm-style-mtc div{font-weight:400}
+</style><link type="text/css" rel="stylesheet" href="./Travel Buddy_files/css"><style type="text/css">.gm-style .gm-style-cc span,.gm-style .gm-style-cc a,.gm-style .gm-style-mtc div{font-size:10px}
+</style><style type="text/css">@media print {  .gm-style .gmnoprint, .gmnoprint {    display:none  }}@media screen {  .gm-style .gmnoscreen, .gmnoscreen {    display:none  }}</style><style type="text/css">.gm-style-pbc{transition:opacity ease-in-out;background-color:rgba(0,0,0,0.45);text-align:center}.gm-style-pbt{font-size:22px;color:white;font-family:Roboto,Arial,sans-serif;position:relative;margin:0;top:50%;-webkit-transform:translateY(-50%);-ms-transform:translateY(-50%);transform:translateY(-50%)}
+</style>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="theme-color" content="#000000">
+    <!--
+      manifest.json provides metadata used when your web app is added to the
+      homescreen on Android. See https://developers.google.com/web/fundamentals/engage-and-retain/web-app-manifest/
+    -->
+    <link rel="manifest" href="http://localhost:3002/manifest.json">
+    <link rel="shortcut icon" href="http://localhost:3002/favicon.ico">
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="./Travel Buddy_files/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="./Travel Buddy_files/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    <link rel="stylesheet" src="./theme.css">
+
+    <!-- AmCharts related files for Map -->
+    <link href="./Travel Buddy_files/ammap.css" rel="stylesheet">
+    <script src="./Travel Buddy_files/ammap.js"></script>
+    <script src="./Travel Buddy_files/worldLow.js"></script>
+    <script src="./Travel Buddy_files/light.js"></script>
+    <link href="./Travel Buddy_files/css(1)" rel="stylesheet">
+
+    <!--
+    <link rel="stylesheet" href="https://www.amcharts.com/lib/3/plugins/export/export.css" type="text/css" media="all" />
+    <script src="https://www.amcharts.com/lib/3/plugins/export/export.min.js"></script>
+    <script src="amcharts3-react.js"></script>
+    -->
+
+
+    <!--
+      Notice the use of  in the tags above.
+      It will be replaced with the URL of the `public` folder during the build.
+      Only files inside the `public` folder can be referenced from the HTML.
+
+      Unlike "/favicon.ico" or "favicon.ico", "/favicon.ico" will
+      work correctly both with client-side routing and a non-root public URL.
+      Learn how to configure a non-root public URL by running `npm run build`.
+    -->
+    <title>Travel Buddy</title>
+  <style type="text/css">.navbar {
+  margin-bottom: 0;
+  border-radius: 0;
+  height: 65px;
+}
+
+.nav a {
+  padding: 10px !important;
+}
+
+#nav-brand-name {
+  font-size: 28px;
+  margin-top: 6px;
+}
+
+.nav-button {
+  font-size: 20px;
+}</style><style type="text/css">#hero-text {
+  font-size: 40px;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 20px;
+  /*color: #777;*/
+  color: white;
+  text-shadow: 0 -2px 5px #777;
+}
+
+#city-search-box {
+  margin: 0;
+  /*background-color: transparent;*/
+  background-color: rgba(255, 255, 255, 0.8);
+}
+
+#city-search-box::-webkit-input-placeholder {
+  color: #777;
+  font-weight: bold;
+}
+
+#city-search-box:-ms-input-placeholder {
+  color: #777;
+  font-weight: bold;
+}
+
+#city-search-box::-ms-input-placeholder {
+  color: #777;
+  font-weight: bold;
+}
+
+#city-search-box::placeholder {
+  color: #777;
+  font-weight: bold;
+}
+
+
+.parallax-outter {
+  height: 800px;
+}
+
+.parallax-inner {
+  width: 700px;
+  padding: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%,-50%);
+      -ms-transform: translate(-50%,-50%);
+          transform: translate(-50%,-50%);
+}
+
+#search-button-container {
+  width: 100%;
+  /*grid-template-columns: 1fr 2fr 2fr 1fr;*/
+  grid-template-columns: 1fr 1fr;
+  grid-column-gap: 20px;
+  display: inline-grid;
+  /*grid-template-areas: ". city anywhere .";*/
+  grid-template-areas: "city anywhere";
+}
+
+#search-city-button {
+  grid-area: city;
+}
+
+#search-anywhere-button {
+  grid-area: anywhere;
+}</style><style type="text/css">#MapContainer > div > div:nth-child(1) {
+  width: 50%;
+  height: 50%;
+}
+
+#MapContainer > div {
+  position: relative;
+  height: 100%;
+  width: 100%;
+}
+
+
+</style><style type="text/css">.vid-container {
+  text-align: center;
+  background-color: black;
+}
+
+
+#sad-snapchat{
+  width: 90%;
+  margin: 5%;
+}
+
+.title{
+  text-align: center;
+}
+
+
+
+</style><style type="text/css">.trip_advisor_link {
+  width: 50%;
+}
+
+.jumbotron {
+  margin: 5%;
+  padding: 5%;
+  background-size: cover;
+  background-repeat: no-repeat;
+  color: white;
+  text-shadow: 0 -2px 5px #777;
+}
+
+</style><style type="text/css">#map {
+  width: 100%;
+}
+
+.row {
+  display: -ms-flexbox;
+  display: flex;
+}
+
+#poi_list {
+  height: 100%;
+  font-size: xx-large;
+  width:100%;
+}</style><style type="text/css">#profile_pic{
+  width: 100%;
+}</style><style type="text/css">.jumbotron {
+  margin: 4em;
+  padding: 5em;
+  border-radius: 0.5em;
+}
+
+h1{
+  text-align: center;
+}
+
+#register_button{
+  margin-left: 35%;
+  margin-right: 35%;
+  width: 30%;
+}
+
+input {
+  margin:0.5em;
+}
+
+#username {
+  margin-top: 0;
+}
+
+.range-slider {
+  padding: 0 !important;
+}</style><style type="text/css">.chart {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  width: 30vw;
+  height: 30vw;
+  margin: auto;
+  font-size: 60px;
+  font-family: "Lato", sans-serif;
+  border-radius: 110%;
+  -webkit-box-shadow: inset 0 0 0px 60px #cacaca;
+          box-shadow: inset 0 0 0px 60px #cacaca;
+  overflow: hidden;
+}
+.chart:before {
+  content: attr(data-percentage) "%";
+  display: block;
+  width: 30vw;
+  height: 30vw;
+  line-height: 30vw;
+  text-align: center;
+  border-radius: 50%;
+}
+
+/*
+.percentage {
+  position: relative;
+  top: 16px;
+  height: 13px;
+  overflow: hidden;
+
+  &:before,
+  &:after {
+    position: absolute;
+    white-space: pre;
+  }
+
+  &::before {
+    content: "0 \a 1 \a 2 \a 3 \a 4 \a 5 \a 6 \a 7 \a 8 \a 9";
+    left: 16px;
+    animation: tens $time 1 steps(10, end);
+  }
+
+  &::after {
+    content: "0 \a 1 \a 2 \a 3 \a 4 \a 5 \a 6 \a 7 \a 8 \a 9";
+    right: 16px;
+    animation: ones $time/10 6 steps(10, end);
+  }
+}
+*/
+@-webkit-keyframes tens {
+  0% {
+    -webkit-transform: translateY(0px);
+            transform: translateY(0px);
+  }
+  100% {
+    -webkit-transform: translateY(-160px);
+            transform: translateY(-160px);
+  }
+}
+@keyframes tens {
+  0% {
+    -webkit-transform: translateY(0px);
+            transform: translateY(0px);
+  }
+  100% {
+    -webkit-transform: translateY(-160px);
+            transform: translateY(-160px);
+  }
+}
+@-webkit-keyframes ones {
+  0% {
+    -webkit-transform: translateY(0px);
+            transform: translateY(0px);
+  }
+  100% {
+    -webkit-transform: translateY(-160px);
+            transform: translateY(-160px);
+  }
+}
+@keyframes ones {
+  0% {
+    -webkit-transform: translateY(0px);
+            transform: translateY(0px);
+  }
+  100% {
+    -webkit-transform: translateY(-160px);
+            transform: translateY(-160px);
+  }
+}
+.completed {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.completed:before, .completed:after {
+  content: '';
+  position: absolute;
+  width: 30vw;
+  height: 30vw;
+  -webkit-box-shadow: inset 0 0 10px 60px #006341;
+          box-shadow: inset 0 0 10px 60px #006341;
+  border-radius: 50%;
+}
+.completed:before {
+  clip: rect(0 30vw 30vw 15vw);
+}
+.completed:after {
+  clip: rect(0 15vw 30vw 0);
+}
+
+[data-percentage="0"] .completed {
+  clip: rect(0 30vw 30vw 15vw);
+}
+[data-percentage="0"] .completed.active:before {
+  -webkit-transform: rotate(-180deg);
+          -ms-transform: rotate(-180deg);
+      transform: rotate(-180deg);
+  -webkit-animation: first-0 2s 1 ease-out;
+          animation: first-0 2s 1 ease-out;
+}
+
+@-webkit-keyframes mask-0 {
+  0%, 50% {
+    clip: rect(0 30vw 30vw 15vw);
+  }
+  50.01%, 100% {
+    clip: rect(0 30vw 30vw 0px);
+  }
+}
+
+@keyframes mask-0 {
+  0%, 50% {
+    clip: rect(0 30vw 30vw 15vw);
+  }
+  50.01%, 100% {
+    clip: rect(0 30vw 30vw 0px);
+  }
+}
+@-webkit-keyframes first-0 {
+  0% {
+    -webkit-transform: rotate(-180deg);
+            transform: rotate(-180deg);
+  }
+  50%, 100% {
+    -webkit-transform: rotate(-180deg);
+            transform: rotate(-180deg);
+  }
+}
+@keyframes first-0 {
+  0% {
+    -webkit-transform: rotate(-180deg);
+            transform: rotate(-180deg);
+  }
+  50%, 100% {
+    -webkit-transform: rotate(-180deg);
+            transform: rotate(-180deg);
+  }
+}
+[data-percentage="10"] .completed {
+  clip: rect(0 30vw 30vw 15vw);
+}
+[data-percentage="10"] .completed.active:before {
+  -webkit-transform: rotate(-144deg);
+          -ms-transform: rotate(-144deg);
+      transform: rotate(-144deg);
+  -webkit-animation: first-10 2s 1 ease-out;
+          animation: first-10 2s 1 ease-out;
+}
+
+@-webkit-keyframes mask-10 {
+  0%, 50% {
+    clip: rect(0 30vw 30vw 15vw);
+  }
+  50.01%, 100% {
+    clip: rect(0 30vw 30vw 0px);
+  }
+}
+
+@keyframes mask-10 {
+  0%, 50% {
+    clip: rect(0 30vw 30vw 15vw);
+  }
+  50.01%, 100% {
+    clip: rect(0 30vw 30vw 0px);
+  }
+}
+@-webkit-keyframes first-10 {
+  0% {
+    -webkit-transform: rotate(-180deg);
+            transform: rotate(-180deg);
+  }
+  50%, 100% {
+    -webkit-transform: rotate(-144deg);
+            transform: rotate(-144deg);
+  }
+}
+@keyframes first-10 {
+  0% {
+    -webkit-transform: rotate(-180deg);
+            transform: rotate(-180deg);
+  }
+  50%, 100% {
+    -webkit-transform: rotate(-144deg);
+            transform: rotate(-144deg);
+  }
+}
+[data-percentage="20"] .completed {
+  clip: rect(0 30vw 30vw 15vw);
+}
+[data-percentage="20"] .completed.active:before {
+  -webkit-transform: rotate(-108deg);
+          -ms-transform: rotate(-108deg);
+      transform: rotate(-108deg);
+  -webkit-animation: first-20 2s 1 ease-out;
+          animation: first-20 2s 1 ease-out;
+}
+
+@-webkit-keyframes mask-20 {
+  0%, 50% {
+    clip: rect(0 30vw 30vw 15vw);
+  }
+  50.01%, 100% {
+    clip: rect(0 30vw 30vw 0px);
+  }
+}
+
+@keyframes mask-20 {
+  0%, 50% {
+    clip: rect(0 30vw 30vw 15vw);
+  }
+  50.01%, 100% {
+    clip: rect(0 30vw 30vw 0px);
+  }
+}
+@-webkit-keyframes first-20 {
+  0% {
+    -webkit-transform: rotate(-180deg);
+            transform: rotate(-180deg);
+  }
+  50%, 100% {
+    -webkit-transform: rotate(-108deg);
+            transform: rotate(-108deg);
+  }
+}
+@keyframes first-20 {
+  0% {
+    -webkit-transform: rotate(-180deg);
+            transform: rotate(-180deg);
+  }
+  50%, 100% {
+    -webkit-transform: rotate(-108deg);
+            transform: rotate(-108deg);
+  }
+}
+[data-percentage="30"] .completed {
+  clip: rect(0 30vw 30vw 15vw);
+}
+[data-percentage="30"] .completed.active:before {
+  -webkit-transform: rotate(-72deg);
+          -ms-transform: rotate(-72deg);
+      transform: rotate(-72deg);
+  -webkit-animation: first-30 2s 1 ease-out;
+          animation: first-30 2s 1 ease-out;
+}
+
+@-webkit-keyframes mask-30 {
+  0%, 50% {
+    clip: rect(0 30vw 30vw 15vw);
+  }
+  50.01%, 100% {
+    clip: rect(0 30vw 30vw 0px);
+  }
+}
+
+@keyframes mask-30 {
+  0%, 50% {
+    clip: rect(0 30vw 30vw 15vw);
+  }
+  50.01%, 100% {
+    clip: rect(0 30vw 30vw 0px);
+  }
+}
+@-webkit-keyframes first-30 {
+  0% {
+    -webkit-transform: rotate(-180deg);
+            transform: rotate(-180deg);
+  }
+  50%, 100% {
+    -webkit-transform: rotate(-72deg);
+            transform: rotate(-72deg);
+  }
+}
+@keyframes first-30 {
+  0% {
+    -webkit-transform: rotate(-180deg);
+            transform: rotate(-180deg);
+  }
+  50%, 100% {
+    -webkit-transform: rotate(-72deg);
+            transform: rotate(-72deg);
+  }
+}
+[data-percentage="40"] .completed {
+  clip: rect(0 30vw 30vw 15vw);
+}
+[data-percentage="40"] .completed.active:before {
+  -webkit-transform: rotate(-36deg);
+          -ms-transform: rotate(-36deg);
+      transform: rotate(-36deg);
+  -webkit-animation: first-40 2s 1 ease-out;
+          animation: first-40 2s 1 ease-out;
+}
+
+@-webkit-keyframes mask-40 {
+  0%, 50% {
+    clip: rect(0 30vw 30vw 15vw);
+  }
+  50.01%, 100% {
+    clip: rect(0 30vw 30vw 0px);
+  }
+}
+
+@keyframes mask-40 {
+  0%, 50% {
+    clip: rect(0 30vw 30vw 15vw);
+  }
+  50.01%, 100% {
+    clip: rect(0 30vw 30vw 0px);
+  }
+}
+@-webkit-keyframes first-40 {
+  0% {
+    -webkit-transform: rotate(-180deg);
+            transform: rotate(-180deg);
+  }
+  50%, 100% {
+    -webkit-transform: rotate(-36deg);
+            transform: rotate(-36deg);
+  }
+}
+@keyframes first-40 {
+  0% {
+    -webkit-transform: rotate(-180deg);
+            transform: rotate(-180deg);
+  }
+  50%, 100% {
+    -webkit-transform: rotate(-36deg);
+            transform: rotate(-36deg);
+  }
+}
+[data-percentage="50"] .completed {
+  clip: rect(0 30vw 30vw 15vw);
+}
+[data-percentage="50"] .completed.active:before {
+  -webkit-transform: rotate(0deg);
+          -ms-transform: rotate(0deg);
+      transform: rotate(0deg);
+  -webkit-animation: first-50 2s 1 ease-out;
+          animation: first-50 2s 1 ease-out;
+}
+
+@-webkit-keyframes mask-50 {
+  0%, 50% {
+    clip: rect(0 30vw 30vw 15vw);
+  }
+  50.01%, 100% {
+    clip: rect(0 30vw 30vw 0px);
+  }
+}
+
+@keyframes mask-50 {
+  0%, 50% {
+    clip: rect(0 30vw 30vw 15vw);
+  }
+  50.01%, 100% {
+    clip: rect(0 30vw 30vw 0px);
+  }
+}
+@-webkit-keyframes first-50 {
+  0% {
+    -webkit-transform: rotate(-180deg);
+            transform: rotate(-180deg);
+  }
+  50%, 100% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+}
+@keyframes first-50 {
+  0% {
+    -webkit-transform: rotate(-180deg);
+            transform: rotate(-180deg);
+  }
+  50%, 100% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+}
+[data-percentage="60"] .completed {
+  clip: rect(0 30vw 30vw 0px);
+}
+[data-percentage="60"] .completed.active {
+  -webkit-animation: mask-60 2s linear;
+          animation: mask-60 2s linear;
+}
+[data-percentage="60"] .completed.active:before {
+  -webkit-transform: rotate(0deg);
+          -ms-transform: rotate(0deg);
+      transform: rotate(0deg);
+  -webkit-animation: first-60 2s 1 linear;
+          animation: first-60 2s 1 linear;
+}
+[data-percentage="60"] .completed.active:after {
+  -webkit-transform: rotate(-144deg);
+          -ms-transform: rotate(-144deg);
+      transform: rotate(-144deg);
+  -webkit-animation: second-60 2s 1 ease-out;
+          animation: second-60 2s 1 ease-out;
+}
+
+@-webkit-keyframes mask-60 {
+  0%, 50% {
+    clip: rect(0 30vw 30vw 15vw);
+  }
+  50.01%, 100% {
+    clip: rect(0 30vw 30vw 0px);
+  }
+}
+
+@keyframes mask-60 {
+  0%, 50% {
+    clip: rect(0 30vw 30vw 15vw);
+  }
+  50.01%, 100% {
+    clip: rect(0 30vw 30vw 0px);
+  }
+}
+@-webkit-keyframes first-60 {
+  0% {
+    -webkit-transform: rotate(-180deg);
+            transform: rotate(-180deg);
+  }
+  50%, 100% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+}
+@keyframes first-60 {
+  0% {
+    -webkit-transform: rotate(-180deg);
+            transform: rotate(-180deg);
+  }
+  50%, 100% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+}
+@-webkit-keyframes second-60 {
+  0%, 50% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  50.01% {
+    -webkit-transform: rotate(-180deg);
+            transform: rotate(-180deg);
+  }
+  100% {
+    -webkit-transform: rotate(-144deg);
+            transform: rotate(-144deg);
+  }
+}
+@keyframes second-60 {
+  0%, 50% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  50.01% {
+    -webkit-transform: rotate(-180deg);
+            transform: rotate(-180deg);
+  }
+  100% {
+    -webkit-transform: rotate(-144deg);
+            transform: rotate(-144deg);
+  }
+}
+[data-percentage="70"] .completed {
+  clip: rect(0 30vw 30vw 0px);
+}
+[data-percentage="70"] .completed.active {
+  -webkit-animation: mask-70 2s linear;
+          animation: mask-70 2s linear;
+}
+[data-percentage="70"] .completed.active:before {
+  -webkit-transform: rotate(0deg);
+          -ms-transform: rotate(0deg);
+      transform: rotate(0deg);
+  -webkit-animation: first-70 2s 1 linear;
+          animation: first-70 2s 1 linear;
+}
+[data-percentage="70"] .completed.active:after {
+  -webkit-transform: rotate(-108deg);
+          -ms-transform: rotate(-108deg);
+      transform: rotate(-108deg);
+  -webkit-animation: second-70 2s 1 ease-out;
+          animation: second-70 2s 1 ease-out;
+}
+
+@-webkit-keyframes mask-70 {
+  0%, 50% {
+    clip: rect(0 30vw 30vw 15vw);
+  }
+  50.01%, 100% {
+    clip: rect(0 30vw 30vw 0px);
+  }
+}
+
+@keyframes mask-70 {
+  0%, 50% {
+    clip: rect(0 30vw 30vw 15vw);
+  }
+  50.01%, 100% {
+    clip: rect(0 30vw 30vw 0px);
+  }
+}
+@-webkit-keyframes first-70 {
+  0% {
+    -webkit-transform: rotate(-180deg);
+            transform: rotate(-180deg);
+  }
+  50%, 100% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+}
+@keyframes first-70 {
+  0% {
+    -webkit-transform: rotate(-180deg);
+            transform: rotate(-180deg);
+  }
+  50%, 100% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+}
+@-webkit-keyframes second-70 {
+  0%, 50% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  50.01% {
+    -webkit-transform: rotate(-180deg);
+            transform: rotate(-180deg);
+  }
+  100% {
+    -webkit-transform: rotate(-108deg);
+            transform: rotate(-108deg);
+  }
+}
+@keyframes second-70 {
+  0%, 50% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  50.01% {
+    -webkit-transform: rotate(-180deg);
+            transform: rotate(-180deg);
+  }
+  100% {
+    -webkit-transform: rotate(-108deg);
+            transform: rotate(-108deg);
+  }
+}
+[data-percentage="80"] .completed {
+  clip: rect(0 30vw 30vw 0px);
+}
+[data-percentage="80"] .completed.active {
+  -webkit-animation: mask-80 2s linear;
+          animation: mask-80 2s linear;
+}
+[data-percentage="80"] .completed.active:before {
+  -webkit-transform: rotate(0deg);
+          -ms-transform: rotate(0deg);
+      transform: rotate(0deg);
+  -webkit-animation: first-80 2s 1 linear;
+          animation: first-80 2s 1 linear;
+}
+[data-percentage="80"] .completed.active:after {
+  -webkit-transform: rotate(-72deg);
+          -ms-transform: rotate(-72deg);
+      transform: rotate(-72deg);
+  -webkit-animation: second-80 2s 1 ease-out;
+          animation: second-80 2s 1 ease-out;
+}
+
+@-webkit-keyframes mask-80 {
+  0%, 50% {
+    clip: rect(0 30vw 30vw 15vw);
+  }
+  50.01%, 100% {
+    clip: rect(0 30vw 30vw 0px);
+  }
+}
+
+@keyframes mask-80 {
+  0%, 50% {
+    clip: rect(0 30vw 30vw 15vw);
+  }
+  50.01%, 100% {
+    clip: rect(0 30vw 30vw 0px);
+  }
+}
+@-webkit-keyframes first-80 {
+  0% {
+    -webkit-transform: rotate(-180deg);
+            transform: rotate(-180deg);
+  }
+  50%, 100% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+}
+@keyframes first-80 {
+  0% {
+    -webkit-transform: rotate(-180deg);
+            transform: rotate(-180deg);
+  }
+  50%, 100% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+}
+@-webkit-keyframes second-80 {
+  0%, 50% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  50.01% {
+    -webkit-transform: rotate(-180deg);
+            transform: rotate(-180deg);
+  }
+  100% {
+    -webkit-transform: rotate(-72deg);
+            transform: rotate(-72deg);
+  }
+}
+@keyframes second-80 {
+  0%, 50% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  50.01% {
+    -webkit-transform: rotate(-180deg);
+            transform: rotate(-180deg);
+  }
+  100% {
+    -webkit-transform: rotate(-72deg);
+            transform: rotate(-72deg);
+  }
+}
+[data-percentage="90"] .completed {
+  clip: rect(0 30vw 30vw 0px);
+}
+[data-percentage="90"] .completed.active {
+  -webkit-animation: mask-90 2s linear;
+          animation: mask-90 2s linear;
+}
+[data-percentage="90"] .completed.active:before {
+  -webkit-transform: rotate(0deg);
+          -ms-transform: rotate(0deg);
+      transform: rotate(0deg);
+  -webkit-animation: first-90 2s 1 linear;
+          animation: first-90 2s 1 linear;
+}
+[data-percentage="90"] .completed.active:after {
+  -webkit-transform: rotate(-36deg);
+          -ms-transform: rotate(-36deg);
+      transform: rotate(-36deg);
+  -webkit-animation: second-90 2s 1 ease-out;
+          animation: second-90 2s 1 ease-out;
+}
+
+@-webkit-keyframes mask-90 {
+  0%, 50% {
+    clip: rect(0 30vw 30vw 15vw);
+  }
+  50.01%, 100% {
+    clip: rect(0 30vw 30vw 0px);
+  }
+}
+
+@keyframes mask-90 {
+  0%, 50% {
+    clip: rect(0 30vw 30vw 15vw);
+  }
+  50.01%, 100% {
+    clip: rect(0 30vw 30vw 0px);
+  }
+}
+@-webkit-keyframes first-90 {
+  0% {
+    -webkit-transform: rotate(-180deg);
+            transform: rotate(-180deg);
+  }
+  50%, 100% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+}
+@keyframes first-90 {
+  0% {
+    -webkit-transform: rotate(-180deg);
+            transform: rotate(-180deg);
+  }
+  50%, 100% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+}
+@-webkit-keyframes second-90 {
+  0%, 50% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  50.01% {
+    -webkit-transform: rotate(-180deg);
+            transform: rotate(-180deg);
+  }
+  100% {
+    -webkit-transform: rotate(-36deg);
+            transform: rotate(-36deg);
+  }
+}
+@keyframes second-90 {
+  0%, 50% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  50.01% {
+    -webkit-transform: rotate(-180deg);
+            transform: rotate(-180deg);
+  }
+  100% {
+    -webkit-transform: rotate(-36deg);
+            transform: rotate(-36deg);
+  }
+}
+[data-percentage="100"] .completed {
+  clip: rect(0 30vw 30vw 0px);
+}
+[data-percentage="100"] .completed.active {
+  -webkit-animation: mask-100 2s linear;
+          animation: mask-100 2s linear;
+}
+[data-percentage="100"] .completed.active:before {
+  -webkit-transform: rotate(0deg);
+          -ms-transform: rotate(0deg);
+      transform: rotate(0deg);
+  -webkit-animation: first-100 2s 1 linear;
+          animation: first-100 2s 1 linear;
+}
+[data-percentage="100"] .completed.active:after {
+  -webkit-transform: rotate(0deg);
+          -ms-transform: rotate(0deg);
+      transform: rotate(0deg);
+  -webkit-animation: second-100 2s 1 ease-out;
+          animation: second-100 2s 1 ease-out;
+}
+
+@-webkit-keyframes mask-100 {
+  0%, 50% {
+    clip: rect(0 30vw 30vw 15vw);
+  }
+  50.01%, 100% {
+    clip: rect(0 30vw 30vw 0px);
+  }
+}
+
+@keyframes mask-100 {
+  0%, 50% {
+    clip: rect(0 30vw 30vw 15vw);
+  }
+  50.01%, 100% {
+    clip: rect(0 30vw 30vw 0px);
+  }
+}
+@-webkit-keyframes first-100 {
+  0% {
+    -webkit-transform: rotate(-180deg);
+            transform: rotate(-180deg);
+  }
+  50%, 100% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+}
+@keyframes first-100 {
+  0% {
+    -webkit-transform: rotate(-180deg);
+            transform: rotate(-180deg);
+  }
+  50%, 100% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+}
+@-webkit-keyframes second-100 {
+  0%, 50% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  50.01% {
+    -webkit-transform: rotate(-180deg);
+            transform: rotate(-180deg);
+  }
+  100% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+}
+@keyframes second-100 {
+  0%, 50% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  50.01% {
+    -webkit-transform: rotate(-180deg);
+            transform: rotate(-180deg);
+  }
+  100% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+}
+.chart {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  width: 30vw;
+  height: 30vw;
+  margin: auto;
+  font-size: 60px;
+  font-family: "Lato", sans-serif;
+  border-radius: 100%;
+  -webkit-box-shadow: inset 0 0 0px 60px #cacaca;
+          box-shadow: inset 0 0 0px 60px #cacaca;
+  overflow: hidden;
+}
+.chart:before {
+  content: attr(data-percentage) "%";
+  display: block;
+  width: 30vw;
+  height: 30vw;
+  line-height: 30vw;
+  text-align: center;
+  border-radius: 50%;
+}
+
+/*
+.percentage {
+  position: relative;
+  top: 16px;
+  height: 13px;
+  overflow: hidden;
+
+  &:before,
+  &:after {
+    position: absolute;
+    white-space: pre;
+  }
+
+  &::before {
+    content: "0 \a 1 \a 2 \a 3 \a 4 \a 5 \a 6 \a 7 \a 8 \a 9";
+    left: 16px;
+    animation: tens $time 1 steps(10, end);
+  }
+
+  &::after {
+    content: "0 \a 1 \a 2 \a 3 \a 4 \a 5 \a 6 \a 7 \a 8 \a 9";
+    right: 16px;
+    animation: ones $time/10 6 steps(10, end);
+  }
+}
+*/
+@keyframes tens {
+  0% {
+    -webkit-transform: translateY(0px);
+            transform: translateY(0px);
+  }
+  100% {
+    -webkit-transform: translateY(-160px);
+            transform: translateY(-160px);
+  }
+}
+@keyframes ones {
+  0% {
+    -webkit-transform: translateY(0px);
+            transform: translateY(0px);
+  }
+  100% {
+    -webkit-transform: translateY(-160px);
+            transform: translateY(-160px);
+  }
+}
+.completed {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.completed:before, .completed:after {
+  content: '';
+  position: absolute;
+  width: 30vw;
+  height: 30vw;
+  -webkit-box-shadow: inset 0 0 0px 60px #006341;
+          box-shadow: inset 0 0 0px 60px #006341;
+  border-radius: 50%;
+}
+.completed:before {
+  clip: rect(0 30vw 30vw 15vw);
+}
+.completed:after {
+  clip: rect(0 15vw 30vw 0);
+}
+
+[data-percentage="0"] .completed {
+  clip: rect(0 30vw 30vw 15vw);
+}
+[data-percentage="0"] .completed.active:before {
+  -webkit-transform: rotate(-180deg);
+          -ms-transform: rotate(-180deg);
+      transform: rotate(-180deg);
+  -webkit-animation: first-0 2s 1 ease-out;
+          animation: first-0 2s 1 ease-out;
+}
+
+@keyframes mask-0 {
+  0%, 50% {
+    clip: rect(0 30vw 30vw 15vw);
+  }
+  50.01%, 100% {
+    clip: rect(0 30vw 30vw 0px);
+  }
+}
+@keyframes first-0 {
+  0% {
+    -webkit-transform: rotate(-180deg);
+            transform: rotate(-180deg);
+  }
+  50%, 100% {
+    -webkit-transform: rotate(-180deg);
+            transform: rotate(-180deg);
+  }
+}
+[data-percentage="5"] .completed {
+  clip: rect(0 30vw 30vw 15vw);
+}
+[data-percentage="5"] .completed.active:before {
+  -webkit-transform: rotate(-162deg);
+          -ms-transform: rotate(-162deg);
+      transform: rotate(-162deg);
+  -webkit-animation: first-5 2s 1 ease-out;
+          animation: first-5 2s 1 ease-out;
+}
+
+@-webkit-keyframes mask-5 {
+  0%, 50% {
+    clip: rect(0 30vw 30vw 15vw);
+  }
+  50.01%, 100% {
+    clip: rect(0 30vw 30vw 0px);
+  }
+}
+
+@keyframes mask-5 {
+  0%, 50% {
+    clip: rect(0 30vw 30vw 15vw);
+  }
+  50.01%, 100% {
+    clip: rect(0 30vw 30vw 0px);
+  }
+}
+@-webkit-keyframes first-5 {
+  0% {
+    -webkit-transform: rotate(-180deg);
+            transform: rotate(-180deg);
+  }
+  50%, 100% {
+    -webkit-transform: rotate(-162deg);
+            transform: rotate(-162deg);
+  }
+}
+@keyframes first-5 {
+  0% {
+    -webkit-transform: rotate(-180deg);
+            transform: rotate(-180deg);
+  }
+  50%, 100% {
+    -webkit-transform: rotate(-162deg);
+            transform: rotate(-162deg);
+  }
+}
+[data-percentage="10"] .completed {
+  clip: rect(0 30vw 30vw 15vw);
+}
+[data-percentage="10"] .completed.active:before {
+  -webkit-transform: rotate(-144deg);
+          -ms-transform: rotate(-144deg);
+      transform: rotate(-144deg);
+  -webkit-animation: first-10 2s 1 ease-out;
+          animation: first-10 2s 1 ease-out;
+}
+
+@keyframes mask-10 {
+  0%, 50% {
+    clip: rect(0 30vw 30vw 15vw);
+  }
+  50.01%, 100% {
+    clip: rect(0 30vw 30vw 0px);
+  }
+}
+@keyframes first-10 {
+  0% {
+    -webkit-transform: rotate(-180deg);
+            transform: rotate(-180deg);
+  }
+  50%, 100% {
+    -webkit-transform: rotate(-144deg);
+            transform: rotate(-144deg);
+  }
+}
+[data-percentage="15"] .completed {
+  clip: rect(0 30vw 30vw 15vw);
+}
+[data-percentage="15"] .completed.active:before {
+  -webkit-transform: rotate(-126deg);
+          -ms-transform: rotate(-126deg);
+      transform: rotate(-126deg);
+  -webkit-animation: first-15 2s 1 ease-out;
+          animation: first-15 2s 1 ease-out;
+}
+
+@-webkit-keyframes mask-15 {
+  0%, 50% {
+    clip: rect(0 30vw 30vw 15vw);
+  }
+  50.01%, 100% {
+    clip: rect(0 30vw 30vw 0px);
+  }
+}
+
+@keyframes mask-15 {
+  0%, 50% {
+    clip: rect(0 30vw 30vw 15vw);
+  }
+  50.01%, 100% {
+    clip: rect(0 30vw 30vw 0px);
+  }
+}
+@-webkit-keyframes first-15 {
+  0% {
+    -webkit-transform: rotate(-180deg);
+            transform: rotate(-180deg);
+  }
+  50%, 100% {
+    -webkit-transform: rotate(-126deg);
+            transform: rotate(-126deg);
+  }
+}
+@keyframes first-15 {
+  0% {
+    -webkit-transform: rotate(-180deg);
+            transform: rotate(-180deg);
+  }
+  50%, 100% {
+    -webkit-transform: rotate(-126deg);
+            transform: rotate(-126deg);
+  }
+}
+[data-percentage="20"] .completed {
+  clip: rect(0 30vw 30vw 15vw);
+}
+[data-percentage="20"] .completed.active:before {
+  -webkit-transform: rotate(-108deg);
+          -ms-transform: rotate(-108deg);
+      transform: rotate(-108deg);
+  -webkit-animation: first-20 2s 1 ease-out;
+          animation: first-20 2s 1 ease-out;
+}
+
+@keyframes mask-20 {
+  0%, 50% {
+    clip: rect(0 30vw 30vw 15vw);
+  }
+  50.01%, 100% {
+    clip: rect(0 30vw 30vw 0px);
+  }
+}
+@keyframes first-20 {
+  0% {
+    -webkit-transform: rotate(-180deg);
+            transform: rotate(-180deg);
+  }
+  50%, 100% {
+    -webkit-transform: rotate(-108deg);
+            transform: rotate(-108deg);
+  }
+}
+[data-percentage="25"] .completed {
+  clip: rect(0 30vw 30vw 15vw);
+}
+[data-percentage="25"] .completed.active:before {
+  -webkit-transform: rotate(-90deg);
+          -ms-transform: rotate(-90deg);
+      transform: rotate(-90deg);
+  -webkit-animation: first-25 2s 1 ease-out;
+          animation: first-25 2s 1 ease-out;
+}
+
+@-webkit-keyframes mask-25 {
+  0%, 50% {
+    clip: rect(0 30vw 30vw 15vw);
+  }
+  50.01%, 100% {
+    clip: rect(0 30vw 30vw 0px);
+  }
+}
+
+@keyframes mask-25 {
+  0%, 50% {
+    clip: rect(0 30vw 30vw 15vw);
+  }
+  50.01%, 100% {
+    clip: rect(0 30vw 30vw 0px);
+  }
+}
+@-webkit-keyframes first-25 {
+  0% {
+    -webkit-transform: rotate(-180deg);
+            transform: rotate(-180deg);
+  }
+  50%, 100% {
+    -webkit-transform: rotate(-90deg);
+            transform: rotate(-90deg);
+  }
+}
+@keyframes first-25 {
+  0% {
+    -webkit-transform: rotate(-180deg);
+            transform: rotate(-180deg);
+  }
+  50%, 100% {
+    -webkit-transform: rotate(-90deg);
+            transform: rotate(-90deg);
+  }
+}
+[data-percentage="30"] .completed {
+  clip: rect(0 30vw 30vw 15vw);
+}
+[data-percentage="30"] .completed.active:before {
+  -webkit-transform: rotate(-72deg);
+          -ms-transform: rotate(-72deg);
+      transform: rotate(-72deg);
+  -webkit-animation: first-30 2s 1 ease-out;
+          animation: first-30 2s 1 ease-out;
+}
+
+@keyframes mask-30 {
+  0%, 50% {
+    clip: rect(0 30vw 30vw 15vw);
+  }
+  50.01%, 100% {
+    clip: rect(0 30vw 30vw 0px);
+  }
+}
+@keyframes first-30 {
+  0% {
+    -webkit-transform: rotate(-180deg);
+            transform: rotate(-180deg);
+  }
+  50%, 100% {
+    -webkit-transform: rotate(-72deg);
+            transform: rotate(-72deg);
+  }
+}
+[data-percentage="35"] .completed {
+  clip: rect(0 30vw 30vw 15vw);
+}
+[data-percentage="35"] .completed.active:before {
+  -webkit-transform: rotate(-54deg);
+          -ms-transform: rotate(-54deg);
+      transform: rotate(-54deg);
+  -webkit-animation: first-35 2s 1 ease-out;
+          animation: first-35 2s 1 ease-out;
+}
+
+@-webkit-keyframes mask-35 {
+  0%, 50% {
+    clip: rect(0 30vw 30vw 15vw);
+  }
+  50.01%, 100% {
+    clip: rect(0 30vw 30vw 0px);
+  }
+}
+
+@keyframes mask-35 {
+  0%, 50% {
+    clip: rect(0 30vw 30vw 15vw);
+  }
+  50.01%, 100% {
+    clip: rect(0 30vw 30vw 0px);
+  }
+}
+@-webkit-keyframes first-35 {
+  0% {
+    -webkit-transform: rotate(-180deg);
+            transform: rotate(-180deg);
+  }
+  50%, 100% {
+    -webkit-transform: rotate(-54deg);
+            transform: rotate(-54deg);
+  }
+}
+@keyframes first-35 {
+  0% {
+    -webkit-transform: rotate(-180deg);
+            transform: rotate(-180deg);
+  }
+  50%, 100% {
+    -webkit-transform: rotate(-54deg);
+            transform: rotate(-54deg);
+  }
+}
+[data-percentage="40"] .completed {
+  clip: rect(0 30vw 30vw 15vw);
+}
+[data-percentage="40"] .completed.active:before {
+  -webkit-transform: rotate(-36deg);
+          -ms-transform: rotate(-36deg);
+      transform: rotate(-36deg);
+  -webkit-animation: first-40 2s 1 ease-out;
+          animation: first-40 2s 1 ease-out;
+}
+
+@keyframes mask-40 {
+  0%, 50% {
+    clip: rect(0 30vw 30vw 15vw);
+  }
+  50.01%, 100% {
+    clip: rect(0 30vw 30vw 0px);
+  }
+}
+@keyframes first-40 {
+  0% {
+    -webkit-transform: rotate(-180deg);
+            transform: rotate(-180deg);
+  }
+  50%, 100% {
+    -webkit-transform: rotate(-36deg);
+            transform: rotate(-36deg);
+  }
+}
+[data-percentage="45"] .completed {
+  clip: rect(0 30vw 30vw 15vw);
+}
+[data-percentage="45"] .completed.active:before {
+  -webkit-transform: rotate(-18deg);
+          -ms-transform: rotate(-18deg);
+      transform: rotate(-18deg);
+  -webkit-animation: first-45 2s 1 ease-out;
+          animation: first-45 2s 1 ease-out;
+}
+
+@-webkit-keyframes mask-45 {
+  0%, 50% {
+    clip: rect(0 30vw 30vw 15vw);
+  }
+  50.01%, 100% {
+    clip: rect(0 30vw 30vw 0px);
+  }
+}
+
+@keyframes mask-45 {
+  0%, 50% {
+    clip: rect(0 30vw 30vw 15vw);
+  }
+  50.01%, 100% {
+    clip: rect(0 30vw 30vw 0px);
+  }
+}
+@-webkit-keyframes first-45 {
+  0% {
+    -webkit-transform: rotate(-180deg);
+            transform: rotate(-180deg);
+  }
+  50%, 100% {
+    -webkit-transform: rotate(-18deg);
+            transform: rotate(-18deg);
+  }
+}
+@keyframes first-45 {
+  0% {
+    -webkit-transform: rotate(-180deg);
+            transform: rotate(-180deg);
+  }
+  50%, 100% {
+    -webkit-transform: rotate(-18deg);
+            transform: rotate(-18deg);
+  }
+}
+[data-percentage="50"] .completed {
+  clip: rect(0 30vw 30vw 15vw);
+}
+[data-percentage="50"] .completed.active:before {
+  -webkit-transform: rotate(0deg);
+          -ms-transform: rotate(0deg);
+      transform: rotate(0deg);
+  -webkit-animation: first-50 2s 1 ease-out;
+          animation: first-50 2s 1 ease-out;
+}
+
+@keyframes mask-50 {
+  0%, 50% {
+    clip: rect(0 30vw 30vw 15vw);
+  }
+  50.01%, 100% {
+    clip: rect(0 30vw 30vw 0px);
+  }
+}
+@keyframes first-50 {
+  0% {
+    -webkit-transform: rotate(-180deg);
+            transform: rotate(-180deg);
+  }
+  50%, 100% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+}
+[data-percentage="55"] .completed {
+  clip: rect(0 30vw 30vw 0px);
+}
+[data-percentage="55"] .completed.active {
+  -webkit-animation: mask-55 2s linear;
+          animation: mask-55 2s linear;
+}
+[data-percentage="55"] .completed.active:before {
+  -webkit-transform: rotate(0deg);
+          -ms-transform: rotate(0deg);
+      transform: rotate(0deg);
+  -webkit-animation: first-55 2s 1 linear;
+          animation: first-55 2s 1 linear;
+}
+[data-percentage="55"] .completed.active:after {
+  -webkit-transform: rotate(-162deg);
+          -ms-transform: rotate(-162deg);
+      transform: rotate(-162deg);
+  -webkit-animation: second-55 2s 1 ease-out;
+          animation: second-55 2s 1 ease-out;
+}
+
+@-webkit-keyframes mask-55 {
+  0%, 50% {
+    clip: rect(0 30vw 30vw 15vw);
+  }
+  50.01%, 100% {
+    clip: rect(0 30vw 30vw 0px);
+  }
+}
+
+@keyframes mask-55 {
+  0%, 50% {
+    clip: rect(0 30vw 30vw 15vw);
+  }
+  50.01%, 100% {
+    clip: rect(0 30vw 30vw 0px);
+  }
+}
+@-webkit-keyframes first-55 {
+  0% {
+    -webkit-transform: rotate(-180deg);
+            transform: rotate(-180deg);
+  }
+  50%, 100% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+}
+@keyframes first-55 {
+  0% {
+    -webkit-transform: rotate(-180deg);
+            transform: rotate(-180deg);
+  }
+  50%, 100% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+}
+@-webkit-keyframes second-55 {
+  0%, 50% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  50.01% {
+    -webkit-transform: rotate(-180deg);
+            transform: rotate(-180deg);
+  }
+  100% {
+    -webkit-transform: rotate(-162deg);
+            transform: rotate(-162deg);
+  }
+}
+@keyframes second-55 {
+  0%, 50% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  50.01% {
+    -webkit-transform: rotate(-180deg);
+            transform: rotate(-180deg);
+  }
+  100% {
+    -webkit-transform: rotate(-162deg);
+            transform: rotate(-162deg);
+  }
+}
+[data-percentage="60"] .completed {
+  clip: rect(0 30vw 30vw 0px);
+}
+[data-percentage="60"] .completed.active {
+  -webkit-animation: mask-60 2s linear;
+          animation: mask-60 2s linear;
+}
+[data-percentage="60"] .completed.active:before {
+  -webkit-transform: rotate(0deg);
+          -ms-transform: rotate(0deg);
+      transform: rotate(0deg);
+  -webkit-animation: first-60 2s 1 linear;
+          animation: first-60 2s 1 linear;
+}
+[data-percentage="60"] .completed.active:after {
+  -webkit-transform: rotate(-144deg);
+          -ms-transform: rotate(-144deg);
+      transform: rotate(-144deg);
+  -webkit-animation: second-60 2s 1 ease-out;
+          animation: second-60 2s 1 ease-out;
+}
+
+@keyframes mask-60 {
+  0%, 50% {
+    clip: rect(0 30vw 30vw 15vw);
+  }
+  50.01%, 100% {
+    clip: rect(0 30vw 30vw 0px);
+  }
+}
+@keyframes first-60 {
+  0% {
+    -webkit-transform: rotate(-180deg);
+            transform: rotate(-180deg);
+  }
+  50%, 100% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+}
+@keyframes second-60 {
+  0%, 50% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  50.01% {
+    -webkit-transform: rotate(-180deg);
+            transform: rotate(-180deg);
+  }
+  100% {
+    -webkit-transform: rotate(-144deg);
+            transform: rotate(-144deg);
+  }
+}
+[data-percentage="65"] .completed {
+  clip: rect(0 30vw 30vw 0px);
+}
+[data-percentage="65"] .completed.active {
+  -webkit-animation: mask-65 2s linear;
+          animation: mask-65 2s linear;
+}
+[data-percentage="65"] .completed.active:before {
+  -webkit-transform: rotate(0deg);
+          -ms-transform: rotate(0deg);
+      transform: rotate(0deg);
+  -webkit-animation: first-65 2s 1 linear;
+          animation: first-65 2s 1 linear;
+}
+[data-percentage="65"] .completed.active:after {
+  -webkit-transform: rotate(-126deg);
+          -ms-transform: rotate(-126deg);
+      transform: rotate(-126deg);
+  -webkit-animation: second-65 2s 1 ease-out;
+          animation: second-65 2s 1 ease-out;
+}
+
+@-webkit-keyframes mask-65 {
+  0%, 50% {
+    clip: rect(0 30vw 30vw 15vw);
+  }
+  50.01%, 100% {
+    clip: rect(0 30vw 30vw 0px);
+  }
+}
+
+@keyframes mask-65 {
+  0%, 50% {
+    clip: rect(0 30vw 30vw 15vw);
+  }
+  50.01%, 100% {
+    clip: rect(0 30vw 30vw 0px);
+  }
+}
+@-webkit-keyframes first-65 {
+  0% {
+    -webkit-transform: rotate(-180deg);
+            transform: rotate(-180deg);
+  }
+  50%, 100% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+}
+@keyframes first-65 {
+  0% {
+    -webkit-transform: rotate(-180deg);
+            transform: rotate(-180deg);
+  }
+  50%, 100% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+}
+@-webkit-keyframes second-65 {
+  0%, 50% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  50.01% {
+    -webkit-transform: rotate(-180deg);
+            transform: rotate(-180deg);
+  }
+  100% {
+    -webkit-transform: rotate(-126deg);
+            transform: rotate(-126deg);
+  }
+}
+@keyframes second-65 {
+  0%, 50% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  50.01% {
+    -webkit-transform: rotate(-180deg);
+            transform: rotate(-180deg);
+  }
+  100% {
+    -webkit-transform: rotate(-126deg);
+            transform: rotate(-126deg);
+  }
+}
+[data-percentage="70"] .completed {
+  clip: rect(0 30vw 30vw 0px);
+}
+[data-percentage="70"] .completed.active {
+  -webkit-animation: mask-70 2s linear;
+          animation: mask-70 2s linear;
+}
+[data-percentage="70"] .completed.active:before {
+  -webkit-transform: rotate(0deg);
+          -ms-transform: rotate(0deg);
+      transform: rotate(0deg);
+  -webkit-animation: first-70 2s 1 linear;
+          animation: first-70 2s 1 linear;
+}
+[data-percentage="70"] .completed.active:after {
+  -webkit-transform: rotate(-108deg);
+          -ms-transform: rotate(-108deg);
+      transform: rotate(-108deg);
+  -webkit-animation: second-70 2s 1 ease-out;
+          animation: second-70 2s 1 ease-out;
+}
+
+@keyframes mask-70 {
+  0%, 50% {
+    clip: rect(0 30vw 30vw 15vw);
+  }
+  50.01%, 100% {
+    clip: rect(0 30vw 30vw 0px);
+  }
+}
+@keyframes first-70 {
+  0% {
+    -webkit-transform: rotate(-180deg);
+            transform: rotate(-180deg);
+  }
+  50%, 100% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+}
+@keyframes second-70 {
+  0%, 50% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  50.01% {
+    -webkit-transform: rotate(-180deg);
+            transform: rotate(-180deg);
+  }
+  100% {
+    -webkit-transform: rotate(-108deg);
+            transform: rotate(-108deg);
+  }
+}
+[data-percentage="75"] .completed {
+  clip: rect(0 30vw 30vw 0px);
+}
+[data-percentage="75"] .completed.active {
+  -webkit-animation: mask-75 2s linear;
+          animation: mask-75 2s linear;
+}
+[data-percentage="75"] .completed.active:before {
+  -webkit-transform: rotate(0deg);
+          -ms-transform: rotate(0deg);
+      transform: rotate(0deg);
+  -webkit-animation: first-75 2s 1 linear;
+          animation: first-75 2s 1 linear;
+}
+[data-percentage="75"] .completed.active:after {
+  -webkit-transform: rotate(-90deg);
+          -ms-transform: rotate(-90deg);
+      transform: rotate(-90deg);
+  -webkit-animation: second-75 2s 1 ease-out;
+          animation: second-75 2s 1 ease-out;
+}
+
+@-webkit-keyframes mask-75 {
+  0%, 50% {
+    clip: rect(0 30vw 30vw 15vw);
+  }
+  50.01%, 100% {
+    clip: rect(0 30vw 30vw 0px);
+  }
+}
+
+@keyframes mask-75 {
+  0%, 50% {
+    clip: rect(0 30vw 30vw 15vw);
+  }
+  50.01%, 100% {
+    clip: rect(0 30vw 30vw 0px);
+  }
+}
+@-webkit-keyframes first-75 {
+  0% {
+    -webkit-transform: rotate(-180deg);
+            transform: rotate(-180deg);
+  }
+  50%, 100% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+}
+@keyframes first-75 {
+  0% {
+    -webkit-transform: rotate(-180deg);
+            transform: rotate(-180deg);
+  }
+  50%, 100% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+}
+@-webkit-keyframes second-75 {
+  0%, 50% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  50.01% {
+    -webkit-transform: rotate(-180deg);
+            transform: rotate(-180deg);
+  }
+  100% {
+    -webkit-transform: rotate(-90deg);
+            transform: rotate(-90deg);
+  }
+}
+@keyframes second-75 {
+  0%, 50% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  50.01% {
+    -webkit-transform: rotate(-180deg);
+            transform: rotate(-180deg);
+  }
+  100% {
+    -webkit-transform: rotate(-90deg);
+            transform: rotate(-90deg);
+  }
+}
+[data-percentage="80"] .completed {
+  clip: rect(0 30vw 30vw 0px);
+}
+[data-percentage="80"] .completed.active {
+  -webkit-animation: mask-80 2s linear;
+          animation: mask-80 2s linear;
+}
+[data-percentage="80"] .completed.active:before {
+  -webkit-transform: rotate(0deg);
+          -ms-transform: rotate(0deg);
+      transform: rotate(0deg);
+  -webkit-animation: first-80 2s 1 linear;
+          animation: first-80 2s 1 linear;
+}
+[data-percentage="80"] .completed.active:after {
+  -webkit-transform: rotate(-72deg);
+          -ms-transform: rotate(-72deg);
+      transform: rotate(-72deg);
+  -webkit-animation: second-80 2s 1 ease-out;
+          animation: second-80 2s 1 ease-out;
+}
+
+@keyframes mask-80 {
+  0%, 50% {
+    clip: rect(0 30vw 30vw 15vw);
+  }
+  50.01%, 100% {
+    clip: rect(0 30vw 30vw 0px);
+  }
+}
+@keyframes first-80 {
+  0% {
+    -webkit-transform: rotate(-180deg);
+            transform: rotate(-180deg);
+  }
+  50%, 100% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+}
+@keyframes second-80 {
+  0%, 50% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  50.01% {
+    -webkit-transform: rotate(-180deg);
+            transform: rotate(-180deg);
+  }
+  100% {
+    -webkit-transform: rotate(-72deg);
+            transform: rotate(-72deg);
+  }
+}
+[data-percentage="85"] .completed {
+  clip: rect(0 30vw 30vw 0px);
+}
+[data-percentage="85"] .completed.active {
+  -webkit-animation: mask-85 2s linear;
+          animation: mask-85 2s linear;
+}
+[data-percentage="85"] .completed.active:before {
+  -webkit-transform: rotate(0deg);
+          -ms-transform: rotate(0deg);
+      transform: rotate(0deg);
+  -webkit-animation: first-85 2s 1 linear;
+          animation: first-85 2s 1 linear;
+}
+[data-percentage="85"] .completed.active:after {
+  -webkit-transform: rotate(-54deg);
+          -ms-transform: rotate(-54deg);
+      transform: rotate(-54deg);
+  -webkit-animation: second-85 2s 1 ease-out;
+          animation: second-85 2s 1 ease-out;
+}
+
+@-webkit-keyframes mask-85 {
+  0%, 50% {
+    clip: rect(0 30vw 30vw 15vw);
+  }
+  50.01%, 100% {
+    clip: rect(0 30vw 30vw 0px);
+  }
+}
+
+@keyframes mask-85 {
+  0%, 50% {
+    clip: rect(0 30vw 30vw 15vw);
+  }
+  50.01%, 100% {
+    clip: rect(0 30vw 30vw 0px);
+  }
+}
+@-webkit-keyframes first-85 {
+  0% {
+    -webkit-transform: rotate(-180deg);
+            transform: rotate(-180deg);
+  }
+  50%, 100% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+}
+@keyframes first-85 {
+  0% {
+    -webkit-transform: rotate(-180deg);
+            transform: rotate(-180deg);
+  }
+  50%, 100% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+}
+@-webkit-keyframes second-85 {
+  0%, 50% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  50.01% {
+    -webkit-transform: rotate(-180deg);
+            transform: rotate(-180deg);
+  }
+  100% {
+    -webkit-transform: rotate(-54deg);
+            transform: rotate(-54deg);
+  }
+}
+@keyframes second-85 {
+  0%, 50% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  50.01% {
+    -webkit-transform: rotate(-180deg);
+            transform: rotate(-180deg);
+  }
+  100% {
+    -webkit-transform: rotate(-54deg);
+            transform: rotate(-54deg);
+  }
+}
+[data-percentage="90"] .completed {
+  clip: rect(0 30vw 30vw 0px);
+}
+[data-percentage="90"] .completed.active {
+  -webkit-animation: mask-90 2s linear;
+          animation: mask-90 2s linear;
+}
+[data-percentage="90"] .completed.active:before {
+  -webkit-transform: rotate(0deg);
+          -ms-transform: rotate(0deg);
+      transform: rotate(0deg);
+  -webkit-animation: first-90 2s 1 linear;
+          animation: first-90 2s 1 linear;
+}
+[data-percentage="90"] .completed.active:after {
+  -webkit-transform: rotate(-36deg);
+          -ms-transform: rotate(-36deg);
+      transform: rotate(-36deg);
+  -webkit-animation: second-90 2s 1 ease-out;
+          animation: second-90 2s 1 ease-out;
+}
+
+@keyframes mask-90 {
+  0%, 50% {
+    clip: rect(0 30vw 30vw 15vw);
+  }
+  50.01%, 100% {
+    clip: rect(0 30vw 30vw 0px);
+  }
+}
+@keyframes first-90 {
+  0% {
+    -webkit-transform: rotate(-180deg);
+            transform: rotate(-180deg);
+  }
+  50%, 100% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+}
+@keyframes second-90 {
+  0%, 50% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  50.01% {
+    -webkit-transform: rotate(-180deg);
+            transform: rotate(-180deg);
+  }
+  100% {
+    -webkit-transform: rotate(-36deg);
+            transform: rotate(-36deg);
+  }
+}
+[data-percentage="95"] .completed {
+  clip: rect(0 30vw 30vw 0px);
+}
+[data-percentage="95"] .completed.active {
+  -webkit-animation: mask-95 2s linear;
+          animation: mask-95 2s linear;
+}
+[data-percentage="95"] .completed.active:before {
+  -webkit-transform: rotate(0deg);
+          -ms-transform: rotate(0deg);
+      transform: rotate(0deg);
+  -webkit-animation: first-95 2s 1 linear;
+          animation: first-95 2s 1 linear;
+}
+[data-percentage="95"] .completed.active:after {
+  -webkit-transform: rotate(-18deg);
+          -ms-transform: rotate(-18deg);
+      transform: rotate(-18deg);
+  -webkit-animation: second-95 2s 1 ease-out;
+          animation: second-95 2s 1 ease-out;
+}
+
+@-webkit-keyframes mask-95 {
+  0%, 50% {
+    clip: rect(0 30vw 30vw 15vw);
+  }
+  50.01%, 100% {
+    clip: rect(0 30vw 30vw 0px);
+  }
+}
+
+@keyframes mask-95 {
+  0%, 50% {
+    clip: rect(0 30vw 30vw 15vw);
+  }
+  50.01%, 100% {
+    clip: rect(0 30vw 30vw 0px);
+  }
+}
+@-webkit-keyframes first-95 {
+  0% {
+    -webkit-transform: rotate(-180deg);
+            transform: rotate(-180deg);
+  }
+  50%, 100% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+}
+@keyframes first-95 {
+  0% {
+    -webkit-transform: rotate(-180deg);
+            transform: rotate(-180deg);
+  }
+  50%, 100% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+}
+@-webkit-keyframes second-95 {
+  0%, 50% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  50.01% {
+    -webkit-transform: rotate(-180deg);
+            transform: rotate(-180deg);
+  }
+  100% {
+    -webkit-transform: rotate(-18deg);
+            transform: rotate(-18deg);
+  }
+}
+@keyframes second-95 {
+  0%, 50% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  50.01% {
+    -webkit-transform: rotate(-180deg);
+            transform: rotate(-180deg);
+  }
+  100% {
+    -webkit-transform: rotate(-18deg);
+            transform: rotate(-18deg);
+  }
+}
+[data-percentage="100"] .completed {
+  clip: rect(0 30vw 30vw 0px);
+}
+[data-percentage="100"] .completed.active {
+  -webkit-animation: mask-100 2s linear;
+          animation: mask-100 2s linear;
+}
+[data-percentage="100"] .completed.active:before {
+  -webkit-transform: rotate(0deg);
+          -ms-transform: rotate(0deg);
+      transform: rotate(0deg);
+  -webkit-animation: first-100 2s 1 linear;
+          animation: first-100 2s 1 linear;
+}
+[data-percentage="100"] .completed.active:after {
+  -webkit-transform: rotate(0deg);
+          -ms-transform: rotate(0deg);
+      transform: rotate(0deg);
+  -webkit-animation: second-100 2s 1 ease-out;
+          animation: second-100 2s 1 ease-out;
+}
+
+@keyframes mask-100 {
+  0%, 50% {
+    clip: rect(0 30vw 30vw 15vw);
+  }
+  50.01%, 100% {
+    clip: rect(0 30vw 30vw 0px);
+  }
+}
+@keyframes first-100 {
+  0% {
+    -webkit-transform: rotate(-180deg);
+            transform: rotate(-180deg);
+  }
+  50%, 100% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+}
+@keyframes second-100 {
+  0%, 50% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  50.01% {
+    -webkit-transform: rotate(-180deg);
+            transform: rotate(-180deg);
+  }
+  100% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+}
+</style><style type="text/css">#dropdown:hover {
+  background-color: white;
+  border: none;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  background-image: none;
+}
+
+#dropdown {
+  background-color: white;
+  border: none;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  background-image: none;
+}
+</style><style type="text/css">#poi-list {
+  max-height: 100%;
+  overflow: scroll;
+}
+
+.poiImage {
+  width: 100%;
+}
+
+.panel > div:nth-child(1) {
+  color: #ffffff;
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #1f6097), to(#1f6097));
+  background-image: -webkit-linear-gradient(top, #1f6097 0, #1f6097 100%);
+  background-image: -o-linear-gradient(top, #1f6097 0, #1f6097 100%);
+  background-image: linear-gradient(to bottom, #1f6097 0, #1f6097 100%);
+}
+
+.panel-body-text {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: center;
+      justify-content: center;
+  -ms-flex-direction: column;
+      flex-direction: column;
+  text-align: center;
+  font-family: roboto;
+  font-weight: bold;
+  padding: 5px;
+}
+</style><style type="text/css">body {
+  background: #f8f8f8;
+}
+
+.plane-loader {
+  position: relative;
+  width: 250px;
+  height: 250px;
+  background-color: #00afdd;
+
+  border-radius: 125px;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.plane {
+  position: absolute;
+  top: 60px;
+  left: 60px;
+  height: 130px;
+  width: 130px;
+  -webkit-animation: levitate 4s alternate ease-in-out infinite;
+          animation: levitate 4s alternate ease-in-out infinite;
+  -webkit-transition: -webkit-transform 150ms ease;
+  transition: -webkit-transform 150ms ease;
+  -o-transition: transform 150ms ease;
+  transition: transform 150ms ease;
+  transition: transform 150ms ease, -webkit-transform 150ms ease;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+}
+
+.cloud {
+  position: absolute;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  background-color: transparent;
+}
+
+.cloud1 {
+  top: -30px;
+  left: 30px;
+  height: 39px;
+  width: 42px;
+  -webkit-animation: cloud1 7s linear infinite;
+          animation: cloud1 7s linear infinite;
+}
+
+.cloud2 {
+  top: -260px;
+  left: 150px;
+  height: 82px;
+  width: 96px;
+  -webkit-animation: cloud2 5s linear infinite;
+          animation: cloud2 5s linear infinite;
+  opacity: 0.5;
+}
+
+.cloud3 {
+  height: 82px;
+  width: 96px;
+  -webkit-animation: cloud3 15s linear infinite 10s;
+          animation: cloud3 15s linear infinite 10s;
+  top: -80px;
+  left: 130px;
+}
+
+.cloud4 {
+  top: -30px;
+  left: 180px;
+  height: 39px;
+  width: 42px;
+  -webkit-animation: cloud4 20s linear infinite;
+          animation: cloud4 20s linear infinite;
+}
+
+.steam {
+  position: absolute;
+  top: 80px;
+  left: 73px;
+}
+
+.steam div {
+  opacity: 0;
+  position: absolute;
+  height: 120px;
+  width: 10px;
+  background: #ffffff;
+  border-radius: 5px;
+  -webkit-animation: steam 0.4s ease-in-out infinite;
+          animation: steam 0.4s ease-in-out infinite;
+}
+
+.steam .c2 {
+  -webkit-animation-delay: 50ms;
+          animation-delay: 50ms;
+}
+.steam .c3 {
+  -webkit-animation-delay: 150ms;
+          animation-delay: 150ms;
+}
+.steam .c4 {
+  -webkit-animation-delay: 200ms;
+          animation-delay: 200ms;
+}
+.steam .c5 {
+  -webkit-animation-delay: 250ms;
+          animation-delay: 250ms;
+}
+.steam .c6 {
+  -webkit-animation-delay: 300ms;
+          animation-delay: 300ms;
+}
+.steam .c7 {
+  -webkit-animation-delay: 350ms;
+          animation-delay: 350ms;
+}
+.steam .c8 {
+  -webkit-animation-delay: 400ms;
+          animation-delay: 400ms;
+}
+.steam .c9 {
+  -webkit-animation-delay: 450ms;
+          animation-delay: 450ms;
+}
+.steam .c10 {
+  -webkit-animation-delay: 500ms;
+          animation-delay: 500ms;
+}
+
+.steam2 {
+  top: 75px;
+  left: 91px;
+}
+
+.steam3 {
+  top: 75px;
+  left: 146px;
+}
+
+.steam4 {
+  left: 166px;
+}
+
+@-webkit-keyframes levitate {
+  0% {
+    -webkit-transform: translate(0, 0) scale(1);
+            transform: translate(0, 0) scale(1);
+  }
+  25% {
+    -webkit-transform: translate(-1px, 1px) scale(1.003);
+            transform: translate(-1px, 1px) scale(1.003);
+  }
+  50% {
+    -webkit-transform: translate(0, 1px) scale(1);
+            transform: translate(0, 1px) scale(1);
+  }
+  75% {
+    -webkit-transform: translate(-1px, 0) scale(1);
+            transform: translate(-1px, 0) scale(1);
+  }
+  100% {
+    -webkit-transform: translate(0, -1px) scale(0.997);
+            transform: translate(0, -1px) scale(0.997);
+  }
+}
+
+@keyframes levitate {
+  0% {
+    -webkit-transform: translate(0, 0) scale(1);
+            transform: translate(0, 0) scale(1);
+  }
+  25% {
+    -webkit-transform: translate(-1px, 1px) scale(1.003);
+            transform: translate(-1px, 1px) scale(1.003);
+  }
+  50% {
+    -webkit-transform: translate(0, 1px) scale(1);
+            transform: translate(0, 1px) scale(1);
+  }
+  75% {
+    -webkit-transform: translate(-1px, 0) scale(1);
+            transform: translate(-1px, 0) scale(1);
+  }
+  100% {
+    -webkit-transform: translate(0, -1px) scale(0.997);
+            transform: translate(0, -1px) scale(0.997);
+  }
+}
+
+@-webkit-keyframes cloud1 {
+  0% {
+    -webkit-transform: translate(0, 0) scale(1);
+            transform: translate(0, 0) scale(1);
+  }
+  98% {
+    -webkit-transform: translate(0, 290px) scale(1);
+            transform: translate(0, 290px) scale(1);
+  }
+  99% {
+    -webkit-transform: translate(-100px, 290px) scale(1);
+            transform: translate(-100px, 290px) scale(1);
+  }
+  100% {
+    -webkit-transform: translate(-100px, 0) scale(1);
+            transform: translate(-100px, 0) scale(1);
+  }
+}
+
+@keyframes cloud1 {
+  0% {
+    -webkit-transform: translate(0, 0) scale(1);
+            transform: translate(0, 0) scale(1);
+  }
+  98% {
+    -webkit-transform: translate(0, 290px) scale(1);
+            transform: translate(0, 290px) scale(1);
+  }
+  99% {
+    -webkit-transform: translate(-100px, 290px) scale(1);
+            transform: translate(-100px, 290px) scale(1);
+  }
+  100% {
+    -webkit-transform: translate(-100px, 0) scale(1);
+            transform: translate(-100px, 0) scale(1);
+  }
+}
+
+@-webkit-keyframes cloud2 {
+  0% {
+    -webkit-transform: translate(0, 0) scale(4);
+            transform: translate(0, 0) scale(4);
+  }
+  70% {
+    -webkit-transform: translate(0, 0) scale(4);
+            transform: translate(0, 0) scale(4);
+  }
+  98% {
+    -webkit-transform: translate(0, 1000px) scale(4);
+            transform: translate(0, 1000px) scale(4);
+  }
+  99% {
+    -webkit-transform: translate(200px, 1000px) scale(1);
+            transform: translate(200px, 1000px) scale(1);
+  }
+  100% {
+    -webkit-transform: translate(200px, 0) scale(1);
+            transform: translate(200px, 0) scale(1);
+  }
+}
+
+@keyframes cloud2 {
+  0% {
+    -webkit-transform: translate(0, 0) scale(4);
+            transform: translate(0, 0) scale(4);
+  }
+  70% {
+    -webkit-transform: translate(0, 0) scale(4);
+            transform: translate(0, 0) scale(4);
+  }
+  98% {
+    -webkit-transform: translate(0, 1000px) scale(4);
+            transform: translate(0, 1000px) scale(4);
+  }
+  99% {
+    -webkit-transform: translate(200px, 1000px) scale(1);
+            transform: translate(200px, 1000px) scale(1);
+  }
+  100% {
+    -webkit-transform: translate(200px, 0) scale(1);
+            transform: translate(200px, 0) scale(1);
+  }
+}
+
+@-webkit-keyframes cloud4 {
+  0% {
+    -webkit-transform: translate(0, 0) scale(0.3) rotate(150deg);
+            transform: translate(0, 0) scale(0.3) rotate(150deg);
+  }
+  98% {
+    -webkit-transform: translate(0, 290px) scale(0.3) rotate(150deg);
+            transform: translate(0, 290px) scale(0.3) rotate(150deg);
+  }
+  99% {
+    -webkit-transform: translate(200px, 290px) scale(1);
+            transform: translate(200px, 290px) scale(1);
+  }
+  100% {
+    -webkit-transform: translate(200px, 0) scale(1);
+            transform: translate(200px, 0) scale(1);
+  }
+}
+
+@keyframes cloud4 {
+  0% {
+    -webkit-transform: translate(0, 0) scale(0.3) rotate(150deg);
+            transform: translate(0, 0) scale(0.3) rotate(150deg);
+  }
+  98% {
+    -webkit-transform: translate(0, 290px) scale(0.3) rotate(150deg);
+            transform: translate(0, 290px) scale(0.3) rotate(150deg);
+  }
+  99% {
+    -webkit-transform: translate(200px, 290px) scale(1);
+            transform: translate(200px, 290px) scale(1);
+  }
+  100% {
+    -webkit-transform: translate(200px, 0) scale(1);
+            transform: translate(200px, 0) scale(1);
+  }
+}
+
+@-webkit-keyframes cloud3 {
+  0% {
+    -webkit-transform: translate(0, 0) scale(1) rotate(180deg);
+            transform: translate(0, 0) scale(1) rotate(180deg);
+  }
+  98% {
+    -webkit-transform: translate(0, 330px) scale(1) rotate(180deg);
+            transform: translate(0, 330px) scale(1) rotate(180deg);
+  }
+  99% {
+    -webkit-transform: translate(200px, 330px) scale(1);
+            transform: translate(200px, 330px) scale(1);
+  }
+  100% {
+    -webkit-transform: translate(200px, 0) scale(1);
+            transform: translate(200px, 0) scale(1);
+  }
+}
+
+@keyframes cloud3 {
+  0% {
+    -webkit-transform: translate(0, 0) scale(1) rotate(180deg);
+            transform: translate(0, 0) scale(1) rotate(180deg);
+  }
+  98% {
+    -webkit-transform: translate(0, 330px) scale(1) rotate(180deg);
+            transform: translate(0, 330px) scale(1) rotate(180deg);
+  }
+  99% {
+    -webkit-transform: translate(200px, 330px) scale(1);
+            transform: translate(200px, 330px) scale(1);
+  }
+  100% {
+    -webkit-transform: translate(200px, 0) scale(1);
+            transform: translate(200px, 0) scale(1);
+  }
+}
+
+@-webkit-keyframes steam {
+  0% {
+    -webkit-transform: translate(0, 0) scale(0);
+            transform: translate(0, 0) scale(0);
+    opacity: 0;
+  }
+  100% {
+    -webkit-transform: translate(0, 280px) scale(1, 3);
+            transform: translate(0, 280px) scale(1, 3);
+    opacity: 1;
+  }
+}
+
+@keyframes steam {
+  0% {
+    -webkit-transform: translate(0, 0) scale(0);
+            transform: translate(0, 0) scale(0);
+    opacity: 0;
+  }
+  100% {
+    -webkit-transform: translate(0, 280px) scale(1, 3);
+            transform: translate(0, 280px) scale(1, 3);
+    opacity: 1;
+  }
+}
+
+.plane {
+  background-image: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22138%22%20height%3D%22130%22%20viewBox%3D%220%200%20138%20130%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cpath%20fill%3D%22%23FFFFFF%22%20d%3D%22M18.359375%2053.6070313C20.5734375%2053.6070313%2022.3664062%2055.403125%2022.3664062%2057.6164063L22.3664062%2062.9601563C22.3664062%2065.175%2020.5734375%2066.96875%2018.359375%2066.96875%2016.146875%2066.96875%2014.3515625%2065.175%2014.3515625%2062.9601563L14.3515625%2057.6164063C14.3515625%2055.403125%2016.146875%2053.6070313%2018.359375%2053.6070313M39.8648438%2044.196875C42.0789063%2044.196875%2043.875%2045.9921875%2043.875%2048.2054687L43.875%2053.5492187C43.875%2055.7640625%2042.0789063%2057.5585937%2039.8648438%2057.5585937%2037.6507813%2057.5585937%2035.85625%2055.7640625%2035.85625%2053.5492187L35.85625%2048.2054687C35.85625%2045.9921875%2037.6507813%2044.196875%2039.8648438%2044.196875%22%2F%3E%3Cpolyline%20fill%3D%22%23FFA600%22%20points%3D%2264.623%20108.155%2046.487%20119.975%2048.025%20127.793%2068.184%20121.874%2064.623%20108.155%22%2F%3E%3Cpolyline%20fill%3D%22%23FFA600%22%20points%3D%2273.452%20108.155%2091.591%20119.975%2090.051%20127.793%2069.894%20121.874%2073.452%20108.155%22%2F%3E%3Cpolyline%20fill%3D%22%23F4F4F4%22%20points%3D%22.25%2077.402%2064.288%2072.034%2064.288%2039.112%20.25%2070.188%20.25%2077.402%22%2F%3E%3Cpath%20fill%3D%22%23FFFFFF%22%20d%3D%22M119.640625%2053.6070313C117.425781%2053.6070313%20115.632031%2055.403125%20115.632031%2057.6164063L115.632031%2062.9601563C115.632031%2065.175%20117.425781%2066.96875%20119.640625%2066.96875%20121.853125%2066.96875%20123.65%2065.175%20123.65%2062.9601563L123.65%2057.6164063C123.65%2055.403125%20121.853125%2053.6070313%20119.640625%2053.6070313M98.1351563%2044.196875C95.9210938%2044.196875%2094.1257813%2045.9921875%2094.1257813%2048.2054687L94.1257813%2053.5492187C94.1257813%2055.7640625%2095.9210938%2057.5585937%2098.1351563%2057.5585937%20100.349219%2057.5585937%20102.142188%2055.7640625%20102.142188%2053.5492187L102.142188%2048.2054687C102.142188%2045.9921875%20100.349219%2044.196875%2098.1351563%2044.196875%22%2F%3E%3Cpolyline%20fill%3D%22%23F4F4F4%22%20points%3D%22137.749%2077.402%2073.712%2072.034%2073.712%2039.112%20137.749%2070.188%20137.749%2077.402%22%2F%3E%3Cpath%20fill%3D%22%23FFFFFF%22%20d%3D%22M72.1414063%2C2.090625%20C71.34375%2C1.03046875%2070.1992188%2C0.42734375%2069.003125%2C0.43984375%20C67.8070313%2C0.45390625%2066.6726563%2C1.0796875%2065.8914063%2C2.15859375%20L65.8882813%2C2.1640625%20C60.40625%2C9.75%2057.4132813%2C19.3789062%2057.4132813%2C29.3828125%20L57.4132813%2C61.08125%20C57.4132813%2C67.9523437%2058.0390625%2C82.8390625%2059.2617188%2C90.259375%20C61.3546875%2C102.939062%2063.5164063%2C115.017969%2067.040625%2C127.711719%20C67.3460938%2C128.816406%2068.140625%2C129.550781%2069.03125%2C129.560937%20C69.925%2C129.56875%2070.7273438%2C128.849219%2071.046875%2C127.751562%20C74.678125%2C115.230469%2076.9359375%2C102.877344%2078.9453125%2C89.9078125%20C80.0414063%2C82.8445312%2080.5859375%2C68.4710937%2080.5859375%2C61.9492187%20L80.5859375%2C28.3929687%20C80.5859375%2C18.6890625%2077.5828125%2C9.3203125%2072.1414063%2C2.090625%22%2F%3E%3Cpath%20fill%3D%22%23E4E4E4%22%20d%3D%22M69.0429688%2C0.43984375%20L69%2C0.43984375%20L69%2C129.558594%20L69.05%2C129.558594%20C69.9351563%2C129.558594%2070.73125%2C128.841406%2071.046875%2C127.751562%20C74.678125%2C115.230469%2076.9359375%2C102.877344%2078.9453125%2C89.9078125%20C80.0414062%2C82.8445312%2080.5859375%2C68.4710937%2080.5859375%2C61.9492187%20L80.5859375%2C28.3929687%20C80.5859375%2C18.6890625%2077.5828125%2C9.3203125%2072.1414063%2C2.090625%20C71.3523438%2C1.04140625%2070.2265625%2C0.43984375%2069.0429688%2C0.43984375%22%2F%3E%3Cpath%20fill%3D%22%2300AFDD%22%20d%3D%22M68.6726563%2C9.840625%20C64.709375%2C9.840625%2061.496875%2C13.0523438%2061.496875%2C17.0148438%20C61.496875%2C17.2414063%2061.6507813%2C17.440625%2061.8710938%2C17.4992188%20C62.0898438%2C17.5570313%2062.321875%2C17.4585938%2062.4335938%2C17.2617188%20C63.6648438%2C15.0875%2065.9953125%2C13.6195313%2068.6726563%2C13.6195313%20C71.35%2C13.6195313%2073.6804688%2C15.0875%2074.9109375%2C17.2625%20C75.0234375%2C17.4601563%2075.2546875%2C17.5585938%2075.4742188%2C17.5%20C75.69375%2C17.44375%2075.8484375%2C17.2445313%2075.8484375%2C17.0179688%20L75.8484375%2C17.0164063%20C75.8484375%2C13.0523438%2072.6351563%2C9.840625%2068.6726563%2C9.840625%22%2F%3E%3Cpath%20fill%3D%22%23FFFFFF%22%20d%3D%22M68.6726563%2C9.840625%20L68.6726563%2C13.6179688%20C71.3515625%2C13.6179688%2073.68125%2C15.0875%2074.9109375%2C17.2617188%20C75.003125%2C17.4226563%2075.1703125%2C17.5164063%2075.3476563%2C17.5164063%20L75.4757813%2C17.4992188%20C75.6953125%2C17.4421875%2075.85%2C17.2429688%2075.85%2C17.0148438%20C75.85%2C13.0523438%2072.6367188%2C9.840625%2068.6726563%2C9.840625%22%20opacity%3D%22.152%22%2F%3E%3Cpolygon%20fill%3D%22%23FFA600%22%20points%3D%2267.755%20121.461%2070.242%20121.461%2070.242%20105.548%2067.755%20105.548%22%2F%3E%3Cpolygon%20fill%3D%22%23FFA600%22%20points%3D%2269%20121.461%2070.242%20121.461%2070.242%20105.548%2069%20105.548%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E");
+}
+
+.cloud1,
+.cloud4 {
+  background-image: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2242%22%20height%3D%2239%22%20viewBox%3D%220%200%2042%2039%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%20transform%3D%22rotate(180%2021%2019.5)%22%3E%3Cpath%20fill%3D%22%23E6F4FA%22%20d%3D%22M28.9693613%2C12.1008289%20C29.469759%2C12.0343251%2029.9803124%2C12%2030.49887%2C12%20C36.8505945%2C12%2042%2C17.1462684%2042%2C23.4983049%20C42%2C29.8514715%2036.8505945%2C35%2030.49887%2C35%20C28.7713689%2C35%2027.132699%2C34.6188942%2025.6623971%2C33.9361096%20C23.0026635%2C37.029828%2018.9895771%2C39%2014.5%2C39%20C6.49201637%2C39%200%2C32.7318463%200%2C25%20C0%2C21.5922247%201.26111616%2C18.4687811%203.35731092%2C16.0410159%20C3.1237079%2C15.0657103%203%2C14.0476205%203%2C13.0005581%20C3%2C5.82056235%208.81882969%2C0%2016.0005581%2C0%20C22.8787115%2C0%2028.5073872%2C5.34054674%2028.9693613%2C12.1008289%20Z%22%2F%3E%3Cpath%20fill%3D%22%23FFFFFF%22%20d%3D%22M25.7129699%2C14.9431541%20C26.8536129%2C14.3396855%2028.1395044%2C14%2029.4988916%2C14%20C34.186139%2C14%2038%2C18.0366482%2038%2C23.0005869%20C38%2C27.9633518%2034.186139%2C32%2029.4988916%2C32%20C27.2986953%2C32%2025.2910292%2C31.1101569%2023.7801166%2C29.6524095%20C21.8873669%2C33.4138935%2017.9900082%2C36%2013.5%2C36%20C7.15899729%2C36%202%2C30.8421581%202%2C24.5%20C2%2C21.1954233%203.40113857%2C18.211869%205.64051942%2C16.1122333%20C5.22624883%2C14.9852652%205%2C13.7682536%205%2C12.4994255%20C5%2C6.70968977%209.71083876%2C2%2015.5005745%2C2%20C21.2903102%2C2%2026%2C6.70968977%2026%2C12.4994255%20C26%2C13.3404802%2025.9006144%2C14.1587676%2025.7129699%2C14.9431541%20Z%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E");
+}
+
+.cloud2,
+.cloud3 {
+  background-image: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2285%22%20height%3D%2296%22%20viewBox%3D%220%200%2085%2096%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cpath%20fill%3D%22%23E6F4FA%22%20d%3D%22M53.6261275%2C86.0983539%20C44.9724207%2C86.0904138%2037.961165%2C79.0475196%2037.961165%2C70.367114%20C37.961165%2C70.2821461%2037.9618371%2C70.1973351%2037.9631762%2C70.1126861%20C36.052893%2C71.3237206%2033.7893915%2C72.0245902%2031.3626805%2C72.0245902%20C24.5242637%2C72.0245902%2018.9805825%2C66.4646135%2018.9805825%2C59.6056903%20C18.9805825%2C58.7095146%2019.07527%2C57.8354956%2019.2551602%2C56.9931488%20C14.9861648%2C52.3470271%2012.3786408%2C46.1411762%2012.3786408%2C39.3246282%20C12.3786408%2C38.980572%2012.3852821%2C38.6380723%2012.3984431%2C38.2972509%20C5.24955652%2C36.3134881%200%2C29.739649%200%2C21.9367926%20C0%2C12.565248%207.57527256%2C4.96721311%2016.9183389%2C4.96721311%20C21.1033698%2C4.96721311%2024.9339252%2C6.4922497%2027.8876267%2C9.01856689%20C30.937945%2C3.63274285%2036.7085736%2C0%2043.3269645%2C0%20C53.1237687%2C0%2061.0679612%2C7.96813226%2061.0679612%2C17.7983167%20C61.0679612%2C20.170505%2060.6055033%2C22.4341966%2059.7661462%2C24.5036533%20C62.6686866%2C28.7123217%2064.368932%2C33.8192168%2064.368932%2C39.3246282%20C64.368932%2C45.434588%2062.2742784%2C51.0538958%2058.7658771%2C55.4991083%20C60.2757998%2C56.0228961%2061.6811612%2C56.771633%2062.9421284%2C57.7053251%20C65.1528918%2C56.2866361%2067.7623944%2C55.4672131%2070.5574066%2C55.4672131%20C78.5348335%2C55.4672131%2085%2C62.139615%2085%2C70.3688525%20C85%2C76.9889463%2080.8160275%2C82.6015244%2075.0266219%2C84.5433647%20C75.0411625%2C84.7726494%2075.0485437%2C85.0038839%2075.0485437%2C85.2368457%20C75.0485437%2C91.1795229%2070.2454545%2C96%2064.3203883%2C96%20C58.686077%2C96%2054.0638162%2C91.6384942%2053.6261275%2C86.0983539%20Z%22%2F%3E%3Cpath%20fill%3D%22%23FFFFFF%22%20d%3D%22M56.3512418%2C80.989288%20C54.9373334%2C81.5501071%2053.3974426%2C81.8584071%2051.787234%2C81.8584071%20C44.9235834%2C81.8584071%2039.3404255%2C76.2595622%2039.3404255%2C69.3787797%20C39.3404255%2C65.7762562%2040.8716505%2C62.5253142%2043.3161178%2C60.2457302%20C41.9299403%2C60.6282602%2040.4913511%2C60.8826894%2039.0138682%2C60.9954556%20C37.949601%2C64.8651574%2034.4071226%2C67.7168142%2030.2136372%2C67.7168142%20C25.17979%2C67.7168142%2021.0851064%2C63.6105553%2021.0851064%2C58.5663717%20C21.0851064%2C57.3014675%2021.3425925%2C56.0955429%2021.8078058%2C54.9985589%20C17.2845467%2C50.8157531%2014.4468085%2C44.8270972%2014.4468085%2C38.1875636%20C14.4468085%2C36.9014589%2014.5532259%2C35.6397985%2014.7576931%2C34.4109662%20C7.64263685%2C33.9287895%202%2C27.9735101%202%2C20.7168142%20C2%2C13.147399%208.14226892%2C6.99115044%2015.6906203%2C6.99115044%20C20.9926227%2C6.99115044%2025.6003637%2C10.0270806%2027.8742627%2C14.4563702%20C28.8932077%2C7.42179944%2034.9496383%2C2%2042.2455469%2C2%20C50.2497002%2C2%2056.7659574%2C8.53117508%2056.7659574%2C16.5575221%20C56.7659574%2C19.1456372%2056.088719%2C21.5779972%2054.9027194%2C23.6860433%20C58.1397867%2C27.6360187%2060.0851064%2C32.6883322%2060.0851064%2C38.1875636%20C60.0851064%2C45.9744285%2056.1825466%2C52.8660327%2050.2345104%2C56.9992306%20C50.7432832%2C56.9354932%2051.2615023%2C56.9026549%2051.787234%2C56.9026549%20C55.4417448%2C56.9026549%2058.7340461%2C58.490221%2061.0133791%2C61.0134991%20C63.0311172%2C58.9844895%2065.7783823%2C57.7345133%2068.8012587%2C57.7345133%20C74.9763131%2C57.7345133%2080%2C62.9562954%2080%2C69.3787704%20C80%2C75.2436145%2075.8131%2C80.107763%2070.385595%2C80.9103885%20C70.6865252%2C81.721561%2070.8510638%2C82.5988391%2070.8510638%2C83.5141368%20C70.8510638%2C87.6399858%2067.4994155%2C91%2063.383839%2C91%20C59.2631009%2C91%2055.9148936%2C87.6399858%2055.9148936%2C83.5141368%20C55.9148936%2C82.6284372%2056.0688047%2C81.7783382%2056.3512418%2C80.989288%20Z%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E");
+}
+body {
+  background: #f8f8f8;
+}
+
+.plane-loader {
+  position: relative;
+  width: 250px;
+  height: 250px;
+  background-color: #00afdd;
+margin: 20vw auto 20px auto;
+  border-radius: 125px;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.plane {
+  position: absolute;
+  top: 60px;
+  left: 60px;
+  height: 130px;
+  width: 130px;
+  -webkit-animation: levitate 4s alternate ease-in-out infinite;
+          animation: levitate 4s alternate ease-in-out infinite;
+  -webkit-transition: -webkit-transform 150ms ease;
+  transition: -webkit-transform 150ms ease;
+  -o-transition: transform 150ms ease;
+  transition: transform 150ms ease;
+  transition: transform 150ms ease, -webkit-transform 150ms ease;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+}
+
+.cloud {
+  position: absolute;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  background-color: transparent;
+}
+
+.cloud1 {
+  top: -30px;
+  left: 30px;
+  height: 39px;
+  width: 42px;
+  -webkit-animation: cloud1 7s linear infinite;
+          animation: cloud1 7s linear infinite;
+}
+
+.cloud2 {
+  top: -260px;
+  left: 150px;
+  height: 82px;
+  width: 96px;
+  -webkit-animation: cloud2 5s linear infinite;
+          animation: cloud2 5s linear infinite;
+  opacity: 0.5;
+}
+
+.cloud3 {
+  height: 82px;
+  width: 96px;
+  -webkit-animation: cloud3 15s linear infinite 10s;
+          animation: cloud3 15s linear infinite 10s;
+  top: -80px;
+  left: 130px;
+}
+
+.cloud4 {
+  top: -30px;
+  left: 180px;
+  height: 39px;
+  width: 42px;
+  -webkit-animation: cloud4 20s linear infinite;
+          animation: cloud4 20s linear infinite;
+}
+
+.steam {
+  position: absolute;
+  top: 80px;
+  left: 73px;
+}
+
+.steam div {
+  opacity: 0;
+  position: absolute;
+  height: 120px;
+  width: 10px;
+  background: #ffffff;
+  border-radius: 5px;
+  -webkit-animation: steam 0.4s ease-in-out infinite;
+          animation: steam 0.4s ease-in-out infinite;
+}
+
+.steam .c2 {
+  -webkit-animation-delay: 50ms;
+          animation-delay: 50ms;
+}
+.steam .c3 {
+  -webkit-animation-delay: 150ms;
+          animation-delay: 150ms;
+}
+.steam .c4 {
+  -webkit-animation-delay: 200ms;
+          animation-delay: 200ms;
+}
+.steam .c5 {
+  -webkit-animation-delay: 250ms;
+          animation-delay: 250ms;
+}
+.steam .c6 {
+  -webkit-animation-delay: 300ms;
+          animation-delay: 300ms;
+}
+.steam .c7 {
+  -webkit-animation-delay: 350ms;
+          animation-delay: 350ms;
+}
+.steam .c8 {
+  -webkit-animation-delay: 400ms;
+          animation-delay: 400ms;
+}
+.steam .c9 {
+  -webkit-animation-delay: 450ms;
+          animation-delay: 450ms;
+}
+.steam .c10 {
+  -webkit-animation-delay: 500ms;
+          animation-delay: 500ms;
+}
+
+.steam2 {
+  top: 75px;
+  left: 91px;
+}
+
+.steam3 {
+  top: 75px;
+  left: 146px;
+}
+
+.steam4 {
+  left: 166px;
+}
+
+@keyframes levitate {
+  0% {
+    -webkit-transform: translate(0, 0) scale(1);
+            transform: translate(0, 0) scale(1);
+  }
+  25% {
+    -webkit-transform: translate(-1px, 1px) scale(1.003);
+            transform: translate(-1px, 1px) scale(1.003);
+  }
+  50% {
+    -webkit-transform: translate(0, 1px) scale(1);
+            transform: translate(0, 1px) scale(1);
+  }
+  75% {
+    -webkit-transform: translate(-1px, 0) scale(1);
+            transform: translate(-1px, 0) scale(1);
+  }
+  100% {
+    -webkit-transform: translate(0, -1px) scale(0.997);
+            transform: translate(0, -1px) scale(0.997);
+  }
+}
+
+@keyframes cloud1 {
+  0% {
+    -webkit-transform: translate(0, 0) scale(1);
+            transform: translate(0, 0) scale(1);
+  }
+  98% {
+    -webkit-transform: translate(0, 290px) scale(1);
+            transform: translate(0, 290px) scale(1);
+  }
+  99% {
+    -webkit-transform: translate(-100px, 290px) scale(1);
+            transform: translate(-100px, 290px) scale(1);
+  }
+  100% {
+    -webkit-transform: translate(-100px, 0) scale(1);
+            transform: translate(-100px, 0) scale(1);
+  }
+}
+
+@keyframes cloud2 {
+  0% {
+    -webkit-transform: translate(0, 0) scale(4);
+            transform: translate(0, 0) scale(4);
+  }
+  70% {
+    -webkit-transform: translate(0, 0) scale(4);
+            transform: translate(0, 0) scale(4);
+  }
+  98% {
+    -webkit-transform: translate(0, 1000px) scale(4);
+            transform: translate(0, 1000px) scale(4);
+  }
+  99% {
+    -webkit-transform: translate(200px, 1000px) scale(1);
+            transform: translate(200px, 1000px) scale(1);
+  }
+  100% {
+    -webkit-transform: translate(200px, 0) scale(1);
+            transform: translate(200px, 0) scale(1);
+  }
+}
+
+@keyframes cloud4 {
+  0% {
+    -webkit-transform: translate(0, 0) scale(0.3) rotate(150deg);
+            transform: translate(0, 0) scale(0.3) rotate(150deg);
+  }
+  98% {
+    -webkit-transform: translate(0, 290px) scale(0.3) rotate(150deg);
+            transform: translate(0, 290px) scale(0.3) rotate(150deg);
+  }
+  99% {
+    -webkit-transform: translate(200px, 290px) scale(1);
+            transform: translate(200px, 290px) scale(1);
+  }
+  100% {
+    -webkit-transform: translate(200px, 0) scale(1);
+            transform: translate(200px, 0) scale(1);
+  }
+}
+
+@keyframes cloud3 {
+  0% {
+    -webkit-transform: translate(0, 0) scale(1) rotate(180deg);
+            transform: translate(0, 0) scale(1) rotate(180deg);
+  }
+  98% {
+    -webkit-transform: translate(0, 330px) scale(1) rotate(180deg);
+            transform: translate(0, 330px) scale(1) rotate(180deg);
+  }
+  99% {
+    -webkit-transform: translate(200px, 330px) scale(1);
+            transform: translate(200px, 330px) scale(1);
+  }
+  100% {
+    -webkit-transform: translate(200px, 0) scale(1);
+            transform: translate(200px, 0) scale(1);
+  }
+}
+
+@keyframes steam {
+  0% {
+    -webkit-transform: translate(0, 0) scale(0);
+            transform: translate(0, 0) scale(0);
+    opacity: 0;
+  }
+  100% {
+    -webkit-transform: translate(0, 280px) scale(1, 3);
+            transform: translate(0, 280px) scale(1, 3);
+    opacity: 1;
+  }
+}
+
+.plane {
+  background-image: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22138%22%20height%3D%22130%22%20viewBox%3D%220%200%20138%20130%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cpath%20fill%3D%22%23FFFFFF%22%20d%3D%22M18.359375%2053.6070313C20.5734375%2053.6070313%2022.3664062%2055.403125%2022.3664062%2057.6164063L22.3664062%2062.9601563C22.3664062%2065.175%2020.5734375%2066.96875%2018.359375%2066.96875%2016.146875%2066.96875%2014.3515625%2065.175%2014.3515625%2062.9601563L14.3515625%2057.6164063C14.3515625%2055.403125%2016.146875%2053.6070313%2018.359375%2053.6070313M39.8648438%2044.196875C42.0789063%2044.196875%2043.875%2045.9921875%2043.875%2048.2054687L43.875%2053.5492187C43.875%2055.7640625%2042.0789063%2057.5585937%2039.8648438%2057.5585937%2037.6507813%2057.5585937%2035.85625%2055.7640625%2035.85625%2053.5492187L35.85625%2048.2054687C35.85625%2045.9921875%2037.6507813%2044.196875%2039.8648438%2044.196875%22%2F%3E%3Cpolyline%20fill%3D%22%23FFA600%22%20points%3D%2264.623%20108.155%2046.487%20119.975%2048.025%20127.793%2068.184%20121.874%2064.623%20108.155%22%2F%3E%3Cpolyline%20fill%3D%22%23FFA600%22%20points%3D%2273.452%20108.155%2091.591%20119.975%2090.051%20127.793%2069.894%20121.874%2073.452%20108.155%22%2F%3E%3Cpolyline%20fill%3D%22%23F4F4F4%22%20points%3D%22.25%2077.402%2064.288%2072.034%2064.288%2039.112%20.25%2070.188%20.25%2077.402%22%2F%3E%3Cpath%20fill%3D%22%23FFFFFF%22%20d%3D%22M119.640625%2053.6070313C117.425781%2053.6070313%20115.632031%2055.403125%20115.632031%2057.6164063L115.632031%2062.9601563C115.632031%2065.175%20117.425781%2066.96875%20119.640625%2066.96875%20121.853125%2066.96875%20123.65%2065.175%20123.65%2062.9601563L123.65%2057.6164063C123.65%2055.403125%20121.853125%2053.6070313%20119.640625%2053.6070313M98.1351563%2044.196875C95.9210938%2044.196875%2094.1257813%2045.9921875%2094.1257813%2048.2054687L94.1257813%2053.5492187C94.1257813%2055.7640625%2095.9210938%2057.5585937%2098.1351563%2057.5585937%20100.349219%2057.5585937%20102.142188%2055.7640625%20102.142188%2053.5492187L102.142188%2048.2054687C102.142188%2045.9921875%20100.349219%2044.196875%2098.1351563%2044.196875%22%2F%3E%3Cpolyline%20fill%3D%22%23F4F4F4%22%20points%3D%22137.749%2077.402%2073.712%2072.034%2073.712%2039.112%20137.749%2070.188%20137.749%2077.402%22%2F%3E%3Cpath%20fill%3D%22%23FFFFFF%22%20d%3D%22M72.1414063%2C2.090625%20C71.34375%2C1.03046875%2070.1992188%2C0.42734375%2069.003125%2C0.43984375%20C67.8070313%2C0.45390625%2066.6726563%2C1.0796875%2065.8914063%2C2.15859375%20L65.8882813%2C2.1640625%20C60.40625%2C9.75%2057.4132813%2C19.3789062%2057.4132813%2C29.3828125%20L57.4132813%2C61.08125%20C57.4132813%2C67.9523437%2058.0390625%2C82.8390625%2059.2617188%2C90.259375%20C61.3546875%2C102.939062%2063.5164063%2C115.017969%2067.040625%2C127.711719%20C67.3460938%2C128.816406%2068.140625%2C129.550781%2069.03125%2C129.560937%20C69.925%2C129.56875%2070.7273438%2C128.849219%2071.046875%2C127.751562%20C74.678125%2C115.230469%2076.9359375%2C102.877344%2078.9453125%2C89.9078125%20C80.0414063%2C82.8445312%2080.5859375%2C68.4710937%2080.5859375%2C61.9492187%20L80.5859375%2C28.3929687%20C80.5859375%2C18.6890625%2077.5828125%2C9.3203125%2072.1414063%2C2.090625%22%2F%3E%3Cpath%20fill%3D%22%23E4E4E4%22%20d%3D%22M69.0429688%2C0.43984375%20L69%2C0.43984375%20L69%2C129.558594%20L69.05%2C129.558594%20C69.9351563%2C129.558594%2070.73125%2C128.841406%2071.046875%2C127.751562%20C74.678125%2C115.230469%2076.9359375%2C102.877344%2078.9453125%2C89.9078125%20C80.0414062%2C82.8445312%2080.5859375%2C68.4710937%2080.5859375%2C61.9492187%20L80.5859375%2C28.3929687%20C80.5859375%2C18.6890625%2077.5828125%2C9.3203125%2072.1414063%2C2.090625%20C71.3523438%2C1.04140625%2070.2265625%2C0.43984375%2069.0429688%2C0.43984375%22%2F%3E%3Cpath%20fill%3D%22%2300AFDD%22%20d%3D%22M68.6726563%2C9.840625%20C64.709375%2C9.840625%2061.496875%2C13.0523438%2061.496875%2C17.0148438%20C61.496875%2C17.2414063%2061.6507813%2C17.440625%2061.8710938%2C17.4992188%20C62.0898438%2C17.5570313%2062.321875%2C17.4585938%2062.4335938%2C17.2617188%20C63.6648438%2C15.0875%2065.9953125%2C13.6195313%2068.6726563%2C13.6195313%20C71.35%2C13.6195313%2073.6804688%2C15.0875%2074.9109375%2C17.2625%20C75.0234375%2C17.4601563%2075.2546875%2C17.5585938%2075.4742188%2C17.5%20C75.69375%2C17.44375%2075.8484375%2C17.2445313%2075.8484375%2C17.0179688%20L75.8484375%2C17.0164063%20C75.8484375%2C13.0523438%2072.6351563%2C9.840625%2068.6726563%2C9.840625%22%2F%3E%3Cpath%20fill%3D%22%23FFFFFF%22%20d%3D%22M68.6726563%2C9.840625%20L68.6726563%2C13.6179688%20C71.3515625%2C13.6179688%2073.68125%2C15.0875%2074.9109375%2C17.2617188%20C75.003125%2C17.4226563%2075.1703125%2C17.5164063%2075.3476563%2C17.5164063%20L75.4757813%2C17.4992188%20C75.6953125%2C17.4421875%2075.85%2C17.2429688%2075.85%2C17.0148438%20C75.85%2C13.0523438%2072.6367188%2C9.840625%2068.6726563%2C9.840625%22%20opacity%3D%22.152%22%2F%3E%3Cpolygon%20fill%3D%22%23FFA600%22%20points%3D%2267.755%20121.461%2070.242%20121.461%2070.242%20105.548%2067.755%20105.548%22%2F%3E%3Cpolygon%20fill%3D%22%23FFA600%22%20points%3D%2269%20121.461%2070.242%20121.461%2070.242%20105.548%2069%20105.548%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E");
+}
+
+.cloud1,
+.cloud4 {
+  background-image: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2242%22%20height%3D%2239%22%20viewBox%3D%220%200%2042%2039%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%20transform%3D%22rotate(180%2021%2019.5)%22%3E%3Cpath%20fill%3D%22%23E6F4FA%22%20d%3D%22M28.9693613%2C12.1008289%20C29.469759%2C12.0343251%2029.9803124%2C12%2030.49887%2C12%20C36.8505945%2C12%2042%2C17.1462684%2042%2C23.4983049%20C42%2C29.8514715%2036.8505945%2C35%2030.49887%2C35%20C28.7713689%2C35%2027.132699%2C34.6188942%2025.6623971%2C33.9361096%20C23.0026635%2C37.029828%2018.9895771%2C39%2014.5%2C39%20C6.49201637%2C39%200%2C32.7318463%200%2C25%20C0%2C21.5922247%201.26111616%2C18.4687811%203.35731092%2C16.0410159%20C3.1237079%2C15.0657103%203%2C14.0476205%203%2C13.0005581%20C3%2C5.82056235%208.81882969%2C0%2016.0005581%2C0%20C22.8787115%2C0%2028.5073872%2C5.34054674%2028.9693613%2C12.1008289%20Z%22%2F%3E%3Cpath%20fill%3D%22%23FFFFFF%22%20d%3D%22M25.7129699%2C14.9431541%20C26.8536129%2C14.3396855%2028.1395044%2C14%2029.4988916%2C14%20C34.186139%2C14%2038%2C18.0366482%2038%2C23.0005869%20C38%2C27.9633518%2034.186139%2C32%2029.4988916%2C32%20C27.2986953%2C32%2025.2910292%2C31.1101569%2023.7801166%2C29.6524095%20C21.8873669%2C33.4138935%2017.9900082%2C36%2013.5%2C36%20C7.15899729%2C36%202%2C30.8421581%202%2C24.5%20C2%2C21.1954233%203.40113857%2C18.211869%205.64051942%2C16.1122333%20C5.22624883%2C14.9852652%205%2C13.7682536%205%2C12.4994255%20C5%2C6.70968977%209.71083876%2C2%2015.5005745%2C2%20C21.2903102%2C2%2026%2C6.70968977%2026%2C12.4994255%20C26%2C13.3404802%2025.9006144%2C14.1587676%2025.7129699%2C14.9431541%20Z%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E");
+}
+
+.cloud2,
+.cloud3 {
+  background-image: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2285%22%20height%3D%2296%22%20viewBox%3D%220%200%2085%2096%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cpath%20fill%3D%22%23E6F4FA%22%20d%3D%22M53.6261275%2C86.0983539%20C44.9724207%2C86.0904138%2037.961165%2C79.0475196%2037.961165%2C70.367114%20C37.961165%2C70.2821461%2037.9618371%2C70.1973351%2037.9631762%2C70.1126861%20C36.052893%2C71.3237206%2033.7893915%2C72.0245902%2031.3626805%2C72.0245902%20C24.5242637%2C72.0245902%2018.9805825%2C66.4646135%2018.9805825%2C59.6056903%20C18.9805825%2C58.7095146%2019.07527%2C57.8354956%2019.2551602%2C56.9931488%20C14.9861648%2C52.3470271%2012.3786408%2C46.1411762%2012.3786408%2C39.3246282%20C12.3786408%2C38.980572%2012.3852821%2C38.6380723%2012.3984431%2C38.2972509%20C5.24955652%2C36.3134881%200%2C29.739649%200%2C21.9367926%20C0%2C12.565248%207.57527256%2C4.96721311%2016.9183389%2C4.96721311%20C21.1033698%2C4.96721311%2024.9339252%2C6.4922497%2027.8876267%2C9.01856689%20C30.937945%2C3.63274285%2036.7085736%2C0%2043.3269645%2C0%20C53.1237687%2C0%2061.0679612%2C7.96813226%2061.0679612%2C17.7983167%20C61.0679612%2C20.170505%2060.6055033%2C22.4341966%2059.7661462%2C24.5036533%20C62.6686866%2C28.7123217%2064.368932%2C33.8192168%2064.368932%2C39.3246282%20C64.368932%2C45.434588%2062.2742784%2C51.0538958%2058.7658771%2C55.4991083%20C60.2757998%2C56.0228961%2061.6811612%2C56.771633%2062.9421284%2C57.7053251%20C65.1528918%2C56.2866361%2067.7623944%2C55.4672131%2070.5574066%2C55.4672131%20C78.5348335%2C55.4672131%2085%2C62.139615%2085%2C70.3688525%20C85%2C76.9889463%2080.8160275%2C82.6015244%2075.0266219%2C84.5433647%20C75.0411625%2C84.7726494%2075.0485437%2C85.0038839%2075.0485437%2C85.2368457%20C75.0485437%2C91.1795229%2070.2454545%2C96%2064.3203883%2C96%20C58.686077%2C96%2054.0638162%2C91.6384942%2053.6261275%2C86.0983539%20Z%22%2F%3E%3Cpath%20fill%3D%22%23FFFFFF%22%20d%3D%22M56.3512418%2C80.989288%20C54.9373334%2C81.5501071%2053.3974426%2C81.8584071%2051.787234%2C81.8584071%20C44.9235834%2C81.8584071%2039.3404255%2C76.2595622%2039.3404255%2C69.3787797%20C39.3404255%2C65.7762562%2040.8716505%2C62.5253142%2043.3161178%2C60.2457302%20C41.9299403%2C60.6282602%2040.4913511%2C60.8826894%2039.0138682%2C60.9954556%20C37.949601%2C64.8651574%2034.4071226%2C67.7168142%2030.2136372%2C67.7168142%20C25.17979%2C67.7168142%2021.0851064%2C63.6105553%2021.0851064%2C58.5663717%20C21.0851064%2C57.3014675%2021.3425925%2C56.0955429%2021.8078058%2C54.9985589%20C17.2845467%2C50.8157531%2014.4468085%2C44.8270972%2014.4468085%2C38.1875636%20C14.4468085%2C36.9014589%2014.5532259%2C35.6397985%2014.7576931%2C34.4109662%20C7.64263685%2C33.9287895%202%2C27.9735101%202%2C20.7168142%20C2%2C13.147399%208.14226892%2C6.99115044%2015.6906203%2C6.99115044%20C20.9926227%2C6.99115044%2025.6003637%2C10.0270806%2027.8742627%2C14.4563702%20C28.8932077%2C7.42179944%2034.9496383%2C2%2042.2455469%2C2%20C50.2497002%2C2%2056.7659574%2C8.53117508%2056.7659574%2C16.5575221%20C56.7659574%2C19.1456372%2056.088719%2C21.5779972%2054.9027194%2C23.6860433%20C58.1397867%2C27.6360187%2060.0851064%2C32.6883322%2060.0851064%2C38.1875636%20C60.0851064%2C45.9744285%2056.1825466%2C52.8660327%2050.2345104%2C56.9992306%20C50.7432832%2C56.9354932%2051.2615023%2C56.9026549%2051.787234%2C56.9026549%20C55.4417448%2C56.9026549%2058.7340461%2C58.490221%2061.0133791%2C61.0134991%20C63.0311172%2C58.9844895%2065.7783823%2C57.7345133%2068.8012587%2C57.7345133%20C74.9763131%2C57.7345133%2080%2C62.9562954%2080%2C69.3787704%20C80%2C75.2436145%2075.8131%2C80.107763%2070.385595%2C80.9103885%20C70.6865252%2C81.721561%2070.8510638%2C82.5988391%2070.8510638%2C83.5141368%20C70.8510638%2C87.6399858%2067.4994155%2C91%2063.383839%2C91%20C59.2631009%2C91%2055.9148936%2C87.6399858%2055.9148936%2C83.5141368%20C55.9148936%2C82.6284372%2056.0688047%2C81.7783382%2056.3512418%2C80.989288%20Z%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E");
+}
+
+.loading {
+  font-size: 30px;
+  -ms-flex-align: center;
+      align-items: center;
+  -ms-flex-pack: center;
+      justify-content: center;
+  display: -ms-flexbox;
+  display: flex;
+  color: white;
+}
+
+.loading:after {
+  overflow: hidden;
+  display: inline-block;
+  vertical-align: bottom;
+  -webkit-animation: ellipsis steps(4, end) 900ms infinite;
+  animation: ellipsis steps(4, end) 1500ms infinite;
+  content: "\2026"; /* ascii code for the ellipsis character */
+  width: 0px;
+}
+
+@keyframes ellipsis {
+  to {
+    width: 1.25em;
+  }
+}
+
+@-webkit-keyframes ellipsis {
+  to {
+    width: 1.25em;
+  }
+}
+</style><style type="text/css">#DashboardContainer {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: column;
+      flex-direction: column;
+  margin-top: 65px;
+}
+
+#PoiContainer {
+  display: -ms-flexbox;
+  display: flex;
+  height: 90vh;
+}
+
+.button-group-container {
+  width: 100%;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: center;
+      justify-content: center;
+}
+
+body {
+  font-family: roboto;
+}
+
+#poi-list {
+  width: 30vw;
+}
+
+#poi-list-container {
+  padding: 0px 10px 3px 10px;
+  background: black;
+}
+
+#panel-container > div {
+  border-radius: 0px;
+}
+
+#dropdown {
+  background: black;
+  color: lightgrey;
+  text-shadow: none;
+  margin-top: 10px;
+}
+
+.completed:before {
+  -webkit-box-shadow: inset 0 0 0px 60px #1f6097;
+          box-shadow: inset 0 0 0px 60px #1f6097;
+}
+.completed:after {
+  -webkit-box-shadow: inset 0 0 0px 60px #1f6097;
+          box-shadow: inset 0 0 0px 60px #1f6097;
+}
+
+.panel > div:nth-child(1) {
+  color: #ffffff;
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #1f6097), to(#1f6097));
+  background-image: -webkit-linear-gradient(top, #1f6097 0, #1f6097 100%);
+  background-image: -o-linear-gradient(top, #1f6097 0, #1f6097 100%);
+  background-image: linear-gradient(to bottom, #1f6097 0, #1f6097 100%);
+}
+
+.image {
+  position: absolute;
+  margin-left: 30%;
+  margin-right: auto;
+  margin-top: 20%;
+  width: 200px;
+  height: 200px;
+
+  -webkit-animation: spin 2s linear infinite;
+
+          animation: spin 2s linear infinite;
+}
+
+#DropdownContainer {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-align: center;
+      align-items: center;
+  -ms-flex-pack: center;
+      justify-content: center;
+}
+#MapContainer {
+  padding: 15px 0 0 15px;
+  width: 70vw;
+  height: 100%;
+
+  border: solid;
+  border-color: black;
+  border-radius: 20px;
+}
+
+#CityCharContainer {
+  background: black;
+  display: -ms-flexbox;
+  display: flex;
+  height: 100vh;
+  -ms-flex-pack: center;
+      justify-content: center;
+}
+
+.chart {
+  position: relative;
+  -webkit-box-shadow: inset 0 0 0px 60px #000000;
+          box-shadow: inset 0 0 0px 60px #000000;
+  color: white;
+  margin-left: 5vw;
+  margin-right: 5vw;
+}
+
+#result-container {
+  margin-top: 10vh;
+}
+
+.alert {
+  margin: 0px 5vw 20px 5vw;
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: 2em;
+  padding: 1px;
+  width: auto;
+  text-align: center;
+}
+#char-container > canvas {
+  width: 80vh;
+}
+.char-container {
+  width: 50vw;
+  height: 50vw;
+}
+
+#dropdown:hover {
+  color: white;
+  background: none;
+}
+
+#TopPoiContainer {
+  height: 100vh;
+}
+
+#loading-container {
+  padding: 65px;
+  background: black;
+  height: 100vh;
+}
+
+@-webkit-keyframes spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
+}
+
+@keyframes spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
+}
+
+.cat-icon {
+  height: 20px;
+}
+
+#root {
+  background-color: black;
+}
+
+#poiTitle {
+  color: white;
+}
+
+</style><style type="text/css">.trips-panel {
+  width: 80%;
+  margin: 25px auto;
+}
+
+#add-button-div {
+  width: 80%;
+  margin: 25px auto;
+  text-align: right;
+}
+
+#add-trip-button {
+  margin: 0 auto;
+}</style><style type="text/css">.vertical-timeline{width:95%;max-width:1170px;margin:2em auto;position:relative;padding:2em 0}.vertical-timeline::after{content:'';display:table;clear:both}.vertical-timeline::before{content:'';position:absolute;top:0;left:18px;height:100%;width:4px;background:#fff}@media only screen and (min-width:1170px){.vertical-timeline{margin-top:3em;margin-bottom:3em;width:90%}.vertical-timeline:before{left:50%;margin-left:-2px}}.vertical-timeline-element{position:relative;margin:2em 0}.vertical-timeline-element:after{content:"";display:table;clear:both}.vertical-timeline-element:first-child{margin-top:0}.vertical-timeline-element:last-child{margin-bottom:0}@media only screen and (min-width:1170px){.vertical-timeline-element{margin:4em 0}.vertical-timeline-element:first-child{margin-top:0}.vertical-timeline-element:last-child{margin-bottom:0}}.vertical-timeline-element-icon{position:absolute;top:0;left:0;width:40px;height:40px;border-radius:50%;-webkit-box-shadow:0 0 0 4px #fff,inset 0 2px 0 rgba(0,0,0,.08),0 3px 0 4px rgba(0,0,0,.05);box-shadow:0 0 0 4px #fff,inset 0 2px 0 rgba(0,0,0,.08),0 3px 0 4px rgba(0,0,0,.05)}.vertical-timeline-element-icon svg{display:block;width:24px;height:24px;position:relative;left:50%;top:50%;margin-left:-12px;margin-top:-12px}@media only screen and (min-width:1170px){.vertical-timeline-element-icon{width:60px;height:60px;left:50%;margin-left:-30px}}.vertical-timeline-element-icon{-webkit-transform:translateZ(0);-webkit-backface-visibility:hidden}.vertical-timeline--animate .vertical-timeline-element-icon.is-hidden{visibility:hidden}.vertical-timeline--animate .vertical-timeline-element-icon.bounce-in{visibility:visible;-webkit-animation:cd-bounce-1 .6s;animation:cd-bounce-1 .6s}@-webkit-keyframes cd-bounce-1{0%{opacity:0;-webkit-transform:scale(.5)}60%{opacity:1;-webkit-transform:scale(1.2)}100%{-webkit-transform:scale(1)}}@keyframes cd-bounce-1{0%{opacity:0;-webkit-transform:scale(.5);-ms-transform:scale(.5);transform:scale(.5)}60%{opacity:1;-webkit-transform:scale(1.2);-ms-transform:scale(1.2);transform:scale(1.2)}100%{-webkit-transform:scale(1);-ms-transform:scale(1);transform:scale(1)}}.vertical-timeline-element-content{position:relative;margin-left:60px;background:#fff;border-radius:.25em;padding:1em;-webkit-box-shadow:0 3px 0 #ddd;box-shadow:0 3px 0 #ddd}.vertical-timeline-element--no-children .vertical-timeline-element-content{background:0 0;-webkit-box-shadow:none;box-shadow:none}.vertical-timeline-element-content:after{content:"";display:table;clear:both}.vertical-timeline-element-content h2{color:#303e49}.vertical-timeline-element-content .vertical-timeline-element-date,.vertical-timeline-element-content p{font-size:13px;font-size:.8125rem;font-weight:500;color:#333}.vertical-timeline-element-content .vertical-timeline-element-date{display:inline-block}.vertical-timeline-element-content p{margin:1em 0 0;line-height:1.6}.vertical-timeline-element-title{margin:0}.vertical-timeline-element-subtitle{margin:0}.vertical-timeline-element-content .vertical-timeline-element-date{float:left;padding:.8em 0;opacity:.7}.vertical-timeline-element-content::before{content:'';position:absolute;top:16px;right:100%;height:0;width:0;border:7px solid transparent;border-right:7px solid #fff}.vertical-timeline-element--no-children .vertical-timeline-element-content::before{display:none}@media only screen and (min-width:768px){.vertical-timeline-element-content h2{font-size:20px;font-size:1.25rem}.vertical-timeline-element-content p{font-size:16px;font-size:1rem}.vertical-timeline-element-content .vertical-timeline-element-date{font-size:14px;font-size:.875rem}}@media only screen and (min-width:1170px){.vertical-timeline-element-content{margin-left:0;padding:1.5em;width:40%}.vertical-timeline-element-content::before{top:24px;left:100%;border-color:transparent;border-left-color:#fff}.vertical-timeline-element-content .vertical-timeline-element-date{position:absolute;width:100%;left:124%;top:6px;font-size:16px;font-size:1rem}.vertical-timeline-element.vertical-timeline-element--right .vertical-timeline-element-content,.vertical-timeline-element:nth-child(even):not(.vertical-timeline-element--left) .vertical-timeline-element-content{float:right}.vertical-timeline-element.vertical-timeline-element--right .vertical-timeline-element-content::before,.vertical-timeline-element:nth-child(even):not(.vertical-timeline-element--left) .vertical-timeline-element-content::before{top:24px;left:auto;right:100%;border-color:transparent;border-right-color:#fff}.vertical-timeline-element.vertical-timeline-element--right .vertical-timeline-element-content .vertical-timeline-element-date,.vertical-timeline-element:nth-child(even):not(.vertical-timeline-element--left) .vertical-timeline-element-content .vertical-timeline-element-date{left:auto;right:124%;text-align:right}}.vertical-timeline--animate .vertical-timeline-element-content.is-hidden{visibility:hidden}.vertical-timeline--animate .vertical-timeline-element-content.bounce-in{visibility:visible;-webkit-animation:cd-bounce-2-inverse .6s;animation:cd-bounce-2-inverse .6s}@media only screen and (min-width:1170px){.vertical-timeline--animate .vertical-timeline-element.vertical-timeline-element--right .vertical-timeline-element-content.bounce-in,.vertical-timeline--animate .vertical-timeline-element:nth-child(even):not(.vertical-timeline-element--left) .vertical-timeline-element-content.bounce-in{-webkit-animation:cd-bounce-2-inverse .6s;animation:cd-bounce-2-inverse .6s}}@-webkit-keyframes cd-bounce-2{0%{opacity:0;-webkit-transform:translateX(-100px)}60%{opacity:1;-webkit-transform:translateX(20px)}100%{-webkit-transform:translateX(0)}}@keyframes cd-bounce-2{0%{opacity:0;-webkit-transform:translateX(-100px);-ms-transform:translateX(-100px);transform:translateX(-100px)}60%{opacity:1;-webkit-transform:translateX(20px);-ms-transform:translateX(20px);transform:translateX(20px)}100%{-webkit-transform:translateX(0);-ms-transform:translateX(0);transform:translateX(0)}}@-webkit-keyframes cd-bounce-2-inverse{0%{opacity:0;-webkit-transform:translateX(100px)}60%{opacity:1;-webkit-transform:translateX(-20px)}100%{-webkit-transform:translateX(0)}}@keyframes cd-bounce-2-inverse{0%{opacity:0;-webkit-transform:translateX(100px);-ms-transform:translateX(100px);transform:translateX(100px)}60%{opacity:1;-webkit-transform:translateX(-20px);-ms-transform:translateX(-20px);transform:translateX(-20px)}100%{-webkit-transform:translateX(0);-ms-transform:translateX(0);transform:translateX(0)}}</style><style type="text/css">
+.VerticalTimeline {
+    margin: 0 auto !important;
+}
+
+.VerticalTimelineElement .vertical-timeline-element-title {
+    margin: 0;
+}
+
+.VerticalTimelineElement .vertical-timeline-element-subtitle {
+    margin: 0;
+}
+
+.VerticalTimelineElement .vertical-timeline-element-content p {
+    margin: 1em 0 0;
+}
+
+.VerticalTimelineElement.vertical-timeline-element--laravel .vertical-timeline-element-content {
+    border-top: 3px solid #fd4f31;
+}
+
+.VerticalTimelineElement.vertical-timeline-element--php .vertical-timeline-element-content {
+    border-top: 3px solid #6181b6;
+}
+
+.VerticalTimelineElement.vertical-timeline-element--react .vertical-timeline-element-content {
+    border-top: 3px solid #61DAFB;
+}
+
+.VerticalTimelineElement.vertical-timeline-element--rails .vertical-timeline-element-content {
+    border-top: 3px solid #a62c46;
+}
+
+.VerticalTimelineElement.vertical-timeline-element--cordova .vertical-timeline-element-content {
+    border-top: 3px solid #4cc2e4;
+}
+
+.VerticalTimelineElement.vertical-timeline-element--wordpress .vertical-timeline-element-content {
+    border-top: 3px solid #21759b;
+}
+
+.VerticalTimelineElement.vertical-timeline-element--facebook .vertical-timeline-element-content {
+    border-top: 3px solid #4267B2;
+}
+
+.VerticalTimelineElement.vertical-timeline-element--go .vertical-timeline-element-content {
+    border-top: 3px solid #6AD7E5;
+}
+
+.VerticalTimelineElement.vertical-timeline-element--city .vertical-timeline-element-content {
+    border-top: 3px solid #6AD7E5;
+}
+
+.vertical-timeline-element-date {
+  left: 150% !important;
+  font-size: 18px !important;
+}
+
+.VerticalTimelineElement .vertical-timeline-element-icon .SVGInline {
+    display: block;
+    width: 36px;
+    height: 36px;
+    margin-left: -18px;
+    margin-top: -18px;
+    position: relative;
+    left: 50%;
+    top: 50%;
+}
+
+.VerticalTimelineElement .vertical-timeline-element-icon .SVGInline svg {
+    width: 36px;
+    height: 36px;
+    left: auto;
+    top: auto;
+    margin-left: 0px;
+    margin-top: 0px;
+}
+
+.VerticalTimelineElement .vertical-timeline-element-icon .SVGInline svg path,
+.VerticalTimelineElement .vertical-timeline-element-icon .SVGInline svg g {
+    fill: #fff !important;
+}
+
+@media only screen and (max-width: 1170px) {
+    .vertical-timeline-element-content .vertical-timeline-element-date {
+        text-align: right;
+        width: 100%;
+        margin-bottom: -12px;
+    }
+
+    .VerticalTimelineElement .vertical-timeline-element-icon .SVGInline {
+        width: 24px;
+        height: 24px;
+        margin-left: -12px;
+        margin-top: -12px;
+    }
+
+    .VerticalTimelineElement .vertical-timeline-element-icon .SVGInline svg {
+        width: 24px;
+        height: 24px;
+    }
+}
+
+@media only screen and (max-width: 480px) {
+    .vertical-timeline-element-content .vertical-timeline-element-date {
+        text-align: center;
+    }
+}</style><style type="text/css">.trip-tab {
+  width: 100px;
+  text-align: center;
+}
+
+/*.trip-map-view {
+  display: inline-grid;
+  grid-template-columns: 3fr 1fr;
+  grid-template-areas: "map timeline";
+  width: 100vw;
+  height: 95vh;
+}*/
+
+.trip-map {
+  /*grid-area: map;*/
+  width: 90vw;
+  height: 90vh;
+  /*margin: 0 auto;*/
+}
+
+
+.trip-timeline {
+  /*grid-area: timeline;*/
+  /*width: 60vw;*/
+  /*margin: 0 auto;*/
+}
+
+
+#timeline-div {
+  /*  width: 60vw;*/
+/*  display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+  grid-template-areas: ". timeline .";*/
+}
+
+
+.event-timeline {
+  grid-area: timeline;
+  font-size: 18px !important;
+  width: 60vw;
+}
+
+/*.vertical-timeline-element-date {
+  left: 150%;
+}*/
+
+.cities-panel {
+  width: 80%;
+  margin: 15px auto;
+}
+
+#add-event-div {
+  width: 80%;
+  margin: 10px auto;
+  text-align: right;
+}</style><style type="text/css">.footer {
+    background-color: #F8F8F8;
+    padding: 20px;
+    text-align: center;
+    position: relative;
+    left: 0;
+    bottom: 0;
+    height: 60px;
+    width: 100%;
+    font-family: avenirprobold;
+    text-transform: uppercase;
+}</style><script type="text/javascript" charset="UTF-8" src="./Travel Buddy_files/common.js"></script><script type="text/javascript" charset="UTF-8" src="./Travel Buddy_files/util.js"></script><script type="text/javascript" charset="UTF-8" src="./Travel Buddy_files/map.js"></script><script type="text/javascript" charset="UTF-8" src="./Travel Buddy_files/marker.js"></script><style type="text/css">.gm-style {
+        font: 400 11px Roboto, Arial, sans-serif;
+        text-decoration: none;
+      }
+      .gm-style img { max-width: none; }</style><script type="text/javascript" charset="UTF-8" src="./Travel Buddy_files/onion.js"></script><script type="text/javascript" charset="UTF-8" src="./Travel Buddy_files/controls.js"></script><script type="text/javascript" charset="UTF-8" src="./Travel Buddy_files/stats.js"></script></head>
+  <body class="" style="">
+    <noscript>
+      You need to enable JavaScript to run this app.
+    </noscript>
+    <div id="root"><div><div><nav class="navbar navbar-default navbar-fixed-top"><div class="container"><div class="navbar-header"><a id="nav-brand-name" class="navbar-brand" href="http://localhost:3002/">Travel Buddy</a><button type="button" class="navbar-toggle collapsed"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button></div><div class="navbar-collapse collapse"><ul class="nav navbar-nav navbar-right"><li role="presentation" class=""><a href="http://localhost:3002/profile"><button type="button" class="nav-button btn btn-link">Hello, imack!</button></a></li><li role="presentation" class=""><a href="http://localhost:3002/trips"><button type="button" class="nav-button btn btn-link">Trips</button></a></li><li role="presentation" class=""><a role="button" href="http://localhost:3002/cities/Toronto#"><button type="button" class="nav-button btn btn-link">Logout</button></a></li></ul></div></div></nav><div><div id="DashboardContainer"><div><div id="PoiContainer"><div id="MapContainer"><div><div style="position: absolute; width: 100%; height: 100%;"><div style="position: absolute; left: 0px; right: 0px; bottom: 0px; top: 0px; display: inherit; overflow: hidden;"><div style="height: 100%; width: 100%; position: absolute; top: 0px; left: 0px; background-color: rgb(229, 227, 223);"><div class="gm-style" style="position: absolute; z-index: 0; left: 0px; top: 0px; height: 100%; width: 100%; padding: 0px; border-width: 0px; margin: 0px;"><div tabindex="0" style="position: absolute; z-index: 0; left: 0px; top: 0px; height: 100%; width: 100%; padding: 0px; border-width: 0px; margin: 0px; cursor: url(&quot;https://maps.gstatic.com/mapfiles/openhand_8_8.cur&quot;), default; touch-action: pan-x pan-y;"><div style="z-index: 1; position: absolute; left: 50%; top: 50%; transform: translate(0px, 0px);"><div style="position: absolute; left: 0px; top: 0px; z-index: 100; width: 100%;"><div style="position: absolute; left: 0px; top: 0px; z-index: 0;"><div style="position: absolute; z-index: 1; transform: matrix(1, 0, 0, 1, -115, -209);"><div style="position: absolute; left: 0px; top: 256px; width: 256px; height: 256px;"><div style="width: 256px; height: 256px;"></div></div><div style="position: absolute; left: -256px; top: 256px; width: 256px; height: 256px;"><div style="width: 256px; height: 256px;"></div></div><div style="position: absolute; left: -256px; top: 0px; width: 256px; height: 256px;"><div style="width: 256px; height: 256px;"></div></div><div style="position: absolute; left: 0px; top: 0px; width: 256px; height: 256px;"><div style="width: 256px; height: 256px;"></div></div><div style="position: absolute; left: 256px; top: 0px; width: 256px; height: 256px;"><div style="width: 256px; height: 256px;"></div></div><div style="position: absolute; left: 256px; top: 256px; width: 256px; height: 256px;"><div style="width: 256px; height: 256px;"></div></div><div style="position: absolute; left: 256px; top: 512px; width: 256px; height: 256px;"><div style="width: 256px; height: 256px;"></div></div><div style="position: absolute; left: 0px; top: 512px; width: 256px; height: 256px;"><div style="width: 256px; height: 256px;"></div></div><div style="position: absolute; left: -256px; top: 512px; width: 256px; height: 256px;"><div style="width: 256px; height: 256px;"></div></div><div style="position: absolute; left: -512px; top: 512px; width: 256px; height: 256px;"><div style="width: 256px; height: 256px;"></div></div><div style="position: absolute; left: -512px; top: 256px; width: 256px; height: 256px;"><div style="width: 256px; height: 256px;"></div></div><div style="position: absolute; left: -512px; top: 0px; width: 256px; height: 256px;"><div style="width: 256px; height: 256px;"></div></div><div style="position: absolute; left: -512px; top: -256px; width: 256px; height: 256px;"><div style="width: 256px; height: 256px;"></div></div><div style="position: absolute; left: -256px; top: -256px; width: 256px; height: 256px;"><div style="width: 256px; height: 256px;"></div></div><div style="position: absolute; left: 0px; top: -256px; width: 256px; height: 256px;"><div style="width: 256px; height: 256px;"></div></div><div style="position: absolute; left: 256px; top: -256px; width: 256px; height: 256px;"><div style="width: 256px; height: 256px;"></div></div><div style="position: absolute; left: 512px; top: -256px; width: 256px; height: 256px;"><div style="width: 256px; height: 256px;"></div></div><div style="position: absolute; left: 512px; top: 0px; width: 256px; height: 256px;"><div style="width: 256px; height: 256px;"></div></div><div style="position: absolute; left: 512px; top: 256px; width: 256px; height: 256px;"><div style="width: 256px; height: 256px;"></div></div><div style="position: absolute; left: 512px; top: 512px; width: 256px; height: 256px;"><div style="width: 256px; height: 256px;"></div></div></div></div></div><div style="position: absolute; left: 0px; top: 0px; z-index: 101; width: 100%;"></div><div style="position: absolute; left: 0px; top: 0px; z-index: 102; width: 100%;"></div><div style="position: absolute; left: 0px; top: 0px; z-index: 103; width: 100%;"><div style="position: absolute; left: 0px; top: 0px; z-index: -1;"><div style="position: absolute; z-index: 1; transform: matrix(1, 0, 0, 1, -115, -209);"><div style="width: 256px; height: 256px; overflow: hidden; position: absolute; left: 0px; top: 256px;"></div><div style="width: 256px; height: 256px; overflow: hidden; position: absolute; left: -256px; top: 256px;"></div><div style="width: 256px; height: 256px; overflow: hidden; position: absolute; left: -256px; top: 0px;"></div><div style="width: 256px; height: 256px; overflow: hidden; position: absolute; left: 0px; top: 0px;"></div><div style="width: 256px; height: 256px; overflow: hidden; position: absolute; left: 256px; top: 0px;"></div><div style="width: 256px; height: 256px; overflow: hidden; position: absolute; left: 256px; top: 256px;"></div><div style="width: 256px; height: 256px; overflow: hidden; position: absolute; left: 256px; top: 512px;"></div><div style="width: 256px; height: 256px; overflow: hidden; position: absolute; left: 0px; top: 512px;"></div><div style="width: 256px; height: 256px; overflow: hidden; position: absolute; left: -256px; top: 512px;"></div><div style="width: 256px; height: 256px; overflow: hidden; position: absolute; left: -512px; top: 512px;"></div><div style="width: 256px; height: 256px; overflow: hidden; position: absolute; left: -512px; top: 256px;"></div><div style="width: 256px; height: 256px; overflow: hidden; position: absolute; left: -512px; top: 0px;"></div><div style="width: 256px; height: 256px; overflow: hidden; position: absolute; left: -512px; top: -256px;"></div><div style="width: 256px; height: 256px; overflow: hidden; position: absolute; left: -256px; top: -256px;"></div><div style="width: 256px; height: 256px; overflow: hidden; position: absolute; left: 0px; top: -256px;"></div><div style="width: 256px; height: 256px; overflow: hidden; position: absolute; left: 256px; top: -256px;"></div><div style="width: 256px; height: 256px; overflow: hidden; position: absolute; left: 512px; top: -256px;"></div><div style="width: 256px; height: 256px; overflow: hidden; position: absolute; left: 512px; top: 0px;"></div><div style="width: 256px; height: 256px; overflow: hidden; position: absolute; left: 512px; top: 256px;"></div><div style="width: 256px; height: 256px; overflow: hidden; position: absolute; left: 512px; top: 512px;"></div></div></div><div style="width: 27px; height: 43px; overflow: hidden; position: absolute; left: -14px; top: -43px; z-index: 0;"><img alt="" src="./Travel Buddy_files/spotlight-poi2_hdpi.png" draggable="false" style="position: absolute; left: 0px; top: 0px; width: 27px; height: 43px; user-select: none; border: 0px; padding: 0px; margin: 0px; max-width: none; opacity: 1;"></div><div style="width: 27px; height: 43px; overflow: hidden; position: absolute; left: 1331px; top: -838px; z-index: -795;"><img alt="" src="./Travel Buddy_files/spotlight-poi2_hdpi.png" draggable="false" style="position: absolute; left: 0px; top: 0px; width: 27px; height: 43px; user-select: none; border: 0px; padding: 0px; margin: 0px; max-width: none; opacity: 1;"></div><div style="width: 27px; height: 43px; overflow: hidden; position: absolute; left: -115px; top: -64px; z-index: -21;"><img alt="" src="./Travel Buddy_files/spotlight-poi2_hdpi.png" draggable="false" style="position: absolute; left: 0px; top: 0px; width: 27px; height: 43px; user-select: none; border: 0px; padding: 0px; margin: 0px; max-width: none; opacity: 1;"></div><div style="width: 27px; height: 43px; overflow: hidden; position: absolute; left: -960px; top: -3325px; z-index: -3282;"><img alt="" src="./Travel Buddy_files/spotlight-poi2_hdpi.png" draggable="false" style="position: absolute; left: 0px; top: 0px; width: 27px; height: 43px; user-select: none; border: 0px; padding: 0px; margin: 0px; max-width: none; opacity: 1;"></div><div style="width: 27px; height: 43px; overflow: hidden; position: absolute; left: 79px; top: -517px; z-index: -474;"><img alt="" src="./Travel Buddy_files/spotlight-poi2_hdpi.png" draggable="false" style="position: absolute; left: 0px; top: 0px; width: 27px; height: 43px; user-select: none; border: 0px; padding: 0px; margin: 0px; max-width: none; opacity: 1;"></div><div style="width: 27px; height: 43px; overflow: hidden; position: absolute; left: 598px; top: -1698px; z-index: -1655;"><img alt="" src="./Travel Buddy_files/spotlight-poi2_hdpi.png" draggable="false" style="position: absolute; left: 0px; top: 0px; width: 27px; height: 43px; user-select: none; border: 0px; padding: 0px; margin: 0px; max-width: none; opacity: 1;"></div><div style="width: 27px; height: 43px; overflow: hidden; position: absolute; left: -1177px; top: -2047px; z-index: -2004;"><img alt="" src="./Travel Buddy_files/spotlight-poi2_hdpi.png" draggable="false" style="position: absolute; left: 0px; top: 0px; width: 27px; height: 43px; user-select: none; border: 0px; padding: 0px; margin: 0px; max-width: none; opacity: 1;"></div><div style="width: 27px; height: 43px; overflow: hidden; position: absolute; left: -165px; top: -681px; z-index: -638;"><img alt="" src="./Travel Buddy_files/spotlight-poi2_hdpi.png" draggable="false" style="position: absolute; left: 0px; top: 0px; width: 27px; height: 43px; user-select: none; border: 0px; padding: 0px; margin: 0px; max-width: none; opacity: 1;"></div><div style="width: 27px; height: 43px; overflow: hidden; position: absolute; left: 9px; top: 3698px; z-index: 3741;"><img alt="" src="./Travel Buddy_files/spotlight-poi2_hdpi.png" draggable="false" style="position: absolute; left: 0px; top: 0px; width: 27px; height: 43px; user-select: none; border: 0px; padding: 0px; margin: 0px; max-width: none; opacity: 1;"></div><div style="width: 27px; height: 43px; overflow: hidden; position: absolute; left: 51px; top: 157px; z-index: 200;"><img alt="" src="./Travel Buddy_files/spotlight-poi2_hdpi.png" draggable="false" style="position: absolute; left: 0px; top: 0px; width: 27px; height: 43px; user-select: none; border: 0px; padding: 0px; margin: 0px; max-width: none; opacity: 1;"></div><div style="width: 27px; height: 43px; overflow: hidden; position: absolute; left: -7258px; top: -577px; z-index: -534;"><img alt="" src="./Travel Buddy_files/spotlight-poi2_hdpi.png" draggable="false" style="position: absolute; left: 0px; top: 0px; width: 27px; height: 43px; user-select: none; border: 0px; padding: 0px; margin: 0px; max-width: none; opacity: 1;"></div><div style="width: 27px; height: 43px; overflow: hidden; position: absolute; left: 18px; top: -1096px; z-index: -1053;"><img alt="" src="./Travel Buddy_files/spotlight-poi2_hdpi.png" draggable="false" style="position: absolute; left: 0px; top: 0px; width: 27px; height: 43px; user-select: none; border: 0px; padding: 0px; margin: 0px; max-width: none; opacity: 1;"></div><div style="width: 27px; height: 43px; overflow: hidden; position: absolute; left: -624px; top: -1486px; z-index: -1443;"><img alt="" src="./Travel Buddy_files/spotlight-poi2_hdpi.png" draggable="false" style="position: absolute; left: 0px; top: 0px; width: 27px; height: 43px; user-select: none; border: 0px; padding: 0px; margin: 0px; max-width: none; opacity: 1;"></div><div style="width: 27px; height: 43px; overflow: hidden; position: absolute; left: -917px; top: -2682px; z-index: -2639;"><img alt="" src="./Travel Buddy_files/spotlight-poi2_hdpi.png" draggable="false" style="position: absolute; left: 0px; top: 0px; width: 27px; height: 43px; user-select: none; border: 0px; padding: 0px; margin: 0px; max-width: none; opacity: 1;"></div><div style="width: 27px; height: 43px; overflow: hidden; position: absolute; left: 758px; top: -670px; z-index: -627;"><img alt="" src="./Travel Buddy_files/spotlight-poi2_hdpi.png" draggable="false" style="position: absolute; left: 0px; top: 0px; width: 27px; height: 43px; user-select: none; border: 0px; padding: 0px; margin: 0px; max-width: none; opacity: 1;"></div><div style="width: 27px; height: 43px; overflow: hidden; position: absolute; left: -311px; top: -611px; z-index: -568;"><img alt="" src="./Travel Buddy_files/spotlight-poi2_hdpi.png" draggable="false" style="position: absolute; left: 0px; top: 0px; width: 27px; height: 43px; user-select: none; border: 0px; padding: 0px; margin: 0px; max-width: none; opacity: 1;"></div><div style="width: 27px; height: 43px; overflow: hidden; position: absolute; left: -835px; top: -3303px; z-index: -3260;"><img alt="" src="./Travel Buddy_files/spotlight-poi2_hdpi.png" draggable="false" style="position: absolute; left: 0px; top: 0px; width: 27px; height: 43px; user-select: none; border: 0px; padding: 0px; margin: 0px; max-width: none; opacity: 1;"></div><div style="width: 27px; height: 43px; overflow: hidden; position: absolute; left: 627px; top: -180px; z-index: -137;"><img alt="" src="./Travel Buddy_files/spotlight-poi2_hdpi.png" draggable="false" style="position: absolute; left: 0px; top: 0px; width: 27px; height: 43px; user-select: none; border: 0px; padding: 0px; margin: 0px; max-width: none; opacity: 1;"></div><div style="width: 27px; height: 43px; overflow: hidden; position: absolute; left: 2419px; top: -11789px; z-index: -11746;"><img alt="" src="./Travel Buddy_files/spotlight-poi2_hdpi.png" draggable="false" style="position: absolute; left: 0px; top: 0px; width: 27px; height: 43px; user-select: none; border: 0px; padding: 0px; margin: 0px; max-width: none; opacity: 1;"></div><div style="width: 27px; height: 43px; overflow: hidden; position: absolute; left: -2081px; top: -4757px; z-index: -4714;"><img alt="" src="./Travel Buddy_files/spotlight-poi2_hdpi.png" draggable="false" style="position: absolute; left: 0px; top: 0px; width: 27px; height: 43px; user-select: none; border: 0px; padding: 0px; margin: 0px; max-width: none; opacity: 1;"></div><div style="width: 27px; height: 43px; overflow: hidden; position: absolute; left: 14371px; top: -8241px; z-index: -8198;"><img alt="" src="./Travel Buddy_files/spotlight-poi2_hdpi.png" draggable="false" style="position: absolute; left: 0px; top: 0px; width: 27px; height: 43px; user-select: none; border: 0px; padding: 0px; margin: 0px; max-width: none; opacity: 1;"></div><div style="width: 27px; height: 43px; overflow: hidden; position: absolute; left: -428px; top: -575px; z-index: -532;"><img alt="" src="./Travel Buddy_files/spotlight-poi2_hdpi.png" draggable="false" style="position: absolute; left: 0px; top: 0px; width: 27px; height: 43px; user-select: none; border: 0px; padding: 0px; margin: 0px; max-width: none; opacity: 1;"></div><div style="width: 27px; height: 43px; overflow: hidden; position: absolute; left: 2446px; top: -1061px; z-index: -1018;"><img alt="" src="./Travel Buddy_files/spotlight-poi2_hdpi.png" draggable="false" style="position: absolute; left: 0px; top: 0px; width: 27px; height: 43px; user-select: none; border: 0px; padding: 0px; margin: 0px; max-width: none; opacity: 1;"></div><div style="width: 27px; height: 43px; overflow: hidden; position: absolute; left: 246px; top: -1437px; z-index: -1394;"><img alt="" src="./Travel Buddy_files/spotlight-poi2_hdpi.png" draggable="false" style="position: absolute; left: 0px; top: 0px; width: 27px; height: 43px; user-select: none; border: 0px; padding: 0px; margin: 0px; max-width: none; opacity: 1;"></div><div style="width: 27px; height: 43px; overflow: hidden; position: absolute; left: -329px; top: 81px; z-index: 124;"><img alt="" src="./Travel Buddy_files/spotlight-poi2_hdpi.png" draggable="false" style="position: absolute; left: 0px; top: 0px; width: 27px; height: 43px; user-select: none; border: 0px; padding: 0px; margin: 0px; max-width: none; opacity: 1;"></div></div><div style="position: absolute; left: 0px; top: 0px; z-index: 0;"><div style="position: absolute; z-index: 1; transform: matrix(1, 0, 0, 1, -115, -209);"><div style="position: absolute; left: 0px; top: 256px; width: 256px; height: 256px;"><img draggable="false" alt="" src="./Travel Buddy_files/vt" style="width: 256px; height: 256px; user-select: none; border: 0px; padding: 0px; margin: 0px; max-width: none;"></div><div style="position: absolute; left: -256px; top: 256px; width: 256px; height: 256px;"><img draggable="false" alt="" src="./Travel Buddy_files/vt(1)" style="width: 256px; height: 256px; user-select: none; border: 0px; padding: 0px; margin: 0px; max-width: none;"></div><div style="position: absolute; left: 256px; top: 0px; width: 256px; height: 256px;"><img draggable="false" alt="" src="./Travel Buddy_files/vt(2)" style="width: 256px; height: 256px; user-select: none; border: 0px; padding: 0px; margin: 0px; max-width: none;"></div><div style="position: absolute; left: 256px; top: 256px; width: 256px; height: 256px;"><img draggable="false" alt="" src="./Travel Buddy_files/vt(3)" style="width: 256px; height: 256px; user-select: none; border: 0px; padding: 0px; margin: 0px; max-width: none;"></div><div style="position: absolute; left: 0px; top: 512px; width: 256px; height: 256px;"><img draggable="false" alt="" src="./Travel Buddy_files/vt(4)" style="width: 256px; height: 256px; user-select: none; border: 0px; padding: 0px; margin: 0px; max-width: none;"></div><div style="position: absolute; left: -256px; top: 512px; width: 256px; height: 256px;"><img draggable="false" alt="" src="./Travel Buddy_files/vt(5)" style="width: 256px; height: 256px; user-select: none; border: 0px; padding: 0px; margin: 0px; max-width: none;"></div><div style="position: absolute; left: -256px; top: 0px; width: 256px; height: 256px;"><img draggable="false" alt="" src="./Travel Buddy_files/vt(6)" style="width: 256px; height: 256px; user-select: none; border: 0px; padding: 0px; margin: 0px; max-width: none;"></div><div style="position: absolute; left: 0px; top: 0px; width: 256px; height: 256px;"><img draggable="false" alt="" src="./Travel Buddy_files/vt(7)" style="width: 256px; height: 256px; user-select: none; border: 0px; padding: 0px; margin: 0px; max-width: none;"></div><div style="position: absolute; left: 256px; top: 512px; width: 256px; height: 256px;"><img draggable="false" alt="" src="./Travel Buddy_files/vt(8)" style="width: 256px; height: 256px; user-select: none; border: 0px; padding: 0px; margin: 0px; max-width: none;"></div><div style="position: absolute; left: -512px; top: 512px; width: 256px; height: 256px;"><img draggable="false" alt="" src="./Travel Buddy_files/vt(9)" style="width: 256px; height: 256px; user-select: none; border: 0px; padding: 0px; margin: 0px; max-width: none;"></div><div style="position: absolute; left: -512px; top: 256px; width: 256px; height: 256px;"><img draggable="false" alt="" src="./Travel Buddy_files/vt(10)" style="width: 256px; height: 256px; user-select: none; border: 0px; padding: 0px; margin: 0px; max-width: none;"></div><div style="position: absolute; left: -512px; top: 0px; width: 256px; height: 256px;"><img draggable="false" alt="" src="./Travel Buddy_files/vt(11)" style="width: 256px; height: 256px; user-select: none; border: 0px; padding: 0px; margin: 0px; max-width: none;"></div><div style="position: absolute; left: -512px; top: -256px; width: 256px; height: 256px;"><img draggable="false" alt="" src="./Travel Buddy_files/vt(12)" style="width: 256px; height: 256px; user-select: none; border: 0px; padding: 0px; margin: 0px; max-width: none;"></div><div style="position: absolute; left: -256px; top: -256px; width: 256px; height: 256px;"><img draggable="false" alt="" src="./Travel Buddy_files/vt(13)" style="width: 256px; height: 256px; user-select: none; border: 0px; padding: 0px; margin: 0px; max-width: none;"></div><div style="position: absolute; left: 0px; top: -256px; width: 256px; height: 256px;"><img draggable="false" alt="" src="./Travel Buddy_files/vt(14)" style="width: 256px; height: 256px; user-select: none; border: 0px; padding: 0px; margin: 0px; max-width: none;"></div><div style="position: absolute; left: 256px; top: -256px; width: 256px; height: 256px;"><img draggable="false" alt="" src="./Travel Buddy_files/vt(15)" style="width: 256px; height: 256px; user-select: none; border: 0px; padding: 0px; margin: 0px; max-width: none;"></div><div style="position: absolute; left: 512px; top: -256px; width: 256px; height: 256px;"><img draggable="false" alt="" src="./Travel Buddy_files/vt(16)" style="width: 256px; height: 256px; user-select: none; border: 0px; padding: 0px; margin: 0px; max-width: none;"></div><div style="position: absolute; left: 512px; top: 0px; width: 256px; height: 256px;"><img draggable="false" alt="" src="./Travel Buddy_files/vt(17)" style="width: 256px; height: 256px; user-select: none; border: 0px; padding: 0px; margin: 0px; max-width: none;"></div><div style="position: absolute; left: 512px; top: 256px; width: 256px; height: 256px;"><img draggable="false" alt="" src="./Travel Buddy_files/vt(18)" style="width: 256px; height: 256px; user-select: none; border: 0px; padding: 0px; margin: 0px; max-width: none;"></div><div style="position: absolute; left: 512px; top: 512px; width: 256px; height: 256px;"><img draggable="false" alt="" src="./Travel Buddy_files/vt(19)" style="width: 256px; height: 256px; user-select: none; border: 0px; padding: 0px; margin: 0px; max-width: none;"></div></div></div></div><div class="gm-style-pbc" style="z-index: 2; position: absolute; height: 100%; width: 100%; padding: 0px; border-width: 0px; margin: 0px; left: 0px; top: 0px; opacity: 0; transition-duration: 0.8s;"><p class="gm-style-pbt">Use ⌘ + scroll to zoom the map</p></div><div style="z-index: 3; position: absolute; height: 100%; width: 100%; padding: 0px; border-width: 0px; margin: 0px; left: 0px; top: 0px; touch-action: pan-x pan-y;"><div style="z-index: 1; position: absolute; height: 100%; width: 100%; padding: 0px; border-width: 0px; margin: 0px; left: 0px; top: 0px;"></div><div style="z-index: 4; position: absolute; left: 50%; top: 50%; transform: translate(0px, 0px);"><div style="position: absolute; left: 0px; top: 0px; z-index: 104; width: 100%;"></div><div style="position: absolute; left: 0px; top: 0px; z-index: 105; width: 100%;"></div><div style="position: absolute; left: 0px; top: 0px; z-index: 106; width: 100%;"><div class="gmnoprint" style="width: 27px; height: 43px; overflow: hidden; position: absolute; opacity: 0.01; left: -14px; top: -43px; z-index: 0;"><img alt="" src="./Travel Buddy_files/spotlight-poi2_hdpi.png" draggable="false" usemap="#gmimap0" style="position: absolute; left: 0px; top: 0px; width: 27px; height: 43px; user-select: none; border: 0px; padding: 0px; margin: 0px; max-width: none; opacity: 1;"><map name="gmimap0" id="gmimap0"><area log="miw" coords="13.5,0,4,3.75,0,13.5,13.5,43,27,13.5,23,3.75" shape="poly" title="" style="cursor: pointer; touch-action: none;"></map></div><div class="gmnoprint" style="width: 27px; height: 43px; overflow: hidden; position: absolute; opacity: 0.01; left: 1331px; top: -838px; z-index: -795;"><img alt="" src="./Travel Buddy_files/spotlight-poi2_hdpi.png" draggable="false" usemap="#gmimap1" style="position: absolute; left: 0px; top: 0px; width: 27px; height: 43px; user-select: none; border: 0px; padding: 0px; margin: 0px; max-width: none; opacity: 1;"><map name="gmimap1" id="gmimap1"><area log="miw" coords="13.5,0,4,3.75,0,13.5,13.5,43,27,13.5,23,3.75" shape="poly" title="" style="cursor: pointer; touch-action: none;"></map></div><div class="gmnoprint" style="width: 27px; height: 43px; overflow: hidden; position: absolute; opacity: 0.01; left: -115px; top: -64px; z-index: -21;"><img alt="" src="./Travel Buddy_files/spotlight-poi2_hdpi.png" draggable="false" usemap="#gmimap2" style="position: absolute; left: 0px; top: 0px; width: 27px; height: 43px; user-select: none; border: 0px; padding: 0px; margin: 0px; max-width: none; opacity: 1;"><map name="gmimap2" id="gmimap2"><area log="miw" coords="13.5,0,4,3.75,0,13.5,13.5,43,27,13.5,23,3.75" shape="poly" title="" style="cursor: pointer; touch-action: none;"></map></div><div class="gmnoprint" style="width: 27px; height: 43px; overflow: hidden; position: absolute; opacity: 0.01; left: -960px; top: -3325px; z-index: -3282;"><img alt="" src="./Travel Buddy_files/spotlight-poi2_hdpi.png" draggable="false" usemap="#gmimap3" style="position: absolute; left: 0px; top: 0px; width: 27px; height: 43px; user-select: none; border: 0px; padding: 0px; margin: 0px; max-width: none; opacity: 1;"><map name="gmimap3" id="gmimap3"><area log="miw" coords="13.5,0,4,3.75,0,13.5,13.5,43,27,13.5,23,3.75" shape="poly" title="" style="cursor: pointer; touch-action: none;"></map></div><div class="gmnoprint" style="width: 27px; height: 43px; overflow: hidden; position: absolute; opacity: 0.01; left: 79px; top: -517px; z-index: -474;"><img alt="" src="./Travel Buddy_files/spotlight-poi2_hdpi.png" draggable="false" usemap="#gmimap4" style="position: absolute; left: 0px; top: 0px; width: 27px; height: 43px; user-select: none; border: 0px; padding: 0px; margin: 0px; max-width: none; opacity: 1;"><map name="gmimap4" id="gmimap4"><area log="miw" coords="13.5,0,4,3.75,0,13.5,13.5,43,27,13.5,23,3.75" shape="poly" title="" style="cursor: pointer; touch-action: none;"></map></div><div class="gmnoprint" style="width: 27px; height: 43px; overflow: hidden; position: absolute; opacity: 0.01; left: 598px; top: -1698px; z-index: -1655;"><img alt="" src="./Travel Buddy_files/spotlight-poi2_hdpi.png" draggable="false" usemap="#gmimap5" style="position: absolute; left: 0px; top: 0px; width: 27px; height: 43px; user-select: none; border: 0px; padding: 0px; margin: 0px; max-width: none; opacity: 1;"><map name="gmimap5" id="gmimap5"><area log="miw" coords="13.5,0,4,3.75,0,13.5,13.5,43,27,13.5,23,3.75" shape="poly" title="" style="cursor: pointer; touch-action: none;"></map></div><div class="gmnoprint" style="width: 27px; height: 43px; overflow: hidden; position: absolute; opacity: 0.01; left: -1177px; top: -2047px; z-index: -2004;"><img alt="" src="./Travel Buddy_files/spotlight-poi2_hdpi.png" draggable="false" usemap="#gmimap6" style="position: absolute; left: 0px; top: 0px; width: 27px; height: 43px; user-select: none; border: 0px; padding: 0px; margin: 0px; max-width: none; opacity: 1;"><map name="gmimap6" id="gmimap6"><area log="miw" coords="13.5,0,4,3.75,0,13.5,13.5,43,27,13.5,23,3.75" shape="poly" title="" style="cursor: pointer; touch-action: none;"></map></div><div class="gmnoprint" style="width: 27px; height: 43px; overflow: hidden; position: absolute; opacity: 0.01; left: -165px; top: -681px; z-index: -638;"><img alt="" src="./Travel Buddy_files/spotlight-poi2_hdpi.png" draggable="false" usemap="#gmimap7" style="position: absolute; left: 0px; top: 0px; width: 27px; height: 43px; user-select: none; border: 0px; padding: 0px; margin: 0px; max-width: none; opacity: 1;"><map name="gmimap7" id="gmimap7"><area log="miw" coords="13.5,0,4,3.75,0,13.5,13.5,43,27,13.5,23,3.75" shape="poly" title="" style="cursor: pointer; touch-action: none;"></map></div><div class="gmnoprint" style="width: 27px; height: 43px; overflow: hidden; position: absolute; opacity: 0.01; left: 9px; top: 3698px; z-index: 3741;"><img alt="" src="./Travel Buddy_files/spotlight-poi2_hdpi.png" draggable="false" usemap="#gmimap8" style="position: absolute; left: 0px; top: 0px; width: 27px; height: 43px; user-select: none; border: 0px; padding: 0px; margin: 0px; max-width: none; opacity: 1;"><map name="gmimap8" id="gmimap8"><area log="miw" coords="13.5,0,4,3.75,0,13.5,13.5,43,27,13.5,23,3.75" shape="poly" title="" style="cursor: pointer; touch-action: none;"></map></div><div class="gmnoprint" style="width: 27px; height: 43px; overflow: hidden; position: absolute; opacity: 0.01; left: 51px; top: 157px; z-index: 200;"><img alt="" src="./Travel Buddy_files/spotlight-poi2_hdpi.png" draggable="false" usemap="#gmimap9" style="position: absolute; left: 0px; top: 0px; width: 27px; height: 43px; user-select: none; border: 0px; padding: 0px; margin: 0px; max-width: none; opacity: 1;"><map name="gmimap9" id="gmimap9"><area log="miw" coords="13.5,0,4,3.75,0,13.5,13.5,43,27,13.5,23,3.75" shape="poly" title="" style="cursor: pointer; touch-action: none;"></map></div><div class="gmnoprint" style="width: 27px; height: 43px; overflow: hidden; position: absolute; opacity: 0.01; left: -7258px; top: -577px; z-index: -534;"><img alt="" src="./Travel Buddy_files/spotlight-poi2_hdpi.png" draggable="false" usemap="#gmimap10" style="position: absolute; left: 0px; top: 0px; width: 27px; height: 43px; user-select: none; border: 0px; padding: 0px; margin: 0px; max-width: none; opacity: 1;"><map name="gmimap10" id="gmimap10"><area log="miw" coords="13.5,0,4,3.75,0,13.5,13.5,43,27,13.5,23,3.75" shape="poly" title="" style="cursor: pointer; touch-action: none;"></map></div><div class="gmnoprint" style="width: 27px; height: 43px; overflow: hidden; position: absolute; opacity: 0.01; left: 18px; top: -1096px; z-index: -1053;"><img alt="" src="./Travel Buddy_files/spotlight-poi2_hdpi.png" draggable="false" usemap="#gmimap11" style="position: absolute; left: 0px; top: 0px; width: 27px; height: 43px; user-select: none; border: 0px; padding: 0px; margin: 0px; max-width: none; opacity: 1;"><map name="gmimap11" id="gmimap11"><area log="miw" coords="13.5,0,4,3.75,0,13.5,13.5,43,27,13.5,23,3.75" shape="poly" title="" style="cursor: pointer; touch-action: none;"></map></div><div class="gmnoprint" style="width: 27px; height: 43px; overflow: hidden; position: absolute; opacity: 0.01; left: -624px; top: -1486px; z-index: -1443;"><img alt="" src="./Travel Buddy_files/spotlight-poi2_hdpi.png" draggable="false" usemap="#gmimap12" style="position: absolute; left: 0px; top: 0px; width: 27px; height: 43px; user-select: none; border: 0px; padding: 0px; margin: 0px; max-width: none; opacity: 1;"><map name="gmimap12" id="gmimap12"><area log="miw" coords="13.5,0,4,3.75,0,13.5,13.5,43,27,13.5,23,3.75" shape="poly" title="" style="cursor: pointer; touch-action: none;"></map></div><div class="gmnoprint" style="width: 27px; height: 43px; overflow: hidden; position: absolute; opacity: 0.01; left: -917px; top: -2682px; z-index: -2639;"><img alt="" src="./Travel Buddy_files/spotlight-poi2_hdpi.png" draggable="false" usemap="#gmimap13" style="position: absolute; left: 0px; top: 0px; width: 27px; height: 43px; user-select: none; border: 0px; padding: 0px; margin: 0px; max-width: none; opacity: 1;"><map name="gmimap13" id="gmimap13"><area log="miw" coords="13.5,0,4,3.75,0,13.5,13.5,43,27,13.5,23,3.75" shape="poly" title="" style="cursor: pointer; touch-action: none;"></map></div><div class="gmnoprint" style="width: 27px; height: 43px; overflow: hidden; position: absolute; opacity: 0.01; left: 758px; top: -670px; z-index: -627;"><img alt="" src="./Travel Buddy_files/spotlight-poi2_hdpi.png" draggable="false" usemap="#gmimap14" style="position: absolute; left: 0px; top: 0px; width: 27px; height: 43px; user-select: none; border: 0px; padding: 0px; margin: 0px; max-width: none; opacity: 1;"><map name="gmimap14" id="gmimap14"><area log="miw" coords="13.5,0,4,3.75,0,13.5,13.5,43,27,13.5,23,3.75" shape="poly" title="" style="cursor: pointer; touch-action: none;"></map></div><div class="gmnoprint" style="width: 27px; height: 43px; overflow: hidden; position: absolute; opacity: 0.01; left: -311px; top: -611px; z-index: -568;"><img alt="" src="./Travel Buddy_files/spotlight-poi2_hdpi.png" draggable="false" usemap="#gmimap15" style="position: absolute; left: 0px; top: 0px; width: 27px; height: 43px; user-select: none; border: 0px; padding: 0px; margin: 0px; max-width: none; opacity: 1;"><map name="gmimap15" id="gmimap15"><area log="miw" coords="13.5,0,4,3.75,0,13.5,13.5,43,27,13.5,23,3.75" shape="poly" title="" style="cursor: pointer; touch-action: none;"></map></div><div class="gmnoprint" style="width: 27px; height: 43px; overflow: hidden; position: absolute; opacity: 0.01; left: -835px; top: -3303px; z-index: -3260;"><img alt="" src="./Travel Buddy_files/spotlight-poi2_hdpi.png" draggable="false" usemap="#gmimap16" style="position: absolute; left: 0px; top: 0px; width: 27px; height: 43px; user-select: none; border: 0px; padding: 0px; margin: 0px; max-width: none; opacity: 1;"><map name="gmimap16" id="gmimap16"><area log="miw" coords="13.5,0,4,3.75,0,13.5,13.5,43,27,13.5,23,3.75" shape="poly" title="" style="cursor: pointer; touch-action: none;"></map></div><div class="gmnoprint" style="width: 27px; height: 43px; overflow: hidden; position: absolute; opacity: 0.01; left: 627px; top: -180px; z-index: -137;"><img alt="" src="./Travel Buddy_files/spotlight-poi2_hdpi.png" draggable="false" usemap="#gmimap17" style="position: absolute; left: 0px; top: 0px; width: 27px; height: 43px; user-select: none; border: 0px; padding: 0px; margin: 0px; max-width: none; opacity: 1;"><map name="gmimap17" id="gmimap17"><area log="miw" coords="13.5,0,4,3.75,0,13.5,13.5,43,27,13.5,23,3.75" shape="poly" title="" style="cursor: pointer; touch-action: none;"></map></div><div class="gmnoprint" style="width: 27px; height: 43px; overflow: hidden; position: absolute; opacity: 0.01; left: 2419px; top: -11789px; z-index: -11746;"><img alt="" src="./Travel Buddy_files/spotlight-poi2_hdpi.png" draggable="false" usemap="#gmimap18" style="position: absolute; left: 0px; top: 0px; width: 27px; height: 43px; user-select: none; border: 0px; padding: 0px; margin: 0px; max-width: none; opacity: 1;"><map name="gmimap18" id="gmimap18"><area log="miw" coords="13.5,0,4,3.75,0,13.5,13.5,43,27,13.5,23,3.75" shape="poly" title="" style="cursor: pointer; touch-action: none;"></map></div><div class="gmnoprint" style="width: 27px; height: 43px; overflow: hidden; position: absolute; opacity: 0.01; left: -2081px; top: -4757px; z-index: -4714;"><img alt="" src="./Travel Buddy_files/spotlight-poi2_hdpi.png" draggable="false" usemap="#gmimap19" style="position: absolute; left: 0px; top: 0px; width: 27px; height: 43px; user-select: none; border: 0px; padding: 0px; margin: 0px; max-width: none; opacity: 1;"><map name="gmimap19" id="gmimap19"><area log="miw" coords="13.5,0,4,3.75,0,13.5,13.5,43,27,13.5,23,3.75" shape="poly" title="" style="cursor: pointer; touch-action: none;"></map></div><div class="gmnoprint" style="width: 27px; height: 43px; overflow: hidden; position: absolute; opacity: 0.01; left: 14371px; top: -8241px; z-index: -8198;"><img alt="" src="./Travel Buddy_files/spotlight-poi2_hdpi.png" draggable="false" usemap="#gmimap20" style="position: absolute; left: 0px; top: 0px; width: 27px; height: 43px; user-select: none; border: 0px; padding: 0px; margin: 0px; max-width: none; opacity: 1;"><map name="gmimap20" id="gmimap20"><area log="miw" coords="13.5,0,4,3.75,0,13.5,13.5,43,27,13.5,23,3.75" shape="poly" title="" style="cursor: pointer; touch-action: none;"></map></div><div class="gmnoprint" style="width: 27px; height: 43px; overflow: hidden; position: absolute; opacity: 0.01; left: -428px; top: -575px; z-index: -532;"><img alt="" src="./Travel Buddy_files/spotlight-poi2_hdpi.png" draggable="false" usemap="#gmimap21" style="position: absolute; left: 0px; top: 0px; width: 27px; height: 43px; user-select: none; border: 0px; padding: 0px; margin: 0px; max-width: none; opacity: 1;"><map name="gmimap21" id="gmimap21"><area log="miw" coords="13.5,0,4,3.75,0,13.5,13.5,43,27,13.5,23,3.75" shape="poly" title="" style="cursor: pointer; touch-action: none;"></map></div><div class="gmnoprint" style="width: 27px; height: 43px; overflow: hidden; position: absolute; opacity: 0.01; left: 2446px; top: -1061px; z-index: -1018;"><img alt="" src="./Travel Buddy_files/spotlight-poi2_hdpi.png" draggable="false" usemap="#gmimap22" style="position: absolute; left: 0px; top: 0px; width: 27px; height: 43px; user-select: none; border: 0px; padding: 0px; margin: 0px; max-width: none; opacity: 1;"><map name="gmimap22" id="gmimap22"><area log="miw" coords="13.5,0,4,3.75,0,13.5,13.5,43,27,13.5,23,3.75" shape="poly" title="" style="cursor: pointer; touch-action: none;"></map></div><div class="gmnoprint" style="width: 27px; height: 43px; overflow: hidden; position: absolute; opacity: 0.01; left: 246px; top: -1437px; z-index: -1394;"><img alt="" src="./Travel Buddy_files/spotlight-poi2_hdpi.png" draggable="false" usemap="#gmimap23" style="position: absolute; left: 0px; top: 0px; width: 27px; height: 43px; user-select: none; border: 0px; padding: 0px; margin: 0px; max-width: none; opacity: 1;"><map name="gmimap23" id="gmimap23"><area log="miw" coords="13.5,0,4,3.75,0,13.5,13.5,43,27,13.5,23,3.75" shape="poly" title="" style="cursor: pointer; touch-action: none;"></map></div><div class="gmnoprint" style="width: 27px; height: 43px; overflow: hidden; position: absolute; opacity: 0.01; left: -329px; top: 81px; z-index: 124;"><img alt="" src="./Travel Buddy_files/spotlight-poi2_hdpi.png" draggable="false" usemap="#gmimap24" style="position: absolute; left: 0px; top: 0px; width: 27px; height: 43px; user-select: none; border: 0px; padding: 0px; margin: 0px; max-width: none; opacity: 1;"><map name="gmimap24" id="gmimap24"><area log="miw" coords="13.5,0,4,3.75,0,13.5,13.5,43,27,13.5,23,3.75" shape="poly" title="" style="cursor: pointer; touch-action: none;"></map></div></div><div style="position: absolute; left: 0px; top: 0px; z-index: 107; width: 100%;"></div></div></div></div><iframe frameborder="0" style="z-index: -1; position: absolute; width: 100%; height: 100%; top: 0px; left: 0px; border: none;" src="./Travel Buddy_files/saved_resource.html"></iframe><div style="margin-left: 5px; margin-right: 5px; z-index: 1000000; position: absolute; left: 0px; bottom: 0px;"><a target="_blank" href="https://maps.google.com/maps?ll=43.642403,-79.385971&amp;z=17&amp;t=m&amp;hl=en&amp;gl=US&amp;mapclient=apiv3" title="Click to see this area on Google Maps" style="position: static; overflow: visible; float: none; display: inline;"><div style="width: 66px; height: 26px; cursor: pointer;"><img alt="" src="./Travel Buddy_files/google4_hdpi.png" draggable="false" style="position: absolute; left: 0px; top: 0px; width: 66px; height: 26px; user-select: none; border: 0px; padding: 0px; margin: 0px;"></div></a></div><div style="background-color: white; padding: 15px 21px; border: 1px solid rgb(171, 171, 171); font-family: Roboto, Arial, sans-serif; color: rgb(34, 34, 34); box-shadow: rgba(0, 0, 0, 0.2) 0px 4px 16px; z-index: 10000002; display: none; width: 256px; height: 148px; position: absolute; left: 152px; top: 241px;"><div style="padding: 0px 0px 10px; font-size: 16px;">Map Data</div><div style="font-size: 13px;">Map data ©2018 Google</div><div style="width: 13px; height: 13px; overflow: hidden; position: absolute; opacity: 0.7; right: 12px; top: 12px; z-index: 10000; cursor: pointer;"><img alt="" src="./Travel Buddy_files/mapcnt6.png" draggable="false" style="position: absolute; left: -2px; top: -336px; width: 59px; height: 492px; user-select: none; border: 0px; padding: 0px; margin: 0px; max-width: none;"></div></div><div class="gmnoprint" style="z-index: 1000001; position: absolute; right: 167px; bottom: 0px; width: 121px;"><div draggable="false" class="gm-style-cc" style="user-select: none; height: 14px; line-height: 14px;"><div style="opacity: 0.7; width: 100%; height: 100%; position: absolute;"><div style="width: 1px;"></div><div style="background-color: rgb(245, 245, 245); width: auto; height: 100%; margin-left: 1px;"></div></div><div style="position: relative; padding-right: 6px; padding-left: 6px; font-family: Roboto, Arial, sans-serif; font-size: 10px; color: rgb(68, 68, 68); white-space: nowrap; direction: ltr; text-align: right; vertical-align: middle; display: inline-block;"><a style="text-decoration: none; cursor: pointer; display: none;">Map Data</a><span>Map data ©2018 Google</span></div></div></div><div class="gmnoscreen" style="position: absolute; right: 0px; bottom: 0px;"><div style="font-family: Roboto, Arial, sans-serif; font-size: 11px; color: rgb(68, 68, 68); direction: ltr; text-align: right; background-color: rgb(245, 245, 245);">Map data ©2018 Google</div></div><div class="gmnoprint gm-style-cc" draggable="false" style="z-index: 1000001; user-select: none; height: 14px; line-height: 14px; position: absolute; right: 96px; bottom: 0px;"><div style="opacity: 0.7; width: 100%; height: 100%; position: absolute;"><div style="width: 1px;"></div><div style="background-color: rgb(245, 245, 245); width: auto; height: 100%; margin-left: 1px;"></div></div><div style="position: relative; padding-right: 6px; padding-left: 6px; font-family: Roboto, Arial, sans-serif; font-size: 10px; color: rgb(68, 68, 68); white-space: nowrap; direction: ltr; text-align: right; vertical-align: middle; display: inline-block;"><a href="https://www.google.com/intl/en_US/help/terms_maps.html" target="_blank" style="text-decoration: none; cursor: pointer; color: rgb(68, 68, 68);">Terms of Use</a></div></div><button draggable="false" title="Toggle fullscreen view" aria-label="Toggle fullscreen view" type="button" style="background: none rgb(255, 255, 255); border: 0px; margin: 10px 14px; padding: 0px; position: absolute; cursor: pointer; user-select: none; width: 25px; height: 25px; overflow: hidden; top: 0px; right: 0px;"><img alt="" src="./Travel Buddy_files/sv9.png" draggable="false" class="gm-fullscreen-control" style="position: absolute; left: -52px; top: -86px; width: 164px; height: 175px; user-select: none; border: 0px; padding: 0px; margin: 0px;"></button><div draggable="false" class="gm-style-cc" style="user-select: none; height: 14px; line-height: 14px; position: absolute; right: 0px; bottom: 0px;"><div style="opacity: 0.7; width: 100%; height: 100%; position: absolute;"><div style="width: 1px;"></div><div style="background-color: rgb(245, 245, 245); width: auto; height: 100%; margin-left: 1px;"></div></div><div style="position: relative; padding-right: 6px; padding-left: 6px; font-family: Roboto, Arial, sans-serif; font-size: 10px; color: rgb(68, 68, 68); white-space: nowrap; direction: ltr; text-align: right; vertical-align: middle; display: inline-block;"><a target="_blank" rel="noopener" title="Report errors in the road map or imagery to Google" href="https://www.google.com/maps/@43.642403,-79.385971,17z/data=!10m1!1e1!12b1?source=apiv3&amp;rapsrc=apiv3" style="font-family: Roboto, Arial, sans-serif; font-size: 10px; color: rgb(68, 68, 68); text-decoration: none; position: relative;">Report a map error</a></div></div><div class="gmnoprint gm-bundled-control gm-bundled-control-on-bottom" draggable="false" controlwidth="28" controlheight="93" style="margin: 10px; user-select: none; position: absolute; bottom: 107px; right: 28px;"><div class="gmnoprint" controlwidth="28" controlheight="55" style="position: absolute; left: 0px; top: 38px;"><div draggable="false" style="user-select: none; box-shadow: rgba(0, 0, 0, 0.3) 0px 1px 4px -1px; border-radius: 2px; cursor: pointer; background-color: rgb(255, 255, 255); width: 28px; height: 55px;"><button draggable="false" title="Zoom in" aria-label="Zoom in" type="button" style="background: none; display: block; border: 0px; margin: 0px; padding: 0px; position: relative; cursor: pointer; user-select: none; width: 28px; height: 27px; top: 0px; left: 0px;"><div style="overflow: hidden; position: absolute; width: 15px; height: 15px; left: 7px; top: 6px;"><img alt="" src="./Travel Buddy_files/tmapctrl_hdpi.png" draggable="false" style="position: absolute; left: 0px; top: 0px; user-select: none; border: 0px; padding: 0px; margin: 0px; max-width: none; width: 120px; height: 54px;"></div></button><div style="position: relative; overflow: hidden; width: 67%; height: 1px; left: 16%; background-color: rgb(230, 230, 230); top: 0px;"></div><button draggable="false" title="Zoom out" aria-label="Zoom out" type="button" style="background: none; display: block; border: 0px; margin: 0px; padding: 0px; position: relative; cursor: pointer; user-select: none; width: 28px; height: 27px; top: 0px; left: 0px;"><div style="overflow: hidden; position: absolute; width: 15px; height: 15px; left: 7px; top: 6px;"><img alt="" src="./Travel Buddy_files/tmapctrl_hdpi.png" draggable="false" style="position: absolute; left: 0px; top: -15px; user-select: none; border: 0px; padding: 0px; margin: 0px; max-width: none; width: 120px; height: 54px;"></div></button></div></div><div class="gm-svpc" controlwidth="28" controlheight="28" style="background-color: rgb(255, 255, 255); box-shadow: rgba(0, 0, 0, 0.3) 0px 1px 4px -1px; border-radius: 2px; width: 28px; height: 28px; cursor: url(&quot;https://maps.gstatic.com/mapfiles/openhand_8_8.cur&quot;), default; touch-action: none; position: absolute; left: 0px; top: 0px;"><div style="position: absolute; left: 1px; top: 1px;"></div><div style="position: absolute; left: 1px; top: 1px;"><div aria-label="Street View Pegman Control" style="width: 26px; height: 26px; overflow: hidden; position: absolute; left: 0px; top: 0px;"><img alt="" src="./Travel Buddy_files/cb_scout5_hdpi.png" draggable="false" style="position: absolute; left: -147px; top: -26px; width: 215px; height: 835px; user-select: none; border: 0px; padding: 0px; margin: 0px; max-width: none;"></div><div aria-label="Pegman is on top of the Map" style="width: 26px; height: 26px; overflow: hidden; position: absolute; left: 0px; top: 0px; visibility: hidden;"><img alt="" src="./Travel Buddy_files/cb_scout5_hdpi.png" draggable="false" style="position: absolute; left: -147px; top: -52px; width: 215px; height: 835px; user-select: none; border: 0px; padding: 0px; margin: 0px; max-width: none;"></div><div aria-label="Street View Pegman Control" style="width: 26px; height: 26px; overflow: hidden; position: absolute; left: 0px; top: 0px; visibility: hidden;"><img alt="" src="./Travel Buddy_files/cb_scout5_hdpi.png" draggable="false" style="position: absolute; left: -147px; top: -78px; width: 215px; height: 835px; user-select: none; border: 0px; padding: 0px; margin: 0px; max-width: none;"></div></div></div><div class="gmnoprint" controlwidth="28" controlheight="0" style="display: none; position: absolute;"><div title="Rotate map 90 degrees" style="width: 28px; height: 28px; overflow: hidden; position: absolute; background-color: rgb(255, 255, 255); box-shadow: rgba(0, 0, 0, 0.3) 0px 1px 4px -1px; border-radius: 2px; cursor: pointer; display: none;"><img alt="" src="./Travel Buddy_files/tmapctrl4_hdpi.png" draggable="false" style="position: absolute; left: -141px; top: 6px; width: 170px; height: 54px; user-select: none; border: 0px; padding: 0px; margin: 0px; max-width: none;"></div><div class="gm-tilt" style="width: 28px; height: 28px; overflow: hidden; position: absolute; background-color: rgb(255, 255, 255); box-shadow: rgba(0, 0, 0, 0.3) 0px 1px 4px -1px; border-radius: 2px; top: 0px; cursor: pointer;"><img alt="" src="./Travel Buddy_files/tmapctrl4_hdpi.png" draggable="false" style="position: absolute; left: -141px; top: -13px; width: 170px; height: 54px; user-select: none; border: 0px; padding: 0px; margin: 0px; max-width: none;"></div></div></div><div class="gmnoprint" style="margin: 10px; z-index: 0; position: absolute; cursor: pointer; left: 0px; top: 0px;"><div class="gm-style-mtc" style="float: left; position: relative;"><div role="button" tabindex="0" title="Show street map" aria-label="Show street map" aria-pressed="true" draggable="false" style="direction: ltr; overflow: hidden; text-align: center; position: relative; color: rgb(0, 0, 0); font-family: Roboto, Arial, sans-serif; user-select: none; font-size: 11px; background-color: rgb(255, 255, 255); padding: 8px; border-bottom-left-radius: 2px; border-top-left-radius: 2px; background-clip: padding-box; box-shadow: rgba(0, 0, 0, 0.3) 0px 1px 4px -1px; min-width: 22px; font-weight: 500;">Map</div><div style="background-color: white; z-index: -1; padding: 2px; border-bottom-left-radius: 2px; border-bottom-right-radius: 2px; box-shadow: rgba(0, 0, 0, 0.3) 0px 1px 4px -1px; position: absolute; left: 0px; top: 29px; text-align: left; display: none;"><div draggable="false" title="Show street map with terrain" style="color: rgb(0, 0, 0); font-family: Roboto, Arial, sans-serif; user-select: none; font-size: 11px; background-color: rgb(255, 255, 255); padding: 6px 8px 6px 6px; direction: ltr; text-align: left; white-space: nowrap;"><span role="checkbox" style="box-sizing: border-box; position: relative; line-height: 0; font-size: 0px; margin: 0px 5px 0px 0px; display: inline-block; background-color: rgb(255, 255, 255); border: 1px solid rgb(198, 198, 198); border-radius: 1px; width: 13px; height: 13px; vertical-align: middle;"><div style="position: absolute; left: 1px; top: -2px; width: 13px; height: 11px; overflow: hidden; display: none;"><img alt="" src="./Travel Buddy_files/imgs8.png" draggable="false" style="position: absolute; left: -52px; top: -44px; user-select: none; border: 0px; padding: 0px; margin: 0px; max-width: none; width: 68px; height: 67px;"></div></span><label style="vertical-align: middle; cursor: pointer;">Terrain</label></div></div></div><div class="gm-style-mtc" style="float: left; position: relative;"><div role="button" tabindex="0" title="Show satellite imagery" aria-label="Show satellite imagery" aria-pressed="false" draggable="false" style="direction: ltr; overflow: hidden; text-align: center; position: relative; color: rgb(86, 86, 86); font-family: Roboto, Arial, sans-serif; user-select: none; font-size: 11px; background-color: rgb(255, 255, 255); padding: 8px; border-bottom-right-radius: 2px; border-top-right-radius: 2px; background-clip: padding-box; box-shadow: rgba(0, 0, 0, 0.3) 0px 1px 4px -1px; min-width: 40px; border-left: 0px;">Satellite</div><div style="background-color: white; z-index: -1; padding: 2px; border-bottom-left-radius: 2px; border-bottom-right-radius: 2px; box-shadow: rgba(0, 0, 0, 0.3) 0px 1px 4px -1px; position: absolute; right: 0px; top: 29px; text-align: left; display: none;"><div draggable="false" title="Show imagery with street names" style="color: rgb(0, 0, 0); font-family: Roboto, Arial, sans-serif; user-select: none; font-size: 11px; background-color: rgb(255, 255, 255); padding: 6px 8px 6px 6px; direction: ltr; text-align: left; white-space: nowrap;"><span role="checkbox" style="box-sizing: border-box; position: relative; line-height: 0; font-size: 0px; margin: 0px 5px 0px 0px; display: inline-block; background-color: rgb(255, 255, 255); border: 1px solid rgb(198, 198, 198); border-radius: 1px; width: 13px; height: 13px; vertical-align: middle;"><div style="position: absolute; left: 1px; top: -2px; width: 13px; height: 11px; overflow: hidden;"><img alt="" src="./Travel Buddy_files/imgs8.png" draggable="false" style="position: absolute; left: -52px; top: -44px; user-select: none; border: 0px; padding: 0px; margin: 0px; max-width: none; width: 68px; height: 67px;"></div></span><label style="vertical-align: middle; cursor: pointer;">Labels</label></div></div></div></div></div></div></div><div google="[object Object]" mapcenter="[object Object]" map="[object Object]"><h1></h1></div></div><div></div></div></div><div id="poi-list-container"><div id="poi-list"><div><div id="DropdownContainer"><div class="dropdown btn-group"><button id="dropdown" role="button" aria-haspopup="true" aria-expanded="false" type="button" class="dropdown-toggle btn btn-default">Popular <span class="caret"></span></button><ul role="menu" class="dropdown-menu" aria-labelledby="dropdown"><li role="presentation" class=""><a role="menuitem" tabindex="-1" href="http://localhost:3002/cities/Toronto#">Popular</a></li><li role="presentation" class=""><a role="menuitem" tabindex="-1" href="http://localhost:3002/cities/Toronto#">Museum</a></li><li role="presentation" class=""><a role="menuitem" tabindex="-1" href="http://localhost:3002/cities/Toronto#">Restaurants</a></li><li role="presentation" class=""><a role="menuitem" tabindex="-1" href="http://localhost:3002/cities/Toronto#">Nightlife</a></li></ul></div></div></div><div id="panel-container" role="tablist" class="panel-group"><div class="panel panel-default"><div role="tab" id="panel-container-heading-1" class="panel-header panel-heading"><div class="panel-title"><a aria-expanded="true" class="" aria-controls="panel-container-body-1" role="button" href="http://localhost:3002/cities/Toronto#">Ripley's Aquarium of Canada</a></div></div><div class="panel-collapse collapse in" id="panel-container-body-1" role="tabpanel" aria-labelledby="panel-container-heading-1" aria-expanded="true" style=""><div class="panel-body"><img src="./Travel Buddy_files/ripley-s-aquarium-of.jpg" class="poiImage img-rounded"><div class="panel-body-text" style="
+    background: #fbf9f9;
+"><p> 
+#1 of 542 things to do in Toronto
+ </p><p> 288 Bremner Blvd, Toronto </p><div data-name="0"><button name="hi" type="button" class="btn btn-default">Details</button></div></div></div></div></div><div class="panel panel-default"><div role="tab" id="panel-container-heading-2" class="panel-header panel-heading"><div class="panel-title"><a aria-expanded="false" class="collapsed" aria-controls="panel-container-body-2" role="button" href="http://localhost:3002/cities/Toronto#">St. Lawrence Market</a></div></div><div class="panel-collapse collapse" id="panel-container-body-2" role="tabpanel" aria-labelledby="panel-container-heading-2" aria-expanded="false"><div class="panel-body"><img src="./Travel Buddy_files/st-lawrence-market.jpg" class="poiImage img-rounded"><div class="panel-body-text"><p> 
+#2 of 542 things to do in Toronto
+ </p><p> 93 Front St E, Toronto </p><div data-name="1"><button name="hi" type="button" class="btn btn-default">Details</button></div></div></div></div></div><div class="panel panel-default"><div role="tab" id="panel-container-heading-3" class="panel-header panel-heading"><div class="panel-title"><a aria-expanded="false" class="collapsed" aria-controls="panel-container-body-3" role="button" href="http://localhost:3002/cities/Toronto#">CN Tower</a></div></div><div class="panel-collapse collapse" id="panel-container-body-3" role="tabpanel" aria-labelledby="panel-container-heading-3" aria-expanded="false"><div class="panel-body"><img src="./Travel Buddy_files/cn-tower.jpg" class="poiImage img-rounded"><div class="panel-body-text"><p> 
+#3 of 542 things to do in Toronto
+ </p><p> 301 Front St W, Toronto </p><div data-name="2"><button name="hi" type="button" class="btn btn-default">Details</button></div></div></div></div></div><div class="panel panel-default"><div role="tab" id="panel-container-heading-4" class="panel-header panel-heading"><div class="panel-title"><a aria-expanded="false" class="collapsed" aria-controls="panel-container-body-4" role="button" href="http://localhost:3002/cities/Toronto#">The Royal Conservatory of Music</a></div></div><div class="panel-collapse collapse" id="panel-container-body-4" role="tabpanel" aria-labelledby="panel-container-heading-4" aria-expanded="false"><div class="panel-body"><img src="./Travel Buddy_files/koerner-hall.jpg" class="poiImage img-rounded"><div class="panel-body-text"><p> 
+#5 of 542 things to do in Toronto
+ </p><p> 273 Bloor St W, Toronto </p><div data-name="3"><button name="hi" type="button" class="btn btn-default">Details</button></div></div></div></div></div><div class="panel panel-default"><div role="tab" id="panel-container-heading-5" class="panel-header panel-heading"><div class="panel-title"><a aria-expanded="false" class="collapsed" aria-controls="panel-container-body-5" role="button" href="http://localhost:3002/cities/Toronto#">Toronto Symphony Orchestra</a></div></div><div class="panel-collapse collapse" id="panel-container-body-5" role="tabpanel" aria-labelledby="panel-container-heading-5" aria-expanded="false"><div class="panel-body"><img src="./Travel Buddy_files/toronto-symphony-orchestra.jpg" class="poiImage img-rounded"><div class="panel-body-text"><p> 
+#7 of 542 things to do in Toronto
+ </p><p> 145 Wellington St W Suite 500, Toronto </p><div data-name="4"><button name="hi" type="button" class="btn btn-default">Details</button></div></div></div></div></div><div class="panel panel-default"><div role="tab" id="panel-container-heading-6" class="panel-header panel-heading"><div class="panel-title"><a aria-expanded="false" class="collapsed" aria-controls="panel-container-body-6" role="button" href="http://localhost:3002/cities/Toronto#">Ed Mirvish Theatre</a></div></div><div class="panel-collapse collapse" id="panel-container-body-6" role="tabpanel" aria-labelledby="panel-container-heading-6" aria-expanded="false"><div class="panel-body"><img src="./Travel Buddy_files/ed-mirvish-theatre.jpg" class="poiImage img-rounded"><div class="panel-body-text"><p> 
+#8 of 542 things to do in Toronto
+ </p><p> 244 Victoria St, Toronto </p><div data-name="5"><button name="hi" type="button" class="btn btn-default">Details</button></div></div></div></div></div><div class="panel panel-default"><div role="tab" id="panel-container-heading-7" class="panel-header panel-heading"><div class="panel-title"><a aria-expanded="false" class="collapsed" aria-controls="panel-container-body-7" role="button" href="http://localhost:3002/cities/Toronto#">Toronto Public Library - Lillian H. Smith Library</a></div></div><div class="panel-collapse collapse" id="panel-container-body-7" role="tabpanel" aria-labelledby="panel-container-heading-7" aria-expanded="false"><div class="panel-body"><img src="./Travel Buddy_files/toronto-public-library.jpg" class="poiImage img-rounded"><div class="panel-body-text"><p> 
+#9 of 542 things to do in Toronto
+ </p><p> 239 College St, Toronto </p><div data-name="6"><button name="hi" type="button" class="btn btn-default">Details</button></div></div></div></div></div><div class="panel panel-default"><div role="tab" id="panel-container-heading-8" class="panel-header panel-heading"><div class="panel-title"><a aria-expanded="false" class="collapsed" aria-controls="panel-container-body-8" role="button" href="http://localhost:3002/cities/Toronto#">Royal Alexandra Theatre</a></div></div><div class="panel-collapse collapse" id="panel-container-body-8" role="tabpanel" aria-labelledby="panel-container-heading-8" aria-expanded="false"><div class="panel-body"><img src="./Travel Buddy_files/filename-dscf1501-jpg.jpg" class="poiImage img-rounded"><div class="panel-body-text"><p> 
+#10 of 542 things to do in Toronto
+ </p><p> 260 King St W, Toronto </p><div data-name="7"><button name="hi" type="button" class="btn btn-default">Details</button></div></div></div></div></div><div class="panel panel-default"><div role="tab" id="panel-container-heading-9" class="panel-header panel-heading"><div class="panel-title"><a aria-expanded="false" class="collapsed" aria-controls="panel-container-body-9" role="button" href="http://localhost:3002/cities/Toronto#">Toronto Islands - Hanlan's Point Park</a></div></div><div class="panel-collapse collapse" id="panel-container-body-9" role="tabpanel" aria-labelledby="panel-container-heading-9" aria-expanded="false"><div class="panel-body"><img src="./Travel Buddy_files/garden.jpg" class="poiImage img-rounded"><div class="panel-body-text"><p> 
+#11 of 542 things to do in Toronto
+ </p><p> 464-, 470 Lakeshore Ave, Toronto </p><div data-name="8"><button name="hi" type="button" class="btn btn-default">Details</button></div></div></div></div></div><div class="panel panel-default"><div role="tab" id="panel-container-heading-10" class="panel-header panel-heading"><div class="panel-title"><a aria-expanded="false" class="collapsed" aria-controls="panel-container-body-10" role="button" href="http://localhost:3002/cities/Toronto#">Steam Whistle Brewing</a></div></div><div class="panel-collapse collapse" id="panel-container-body-10" role="tabpanel" aria-labelledby="panel-container-heading-10" aria-expanded="false"><div class="panel-body"><img src="./Travel Buddy_files/steam-whistle-brewery.jpg" class="poiImage img-rounded"><div class="panel-body-text"><p> 
+#12 of 542 things to do in Toronto
+ </p><p> 255 Bremner Blvd, Toronto </p><div data-name="9"><button name="hi" type="button" class="btn btn-default">Details</button></div></div></div></div></div><div class="panel panel-default"><div role="tab" id="panel-container-heading-11" class="panel-header panel-heading"><div class="panel-title"><a aria-expanded="false" class="collapsed" aria-controls="panel-container-body-11" role="button" href="http://localhost:3002/cities/Toronto#">High Park</a></div></div><div class="panel-collapse collapse" id="panel-container-body-11" role="tabpanel" aria-labelledby="panel-container-heading-11" aria-expanded="false"><div class="panel-body"><img src="./Travel Buddy_files/bellos-sauces-llorones.jpg" class="poiImage img-rounded"><div class="panel-body-text"><p> 
+#13 of 542 things to do in Toronto
+ </p><p> 1873 Bloor St W, Toronto </p><div data-name="10"><button name="hi" type="button" class="btn btn-default">Details</button></div></div></div></div></div><div class="panel panel-default"><div role="tab" id="panel-container-heading-12" class="panel-header panel-heading"><div class="panel-title"><a aria-expanded="false" class="collapsed" aria-controls="panel-container-body-12" role="button" href="http://localhost:3002/cities/Toronto#">Four Seasons Centre for the Performing Arts</a></div></div><div class="panel-collapse collapse" id="panel-container-body-12" role="tabpanel" aria-labelledby="panel-container-heading-12" aria-expanded="false"><div class="panel-body"><img src="./Travel Buddy_files/four-seasons-centre-for.jpg" class="poiImage img-rounded"><div class="panel-body-text"><p> 
+#14 of 542 things to do in Toronto
+ </p><p> 145 Queen St W, Toronto </p><div data-name="11"><button name="hi" type="button" class="btn btn-default">Details</button></div></div></div></div></div><div class="panel panel-default"><div role="tab" id="panel-container-heading-13" class="panel-header panel-heading"><div class="panel-title"><a aria-expanded="false" class="collapsed" aria-controls="panel-container-body-13" role="button" href="http://localhost:3002/cities/Toronto#">Art Gallery of Ontario</a></div></div><div class="panel-collapse collapse" id="panel-container-body-13" role="tabpanel" aria-labelledby="panel-container-heading-13" aria-expanded="false"><div class="panel-body"><img src="./Travel Buddy_files/art-gallery-of-ontario.jpg" class="poiImage img-rounded"><div class="panel-body-text"><p> 
+#15 of 542 things to do in Toronto
+ </p><p> 317 Dundas St W, Toronto </p><div data-name="12"><button name="hi" type="button" class="btn btn-default">Details</button></div></div></div></div></div><div class="panel panel-default"><div role="tab" id="panel-container-heading-14" class="panel-header panel-heading"><div class="panel-title"><a aria-expanded="false" class="collapsed" aria-controls="panel-container-body-14" role="button" href="http://localhost:3002/cities/Toronto#">University of Toronto - St. George Campus</a></div></div><div class="panel-collapse collapse" id="panel-container-body-14" role="tabpanel" aria-labelledby="panel-container-heading-14" aria-expanded="false"><div class="panel-body"><img src="./Travel Buddy_files/university-of-toronto.jpg" class="poiImage img-rounded"><div class="panel-body-text"><p> 
+#16 of 542 things to do in Toronto
+ </p><p> 27 King's College Cir, Toronto </p><div data-name="13"><button name="hi" type="button" class="btn btn-default">Details</button></div></div></div></div></div><div class="panel panel-default"><div role="tab" id="panel-container-heading-15" class="panel-header panel-heading"><div class="panel-title"><a aria-expanded="false" class="collapsed" aria-controls="panel-container-body-15" role="button" href="http://localhost:3002/cities/Toronto#">Hockey Hall of Fame</a></div></div><div class="panel-collapse collapse" id="panel-container-body-15" role="tabpanel" aria-labelledby="panel-container-heading-15" aria-expanded="false"><div class="panel-body"><img src="./Travel Buddy_files/outside-of-hockey-hall.jpg" class="poiImage img-rounded"><div class="panel-body-text"><p> 
+#17 of 542 things to do in Toronto
+ </p><p> 30 Yonge St, Toronto </p><div data-name="14"><button name="hi" type="button" class="btn btn-default">Details</button></div></div></div></div></div><div class="panel panel-default"><div role="tab" id="panel-container-heading-16" class="panel-header panel-heading"><div class="panel-title"><a aria-expanded="false" class="collapsed" aria-controls="panel-container-body-16" role="button" href="http://localhost:3002/cities/Toronto#">Princess of Wales Theatre</a></div></div><div class="panel-collapse collapse" id="panel-container-body-16" role="tabpanel" aria-labelledby="panel-container-heading-16" aria-expanded="false"><div class="panel-body"><img src="./Travel Buddy_files/princess-of-wales-theatre.jpg" class="poiImage img-rounded"><div class="panel-body-text"><p> 
+#18 of 542 things to do in Toronto
+ </p><p> 300 King St W, Toronto </p><div data-name="15"><button name="hi" type="button" class="btn btn-default">Details</button></div></div></div></div></div><div class="panel panel-default"><div role="tab" id="panel-container-heading-17" class="panel-header panel-heading"><div class="panel-title"><a aria-expanded="false" class="collapsed" aria-controls="panel-container-body-17" role="button" href="http://localhost:3002/cities/Toronto#">Royal Ontario Museum</a></div></div><div class="panel-collapse collapse" id="panel-container-body-17" role="tabpanel" aria-labelledby="panel-container-heading-17" aria-expanded="false"><div class="panel-body"><img src="./Travel Buddy_files/royal-ontario-museum.jpg" class="poiImage img-rounded"><div class="panel-body-text"><p> 
+#19 of 542 things to do in Toronto
+ </p><p> 100 Queens Park, Toronto </p><div data-name="16"><button name="hi" type="button" class="btn btn-default">Details</button></div></div></div></div></div><div class="panel panel-default"><div role="tab" id="panel-container-heading-18" class="panel-header panel-heading"><div class="panel-title"><a aria-expanded="false" class="collapsed" aria-controls="panel-container-body-18" role="button" href="http://localhost:3002/cities/Toronto#">Air Canada Centre</a></div></div><div class="panel-collapse collapse" id="panel-container-body-18" role="tabpanel" aria-labelledby="panel-container-heading-18" aria-expanded="false"><div class="panel-body"><img src="./Travel Buddy_files/on-ice-toronto.jpg" class="poiImage img-rounded"><div class="panel-body-text"><p> 
+#20 of 542 things to do in Toronto
+ </p><p> 40 Bay St, Toronto </p><div data-name="17"><button name="hi" type="button" class="btn btn-default">Details</button></div></div></div></div></div><div class="panel panel-default"><div role="tab" id="panel-container-heading-19" class="panel-header panel-heading"><div class="panel-title"><a aria-expanded="false" class="collapsed" aria-controls="panel-container-body-19" role="button" href="http://localhost:3002/cities/Toronto#">Edwards Gardens</a></div></div><div class="panel-collapse collapse" id="panel-container-body-19" role="tabpanel" aria-labelledby="panel-container-heading-19" aria-expanded="false"><div class="panel-body"><img src="./Travel Buddy_files/edwards-gardens.jpg" class="poiImage img-rounded"><div class="panel-body-text"><p> 
+#21 of 542 things to do in Toronto
+ </p><p> 755 Lawrence Ave E, North York </p><div data-name="18"><button name="hi" type="button" class="btn btn-default">Details</button></div></div></div></div></div><div class="panel panel-default"><div role="tab" id="panel-container-heading-20" class="panel-header panel-heading"><div class="panel-title"><a aria-expanded="false" class="collapsed" aria-controls="panel-container-body-20" role="button" href="http://localhost:3002/cities/Toronto#">Spadina Museum</a></div></div><div class="panel-collapse collapse" id="panel-container-body-20" role="tabpanel" aria-labelledby="panel-container-heading-20" aria-expanded="false"><div class="panel-body"><img src="./Travel Buddy_files/spadina-house.jpg" class="poiImage img-rounded"><div class="panel-body-text"><p> 
+#22 of 542 things to do in Toronto
+ </p><p> 285 Spadina Rd, Toronto </p><div data-name="19"><button name="hi" type="button" class="btn btn-default">Details</button></div></div></div></div></div><div class="panel panel-default"><div role="tab" id="panel-container-heading-21" class="panel-header panel-heading"><div class="panel-title"><a aria-expanded="false" class="collapsed" aria-controls="panel-container-body-21" role="button" href="http://localhost:3002/cities/Toronto#">Scarborough Bluffs Park</a></div></div><div class="panel-collapse collapse" id="panel-container-body-21" role="tabpanel" aria-labelledby="panel-container-heading-21" aria-expanded="false"><div class="panel-body"><img src="./Travel Buddy_files/shoreline-near-bluffs.jpg" class="poiImage img-rounded"><div class="panel-body-text"><p> 
+#23 of 542 things to do in Toronto
+ </p><p> Scarborough </p><div data-name="20"><button name="hi" type="button" class="btn btn-default">Details</button></div></div></div></div></div><div class="panel panel-default"><div role="tab" id="panel-container-heading-22" class="panel-header panel-heading"><div class="panel-title"><a aria-expanded="false" class="collapsed" aria-controls="panel-container-body-22" role="button" href="http://localhost:3002/cities/Toronto#">TIFF Bell Lightbox</a></div></div><div class="panel-collapse collapse" id="panel-container-body-22" role="tabpanel" aria-labelledby="panel-container-heading-22" aria-expanded="false"><div class="panel-body"><img src="./Travel Buddy_files/tiff-bell-lightbox.jpg" class="poiImage img-rounded"><div class="panel-body-text"><p> 
+#24 of 542 things to do in Toronto
+ </p><p> 350 King St W, Toronto </p><div data-name="21"><button name="hi" type="button" class="btn btn-default">Details</button></div></div></div></div></div><div class="panel panel-default"><div role="tab" id="panel-container-heading-23" class="panel-header panel-heading"><div class="panel-title"><a aria-expanded="false" class="collapsed" aria-controls="panel-container-body-23" role="button" href="http://localhost:3002/cities/Toronto#">The Distillery District</a></div></div><div class="panel-collapse collapse" id="panel-container-body-23" role="tabpanel" aria-labelledby="panel-container-heading-23" aria-expanded="false"><div class="panel-body"><img src="./Travel Buddy_files/distillery-art.jpg" class="poiImage img-rounded"><div class="panel-body-text"><p> 
+#25 of 542 things to do in Toronto
+ </p><p> Toronto </p><div data-name="22"><button name="hi" type="button" class="btn btn-default">Details</button></div></div></div></div></div><div class="panel panel-default"><div role="tab" id="panel-container-heading-25" class="panel-header panel-heading"><div class="panel-title"><a aria-expanded="false" class="collapsed" aria-controls="panel-container-body-25" role="button" href="http://localhost:3002/cities/Toronto#">Rogers Centre</a></div></div><div class="panel-collapse collapse" id="panel-container-body-25" role="tabpanel" aria-labelledby="panel-container-heading-25" aria-expanded="false"><div class="panel-body"><img src="./Travel Buddy_files/cfl-argos-500-level.jpg" class="poiImage img-rounded"><div class="panel-body-text"><p> 
+#30 of 542 things to do in Toronto
+ </p><p> 1 Blue Jays Way, Toronto </p><div data-name="24"><button name="hi" type="button" class="btn btn-default">Details</button></div></div></div></div></div></div></div></div></div></div><div><div id="CityCharContainer"><div id="char-container"><canvas width="500" height="500"></canvas></div><div id="result-container"><div role="alert" class="alert alert-warning">Ok Match!</div><div class="chart" data-percentage="75"><div class="percentage"></div><div class="completed active"></div></div></div></div><div id="CityModalContainer"></div></div></div></div></div><footer class="footer">Wow our website is so awesome!</footer></div></div>
+    <!--
+      This HTML file is a template.
+      If you open it directly in the browser, you will see an empty page.
+
+      You can add webfonts, meta tags, or analytics to this file.
+      The build step will place the bundled scripts into the <body> tag.
+
+      To begin the development, run `npm start` or `yarn start`.
+      To create a production bundle, use `npm run build` or `yarn build`.
+    -->
+  <script type="text/javascript" src="./Travel Buddy_files/bundle.js"></script>
+
+<script type="text/javascript" src="./Travel Buddy_files/js"></script></body></html>
