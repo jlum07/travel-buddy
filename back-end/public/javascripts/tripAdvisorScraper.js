@@ -32,7 +32,6 @@ module.exports = async function(searchInput) {
   //console.log(lazyLoadArray[1])
   let lazyImgs = eval(lazyLoadArray[1]);
 
-
   $a = $(".listing_details");
   $a.each(function(i, elem) {
     if (
@@ -41,8 +40,6 @@ module.exports = async function(searchInput) {
         .eq(1)
         .text()
     ) {
-
-
       let picture = lazyImgs.find(element => {
         // console.log('element = ', element);
         return (
@@ -56,13 +53,12 @@ module.exports = async function(searchInput) {
       // console.log('picture = ', picture);
 
       // When searching michigan, the line below gives the following error:
-      //  cannot read property 'data' of undefined, 
+      //  cannot read property 'data' of undefined,
       //  but it logs to console: picture.data =  https://media-cdn.tripadvisor.com/media/photo-f/13/28/db/17/mrs-boyle-eileen-long.jpg
       //  THIS MAKES NO SENSE!!!!
-      // console.log('picture.data = ', picture.data); 
+      // console.log('picture.data = ', picture.data);
 
-
-      let pictureData = picture.data; 
+      let pictureData = picture.data;
 
       // console.log('pictureData = ', pictureData);
 
@@ -101,27 +97,26 @@ module.exports = async function(searchInput) {
 
   $a = $(".listing_details");
   $a.each(function(i, elem) {
-    let pictureData = ''
+    let pictureData = "";
     let picture = lazyImgs.find(element => {
-        return (
-          element.id ===
-          $(this)
-            .find(".photo_image")
-            .attr("id")
-        );
-      });
-       // console.log($(this)
-       //      .find(".photo_image")
-       //      .attr("id"))
-       if(picture){
-        pictureData = picture.data;
-       }
-
+      return (
+        element.id ===
+        $(this)
+          .find(".photo_image")
+          .attr("id")
+      );
+    });
+    // console.log($(this)
+    //      .find(".photo_image")
+    //      .attr("id"))
+    if (picture) {
+      pictureData = picture.data;
+    }
 
     if (
       $(this)
-            .find(".photo_image")
-            .attr("id")
+        .find(".photo_image")
+        .attr("id")
     ) {
       museum_poi.push({
         title: $(this)
@@ -158,24 +153,23 @@ module.exports = async function(searchInput) {
   //console.log(lazyLoadArray[1])
   lazyImgs = eval(lazyLoadArray[1]);
 
-
   $a = $(".listing");
   //console.log($a.html());
   $a.each(function(i, elem) {
-    let pictureData = ''
+    let pictureData = "";
     let picture = lazyImgs.find(element => {
-        return (
-          element.id ===
-          $(this)
-        .find(".photo_image")
-        .attr("id")
-        );
-      });
+      return (
+        element.id ===
+        $(this)
+          .find(".photo_image")
+          .attr("id")
+      );
+    });
     //if(picture){
-      // console.log($(this)
-      //   .find(".photo_image")
-      //   .attr("id"))
-       pictureData = picture.data;
+    // console.log($(this)
+    //   .find(".photo_image")
+    //   .attr("id"))
+    pictureData = picture.data;
     //}
 
     food_poi.push({
@@ -211,27 +205,23 @@ module.exports = async function(searchInput) {
 
   $a = $(".listing_details");
   $a.each(function(i, elem) {
-    let pictureData = ''
+    let pictureData = "";
     let picture = lazyImgs.find(element => {
-        return (
-          element.id ===
-          $(this)
-            .find(".photo_image")
-            .attr("id")
-        );
-      });
-       // console.log($(this)
-       //      .find(".photo_image")
-       //      .attr("id"))
-       if(picture){
-        pictureData = picture.data;
-       }
-
+      return (
+        element.id ===
+        $(this)
+          .find(".photo_image")
+          .attr("id")
+      );
+    });
+    if (picture) {
+      pictureData = picture.data;
+    }
 
     if (
       $(this)
-            .find(".photo_image")
-            .attr("id")
+        .find(".photo_image")
+        .attr("id")
     ) {
       nightlife_poi.push({
         title: $(this)
@@ -248,8 +238,6 @@ module.exports = async function(searchInput) {
       });
     }
   });
-
-
 
   let poi_array = {
     top_poi: top_poi,

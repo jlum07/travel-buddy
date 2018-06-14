@@ -76,7 +76,7 @@ module.exports = knex => {
 
           let cacheExpiry = cacheExpiryTimeMins;
           if(req.params.city === 'Toronto'){
-            cacheExpiry = 0.5;
+            cacheExpiry = 5;
           }
 
 

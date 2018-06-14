@@ -135,7 +135,7 @@ class App extends Component {
     return (
       <div>
         <BrowserRouter>
-          <div>
+          <div ref="section1">
             <NavBar
               logIn={this.logIn}
               logOut={this.logOut}

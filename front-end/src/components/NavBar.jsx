@@ -55,7 +55,7 @@ class NavBar extends React.Component {
         <Navbar.Header>
           <Navbar.Brand>
 
-            <Link id="nav-brand-name" to='/'>Travel Buddy</Link>
+            <Link id="nav-brand-name" to='/#section1'>Travel Buddy</Link>
           </Navbar.Brand>
           <Navbar.Toggle />
         </Navbar.Header>

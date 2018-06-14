@@ -158,7 +158,6 @@ class DashboardContainer extends React.Component {
                   <div id="poi-list-container">
                     <div id="poi-list">
                       <div>
-
                         <div id="DropdownContainer">
                           <Dropdown
                             currentCat={this.state.currentCat}

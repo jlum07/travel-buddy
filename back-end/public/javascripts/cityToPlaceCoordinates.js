@@ -27,7 +27,8 @@ module.exports = async function(searchInput) {
     return placeToCoordinates(element, searchInput.geometry.location);
   });
 
-  return{top_poi: await Promise.all(top_poi),
+  return {
+    top_poi: await Promise.all(top_poi),
     museum_poi: await Promise.all(museum_poi),
     food_poi: await Promise.all(food_poi),
     nightlife_poi: await Promise.all(nightlife_poi)
