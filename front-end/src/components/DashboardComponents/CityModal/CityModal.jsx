@@ -54,15 +54,18 @@ class GalleryModal extends React.Component {
     }
   };
 
-  componentDidMount() {
-
-  }
+  componentDidMount() {}
 
   render() {
     let snapStatus = false;
     if (this.props.currentPin.snapchat === "No Snaps!") {
       snapStatus = true;
     }
+
+      let backgroundImage= `url(${this.props.currentPin.trip_advisor_picture})`
+
+    console.log(backgroundImage);
+
     //if (this.props.currentPin.snapchat !== "No Snaps!") {
     return (
       <React.Fragment>
@@ -75,24 +78,36 @@ class GalleryModal extends React.Component {
             onSelect={this.handleTabSelect}
           >
             <Tab eventKey={1} title="TripAdvisor">
-              <Jumbotron className="jumbotron">
-                <h3>{this.props.currentPin.title}</h3>
-                <p>{this.props.currentPin.ranking}</p>
+              <div
 
-                <p>
-                  <Button
-                    bsStyle="primary"
-                    href={`https://${this.props.currentPin.trip_advisor_link}`}
-                    target="_blank"
-                  >
-                    {" "}
-                    <img
-                      class="trip_advisor_link"
-                      src="https://static.tacdn.com/img2/branding/rebrand/TA_logo_primary.png"
-                    />{" "}
-                  </Button>
-                </p>
-              </Jumbotron>
+              >
+                <Jumbotron
+                  style={{
+                    backgroundImage:
+                      backgroundImage
+                  }}
+                  className="jumbotron"
+                >
+                  <h3>{this.props.currentPin.title}</h3>
+                  <p>{this.props.currentPin.ranking}</p>
+
+                  <p>
+                    <Button
+                      bsStyle="primary"
+                      href={`https://${
+                        this.props.currentPin.trip_advisor_link
+                      }`}
+                      target="_blank"
+                    >
+                      {" "}
+                      <img
+                        class="trip_advisor_link"
+                        src="https://static.tacdn.com/img2/branding/rebrand/TA_logo_primary.png"
+                      />{" "}
+                    </Button>
+                  </p>
+                </Jumbotron>
+              </div>
             </Tab>
 
             <Tab eventKey={2} title="Instagram">

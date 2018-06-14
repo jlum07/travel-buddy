@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import MapContainer from "./DashboardComponents/Map/MapContainer";
 import CityCharContainer from "./DashboardComponents/CityChar/CityCharContainer";
-//import CityPercentageContainer from "./DashboardComponents/CityChar/CityPercentageContainer";
+import CityPercentageContainer from "./DashboardComponents/CityChar/CityPercentageContainer";
 import WeatherContainer from "./DashboardComponents/Weather/WeatherContainer";
 import ben from "./BenSpinning.png";
 import CityModal from "./DashboardComponents/CityModal/CityModal.jsx";
@@ -144,20 +144,6 @@ class DashboardContainer extends React.Component {
           <div id="DashboardContainer">
             <ScrollableAnchor id={"section1"}>
               <div>
-                <h1> City Map </h1>
-                <div className="button-group-container">
-                  <ButtonGroup>
-                    <Button href="#section1">
-                      <img className="cat-icon" src={map} />
-                    </Button>
-                    <Button href="#section2">
-                      <img className="cat-icon" src={chart} />
-                    </Button>
-                    <Button href="#section3">
-                      <img className="cat-icon" src={star} />
-                    </Button>
-                  </ButtonGroup>
-                </div>
                 <div id="PoiContainer">
                   <div id="MapContainer">
                     <MapContainer
@@ -169,44 +155,36 @@ class DashboardContainer extends React.Component {
                       activeMarker={this.state.activeMarker}
                     />
                   </div>
-                  <div id="poi-list">
-                    <div>
-                      <h1> POI List </h1>
-                      <div id="DropdownContainer">
-                        <Dropdown
-                          currentCat={this.state.currentCat}
-                          handleClick={this.handleDropdownClick}
-                        />
+                  <div id="poi-list-container">
+                    <div id="poi-list">
+                      <div>
+
+                        <div id="DropdownContainer">
+                          <Dropdown
+                            currentCat={this.state.currentCat}
+                            handleClick={this.handleDropdownClick}
+                          />
+                        </div>
                       </div>
+                      <PoiList
+                        points_of_interest={this.state.points_of_interest}
+                        currentCat={this.state.currentCat}
+                        setActiveMarker={this.setActiveMarker}
+                        modalLaunch={this.modalLaunch}
+                        toggleModal={this.toggleModal}
+                      />
                     </div>
-                    <PoiList
-                      points_of_interest={this.state.points_of_interest}
-                      currentCat={this.state.currentCat}
-                      setActiveMarker={this.setActiveMarker}
-                      modalLaunch={this.modalLaunch}
-                      toggleModal={this.toggleModal}
-                    />
                   </div>
                 </div>
               </div>
             </ScrollableAnchor>
             <ScrollableAnchor id={"section2"}>
-              <div>
-                <div className="button-group-container">
-                  <ButtonGroup>
-                    <Button href="#section1">
-                      <img className="cat-icon" src={map} />
-                    </Button>
-                    <Button href="#section2">
-                      <img className="cat-icon" src={chart} />
-                    </Button>
-                    <Button href="#section3">
-                      <img className="cat-icon" src={star} />
-                    </Button>
-                  </ButtonGroup>
-                </div>
+              <div >
                 <div id="CityCharContainer">
-                  <CityCharContainer CityChar={this.state.cityChar} />
+                  <div id="char-container">
+                    <CityCharContainer CityChar={this.state.cityChar} />
+                  </div>
+                  <CityPercentageContainer CityChar={this.state.cityChar}/>
                 </div>
                 <div id="CityModalContainer">
                   <CityModal
@@ -214,82 +192,6 @@ class DashboardContainer extends React.Component {
                     showModal={this.state.showModal}
                     currentPin={this.state.currentPin}
                   />
-                </div>
-              </div>
-            </ScrollableAnchor>
-
-            <ScrollableAnchor id={"section3"}>
-              <div>
-                <div className="button-group-container">
-                  <ButtonGroup>
-                    <Button href="#section1">
-                      <img className="cat-icon" src={map} />
-                    </Button>
-                    <Button href="#section2">
-                      <img className="cat-icon" src={chart} />
-                    </Button>
-                    <Button href="#section3">
-                      <img className="cat-icon" src={star} />
-                    </Button>
-                  </ButtonGroup>
-                </div>
-                <div id="TopPoiContainer">
-                  <Grid>
-                    <Row className="show-grid">
-                      <Col sm={6}>
-                        <Panel id="TopPoiPanel">
-                          <Panel.Heading>
-                            {this.state.points_of_interest.top_poi[0].title}
-                          </Panel.Heading>
-                          <Panel.Body>
-                            {this.state.points_of_interest.top_poi[0].ranking}
-                          </Panel.Body>
-                        </Panel>
-                      </Col>
-                      <Col sm={6}>
-                        <Panel id="TopMuseumPanel">
-                          <Panel.Heading>
-                            {this.state.points_of_interest.museum_poi[0].title}
-                          </Panel.Heading>
-                          <Panel.Body>
-                            {
-                              this.state.points_of_interest.museum_poi[0]
-                                .ranking
-                            }
-                          </Panel.Body>
-                        </Panel>
-                      </Col>
-                    </Row>
-
-                    <Row className="show-grid">
-                      <Col sm={6}>
-                        <Panel id="TopFoodPanel">
-                          <Panel.Heading>
-                            {this.state.points_of_interest.food_poi[0].title}
-                          </Panel.Heading>
-                          <Panel.Body>
-                            {this.state.points_of_interest.food_poi[0].ranking}
-                          </Panel.Body>
-                        </Panel>
-                      </Col>
-                      <Col sm={6}>
-                        <Panel id="TopNightlifePanel">
-                          <Panel.Heading>
-                            {
-                              this.state.points_of_interest.nightlife_poi[0]
-                                .title
-                            }
-                          </Panel.Heading>
-                          <Panel.Body>
-                            {
-                              this.state.points_of_interest.nightlife_poi[0]
-                                .ranking
-                            }
-                          </Panel.Body>
-                        </Panel>
-                      </Col>
-                    </Row>
-                  </Grid>
                 </div>
               </div>
             </ScrollableAnchor>

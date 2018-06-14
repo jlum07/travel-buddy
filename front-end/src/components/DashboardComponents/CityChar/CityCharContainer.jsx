@@ -69,7 +69,7 @@ class CityCharContainer extends React.Component {
 
       if (shapesArray[0]) {
         for (let i = 0; i < shapesArray[0].points.length; i++) {
-          ctx.strokeStyle = "#208963";
+          ctx.strokeStyle = "#ffffff";
           ctx.lineWidth = 1;
           ctx.moveTo(centerX, centerY);
           ctx.lineTo(shapesArray[0].points[i].x, shapesArray[0].points[i].y);
@@ -89,7 +89,7 @@ class CityCharContainer extends React.Component {
         ctx.fillStyle = shape.fill;
         ctx.strokeStyle = shape.stroke;
         ctx.lineWidth = shape.linewidth;
-
+        ctx.font="20px Arial";
         ctx.closePath();
         ctx.fill();
         ctx.stroke();
@@ -104,6 +104,13 @@ class CityCharContainer extends React.Component {
             ctx.textAlign = "left";
           } else if (_x == centerX) {
             ctx.textAlign = "center";
+          }
+
+          if(fields[i] == 'nightlife'){
+            fields[i] = 'fun'
+          }
+          if(fields[i] == 'culture'){
+            fields[i] = 'art'
           }
           ctx.fillText(fields[i], shape.fields[i].x, shape.fields[i].y);
         }
@@ -173,10 +180,10 @@ class CityCharContainer extends React.Component {
     }
 
     function play() {
-      setupShape(sides, radius, "#175f45", "#3ad59c", 3);
-      setupShape(sides, (radius * 3) / 4, "#2e6f58", "#208963", 1);
-      setupShape(sides, radius / 2, "#437e69", "#208963", 1);
-      setupShape(sides, (radius * 1) / 4, "#1f8862", "#208963", 1);
+      setupShape(sides, radius, "#1F6097", "#174c79", 3);
+      setupShape(sides, (radius * 3) / 4, "#3284c5", "#174c79", 1);
+      setupShape(sides, radius / 2, "#53a5ea", "#174c79", 1);
+      setupShape(sides, (radius * 1) / 4, "#f8862", "#174c79", 1);
 
       for (let j = 0; j < shapesArray.length; j++) {
         let shape = shapesArray[j];
@@ -189,7 +196,7 @@ class CityCharContainer extends React.Component {
         }
       }
 
-      setupData(data, "rgba(99, 223, 178, 0.5)", "#3ad59c", 2);
+      setupData(data, "rgb(116, 150, 179, 0.7)", "#ffffff", 2);
     }
 
     play();
@@ -197,7 +204,7 @@ class CityCharContainer extends React.Component {
 
   componentDidMount() {
 
-    document.getElementById("CityCharContainer").appendChild(this.refs.canvas);
+    document.getElementById("char-container").appendChild(this.refs.canvas);
     this._drawGraph()
 
   }

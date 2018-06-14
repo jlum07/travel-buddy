@@ -4,5 +4,20 @@
 }
 
 .poiImage {
-  height: 100px;
+  width: 100%;
+}
+
+.panel > div:nth-child(1) {
+  color: #ffffff;
+  background-image: linear-gradient(to bottom, #1f6097 0, #1f6097 100%);
+}
+
+.panel-body-text {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+  font-family: roboto;
+  font-weight: bold;
+  padding: 5px;
 }

@@ -1,107 +1,89 @@
 import React, { Component } from "react";
-import "./CityPercentageContainer.css"
-import Snap, { mina } from "snapsvg"
-
+import "./CityPercentageContainer.css";
+import { Alert } from "react-bootstrap";
+import axios from 'axios'
 
 class CityCharContainer extends React.Component {
   constructor() {
     super();
     this.state = {
-      data: [],
-      fields: []
-    };
-  }
-
-  _drawGraph() {
-    let canvasSize = 200
-      let centre = canvasSize / 2
-      let radius = (canvasSize * 0.8) / 2
-      let s = Snap("#svg")
-      let path = ""
-      let arc = s.path(path)
-      let startY = centre - radius
-      let runBtn = document.getElementById("run")
-      let percDiv = document.getElementById("percent")
-      let input = document.getElementById("input")
-
-    input.onkeyup = function(evt) {
-      if (isNaN(input.value)) {
-        input.value = "";
-      }
-    };
-
-    runBtn.onclick = function() {
-      run(input.value / 100);
-    };
-
-    function run(percent) {
-      var endpoint = percent * 360;
-      Snap.animate(
-        0,
-        endpoint,
-        function(val) {
-          arc.remove();
-
-          let d = val
-          let dr = d - 90;
-          let radians = (Math.PI * dr) / 180
-          let endx = centre + radius * Math.cos(radians)
-          let endy = centre + radius * Math.sin(radians)
-          let largeArc = d > 180 ? 1 : 0
-          path =
-            "M" +
-            centre +
-            "," +
-            startY +
-            " A" +
-            radius +
-            "," +
-            radius +
-            " 0 " +
-            largeArc +
-            ",1 " +
-            endx +
-            "," +
-            endy;
-
-          arc = s.path(path);
-          arc.attr({
-            stroke: "#3da08d",
-            fill: "none",
-            strokeWidth: 12
-          });
-          percDiv.innerHTML = Math.round((val / 360) * 100) + "%";
-        },
-        2000,
-        mina.easeinout
-      );
+      rank_food: '',
+          rank_arts: '',
+          rank_nightlife: '',
+          rank_safety: '',
+          rank_price: ''
     }
-
-    run(input.value / 100);
   }
 
-  componentDidMount() {
-    document.getElementById("CityCharContainer").appendChild(this.refs.canvas);
-    this._drawGraph();
-  }
+  componentDidMount(){
 
-  componentDidUpdate() {
-    // this._drawGraph()
-    console.log("props", this.props);
+    let session_token = localStorage.getItem('session_token');
+    console.log('session_token = ', session_token);
+
+    axios.get('http://localhost:3001/users/profile_data', {
+      headers: {
+        session_token: session_token
+      }
+    })
+    .then((response)=>{
+
+      console.log('response.data = ', response.data);
+      // console.log('this.state = ', this.state);
+      this.setState({
+
+          rank_food: response.data.food_rank,
+          rank_arts: response.data.arts_rank,
+          rank_nightlife: response.data.nightlife_rank,
+          rank_safety: response.data.safety_rank,
+          rank_price: response.data.price_rank
+
+      })
+    })
   }
 
   render() {
+
+    let hi ={
+      boxShadow: "inset 0 0 0px 60px #b2dba1"
+    }
+
+    console.log("citychar", this.props.CityChar)
+
+    let food = (this.state.rank_food * this.props.CityChar.food) / 10
+    let arts = (this.state.rank_arts * this.props.CityChar.culture) / 10
+    let nightlife = (this.state.rank_nightlife * this.props.CityChar.nightlife) / 10
+    let safety = (this.state.rank_safety * this.props.CityChar.safety) / 10
+    let price = (this.state.rank_price * this.props.CityChar.cost) / 10
+
+    console.log(this.state)
+    let sum = this.state.rank_food + this.state.rank_arts+this.state.rank_nightlife +this.state.rank_safety +this.state.rank_price
+    console.log(sum)
+    let eqn = (food + arts + nightlife + safety + price)/sum
+    console.log(eqn)
+    let eqnRound = String(Math.ceil(eqn*100/5)*5)
+    console.log(typeof(eqnRound))
+
+    let result = ''
+    let message = ''
+    if(eqnRound > 80){
+      result = 'success'
+      message = 'Good Match!'
+    } else if(eqnRound > 60){
+      result = 'warning'
+      message = 'Ok Match!'
+    } else {
+      result = 'danger'
+      message = 'Bad Match!'
+    }
     return (
-      <div class="container">
-        <div id="percent" />
-        <svg id="svg" />
-        <p>
-          <label for="perc-input">Percent:</label>
-          <input maxlength="2" type="text" id="input" value="65" />
-        </p>
-        <a class="btn" id="run">
-          Run
-        </a>
+      <div id="result-container">
+        <Alert bsStyle={result}>
+          {message}
+        </Alert>
+        <div class="chart" data-percentage={`${eqnRound}`}>
+          <div class="percentage" />
+          <div class="completed active" />
+        </div>
       </div>
     );
   }
