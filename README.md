@@ -4,11 +4,11 @@ Travel Buddy
 Travel Buddy is a website that allows users to explore cities by combining data scraped from TripAdvisor with Google Maps, Snapchat and Instagram to really get a feel for what's been happening at a location in the past 24 hours.
 
 ## Screenshots
-!['Home Page'](travel-buddy/screenshots/Screenshot from 2018-06-20 09-37-17.png)
-!['Home Page'](https://github.com/ryan-olejnik/jungle-rails/blob/master/screenshots/home-page.png)
-!['Home Page'](https://github.com/ryan-olejnik/jungle-rails/blob/master/screenshots/home-page.png)
+!['Home Page'](https://github.com/jlum07/travel-buddy/blob/development/screenshots/mainPage.png)
+!['Home Page'](https://github.com/jlum07/travel-buddy/blob/development/screenshots/insta.png)
+!['Home Page'](https://github.com/jlum07/travel-buddy/blob/development/screenshots/trip.png)
 
-
+travel-buddy/screenshots/dashboard.png
 ## Getting Started
 
 1. Fork this repository, then clone your fork of this repository.
