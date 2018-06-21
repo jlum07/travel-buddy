@@ -11,7 +11,7 @@ const util = require("util");
 //INPUT PARAMETERS
 // const useSampleData = false;
 
-const cacheExpiryTimeMins = 12*60; // 12 hours
+const cacheExpiryTimeMins = 12*60*24*7; // 1 week
 
 async function collectCityData(cityName) {
   let cityDetails = await cityAutoComplete(cityName);
@@ -73,14 +73,7 @@ module.exports = knex => {
             `Found ${req.params.city} in DB!...Checking age of data...`
           );
 
-
-          let cacheExpiry = cacheExpiryTimeMins;
-          if(req.params.city === 'Toronto'){
-            cacheExpiry = 5;
-          }
-
-
-          if (ageOfData_mins < cacheExpiry) {
+          if (ageOfData_mins < cacheExpiryTimeMins) {
             console.log(
               `Data for ${req.params.city} is ${Number(ageOfData_mins).toFixed(
                 2

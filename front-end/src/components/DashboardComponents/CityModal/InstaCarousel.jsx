@@ -1,7 +1,8 @@
 import React from "react";
 import { Carousel } from "react-bootstrap";
 import getInstagrams from "./getInstagrams";
-// import './InstaCarousel.css';
+import instaLogo from './InstaLogo.png';
+import './InstaCarousel.css';
 
 class InstaCarousel extends React.Component {
   constructor() {
@@ -19,7 +20,10 @@ class InstaCarousel extends React.Component {
       console.log("bruhhfjdhsfjkdhsk", instas);
       this.props.hasInstas(instas)
       this.setState({ instas: instas });
-    });
+    })
+    .catch((error)=>{
+      console.log('Error running the function getInstagrams: ', error);
+    })
   }
   render() {
     const carouselItems = this.state.instas.map((node, index) => {
@@ -40,7 +44,20 @@ class InstaCarousel extends React.Component {
       }
     });
 
-    return <Carousel>{carouselItems}</Carousel>;
+    if (this.state.instas.length === 0){
+      return (
+        <React.Fragment>
+          <h2>Loading Instas...</h2>
+          <img id='insta-logo' src={instaLogo} />
+        </React.Fragment>
+
+
+        );
+    }
+    else {
+      return <Carousel>{carouselItems}</Carousel>;
+    }
+
   }
 }
 
