@@ -132,6 +132,10 @@ class App extends Component {
       return <Trip currentUser={this.state.currentUser} {...props} />;
     }
 
+    const DashboardWithProps = props => {
+      return <DashboardContainer currentUser={this.state.currentUser} {...props}/>
+    }
+
     return (
       <div>
         <BrowserRouter>
@@ -142,14 +146,13 @@ class App extends Component {
               currentUser={this.state.currentUser}
             />
             <Route exact path="/" component={Home} />
-            <Route path="/cities/:city" component={DashboardContainer} />
+            <Route path="/cities/:city" render={DashboardWithProps} />
             <Route exact path="/trips" render={TripsWithProps} />
             <Route path="/trips/:id" render={TripWithProps} />
             <Route path="/map" component={MapContainer} />
             <Route path="/profile" render={ProfileWithProps} />
             <Route path="/register" render={RegistrationPageWithProps} />
             <Route path="/graph" component={MorphGraph} />
-            <Route path="/dashboard/:city" component={DashboardContainer} />
           </div>
         </BrowserRouter>
         <footer class="footer">

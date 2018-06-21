@@ -14,11 +14,11 @@ class PoiList extends React.Component {
   }
 
   handleSelect(activeKey) {
-    console.log(
-      activeKey,
-      this.state.activeKey,
-      activeKey !== this.state.activeKey
-    );
+    // console.log(
+    //   activeKey,
+    //   this.state.activeKey,
+    //   activeKey !== this.state.activeKey
+    // );
     if (activeKey !== null) {
       this.setState({ activeKey });
       let input = {
@@ -38,7 +38,7 @@ class PoiList extends React.Component {
     let poi_list = this.props.points_of_interest[
       this.props.currentCat.eventKey
     ].map((element, index) => {
-      console.log(element);
+      // console.log(element);
       if (element.title) {
         return (
           <Panel eventKey={`${index + 1}`}>

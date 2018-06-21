@@ -31,8 +31,8 @@ import { configureAnchors, goToTop } from "react-scrollable-anchor";
 import ReactLoading from "react-loading";
 
 class DashboardContainer extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       cityChar: {},
       city_coordinates: {},
@@ -138,6 +138,7 @@ class DashboardContainer extends React.Component {
   }
 
   render() {
+    console.log('this.props.currentUser = ', this.props.currentUser);
     if (this.state.isLoaded) {
       return (
         <div>
@@ -183,7 +184,7 @@ class DashboardContainer extends React.Component {
                   <div id="char-container">
                     <CityCharContainer CityChar={this.state.cityChar} />
                   </div>
-                  <CityPercentageContainer CityChar={this.state.cityChar}/>
+                  <CityPercentageContainer CityChar={this.state.cityChar} currentUser={this.props.currentUser}/>
                 </div>
                 <div id="CityModalContainer">
                   <CityModal

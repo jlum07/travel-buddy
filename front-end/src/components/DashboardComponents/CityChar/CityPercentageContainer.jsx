@@ -3,7 +3,7 @@ import "./CityPercentageContainer.css";
 import { Alert } from "react-bootstrap";
 import axios from 'axios'
 
-class CityCharContainer extends React.Component {
+class CityPercentageContainer extends React.Component {
   constructor() {
     super();
     this.state = {
@@ -75,18 +75,24 @@ class CityCharContainer extends React.Component {
       result = 'danger'
       message = 'Bad Match!'
     }
-    return (
-      <div id="result-container">
-        <Alert bsStyle={result}>
-          {message}
-        </Alert>
-        <div class="chart" data-percentage={`${eqnRound}`}>
-          <div class="percentage" />
-          <div class="completed active" />
+
+
+    if (this.props.currentUser.id){
+      return (
+        <div id="result-container">
+          <Alert bsStyle={result}>
+            {this.props.currentUser.username}: {message}
+          </Alert>
+          <div class="chart" data-percentage={`${eqnRound}`}>
+            <div class="percentage" />
+            <div class="completed active" />
+          </div>
         </div>
-      </div>
-    );
+      );      
+    } else {
+      return null
+    }
   }
 }
 
-export default CityCharContainer;
+export default CityPercentageContainer;

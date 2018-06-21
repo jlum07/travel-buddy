@@ -32,8 +32,6 @@ class InstaCarousel extends React.Component {
           <h2>Loading Instas...</h2>
           <img id='insta-logo' src={instaLogo} />
         </React.Fragment>
-
-
         );
     }
     else {
