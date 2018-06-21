@@ -23,7 +23,7 @@ class Home extends React.Component {
   }
 
   takeMeAnyWhere(){
-    let randomIndex = Math.floor(Math.random()*5+1);
+    let randomIndex = Math.floor(Math.random()*5);
     let randonCityList = ['Toronto', 'Barcelona', 'Bangkok', 'Munich', 'Paris']
     this.setState({
       searchCity: randonCityList[randomIndex],
