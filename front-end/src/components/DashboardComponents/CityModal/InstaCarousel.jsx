@@ -26,24 +26,6 @@ class InstaCarousel extends React.Component {
     })
   }
   render() {
-    const carouselItems = this.state.instas.map((node, index) => {
-      if (index !== 0) {
-        return (
-          <Carousel.Item key={index}>
-            {(node.demensions && <img
-              width={node.demensions.width}
-              height={node.demensions.width}
-              alt=""
-              src={node.url}
-            /> )}
-            <Carousel.Caption>
-              <p>{node.text}</p>
-            </Carousel.Caption>
-          </Carousel.Item>
-        );
-      }
-    });
-
     if (this.state.instas.length === 0){
       return (
         <React.Fragment>
@@ -55,6 +37,24 @@ class InstaCarousel extends React.Component {
         );
     }
     else {
+      const carouselItems = this.state.instas.map((node, index) => {
+        if (index !== 0) {
+          return (
+            <Carousel.Item key={index}>
+              {(node.demensions && <img
+                width={node.demensions.width}
+                height={node.demensions.width}
+                alt=""
+                src={node.url}
+              /> )}
+              <Carousel.Caption>
+                <p>{node.text}</p>
+              </Carousel.Caption>
+            </Carousel.Item>
+          );
+        }
+      });
+
       return <Carousel>{carouselItems}</Carousel>;
     }
 
