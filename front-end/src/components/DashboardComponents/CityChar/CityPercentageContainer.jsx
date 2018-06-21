@@ -18,7 +18,7 @@ class CityPercentageContainer extends React.Component {
   componentDidMount(){
 
     let session_token = localStorage.getItem('session_token');
-    console.log('session_token = ', session_token);
+    // console.log('session_token = ', session_token);
 
     axios.get('http://localhost:3001/users/profile_data', {
       headers: {
@@ -27,7 +27,7 @@ class CityPercentageContainer extends React.Component {
     })
     .then((response)=>{
 
-      console.log('response.data = ', response.data);
+      // console.log('response.data = ', response.data);
       // console.log('this.state = ', this.state);
       this.setState({
 
@@ -47,7 +47,7 @@ class CityPercentageContainer extends React.Component {
       boxShadow: "inset 0 0 0px 60px #b2dba1"
     }
 
-    console.log("citychar", this.props.CityChar)
+    // console.log("citychar", this.props.CityChar)
 
     let food = (this.state.rank_food * this.props.CityChar.food) / 10
     let arts = (this.state.rank_arts * this.props.CityChar.culture) / 10
