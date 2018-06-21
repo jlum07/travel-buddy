@@ -18,7 +18,7 @@ import Instagram from 'react-icons/lib/fa/instagram';
 
 import "./footer.css"
 //import "./theme.css"
-require("dotenv").config();
+// require("dotenv").config();
 
 class App extends Component {
   constructor(props) {

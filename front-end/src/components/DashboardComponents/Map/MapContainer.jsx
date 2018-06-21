@@ -5,7 +5,7 @@ import API_KEY from "./apikey.js";
 
 import "./MapContainer.css";
 
-require("dotenv").config();
+// require("dotenv").config();
 
 export class MapContainer extends React.Component {
   constructor() {
