@@ -7,8 +7,9 @@ Travel Buddy is a website that allows users to explore cities by combining data 
 !['Home Page'](https://github.com/jlum07/travel-buddy/blob/development/screenshots/mainPage.png)
 !['Home Page'](https://github.com/jlum07/travel-buddy/blob/development/screenshots/insta.png)
 !['Home Page'](https://github.com/jlum07/travel-buddy/blob/development/screenshots/trip.png)
+!['Home Page'](https://github.com/jlum07/travel-buddy/blob/development/screenshots/animation.gif)
 
-travel-buddy/screenshots/dashboard.png
+
 ## Getting Started
 
 1. Fork this repository, then clone your fork of this repository.
